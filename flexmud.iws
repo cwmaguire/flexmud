@@ -2,21 +2,9 @@
 <project relativePaths="false" version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit-3.8.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/log4j-1.2.15.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit-4.5.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flexmud.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/config/pref/Preferences.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flexmud.ipr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flexmud.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/config/pref" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/config" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/log4j.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/log/LoggingUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/log/LoggingUtil.java" afterPath="$PROJECT_DIR$/src/log/LoggingUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/log/LoggingTest.java" afterPath="$PROJECT_DIR$/test/log/LoggingTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/pref/Preferences.java" afterPath="$PROJECT_DIR$/src/config/pref/Preferences.java" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="flexmud.iws" />
@@ -73,7 +61,7 @@
       <file leaf-file-name="LoggingTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/log/LoggingTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="156" column="1" selection-start="5340" selection-end="5340" vertical-scroll-proportion="0.0">
+            <state line="156" column="1" selection-start="5313" selection-end="5313" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Preferences.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Preferences.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/config/pref/Preferences.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="39" selection-start="919" selection-end="919" vertical-scroll-proportion="0.3831967">
+            <state line="14" column="18" selection-start="55" selection-end="62" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,10 +83,19 @@
       <file leaf-file-name="LoggingUtil.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/log/LoggingUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="68" selection-start="1416" selection-end="1416" vertical-scroll-proportion="0.0">
+            <state line="17" column="0" selection-start="669" selection-end="669" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="COPYING" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/COPYING">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,6 +132,10 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="flexmud" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -395,14 +396,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1688" height="1024" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
       <window_info id="Dilbert" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
@@ -412,7 +413,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5717464" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4204672" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4204672" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" />
@@ -452,16 +453,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/test/log/LoggingTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="1" selection-start="5340" selection-end="5340" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/log/LoggingUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="68" selection-start="1416" selection-end="1416" vertical-scroll-proportion="0.0">
+        <state line="156" column="1" selection-start="5313" selection-end="5313" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -470,10 +462,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/config/pref/Preferences.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="39" selection-start="919" selection-end="919" vertical-scroll-proportion="0.3831967">
+        <state line="14" column="18" selection-start="55" selection-end="62" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/log/LoggingUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="669" selection-end="669" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/COPYING">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
