@@ -52,7 +52,7 @@ public class ClientListenerConnectionTest {
             Assert.fail("Failed to connect to client listener");
         }
 
-        Assert.assertTrue("FakeClient socket is not connected.", fakeClient.getSocket().isConnected());
+        Assert.assertTrue("FakeClient socket is not connected.", fakeClient.socket.isConnected());
     }
 
 }

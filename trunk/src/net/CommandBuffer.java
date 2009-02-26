@@ -16,7 +16,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package net;
 
-import config.Constants;
+import cfg.Constants;
 
 import java.io.DataInputStream;
 import java.io.EOFException;

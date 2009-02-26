@@ -16,7 +16,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package log;
 
-import config.pref.Preferences;
+import cfg.Preferences;
 import junit.framework.Assert;
 import org.apache.log4j.Logger;
 import org.junit.After;
