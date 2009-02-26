@@ -1,18 +1,18 @@
 /*
 Copyright 2009 Chris Maguire (cwmaguire@gmail.com)
 
-MUD Cartographer is free software: you can redistribute it and/or modify
+flexmud is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-MUD Cartographer is distributed in the hope that it will be useful,
+flexmud is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with MUD Cartographer.  If not, see <http://www.gnu.org/licenses/>.
+along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package net;
 
@@ -23,34 +23,30 @@ import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SocketChannel;
 import java.util.UUID;
 
-public class Connection {
-    // private int accountID = 0;
+public class Client {
     private UUID connID;
-    // private String uName = "";
-    // private String passWd = "";
-    // private int loginAttempts = 0;
     private final SocketChannel socketChannel = null;
-    private ConnectionState connState;
-    private Connections connections;
-    private CommandBuffer cmdBuf;
+    private ClientState connState;
+    private ClientListener clientListener;
+    private CommandBuffer cmdBuffer;
 
     //private PlayerCharacter pc;
     //private Account account;
 
-    public Connection() {
+    public Client() {
         /*
         this.socketChannel = inSc;
         this.connections = connections;
         this.connState = ConnectionState.DISCONNECTED;
         this.connID = connections.getNewConnectionID();
-        this.cmdBuf = new CommandBuffer();
+        this.cmdBuffer = new CommandBuffer();
         this.pc = null;
         this.account = null;
         */
     }
 
     public boolean disconnect() {
-        this.connections.disconnect(this);
+        this.clientListener.disconnect(this);
         try {
             socketChannel.close();
         } catch (IOException e) {
@@ -62,18 +58,17 @@ public class Connection {
 
     public void handleInputFromClient() {
 
-        // Copy the data over into the commandBuffer and parse it into commands.
         try {
-            this.cmdBuf.write(this.socketChannel);
-            this.cmdBuf.parseBuffer();
+            this.cmdBuffer.readFromSocketChannel(this.socketChannel);
+            this.cmdBuffer.parseCommands();
         } catch (ClosedChannelException e) {
             this.disconnect();
         }
 
-        System.err.println(this.cmdBuf.toString());
+        System.err.println(this.cmdBuffer.toString());
 
         // If a valid command exists, then route it and generate a job.
-        if (this.cmdBuf.hasNextCommand() == false) {
+        if (this.cmdBuffer.hasNextCommand() == false) {
             return;
         }
 
@@ -100,7 +95,7 @@ public class Connection {
 
     public void sendText(String text) {
         // Attach the SocketChannel and send the text on its way!
-        this.connections.send(this.socketChannel, text);
+        this.clientListener.send(this.socketChannel, text);
     }
 
     public void sendPrompt() {
@@ -108,12 +103,12 @@ public class Connection {
         this.sendText("jMUD:");
     }
 
-    public ConnectionState getConnState() {
+    public ClientState getConnState() {
         return this.connState;
     }
 
-    public void changeConnState(ConnectionState newState) {
-        ConnectionState oldState = this.connState;
+    public void changeConnState(ClientState newState) {
+        ClientState oldState = this.connState;
 
         if (oldState == newState) {
             // There is no change in state
@@ -130,8 +125,8 @@ public class Connection {
         return this.connID;
     }
 
-    public Connections getConnectionManager() {
-        return this.connections;
+    public ClientListener getConnectionManager() {
+        return this.clientListener;
     }
 
     public SocketChannel getSocketChannel() {
@@ -139,7 +134,7 @@ public class Connection {
     }
 
     public CommandBuffer getCmdBuffer() {
-        return cmdBuf;
+        return cmdBuffer;
     }
 
 }

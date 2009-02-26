@@ -50,18 +50,14 @@ public class LoggingTest {
     private void deleteLogFile() {
         File testLogFile = new File(TEST_LOG_FILE_NAME);
 
-        System.out
-                .println("Current directory: " + System.getProperty("user.dir"));
+        System.out.println("Current directory: " + System.getProperty("user.dir"));
         System.out.println("Test log file name: " + testLogFile.getName());
-        System.out
-                .println("Test log file path: " + testLogFile.getAbsolutePath());
+        System.out.println("Test log file path: " + testLogFile.getAbsolutePath());
         System.out.println("Test log file exists: " + testLogFile.exists());
         System.out.println("Test log file writable: " + testLogFile.canWrite());
 
         if (!testLogFile.canWrite()) {
-            throw new RuntimeException(
-                    "Test log file could not be deleted, write protected: "
-                            + TEST_LOG_FILE_NAME);
+            throw new RuntimeException( "Test log file could not be deleted, write protected: " + TEST_LOG_FILE_NAME);
         }
 
         if (!testLogFile.delete()) {
@@ -93,7 +89,6 @@ public class LoggingTest {
 
     @Before
     public void setup() {
-
     }
 
     @After
@@ -124,12 +119,8 @@ public class LoggingTest {
         }
 
         Assert.assertNotNull("Failed to read log file", logFileLines);
-        Assert.assertEquals(
-                "Incorrect number of log file lines read; expected 1, read "
-                        + logFileLines.size(), 1, logFileLines.size());
-        Assert.assertTrue(
-                "Expected text not found; expected " + TEST_LOG_MESSAGE,
-                logFileLines.get(0).contains(TEST_LOG_MESSAGE));
+        Assert.assertEquals( "Incorrect number of log file lines read; expected 1, read " + logFileLines.size(), 1, logFileLines.size());
+        Assert.assertTrue( "Expected text not found; expected " + TEST_LOG_MESSAGE, logFileLines.get(0).contains(TEST_LOG_MESSAGE));
     }
 
     @Test
@@ -147,11 +138,7 @@ public class LoggingTest {
         }
 
         Assert.assertNotNull("Failed to read log file", logFileLines);
-        Assert.assertEquals(
-                "Incorrect number of log file lines read; expected 1, read "
-                        + logFileLines.size(), 1, logFileLines.size());
-        Assert.assertTrue(
-                "Expected text not found; expected " + TEST_LOG_MESSAGE,
-                logFileLines.get(0).contains(TEST_LOG_MESSAGE));
+        Assert.assertEquals( "Incorrect number of log file lines read; expected 1, read " + logFileLines.size(), 1, logFileLines.size());
+        Assert.assertTrue( "Expected text not found; expected " + TEST_LOG_MESSAGE, logFileLines.get(0).contains(TEST_LOG_MESSAGE));
     }
 }
