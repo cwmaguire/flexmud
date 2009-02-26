@@ -14,10 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with MUD Cartographer.  If not, see <http://www.gnu.org/licenses/>.
  */
-package config;
+package cfg;
 
 public class Constants {
-
     public static char CR = '\r';
     public static char LF = '\n';
     public static String CRLF = String.valueOf(CR) + LF;
