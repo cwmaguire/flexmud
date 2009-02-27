@@ -14,12 +14,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
-package engine;
+package engine.context;
 
-import java.util.List;
+import engine.cmd.EchoCmd;
 
-public interface Command extends Runnable{
+import java.util.*;
 
-    public List<String> getAliases();
+public class ContextHierarchy {
+    private static Map<Context, List<Class>> contextCommands = new HashMap<Context, List<Class>>();
 
+    static{
+        List<Class> menuCommands = new ArrayList<Class>();
+        menuCommands.add(EchoCmd.class);
+        contextCommands.put(new Context("Main Menu"), menuCommands);
+    }
+
+    public static List<Class> getContextCommands(Context context){
+        return contextCommands.get(context);
+    }
 }

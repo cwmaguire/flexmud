@@ -16,13 +16,13 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package net;
 
+import cfg.Preferences;
+import log.LoggingUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import util.Util;
-import log.LoggingUtil;
-import cfg.Preferences;
 
 public class ClientListenerStartStopTest {
     private static ClientListener clientListener;
