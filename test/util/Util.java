@@ -17,6 +17,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package util;
 
 import net.ClientListener;
+import net.FakeClientListener;
 
 import java.io.IOException;
 
@@ -32,9 +33,13 @@ public class Util {
         }
     }
 
-    public static FakeClientListener getNewFakeClientListener() {
+    public static FakeClientListener getNewFakeClientListener(){
+        return getNewFakeClientListener(false);
+    }
+
+    public static FakeClientListener getNewFakeClientListener(boolean shouldInterceptRead) {
         try {
-            return new FakeClientListener();
+            return new FakeClientListener(shouldInterceptRead);
         } catch (IOException e) {
             return null;
         }

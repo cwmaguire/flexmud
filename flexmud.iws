@@ -2,19 +2,33 @@
 <project relativePaths="false" version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/CommandBuffer.java" afterPath="$PROJECT_DIR$/src/net/CommandBuffer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cfg/Preferences.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flexmud.iws" afterPath="$PROJECT_DIR$/flexmud.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cfg" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/config/pref" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/log/LoggingTest.java" afterPath="$PROJECT_DIR$/test/log/LoggingTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/config" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/Context.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sec" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\lib\log4j-1.2.15.jar" afterPath="$PROJECT_DIR$/lib/log4j/log4j-1.2.15.jar" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\lib\junit-4.5.jar" afterPath="$PROJECT_DIR$/lib/junit/junit-4.5.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flexmud.ipr" afterPath="$PROJECT_DIR$/flexmud.ipr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sec/Account.java" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\test\util\FakeClientListener.java" afterPath="$PROJECT_DIR$/test/net/FakeClientListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/Client.java" afterPath="$PROJECT_DIR$/src/net/Client.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cfg/Constants.java" />
-      <change type="DELETED" beforePath="C:\__stuff\dev\flexmud\src\config\Constants.java" afterPath="" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\test\net\ClientReadWriteTest.java" afterPath="$PROJECT_DIR$/test/net/RemoteClientReadWriteTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/util/Util.java" afterPath="$PROJECT_DIR$/test/util/Util.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/ClientListener.java" afterPath="$PROJECT_DIR$/src/net/ClientListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\lib\junit-3.8.1.jar" afterPath="$PROJECT_DIR$/lib/junit/junit-3.8.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/net/ClientListenerStartStopTest.java" afterPath="$PROJECT_DIR$/test/net/ClientListenerStartStopTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/log4j" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\lib\log4j.jar" afterPath="$PROJECT_DIR$/lib/log4j/log4j.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/Command.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/CommandBuffer.java" afterPath="$PROJECT_DIR$/src/net/CommandBuffer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log4j.lcf" afterPath="$PROJECT_DIR$/log4j.lcf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/Contexts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flexmud.iws" afterPath="$PROJECT_DIR$/flexmud.iws" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\test\util\FakeClient.java" afterPath="$PROJECT_DIR$/test/util/FakeRemoteClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/log/LoggingUtil.java" afterPath="$PROJECT_DIR$/src/log/LoggingUtil.java" />
-      <change type="DELETED" beforePath="C:\__stuff\dev\flexmud\src\config\pref\Preferences.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\__stuff\dev\flexmud\src\sec.java" afterPath="" />
+      <change type="MOVED" beforePath="C:\__stuff\dev\flexmud\lib\junit.jar" afterPath="$PROJECT_DIR$/lib/junit/junit.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/net/ClientListenerConnectionTest.java" afterPath="$PROJECT_DIR$/test/net/ClientListenerConnectionTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/hibernate" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="flexmud.iws" />
@@ -68,10 +82,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ClientReadWriteTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/net/ClientReadWriteTest.java">
+      <file leaf-file-name="CommandBuffer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/CommandBuffer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="0" selection-start="2477" selection-end="2477" vertical-scroll-proportion="0.0">
+            <state line="30" column="13" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,11 +93,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sec.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sec.java">
+      <file leaf-file-name="ClientListener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/ClientListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+            <state line="89" column="39" selection-start="3655" selection-end="3655" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FakeClientListener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/net/FakeClientListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="13" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,41 +116,8 @@
       <file leaf-file-name="ClientListenerConnectionTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/net/ClientListenerConnectionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="82" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cfg/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="56" selection-start="846" selection-end="846" vertical-scroll-proportion="0.0">
+            <state line="61" column="37" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.0">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommandBuffer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/CommandBuffer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="156" column="42" selection-start="4383" selection-end="4383" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FakeClient.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/util/FakeClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="5" selection-start="1466" selection-end="1466" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -133,34 +125,56 @@
       <file leaf-file-name="Client.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="10" selection-start="680" selection-end="680" vertical-scroll-proportion="0.0">
+            <state line="26" column="13" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Account.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sec/Account.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="33" selection-start="812" selection-end="812" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoggingUtil.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/log/LoggingUtil.java">
+      <file leaf-file-name="Context.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/engine/Context.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="10" selection-start="680" selection-end="680" vertical-scroll-proportion="0.0">
+            <state line="23" column="25" selection-start="808" selection-end="808" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoggingTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/log/LoggingTest.java">
+      <file leaf-file-name="Command.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/engine/Command.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="7" selection-start="701" selection-end="701" vertical-scroll-proportion="0.12639405">
+            <state line="18" column="22" selection-start="722" selection-end="722" vertical-scroll-proportion="0.06014151">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Preferences.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cfg/Preferences.java">
+      <file leaf-file-name="Contexts.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/engine/Contexts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="5" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.0">
+            <state line="26" column="8" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RemoteClientReadWriteTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/net/RemoteClientReadWriteTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="74" column="51" selection-start="2241" selection-end="2241" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -192,6 +206,42 @@
   </component>
   <component name="ProjectPane">
     <subPane>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Log4j" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="JUnit" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+      </PATH>
       <PATH>
         <PATH_ELEMENT>
           <option name="myItemId" value="flexmud" />
@@ -303,6 +353,10 @@
           <option name="myItemId" value="src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="sec" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -366,7 +420,65 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
+          <option name="myItemId" value="engine" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
           <option name="myItemId" value="cfg" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="lib" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -391,7 +503,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
@@ -411,13 +523,14 @@
       <recent name="net" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="net" />
       <recent name="config" />
       <recent name="config.pref" />
       <recent name="util" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClientReadWriteTest">
-    <tempConfiguration default="false" name="ClientReadWriteTest" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
+  <component name="RunManager" selected="JUnit.RemoteClientReadWriteTest">
+    <tempConfiguration default="false" name="RemoteClientReadWriteTest" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <pattern>
         <option name="PATTERN" value="net.*" />
         <option name="ENABLED" value="true" />
@@ -426,7 +539,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="net" />
-      <option name="MAIN_CLASS_NAME" value="net.ClientReadWriteTest" />
+      <option name="MAIN_CLASS_NAME" value="net.RemoteClientReadWriteTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -543,7 +656,7 @@
     <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.flexmud" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.All Tests" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ClientReadWriteTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.RemoteClientReadWriteTest" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -586,8 +699,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1292" height="1024" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1280" height="1016" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Dilbert" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
@@ -598,13 +711,13 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32925472" sideWeight="0.5" order="8" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23145162" sideWeight="0.66295886" order="0" side_tool="false" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23371336" sideWeight="0.66295886" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4204672" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2814238" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" />
@@ -642,108 +755,89 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.6.0_10/src.zip!/java/lang/String.java">
+    <entry file="file://$PROJECT_DIR$/test/log/LoggingTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2825" column="25" selection-start="108851" selection-end="108851" vertical-scroll-proportion="0.0">
+        <state line="128" column="85" selection-start="4447" selection-end="4447" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cfg/Preferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="13" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/ClientState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="12" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.6.0_10/src.zip!/java/nio/ByteBuffer.java">
+    <entry file="file://$PROJECT_DIR$/src/net/ClientEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="232" column="2" selection-start="7570" selection-end="7570" vertical-scroll-proportion="0.0">
+        <state line="20" column="13" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/util/FakeRemoteClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="951" selection-end="951" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/util/Util.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="47" selection-start="811" selection-end="836" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/net/ClientListenerStartStopTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="49" selection-start="1014" selection-end="1014" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/util/FakeClientListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/util/FakeClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="5" selection-start="1466" selection-end="1466" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/net/ClientReadWriteTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="0" selection-start="2477" selection-end="2477" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+        <state line="36" column="15" selection-start="1154" selection-end="1154" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="uml://config">
-      <provider selected="true" editor-type-id="UmlClassDiagramEditorProvider">
-        <state>
-          <classes>
-            <class fqn="config.Constants" x="0.0" y="0.0" />
-          </classes>
-          <packages>
-            <package fqn="config.pref" x="0.0" y="71.0" />
-          </packages>
-          <edges />
-          <settings isCamel="false" isColorManagerEnabled="true" isFieldsVisible="false" isConstructorsVisible="false" isMethodsVisible="false" isShowDependencies="false" isShowInnerClasses="false" defaultVisibility="private" isPropertiesVisible="false" zoom="1.0" x="51.5" y="48.5" />
-          <SelectedNodes>
-            <node fqn="config.pref" />
-          </SelectedNodes>
+    <entry file="file://$PROJECT_DIR$/src/net/ClientListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="39" selection-start="3655" selection-end="3655" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/net/ClientListenerConnectionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="82" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.0">
+        <state line="61" column="37" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/net/RemoteClientReadWriteTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="51" selection-start="2241" selection-end="2241" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cfg/Constants.java">
+    <entry file="file://$PROJECT_DIR$/src/net/CommandBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="56" selection-start="846" selection-end="846" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="30" column="13" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/CommandBuffer.java">
+    <entry file="file://$PROJECT_DIR$/test/net/FakeClientListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="42" selection-start="4383" selection-end="4383" vertical-scroll-proportion="0.0">
+        <state line="27" column="13" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -752,30 +846,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="10" selection-start="680" selection-end="680" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cfg/Preferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="5" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.0">
+        <state line="26" column="13" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/log/LoggingUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/sec/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="10" selection-start="680" selection-end="680" vertical-scroll-proportion="0.0">
+        <state line="22" column="33" selection-start="812" selection-end="812" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/log/LoggingTest.java">
+    <entry file="file://$PROJECT_DIR$/src/engine/Context.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="7" selection-start="701" selection-end="701" vertical-scroll-proportion="0.12639405">
+        <state line="23" column="25" selection-start="808" selection-end="808" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/Contexts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="8" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="22" selection-start="722" selection-end="722" vertical-scroll-proportion="0.06014151">
           <folding />
         </state>
       </provider>
