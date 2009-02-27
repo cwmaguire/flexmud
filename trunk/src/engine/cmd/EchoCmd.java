@@ -14,12 +14,23 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
-package engine;
+package engine.cmd;
 
+import engine.Command;
+import org.apache.log4j.Logger;
+
+import java.util.Arrays;
 import java.util.List;
 
-public interface Command extends Runnable{
+public class EchoCmd implements Command {
+    private static Logger LOGGER = Logger.getLogger(EchoCmd.class);
 
-    public List<String> getAliases();
+    public List<String> getAliases(){
+        return Arrays.asList("echo");
+    }
 
+    @Override
+    public void run() {
+        LOGGER.info("EchoCmd class ran");
+    }
 }

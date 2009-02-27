@@ -101,6 +101,11 @@
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="OUTPUT_DIRECTORY" />
   </component>
+  <component name="FacetAutodetectingManager">
+    <autodetection-disabled>
+      <facet-type id="jpa" />
+    </autodetection-disabled>
+  </component>
   <component name="HierarchyBrowserManager">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="SORT_ALPHABETICALLY" value="false" />
@@ -294,8 +299,8 @@
       <module fileurl="file://$PROJECT_DIR$/flexmud.iml" filepath="$PROJECT_DIR$/flexmud.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build" />
   </component>
   <component name="Regex">
     <option name="pos1" value="218" />
@@ -353,6 +358,7 @@
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="myVersion" value="124" />
+    <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="SvnChangesBrowserSettings">
     <option name="USE_AUTHOR_FIELD" value="true" />
@@ -440,20 +446,11 @@
     </library>
     <library name="Hibernate">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/hibernate-annotations.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/slf4j-api-1.5.2.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/hibernate3.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/hibernate-tools.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/dom4j-1.6.1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/hsqldb.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/c3p0-0.9.1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/commons-collections-3.1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/javassist-3.4.GA.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/jta-1.1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/hibernate/antlr-2.7.6.jar!/" />
+        <root url="file://$PROJECT_DIR$/lib/hibernate" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/hibernate" recursive="false" />
     </library>
   </component>
   <component name="uidesigner-configuration">

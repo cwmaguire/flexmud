@@ -7,7 +7,7 @@
 
     <!-- Global properties for this build -->
     <property name="database.dir"           value="db"/>
-    <property name="src.java.dir"           value="src/java"/>
+    <property name="src.dir"           value="src"/>
     <property name="lib.dir"                value="lib"/>
     <property name="build.dir"              value="build"/>
 
@@ -34,7 +34,7 @@
     <!-- Compile Java source -->
     <target name="compile">
         <mkdir dir="${build.dir}"/>
-        <javac srcdir="${src.java.dir}"
+        <javac srcdir="${src.dir}"
                destdir="${build.dir}"
                classpathref="project.classpath"/>
     </target>
@@ -43,7 +43,7 @@
     <target name="copymetafiles">
         <mkdir dir="${build.dir}"/>
         <copy todir="${build.dir}">
-            <fileset dir="${src.java.dir}">
+            <fileset dir="${src.dir}">
                 <patternset refid="meta.files"/>
             </fileset>
         </copy>
@@ -70,11 +70,11 @@
 
         <hibernatetool destdir="${basedir}">
             <classpath path="${build.dir}"/>
-            <configuration configurationfile="${build.dir}/hibernate.cfg.xml"/>
+            <annotationconfiguration configurationfile="${src.dir}/db/hibernate.cfg.xml"/>
             <hbm2ddl
                 drop="true"
                 create="true"
-                export="true"
+                export="false"
                 outputfilename="${proj.shortname}-ddl.sql"
                 delimiter=";"
                 format="true"/>

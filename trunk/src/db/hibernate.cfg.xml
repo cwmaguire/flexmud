@@ -23,14 +23,9 @@
 
         <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
 
-        <mapping resource="hello/Message.hbm.xml"/>
-
-        <mapping package="test.animals"/>
-            <mapping class="test.Flight"/>
-            <mapping class="test.Sky"/>
-            <mapping class="test.Person"/>
-            <mapping class="test.animals.Dog"/>
-            <mapping resource="test/animals/orm.xml"/>
+        <mapping class="engine.obj.Object"/>
+        <mapping class="engine.context.Context"/>
+        <mapping class="engine.context.ContextCommand"/>
 
     </session-factory>
 </hibernate-configuration>
