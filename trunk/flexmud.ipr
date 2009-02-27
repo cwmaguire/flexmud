@@ -2,6 +2,14 @@
 <project relativePaths="false" version="4">
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
+    <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <additionalClassPath />
+      <antReference projectDefault="true" />
+      <customJdkName value="" />
+      <maximumHeapSize value="128" />
+      <maximumStackSize value="32" />
+      <properties />
+    </buildFile>
   </component>
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
@@ -345,7 +353,6 @@
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="myVersion" value="124" />
-    <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="SvnChangesBrowserSettings">
     <option name="USE_AUTHOR_FIELD" value="true" />
@@ -427,6 +434,23 @@
     <library name="Log4j">
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/lib/log4j/log4j-1.2.15.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Hibernate">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/hibernate-annotations.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/slf4j-api-1.5.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/hibernate3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/hibernate-tools.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/dom4j-1.6.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/hsqldb.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/c3p0-0.9.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/commons-collections-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/javassist-3.4.GA.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/jta-1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hibernate/antlr-2.7.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
