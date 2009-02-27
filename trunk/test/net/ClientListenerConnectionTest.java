@@ -21,10 +21,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 import util.Util;
-import util.FakeClient;
+import util.FakeRemoteClient;
+import log.LoggingUtil;
+import cfg.Preferences;
 
 public class ClientListenerConnectionTest {
     private ClientListener clientListener;
+
+    static {
+        LoggingUtil.resetConfiguration();
+        LoggingUtil.configureLogging(Preferences.getPreference("log4j config file"));
+    }
 
     @Before
     public void setup() {
@@ -45,14 +52,14 @@ public class ClientListenerConnectionTest {
     @Test
     public void testConnectToClientListener() {
 
-        FakeClient fakeClient = new FakeClient();
+        FakeRemoteClient fakeRemoteClient = new FakeRemoteClient();
         try {
-            fakeClient.connect(Util.TEST_PORT);
+            fakeRemoteClient.connect(Util.TEST_PORT);
         } catch (Exception e) {
             Assert.fail("Failed to connect to client listener");
         }
 
-        Assert.assertTrue("FakeClient socket is not connected.", fakeClient.socket.isConnected());
+        Assert.assertTrue("FakeRemoteClient socket is not connected.", fakeRemoteClient.socket.isConnected());
     }
 
 }

@@ -84,10 +84,10 @@ public class ClientListener implements Runnable{
         return (ServerSocketChannel) key.channel();
     }
 
-    private Client mapSocketChannelToNewClient(SocketChannel socketChannel) throws IOException {
+    protected Client mapSocketChannelToNewClient(SocketChannel socketChannel) throws IOException {
         configureSocketChannelForNonBlockingRead(socketChannel);
 
-        Client client = new Client();
+        Client client = new Client(this);
 
         LOGGER.info("ConnectionManager: New Connection. ID: " + client.getConnectionID());
 
@@ -96,7 +96,7 @@ public class ClientListener implements Runnable{
         return client;
     }
 
-    private void configureSocketChannelForNonBlockingRead(SocketChannel sc) throws IOException {
+    protected void configureSocketChannelForNonBlockingRead(SocketChannel sc) throws IOException {
         sc.configureBlocking(false);
         sc.register(this.selector, SelectionKey.OP_READ);
     }
@@ -160,7 +160,7 @@ public class ClientListener implements Runnable{
         }
 
         synchronized (key) {
-            client.handleInputFromClient();
+            client.handleInputFromSocketChannel();
         }
     }
 

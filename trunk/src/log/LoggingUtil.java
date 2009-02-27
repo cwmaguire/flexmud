@@ -49,7 +49,7 @@ public class LoggingUtil {
         Properties log4jProperties = new Properties();
         log4jProperties.put("log4j.rootLogger", "DEBUG, rollingFileAppender");
         log4jProperties.put("log4j.appender.rollingFileAppender", "org.apache.log4j.RollingFileAppender");
-        log4jProperties.put("log4j.appender.rollingFileAppender.File", "testLog4j.log");
+        log4jProperties.put("log4j.appender.rollingFileAppender.File", "flexmud.log");
         log4jProperties.put("log4j.appender.rollingFileAppender.MaxFileSize", "100KB");
         log4jProperties.put("log4j.appender.rollingFileAppender.MaxBackupIndex", "1");
         log4jProperties.put("log4j.appender.rollingFileAppender.layout", "org.apache.log4j.PatternLayout");

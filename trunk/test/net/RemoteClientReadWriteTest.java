@@ -16,28 +16,35 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package net;
 
+import cfg.Preferences;
+import log.LoggingUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import util.FakeClient;
+import util.FakeRemoteClient;
 import util.Util;
 
 import java.io.IOException;
 import java.util.UUID;
 
-public class ClientReadWriteTest {
+public class RemoteClientReadWriteTest {
     private static ClientListener clientListener;
-    private static FakeClient fakeClient;
+    private static FakeRemoteClient fakeRemoteClient;
+
+    static {
+        LoggingUtil.resetConfiguration();
+        LoggingUtil.configureLogging(Preferences.getPreference("log4j config file"));
+    }
 
     @Before
     public void setup() {
-        clientListener = Util.getNewFakeClientListener();
+        clientListener = Util.getNewFakeClientListener(true);
         clientListener.start();
 
-        fakeClient = new FakeClient();
+        fakeRemoteClient = new FakeRemoteClient();
         try {
-            fakeClient.connect(Util.TEST_PORT);
+            fakeRemoteClient.connect(Util.TEST_PORT);
         } catch (Exception e) {
             Assert.fail("Failed to connect client");
         }
@@ -45,10 +52,10 @@ public class ClientReadWriteTest {
 
     @After
     public void tearDown(){
-        Assert.assertNotNull("FakeClient not found", fakeClient);
+        Assert.assertNotNull("FakeRemoteClient not found", fakeRemoteClient);
 
         try{
-            fakeClient.disconnect();
+            fakeRemoteClient.disconnect();
         }catch(Exception e){
             Assert.fail("Failed to disconnect client");
         }
@@ -67,8 +74,8 @@ public class ClientReadWriteTest {
         byte[] buffer = testString.getBytes();
         char[] charsRead = new char[buffer.length];
 
-        fakeClient.outStream.writeBytes(testString);
-        fakeClient.inStream.read(buffer);
+        fakeRemoteClient.outStream.writeBytes(testString);
+        fakeRemoteClient.inStream.read(buffer);
 
         System.out.println("Reading received bytes: ");
         for (int i = 0; i < buffer.length; ++i) {

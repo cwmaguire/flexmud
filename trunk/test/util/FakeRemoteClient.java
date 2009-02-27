@@ -21,7 +21,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class FakeClient {
+public class FakeRemoteClient {
     public Socket socket;
     public DataInputStream inStream;
     public DataOutputStream outStream;

@@ -1,0 +1,22 @@
+0    [main] INFO  net.ClientListener  - ConnectionManager is configured to listen at: ChrisM-5pmkdf1.Entero.com on port: 54321
+15   [main] INFO  net.ClientListener  - ClientListener: Received Startup Command.
+15   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Running.
+15   [main] INFO  net.ClientListener  - ClientListener: Received Shutdown Command.
+15   [ClientListener-Thread] INFO  net.ClientListener  - ConnectionManager: New Connection. ID: null
+15   [ClientListener-Thread] INFO  net.ClientListener  - ConnectionManager: Total Connections now: 1
+15   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutting down...
+15   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutdown.
+0    [main] INFO  net.ClientListener  - ConnectionManager is configured to listen at: ChrisM-5pmkdf1.Entero.com on port: 54321
+0    [main] INFO  net.ClientListener  - ClientListener: Received Startup Command.
+0    [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Running.
+1000 [main] INFO  net.ClientListener  - ClientListener: Received Shutdown Command.
+1000 [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutting down...
+1000 [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutdown.
+0    [main] INFO  net.ClientListener  - ConnectionManager is configured to listen at: ChrisM-5pmkdf1.Entero.com on port: 54321
+0    [main] INFO  net.ClientListener  - ClientListener: Received Startup Command.
+0    [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Running.
+0    [ClientListener-Thread] INFO  net.FakeClientListener  - ConnectionManager: New Connection. ID: null
+0    [ClientListener-Thread] INFO  net.ClientListener  - ConnectionManager: Total Connections now: 1
+16   [main] INFO  net.ClientListener  - ClientListener: Received Shutdown Command.
+16   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutting down...
+16   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutdown.

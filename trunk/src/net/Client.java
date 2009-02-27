@@ -17,6 +17,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package net;
 
 import cfg.Constants;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
@@ -24,39 +25,38 @@ import java.nio.channels.SocketChannel;
 import java.util.UUID;
 
 public class Client {
-    private UUID connID;
-    private final SocketChannel socketChannel = null;
+    private static final Logger LOGGER = Logger.getLogger(Client.class);
+    protected UUID connID;
+    protected final SocketChannel socketChannel = null;
     private ClientState connState;
-    private ClientListener clientListener;
-    private CommandBuffer cmdBuffer;
+    protected ClientListener clientListener;
+    protected CommandBuffer cmdBuffer;
 
     //private PlayerCharacter pc;
     //private Account account;
 
-    public Client() {
+    public Client(ClientListener clientListener) {
+        this.cmdBuffer = new CommandBuffer();
+        this.clientListener = clientListener;
+        this.connID = clientListener.getNewConnectionID();
         /*
         this.socketChannel = inSc;
-        this.connections = connections;
         this.connState = ConnectionState.DISCONNECTED;
-        this.connID = connections.getNewConnectionID();
-        this.cmdBuffer = new CommandBuffer();
         this.pc = null;
         this.account = null;
         */
     }
 
-    public boolean disconnect() {
+    public void disconnect() {
         this.clientListener.disconnect(this);
         try {
             socketChannel.close();
         } catch (IOException e) {
-            System.err.println("ConnectionManager.disconnect(SocketChannel): Failed to close socket connection.");
-            e.printStackTrace();
+            LOGGER.error("ConnectionManager.disconnect(SocketChannel): Failed to close socket connection.", e);
         }
-        return socketChannel.isConnected();
     }
 
-    public void handleInputFromClient() {
+    public void handleInputFromSocketChannel() {
 
         try {
             this.cmdBuffer.readFromSocketChannel(this.socketChannel);
@@ -65,7 +65,7 @@ public class Client {
             this.disconnect();
         }
 
-        System.err.println(this.cmdBuffer.toString());
+        LOGGER.error(this.cmdBuffer.toString());
 
         // If a valid command exists, then route it and generate a job.
         if (this.cmdBuffer.hasNextCommand() == false) {
@@ -94,13 +94,12 @@ public class Client {
     }
 
     public void sendText(String text) {
-        // Attach the SocketChannel and send the text on its way!
         this.clientListener.send(this.socketChannel, text);
     }
 
     public void sendPrompt() {
         this.sendCRLF();
-        this.sendText("jMUD:");
+        this.sendText("fm:>");
     }
 
     public ClientState getConnState() {

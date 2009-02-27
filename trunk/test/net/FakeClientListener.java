@@ -14,10 +14,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
-package util;
+package net;
 
-import net.ClientListener;
 import org.apache.log4j.Logger;
+import util.Util;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -27,16 +27,26 @@ import java.nio.channels.SocketChannel;
 
 public class FakeClientListener extends ClientListener {
     private static Logger LOGGER = Logger.getLogger(FakeClientListener.class);
+    private boolean shouldInterceptRead;
+
 
     public FakeClientListener() throws IOException {
-        super(Util.TEST_PORT);
+        this(false);
     }
 
-    protected void read(final SelectionKey key){
-        try{
-            readFromSocketChannel((SocketChannel) key.channel());
-        }catch(IOException e){
-            return;
+    public FakeClientListener(boolean shouldInterceptRead) throws IOException{
+        super(Util.TEST_PORT);
+        this.shouldInterceptRead = shouldInterceptRead;
+    }
+
+    protected void read(SelectionKey key){
+        if(shouldInterceptRead){
+            try{
+                readFromSocketChannel((SocketChannel) key.channel());
+            }catch(IOException e){
+            }
+        }else{
+            super.read(key);
         }
     }
 
@@ -64,5 +74,4 @@ public class FakeClientListener extends ClientListener {
             throw new ClosedChannelException();
         }
     }
-
 }

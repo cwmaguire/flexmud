@@ -21,9 +21,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import util.Util;
+import log.LoggingUtil;
+import cfg.Preferences;
 
 public class ClientListenerStartStopTest {
     private static ClientListener clientListener;
+
+    static {
+        LoggingUtil.resetConfiguration();
+        LoggingUtil.configureLogging(Preferences.getPreference("log4j config file"));
+    }
 
     @Before
     public void setup() {

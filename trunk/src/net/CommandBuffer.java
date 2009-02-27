@@ -17,6 +17,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package net;
 
 import cfg.Constants;
+import org.apache.log4j.Logger;
 
 import java.io.DataInputStream;
 import java.io.EOFException;
@@ -28,6 +29,10 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
 public class CommandBuffer {
+    private static final Logger LOGGER = Logger.getLogger(CommandBuffer.class);
+    private static final Object CHAR_BUFFER_LOCK = new Object();
+    private static final Object COMPLETE_COMMANDS_LOCK = new Object();
+    
     private ArrayList<Character> charBuffer;
     private ArrayList<String> completeCmds;
 
@@ -58,7 +63,7 @@ public class CommandBuffer {
         for (int i = 0; i < length; ++i) {
             c = (char) bytes[i];
 
-            synchronized (this.charBuffer) {
+            synchronized (CHAR_BUFFER_LOCK) {
                 this.charBuffer.add(c);
             }
         }
@@ -100,9 +105,9 @@ public class CommandBuffer {
             while (inputStream.available() >= 2) {
                 input = inputStream.readChar();
 
-                System.out.println("CommandBuffer.write() new char: '" + input + "'");
+                LOGGER.info("CommandBuffer.write() new char: '" + input + "'");
 
-                synchronized (this.charBuffer) {
+                synchronized (CHAR_BUFFER_LOCK) {
                     this.charBuffer.add(input);
                 }
             }
@@ -116,7 +121,7 @@ public class CommandBuffer {
         String cmd;
         char[] chars;
 
-        synchronized (this.charBuffer) {
+        synchronized (CHAR_BUFFER_LOCK) {
             crIndex = findCarriageReturnPos();
 
             if (isCommandComplete(crIndex)) {
@@ -131,9 +136,9 @@ public class CommandBuffer {
 
                 cmd = removeCRLF(getStringFromCharBuffer(crIndex));
 
-                System.out.println("CommandBuffer.Parse() new command: \"" + cmd + "\"");
+                LOGGER.info("CommandBuffer.Parse() new command: \"" + cmd + "\"");
 
-                synchronized (this.completeCmds) {
+                synchronized (COMPLETE_COMMANDS_LOCK) {
                     this.completeCmds.add(cmd);
                 }
 
@@ -181,7 +186,7 @@ public class CommandBuffer {
     }
 
     public int cmdCount() {
-        synchronized (this.completeCmds) {
+        synchronized (COMPLETE_COMMANDS_LOCK) {
             return this.completeCmds.size();
         }
     }
@@ -192,7 +197,7 @@ public class CommandBuffer {
 
     public String getNextCommand() {
         if (this.hasNextCommand()) {
-            synchronized (this.completeCmds) {
+            synchronized (COMPLETE_COMMANDS_LOCK) {
                 return this.completeCmds.remove(0);
             }
         }
