@@ -1,22 +1,8 @@
-0    [main] INFO  net.ClientListener  - ConnectionManager is configured to listen at: ChrisM-5pmkdf1.Entero.com on port: 54321
-15   [main] INFO  net.ClientListener  - ClientListener: Received Startup Command.
-15   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Running.
-15   [main] INFO  net.ClientListener  - ClientListener: Received Shutdown Command.
-15   [ClientListener-Thread] INFO  net.ClientListener  - ConnectionManager: New Connection. ID: null
-15   [ClientListener-Thread] INFO  net.ClientListener  - ConnectionManager: Total Connections now: 1
-15   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutting down...
-15   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutdown.
-0    [main] INFO  net.ClientListener  - ConnectionManager is configured to listen at: ChrisM-5pmkdf1.Entero.com on port: 54321
-0    [main] INFO  net.ClientListener  - ClientListener: Received Startup Command.
-0    [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Running.
-1000 [main] INFO  net.ClientListener  - ClientListener: Received Shutdown Command.
-1000 [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutting down...
-1000 [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutdown.
-0    [main] INFO  net.ClientListener  - ConnectionManager is configured to listen at: ChrisM-5pmkdf1.Entero.com on port: 54321
-0    [main] INFO  net.ClientListener  - ClientListener: Received Startup Command.
-0    [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Running.
-0    [ClientListener-Thread] INFO  net.FakeClientListener  - ConnectionManager: New Connection. ID: null
-0    [ClientListener-Thread] INFO  net.ClientListener  - ConnectionManager: Total Connections now: 1
-16   [main] INFO  net.ClientListener  - ClientListener: Received Shutdown Command.
-16   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutting down...
-16   [ClientListener-Thread] INFO  net.ClientListener  - ClientListener: Shutdown.
+0    [main] INFO  org.hibernate.cfg.annotations.Version  - Hibernate Annotations 3.4.0.GA
+15   [main] INFO  org.hibernate.cfg.Environment  - Hibernate 3.3.0.SP1
+15   [main] INFO  org.hibernate.cfg.Environment  - hibernate.properties not found
+31   [main] INFO  org.hibernate.cfg.Environment  - Bytecode provider name : javassist
+31   [main] INFO  org.hibernate.cfg.Environment  - using JDK 1.4 java.sql.Timestamp handling
+125  [main] INFO  org.hibernate.annotations.common.Version  - Hibernate Commons Annotations 3.1.0.GA
+125  [main] INFO  org.hibernate.cfg.Configuration  - configuring from resource: /hibernate.cfg.xml
+125  [main] INFO  org.hibernate.cfg.Configuration  - Configuration resource: /hibernate.cfg.xml
