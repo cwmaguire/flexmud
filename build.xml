@@ -6,7 +6,7 @@
     <property name="version"        value="1.0"/>
 
     <!-- Global properties for this build -->
-    <property name="database.dir"           value="db"/>
+    <property name="database.dir"           value="flexmud.db"/>
     <property name="src.dir"           value="src"/>
     <property name="lib.dir"                value="lib"/>
     <property name="build.dir"              value="build"/>
@@ -70,11 +70,11 @@
 
         <hibernatetool destdir="${basedir}">
             <classpath path="${build.dir}"/>
-            <annotationconfiguration configurationfile="${src.dir}/db/hibernate.cfg.xml"/>
+            <annotationconfiguration configurationfile="${src.dir}/flexmud/db/hibernate.cfg.xml"/>
             <hbm2ddl
                 drop="true"
                 create="true"
-                export="false"
+                export="true"
                 outputfilename="${proj.shortname}-ddl.sql"
                 delimiter=";"
                 format="true"/>
@@ -90,7 +90,7 @@
               classpathref="project.classpath"
               failonerror="true">
             <arg value="-database.0"/>
-            <arg value="file:${database.dir}/db"/>
+            <arg value="file:${database.dir}/flexmud.db"/>
         </java>
     </target>
 
