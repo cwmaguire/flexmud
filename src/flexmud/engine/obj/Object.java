@@ -22,6 +22,7 @@ import javax.persistence.*;
 @Table(name = "object")
 public class Object {
     private long id;
+    private String name;
 
     public Object(){
 
@@ -36,6 +37,15 @@ public class Object {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     /*
