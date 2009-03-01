@@ -6,7 +6,7 @@
     <property name="version"        value="1.0"/>
 
     <!-- Global properties for this build -->
-    <property name="database.dir"           value="flexmud.db"/>
+    <property name="database.dir"           value="db"/>
     <property name="src.dir"           value="src"/>
     <property name="lib.dir"                value="lib"/>
     <property name="build.dir"              value="build"/>
