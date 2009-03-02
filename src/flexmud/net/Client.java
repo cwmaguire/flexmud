@@ -17,17 +17,14 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.net;
 
 import flexmud.cfg.Constants;
-import flexmud.db.HibernateUtil;
 import flexmud.engine.context.Context;
+import flexmud.engine.context.ContextSwitcher;
 import flexmud.sec.Account;
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SocketChannel;
-import java.util.List;
 import java.util.UUID;
 
 public class Client {
@@ -37,30 +34,35 @@ public class Client {
     private ClientState connState;
     protected ClientListener clientListener;
     protected CommandBuffer cmdBuffer;
-    protected Context context;
+    protected ContextSwitcher contextSwitcher;
 
     private Account account;
 
     public Client(ClientListener clientListener, SocketChannel socketChannel) {
-        this.cmdBuffer = new CommandBuffer();
         this.clientListener = clientListener;
-        this.connID = clientListener.getNewConnectionID();
         this.socketChannel = socketChannel;
 
-        this.context = fetchMainContext();
+        cmdBuffer = new CommandBuffer();
+        connID = clientListener.getNewConnectionID();
+        contextSwitcher = new ContextSwitcher(this);
 
+        contextSwitcher.init();
     }
 
-    private Context fetchMainContext(){
-        List<Context> contexts;
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
-        detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));
-        contexts = (List<Context>) HibernateUtil.fetch(detachedCriteria);
-        if(contexts != null && contexts.size() > 0){
-            return contexts.get(0);
-        }else{
-            return null;
-        }
+    public UUID getConnectionID() {
+        return this.connID;
+    }
+
+    public ClientListener getClientListener() {
+        return this.clientListener;
+    }
+
+    public SocketChannel getSocketChannel() {
+        return this.socketChannel;
+    }
+
+    public CommandBuffer getCmdBuffer() {
+        return cmdBuffer;
     }
 
     public void disconnect() {
@@ -93,6 +95,10 @@ public class Client {
         //j.selfSubmit();
     }
 
+    public void setContext(Context context){
+        contextSwitcher.setContext(context);
+    }
+
     public void sendCRLFs(int numberOfCRLFs) {
         StringBuilder crlfs = new StringBuilder();
         for (int i = 0; i < numberOfCRLFs; ++i) {
@@ -116,40 +122,6 @@ public class Client {
     public void sendPrompt() {
         this.sendCRLF();
         this.sendText("fm:>");
-    }
-
-    public ClientState getConnState() {
-        return this.connState;
-    }
-
-    public void changeConnState(ClientState newState) {
-        ClientState oldState = this.connState;
-
-        if (oldState == newState) {
-            // There is no change in state
-
-        } else {
-
-            //oldState.runExitJob(this, newState);
-            this.connState = newState;
-            //newState.runEnterJob(this, oldState);
-        }
-    }
-
-    public UUID getConnectionID() {
-        return this.connID;
-    }
-
-    public ClientListener getConnectionManager() {
-        return this.clientListener;
-    }
-
-    public SocketChannel getSocketChannel() {
-        return this.socketChannel;
-    }
-
-    public CommandBuffer getCmdBuffer() {
-        return cmdBuffer;
     }
 
 }

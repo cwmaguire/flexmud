@@ -33,7 +33,9 @@ public class Context {
     public static String COMMAND_CLASS_NAMES_PROPERTY = "commandClassNames";
     public static String ENTRY_MESSAGE_PROPERTY = "entryMessage";
     public static String IS_LISTED_IN_PARENT_PROPERTY = "isListedInParent";
-    public static String DOES_USE_CHARACTER_PROMPT = "isCharacterPromptable";
+    public static String DOES_USE_CHARACTER_PROMPT_PROPERTY = "isCharacterPromptable";
+    public static String MAX_ENTRIES_PROPERTY = "maxEntries";
+    public static String MAX_ENTRIES_EXCEEDED_MESSAGE_PROPERTY = "maxEntriesExceededMessage";
 
     private long id;
     private String name;
@@ -43,6 +45,8 @@ public class Context {
     private String entryMessage;
     private boolean isListedInParent;
     private boolean isCharacterPromptable;
+    private int maxEntries = -1;
+    private String maxEntriesExceededMessage = "";
 
     public Context(){
     }
@@ -97,6 +101,24 @@ public class Context {
 
     public void setCharacterPromptable(boolean characterPromptable) {
         this.isCharacterPromptable = characterPromptable;
+    }
+
+    @Column(name = "max_entries")
+    public int getMaxEntries() {
+        return maxEntries;
+    }
+
+    public void setMaxEntries(int maxEntries) {
+        this.maxEntries = maxEntries;
+    }
+
+    @Column(name = "max_entries_exceeded_message")
+    public String getMaxEntriesExceededMessage() {
+        return maxEntriesExceededMessage;
+    }
+
+    public void setMaxEntriesExceededMessage(String maxEntriesExceededMessage) {
+        this.maxEntriesExceededMessage = maxEntriesExceededMessage;
     }
 
     @OneToOne(targetEntity = ContextGroup.class, cascade = CascadeType.ALL, optional = true)
