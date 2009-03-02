@@ -16,10 +16,27 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package flexmud.sec;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "account")
 public class Account {
+    private long id;
     private String username;
     private String password;
 
+    @Id
+    @GeneratedValue()
+    @Column(name = "account_id")
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -28,6 +45,7 @@ public class Account {
         this.username = username;
     }
 
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }

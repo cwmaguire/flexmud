@@ -26,12 +26,23 @@ import java.util.Set;
 @Entity
 @Table(name = "context")
 public class Context {
+    public static String ID_PROPERTY = "id";
+    public static String NAME_PROPERTY = "name";
+    public static String CHILD_GROUP_PROPERTY = "childGroup";
+    public static String PARENT_GROUP_PROPERTY = "parentGroup";
+    public static String COMMAND_CLASS_NAMES_PROPERTY = "commandClassNames";
+    public static String ENTRY_MESSAGE_PROPERTY = "entryMessage";
+    public static String IS_LISTED_IN_PARENT_PROPERTY = "isListedInParent";
+    public static String DOES_USE_CHARACTER_PROMPT = "isCharacterPromptable";
 
     private long id;
     private String name;
     private ContextGroup childGroup;
     private ContextGroup parentGroup;
-    private Set<String> commands = new HashSet<String>();
+    private Set<String> commandClassNames = new HashSet<String>();
+    private String entryMessage;
+    private boolean isListedInParent;
+    private boolean isCharacterPromptable;
 
     public Context(){
     }
@@ -61,6 +72,33 @@ public class Context {
         this.name = name;
     }
 
+    @Column(name = "entry_message")
+    public String getEntryMessage() {
+        return entryMessage;
+    }
+
+    public void setEntryMessage(String entryMessage) {
+        this.entryMessage = entryMessage;
+    }
+
+    @Column(name = "is_listed_in_parent")
+    public boolean isListedInParent() {
+        return isListedInParent;
+    }
+
+    public void setListedInParent(boolean listedInParent) {
+        isListedInParent = listedInParent;
+    }
+
+    @Column(name = "is_character_promptable")
+    public boolean isCharacterPromptable() {
+        return isCharacterPromptable;
+    }
+
+    public void setCharacterPromptable(boolean characterPromptable) {
+        this.isCharacterPromptable = characterPromptable;
+    }
+
     @OneToOne(targetEntity = ContextGroup.class, cascade = CascadeType.ALL, optional = true)
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     @JoinColumn(name = "child_group_id")
@@ -84,12 +122,12 @@ public class Context {
 
     @CollectionOfElements( targetElement = String.class )
     @JoinTable(name = "context_command", joinColumns = @JoinColumn(name = "context_id"))
-    @Column(name = "command", nullable = false)
-    public Set<String> getCommands() {
-        return commands;
+    @Column(name = "command_class_name", nullable = false)
+    public Set<String> getCommandClassNames() {
+        return commandClassNames;
     }
 
-    public void setCommands(Set<String> commands) {
-        this.commands = commands;
+    public void setCommandClassNames(Set<String> commandClassNames) {
+        this.commandClassNames = commandClassNames;
     }
 }

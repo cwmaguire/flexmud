@@ -21,6 +21,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "object")
 public class Object {
+    public static final String ID_PROPERTY = "id";
+    public static final String NAME_PROPERTY = "name";
+
     private long id;
     private String name;
 

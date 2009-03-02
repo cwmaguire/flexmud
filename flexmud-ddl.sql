@@ -26,8 +26,8 @@
 
     create table context_command (
         context_id bigint not null,
-        command varchar(255) not null,
-        primary key (context_id, command)
+        command_class_name varchar(255) not null,
+        primary key (context_id, command_class_name)
     );
 
     create table context_group (

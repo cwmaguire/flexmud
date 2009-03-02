@@ -28,6 +28,7 @@ import java.net.InetSocketAddress;
 
 public class ClientListener implements Runnable{
     private static Logger LOGGER = Logger.getLogger(ClientListener.class);
+    private static final Object CLIENT_READ_LOCK = new Object();
 
     private boolean isRunning = true;
     private boolean shouldRunCommands = true;
@@ -87,7 +88,7 @@ public class ClientListener implements Runnable{
     protected Client mapSocketChannelToNewClient(SocketChannel socketChannel) throws IOException {
         configureSocketChannelForNonBlockingRead(socketChannel);
 
-        Client client = new Client(this);
+        Client client = new Client(this, socketChannel);
 
         LOGGER.info("ConnectionManager: New Connection. ID: " + client.getConnectionID());
 
@@ -159,7 +160,7 @@ public class ClientListener implements Runnable{
             }
         }
 
-        synchronized (key) {
+        synchronized (CLIENT_READ_LOCK) {
             client.handleInputFromSocketChannel();
         }
     }
@@ -343,7 +344,6 @@ public class ClientListener implements Runnable{
             try {
                 if (!key.isValid()) {
                     // disconnect(key);
-                    continue;
                 } else if (key.isAcceptable()) {
                     acceptNewConnection(key);
                 } else if (key.isReadable()) {
