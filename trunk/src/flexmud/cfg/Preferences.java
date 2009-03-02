@@ -24,7 +24,7 @@ public class Preferences {
 
     static {
         preferences.put("log4j config file", "log4j.lcf");
-
+        preferences.put("welcome message", "welcome to flexmud\n.\n.\n.");
     }
 
     public static String getPreference(String preferenceName) {
