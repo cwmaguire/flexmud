@@ -17,34 +17,50 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.net;
 
 import flexmud.cfg.Constants;
+import flexmud.db.HibernateUtil;
+import flexmud.engine.context.Context;
+import flexmud.sec.Account;
 import org.apache.log4j.Logger;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SocketChannel;
+import java.util.List;
 import java.util.UUID;
 
 public class Client {
     private static final Logger LOGGER = Logger.getLogger(Client.class);
     protected UUID connID;
-    protected final SocketChannel socketChannel = null;
+    protected SocketChannel socketChannel = null;
     private ClientState connState;
     protected ClientListener clientListener;
     protected CommandBuffer cmdBuffer;
+    protected Context context;
 
-    //private PlayerCharacter pc;
-    //private Account account;
+    private Account account;
 
-    public Client(ClientListener clientListener) {
+    public Client(ClientListener clientListener, SocketChannel socketChannel) {
         this.cmdBuffer = new CommandBuffer();
         this.clientListener = clientListener;
         this.connID = clientListener.getNewConnectionID();
-        /*
-        this.socketChannel = inSc;
-        this.connState = ConnectionState.DISCONNECTED;
-        this.pc = null;
-        this.account = null;
-        */
+        this.socketChannel = socketChannel;
+
+        this.context = fetchMainContext();
+
+    }
+
+    private Context fetchMainContext(){
+        List<Context> contexts;
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
+        detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));
+        contexts = (List<Context>) HibernateUtil.fetch(detachedCriteria);
+        if(contexts != null && contexts.size() > 0){
+            return contexts.get(0);
+        }else{
+            return null;
+        }
     }
 
     public void disconnect() {

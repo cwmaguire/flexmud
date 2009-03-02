@@ -1,5 +1,5 @@
 /*
-Copyright 2009 Chris Maguire (cwmaguire@gmail.com)
+Copyright 2008 Chris Maguire (cwmaguire@gmail.com)
 
 flexmud is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,22 +14,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
-package flexmud.engine.context;
 
-import flexmud.engine.cmd.EchoCmd;
+package flexmud.engine.cmd;
 
-import java.util.*;
+public class FetchCmd<T> {
 
-public class ContextHierarchy {
-    private static Map<Context, List<Class>> contextCommands = new HashMap<Context, List<Class>>();
 
-    static{
-        List<Class> menuCommands = new ArrayList<Class>();
-        menuCommands.add(EchoCmd.class);
-        contextCommands.put(new Context("Main Menu"), menuCommands);
-    }
-
-    public static List<Class> getContextCommands(Context context){
-        return contextCommands.get(context);
-    }
 }

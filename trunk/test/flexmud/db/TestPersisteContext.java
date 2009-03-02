@@ -20,9 +20,7 @@ package flexmud.db;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
 import flexmud.log.LoggingUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.Criteria;
+import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,22 +30,15 @@ import java.util.List;
 
 public class TestPersisteContext {
     private static final String CONTEXT_NAME = "ctxt1";
-    private Session session;
-    private Transaction transaction;
 
     @Before
     public void setup(){
         LoggingUtil.resetConfiguration();
         LoggingUtil.configureLogging();
-        
-        session = HibernateUtil.getSessionFactory().openSession();
-        transaction = session.beginTransaction();
     }
 
     @After
     public void teardown(){
-        transaction.commit();
-        session.close();
     }
 
     @Test
@@ -55,15 +46,16 @@ public class TestPersisteContext {
         Context context = new Context(CONTEXT_NAME);
         ContextGroup contextGroup = new ContextGroup();
         context.setChildGroup(contextGroup);
-        session.save(context);
+        HibernateUtil.save(context);
         Assert.assertFalse("Context ID was not updated automatically after save", context.getId() == 0);
     }
 
     @Test
     public void testSelectContext(){
         List<Context> contexts;
-        Criteria criteria = session.createCriteria(Context.class);
-        contexts = (List<Context>) criteria.list();
+        DetachedCriteria criteria = DetachedCriteria.forClass(Context.class);
+        contexts = (List<Context>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Contexts should not be null", contexts);
         Assert.assertEquals("Database should only contain one context", 1, contexts.size());
     }
 
@@ -71,8 +63,9 @@ public class TestPersisteContext {
     public void testSelectContextRetrieveGroup(){
         ContextGroup contextGroup;
         List<Context> contexts;
-        Criteria criteria = session.createCriteria(Context.class);
-        contexts = (List<Context>) criteria.list();
+        DetachedCriteria criteria = DetachedCriteria.forClass(Context.class);
+        contexts = (List<Context>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Contexts should not be null", contexts);
         contextGroup = contexts.get(0).getChildGroup();
         Assert.assertNotNull("Context child group should not be null", contextGroup);
     }
@@ -81,8 +74,9 @@ public class TestPersisteContext {
     public void testSelectGroupRetrieveContext(){
         Context context;
         List<ContextGroup> contextGroups;
-        Criteria criteria = session.createCriteria(ContextGroup.class);
-        contextGroups = (List<ContextGroup>) criteria.list();
+        DetachedCriteria criteria = DetachedCriteria.forClass(ContextGroup.class);
+        contextGroups = (List<ContextGroup>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Contexts should not be null", contextGroups);
         context = contextGroups.get(0).getParentContext();
         Assert.assertNotNull("Context group parent context should not be null", context);
     }
@@ -92,16 +86,19 @@ public class TestPersisteContext {
         List<Context> contexts;
         List<ContextGroup> contextGroups;
 
-        Criteria criteria = session.createCriteria(Context.class);
-        contexts = (List<Context>) criteria.list();
+        DetachedCriteria criteria = DetachedCriteria.forClass(Context.class);
+        contexts = (List<Context>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Contexts should not be null", contexts);
 
-        session.delete(contexts.get(0));
+        HibernateUtil.delete(contexts.get(0));
 
-        contexts = (List<Context>) criteria.list();
+        contexts = (List<Context>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Contexts should not be null", contexts);
         Assert.assertEquals("Database should contain no contexts", 0, contexts.size());
 
-        criteria = session.createCriteria(ContextGroup.class);
-        contextGroups = criteria.list();
+        criteria = DetachedCriteria.forClass(ContextGroup.class);
+        contextGroups = (List<ContextGroup>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of ContextGroups should not be null", contextGroups);
         Assert.assertEquals("Database should contain no context groups", 0, contextGroups.size());
     }
 }
