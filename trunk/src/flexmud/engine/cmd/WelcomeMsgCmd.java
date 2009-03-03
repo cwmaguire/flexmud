@@ -17,14 +17,8 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.engine.cmd;
 
 import flexmud.cfg.Preferences;
-import flexmud.net.Client;
 
-public class WelcomeMsgCmd implements Runnable{
-    private Client client;
-
-    public WelcomeMsgCmd(Client client){
-        this.client = client;
-    }
+public class WelcomeMsgCmd extends Command{
 
     @Override
     public void run() {

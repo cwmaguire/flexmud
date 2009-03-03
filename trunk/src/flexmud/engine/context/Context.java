@@ -16,46 +16,52 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package flexmud.engine.context;
 
+import flexmud.engine.cmd.AliasCommandClassNameMap;
+import flexmud.engine.cmd.Command;
 import org.apache.log4j.Logger;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CollectionOfElements;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Entity
 @Table(name = "context")
 public class Context {
     private static final Logger LOGGER = Logger.getLogger(Context.class);
-    public static String ID_PROPERTY = "id";
-    public static String NAME_PROPERTY = "name";
-    public static String CHILD_GROUP_PROPERTY = "childGroup";
-    public static String PARENT_GROUP_PROPERTY = "parentGroup";
-    public static String COMMAND_CLASS_NAME_ALIASES_PROPERTY = "commandClassNameAliases";
-    public static String ENTRY_MESSAGE_PROPERTY = "entryMessage";
-    public static String IS_LISTED_IN_PARENT_PROPERTY = "isListedInParent";
-    public static String DOES_USE_CHARACTER_PROMPT_PROPERTY = "isCharacterPromptable";
-    public static String MAX_ENTRIES_PROPERTY = "maxEntries";
-    public static String MAX_ENTRIES_EXCEEDED_MESSAGE_PROPERTY = "maxEntriesExceededMessage";
-    public static String ENTRY_COMMAND_CLASS_NAME_PROPERTY = "entryCommandClassName";
+    public static final String ID_PROPERTY = "id";
+    public static final String NAME_PROPERTY = "name";
+    public static final String CHILD_GROUP_PROPERTY = "childGroup";
+    public static final String PARENT_GROUP_PROPERTY = "parentGroup";
+    public static final String COMMAND_CLASS_NAME_ALIASES_PROPERTY = "aliasCommandClassNameMaps";
+    public static final String ENTRY_MESSAGE_PROPERTY = "entryMessage";
+    public static final String IS_LISTED_IN_PARENT_PROPERTY = "isListedInParent";
+    public static final String DOES_USE_CHARACTER_PROMPT_PROPERTY = "isCharacterPromptable";
+    public static final String MAX_ENTRIES_PROPERTY = "maxEntries";
+    public static final String MAX_ENTRIES_EXCEEDED_MESSAGE_PROPERTY = "maxEntriesExceededMessage";
+    public static final String ENTRY_COMMAND_CLASS_NAME_PROPERTY = "entryCommandClassName";
+    public static final String PROMPT_COMMAND_CLASS_NAME_PROPERTY = "promptCommandClassName";
 
     private long id;
     private String name;
     private ContextGroup childGroup;
     private ContextGroup parentGroup;
-    private Map<String, String> commandClassNameAliases = new HashMap<String, String>();
+    private Set<AliasCommandClassNameMap> aliasCommandClassNameMaps = new HashSet<AliasCommandClassNameMap>();
     private String entryMessage;
     private boolean isListedInParent;
     private boolean isCharacterPromptable;
     private int maxEntries = -1;
     private String maxEntriesExceededMessage = "";
     private String entryCommandClassName;
+    private String promptCommandClassName;
 
     private Class entryCommandClass;
-    private Map<Class, String> commandClassAliases = new HashMap<Class, String>();
+    private Class promptCommandClass;
+    private Map<String, Class> aliasCommandClasses = new HashMap<String, Class>();
 
-    public Context(){
+    public Context() {
     }
 
     public Context(String name){
@@ -64,24 +70,42 @@ public class Context {
     }
 
     public void init(){
-        if(entryCommandClass != null){
-            try{
-                entryCommandClass = Class.forName(entryCommandClassName);
-            }catch(Exception e){
-                LOGGER.error("Could not load entry command for context " + name, e);
-            }
-        }
 
-        if(commandClassNameAliases != null){
-            for(String className : commandClassNameAliases.keySet()){
-                try {
-                    commandClassAliases.put(Class.forName(className), commandClassNameAliases.get(className));
-                } catch (Exception e) {
-                    LOGGER.error("Could not commands and aliases for context " + name, e);
-                }
+        entryCommandClass = loadClass(entryCommandClassName);
+        promptCommandClass = loadClass(promptCommandClassName);
+
+        mapAliasesToCommandClasses();
+    }
+
+    private void mapAliasesToCommandClasses() {
+        if(aliasCommandClassNameMaps != null){
+            for(AliasCommandClassNameMap aliasMap : aliasCommandClassNameMaps){
+                mapCommandAliases(loadClass(aliasMap.getCommandClassName()), aliasMap.getAliases());
             }
         }
     }
+
+    private void mapCommandAliases(Class commandClass, Set<String> aliases) {
+        if(commandClass != null){
+            for(String alias : aliases){
+                aliasCommandClasses.put(alias, commandClass);
+            }
+        }
+    }
+
+    private Class loadClass(String className) {
+        Class classFromName = null;
+        if(className != null){
+            try{
+                classFromName = Class.forName(className);
+            }catch(Exception e){
+                LOGGER.error("Could not load command " + className + " for context " + name, e);
+                return null;
+            }
+        }
+        return classFromName;
+    }
+
 
     @Id
     @GeneratedValue
@@ -139,6 +163,15 @@ public class Context {
         this.entryCommandClassName = entryCommandClassName;
     }
 
+    @Column(name = "prompt_command_class_name")
+    public String getPromptCommandClassName() {
+        return promptCommandClassName;
+    }
+
+    public void setPromptCommandClassName(String promptCommandClassName) {
+        this.promptCommandClassName = promptCommandClassName;
+    }
+
     @Column(name = "max_entries")
     public int getMaxEntries() {
         return maxEntries;
@@ -179,33 +212,45 @@ public class Context {
     }
 
 
-    @CollectionOfElements( targetElement = String.class )
-    @JoinTable(name = "context_command", joinColumns = @JoinColumn(name = "context_id"))
-    public Map<String, String> getCommandClassNameAliases() {
-        return commandClassNameAliases;
+    @OneToMany(mappedBy = AliasCommandClassNameMap.CONTEXT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    public Set<AliasCommandClassNameMap> getAliasCommandClassNameMaps() {
+        return aliasCommandClassNameMaps;
     }
 
-    public void setCommandClassNameAliases(Map<String, String> commandClassNameAliases) {
-        this.commandClassNameAliases = commandClassNameAliases;
-    }
-
-    @Transient
-    public Map<Class, String> getCommandClassAliases() {
-        return commandClassAliases;
-    }
-
-    public void setCommandClassAliases(Map<Class, String> commandClassAliases) {
-        this.commandClassAliases = commandClassAliases;
+    public void setAliasCommandClassNameMaps(Set<AliasCommandClassNameMap> aliasCommandClassNameMaps) {
+        this.aliasCommandClassNameMaps = aliasCommandClassNameMaps;
     }
 
     @Transient
-    public Runnable getEntryCommand() {
+    public Map<String, Class> getAliasCommandClasses() {
+        return aliasCommandClasses;
+    }
+
+    @Transient
+    public Command getEntryCommand() {
         try{
-            return (Runnable) entryCommandClass.newInstance();
+            return (Command) entryCommandClass.newInstance();
         }catch(Exception e){
             LOGGER.error("Could not instantiate instance of entry command " + entryCommandClass.getName() + " for context " + name, e);
         }
 
         return null;
+    }
+
+    @Transient
+    public Command getPromptCommand() {
+        try {
+            return (Command) promptCommandClass.newInstance();
+        } catch (Exception e) {
+            LOGGER.error("Could not instantiate instance of entry command " + entryCommandClass.getName() + " for context " + name, e);
+        }
+
+        return null;
+    }
+
+    @Transient
+    public Class getCommandForAlias(String alias){
+        return aliasCommandClasses.get(alias);
     }
 }

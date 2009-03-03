@@ -17,6 +17,8 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 
 package flexmud.engine.context;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +26,10 @@ import java.util.Set;
 @Entity
 @Table(name = "context_group")
 public class ContextGroup {
+    public static final String ID_PROPERTY = "id";
+    public static final String PARENT_CONTEXT_PROPERTY = "parentContext";
+    public static final String CHILD_CONTEXTS_PROPERTY = "childContexts";
+
     private long id;
     private Context parentContext;
     private Set<Context> childContexts = new HashSet<Context>();
@@ -47,8 +53,8 @@ public class ContextGroup {
         this.parentContext = parentContext;
     }
 
-    @OneToMany(mappedBy = "parentGroup", cascade = CascadeType.ALL)
-    @org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = Context.PARENT_GROUP_PROPERTY, cascade = CascadeType.ALL)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
     public Set<Context> getChildContexts() {
         return childContexts;
     }

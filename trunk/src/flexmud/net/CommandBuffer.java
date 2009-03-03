@@ -32,7 +32,7 @@ public class CommandBuffer {
     private static final Logger LOGGER = Logger.getLogger(CommandBuffer.class);
     private static final Object CHAR_BUFFER_LOCK = new Object();
     private static final Object COMPLETE_COMMANDS_LOCK = new Object();
-    
+
     private ArrayList<Character> charBuffer;
     private ArrayList<String> completeCmds;
 
@@ -191,12 +191,12 @@ public class CommandBuffer {
         }
     }
 
-    public boolean hasNextCommand() {
+    public boolean hasCompleteCommand() {
         return (this.cmdCount() > 0);
     }
 
     public String getNextCommand() {
-        if (this.hasNextCommand()) {
+        if (this.hasCompleteCommand()) {
             synchronized (COMPLETE_COMMANDS_LOCK) {
                 return this.completeCmds.remove(0);
             }

@@ -26,6 +26,7 @@
         <mapping class="flexmud.engine.obj.Object"/>
         <mapping class="flexmud.engine.context.Context"/>
         <mapping class="flexmud.engine.context.ContextGroup"/>
+        <mapping class="flexmud.engine.cmd.AliasCommandClassNameMap"/>
 
     </session-factory>
 </hibernate-configuration>
