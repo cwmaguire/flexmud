@@ -95,8 +95,16 @@ public class Client {
         //j.selfSubmit();
     }
 
+    public Context getContext(){
+        return contextSwitcher.getContext();
+    }
+
     public void setContext(Context context){
         contextSwitcher.setContext(context);
+    }
+
+    public ContextSwitcher getContextSwitcher() {
+        return contextSwitcher;
     }
 
     public void sendCRLFs(int numberOfCRLFs) {

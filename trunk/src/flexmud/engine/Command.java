@@ -16,10 +16,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package flexmud.engine;
 
-import java.util.List;
-
 public interface Command extends Runnable{
 
-    public List<String> getAliases();
 
 }
