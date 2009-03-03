@@ -70,7 +70,29 @@
     </wildcardResourcePatterns>
   </component>
   <component name="CopyrightManager" default="">
-    <module2copyright />
+    <copyright>
+      <option name="notice" value="Copyright 2009 Chris Maguire (cwmaguire@gmail.com)&#10;&#10;Flexmud is free software: you can redistribute it and/or modify&#10;it under the terms of the GNU General Public License as published by&#10;the Free Software Foundation, either version 3 of the License, or&#10;(at your option) any later version.&#10;&#10;Flexmud is distributed in the hope that it will be useful,&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#10;GNU General Public License for more details.&#10;&#10;You should have received a copy of the GNU General Public License&#10;along with flexmud.  If not, see &lt;http://www.gnu.org/licenses/&gt;." />
+      <option name="keyword" value="Copyright" />
+      <option name="myName" value="flexmud" />
+      <option name="myLocal" value="true" />
+    </copyright>
+    <module2copyright>
+      <element module="All" copyright="flexmud" />
+    </module2copyright>
+    <LanguageOptions name="JAVA">
+      <option name="fileTypeOverride" value="3" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="block" value="true" />
+      <option name="separateBefore" value="true" />
+      <option name="separateAfter" value="true" />
+      <option name="prefixLines" value="true" />
+      <option name="lenBefore" value="100" />
+      <option name="lenAfter" value="100" />
+      <option name="box" value="true" />
+      <option name="filler" value=" " />
+    </LanguageOptions>
   </component>
   <component name="DependenciesAnalyzeManager">
     <option name="myForwardDirection" value="false" />

@@ -1,19 +1,19 @@
-/*
-Copyright 2009 Chris Maguire (cwmaguire@gmail.com)
-
-MUD Cartographer is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-MUD Cartographer is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with MUD Cartographer.  If not, see <http://www.gnu.org/licenses/>.
- */
+/**************************************************************************************************
+ * Copyright 2009 Chris Maguire (cwmaguire@gmail.com)                                             *
+ *                                                                                                *
+ * Flexmud is free software: you can redistribute it and/or modify                                *
+ * it under the terms of the GNU General Public License as published by                           *
+ * the Free Software Foundation, either version 3 of the License, or                              *
+ * (at your option) any later version.                                                            *
+ *                                                                                                *
+ * Flexmud is distributed in the hope that it will be useful,                                     *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                                 *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                                  *
+ * GNU General Public License for more details.                                                   *
+ *                                                                                                *
+ * You should have received a copy of the GNU General Public License                              *
+ * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
+ **************************************************************************************************/
 package flexmud.engine.context;
 
 import flexmud.db.HibernateUtil;
@@ -125,6 +125,7 @@ public class ClientContextHandler {
         String[] tokens;
         String commandAlias;
         String arguments;
+        Class commandClass;
         Command command;
 
         if(commandString == null || commandString.trim().isEmpty()){
@@ -134,7 +135,15 @@ public class ClientContextHandler {
 
         stringTokenizer = new StringTokenizer(commandString);
 
-        command = context.getCommandForAlias(getNextWord(stringTokenizer));
+        commandClass = context.getCommandClassForAlias(getNextWord(stringTokenizer));
+        try{
+            command = (Command) commandClass.newInstance();
+        }catch(Exception e){
+            LOGGER.error("Could not instantiate Command for class " + commandClass.getName(), e);
+            client.sendTextLn("An error occurred trying to run \'" + commandString + "\"");
+            initializeAndExecuteCommand(context.getPromptCommand());
+            return;
+        }
         command.setCommandArguments(getRemainingWords(stringTokenizer));
     }
 
