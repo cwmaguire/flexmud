@@ -7,9 +7,12 @@
 
     <!-- Global properties for this build -->
     <property name="database.dir"           value="db"/>
-    <property name="src.dir"           value="src"/>
+    <property name="src.dir"                value="src"/>
     <property name="lib.dir"                value="lib"/>
     <property name="build.dir"              value="build"/>
+    <property name="hsqldb.driver"          value="org.hsqldb.jdbcDriver"/>
+    <property name="hsqldb.server.url"      value="jdbc:hsqldb:hsql://localhost/"/>
+    <property name="database.dir"           value="database"/>
 
     <!-- Classpath declaration -->
     <path id="project.classpath">
@@ -49,19 +52,14 @@
         </copy>
     </target>
 
-    <!-- Run HelloWorld -->
-    <target name="run" depends="compile, copymetafiles"
-        description="Build and run HelloWorld">
-        <java fork="true"
-              classname="hello.HelloWorld"
-              classpathref="project.classpath">
-            <classpath path="${build.dir}"/>
-        </java>
-    </target>
-
     <!-- Hibernate Tools import -->
     <taskdef name="hibernatetool"
              classname="org.hibernate.tool.ant.HibernateToolTask"
+             classpathref="project.classpath"/>
+
+    <!-- DB Unit Task import -->
+    <taskdef name="dbunit"
+             classname="org.dbunit.ant.DbUnitTask"
              classpathref="project.classpath"/>
 
     <!-- Export the database schema -->
@@ -106,6 +104,15 @@
             <arg value="-driver"/>
             <arg value="org.hsqldb.jdbcDriver"/>
         </java>
+    </target>
+
+    <target name="load-dbunit-pa-data">
+        <dbunit driver="hsqldb.dbdriver" url="hsqldb.server.url" userid="sa"
+                schema="public" password=""
+                dataTypeFactory="org.dbunit.ext.oracle.OracleDataTypeFactory">
+            <operation type="INSERT" src="${database.dir}/pa.xml" transaction="true"/>
+            <classpath refid="project.classpath"/>
+        </dbunit>
     </target>
 
 </project>

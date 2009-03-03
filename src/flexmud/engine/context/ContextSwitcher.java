@@ -26,6 +26,7 @@ import org.hibernate.criterion.Restrictions;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class ContextSwitcher {
     private static final Logger LOGGER = Logger.getLogger(ContextSwitcher.class);
@@ -42,11 +43,22 @@ public class ContextSwitcher {
         setContext(fetchFirstContext());
     }
 
+    public Context getContext(){
+        return context;
+    }
+
     public void setContext(Context newContext){
 
-        if (context == null) {
-            client.sendText("Houston, we have a problem: we couldn't get you to the starting point. Disconnecting, sorry.");
+        if (newContext == null && context == null) {
+            client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
             LOGGER.error("Could not locate first context");
+            client.disconnect();
+            return;
+        }else if(newContext == null){
+            client.sendText("The area you are trying to get to doesn't seem to exist.");
+            // ToDO CM: need to reprompt at this point.
+            LOGGER.error("Tried to send to null context, keeping client in old context.");
+            return;
         }
 
         if(isMaxEntriesExceeded(newContext)){
@@ -57,6 +69,8 @@ public class ContextSwitcher {
         }
 
         incrementEntryCount(newContext);
+
+        context = newContext;
 
         Executor.exec(context.getEntryCommand());
     }
@@ -74,7 +88,7 @@ public class ContextSwitcher {
         contextEntryCounts.put(context, entryCount == null ? 1 : entryCount + 1);
     }
 
-    private Context fetchFirstContext() {
+    public Context fetchFirstContext() {
         List<Context> contexts;
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
         detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));
@@ -86,5 +100,14 @@ public class ContextSwitcher {
         }
     }
 
+    public Context getFirstChildContext() {
+        ContextGroup childContextGroup = context.getChildGroup();
+        List<Context> childContexts = new ArrayList<Context>(childContextGroup.getChildContexts());
+        if (!childContexts.isEmpty()) {
+            return childContexts.get(0);
+        }
+
+        return null;
+    }
 
 }

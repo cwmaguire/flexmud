@@ -432,10 +432,11 @@
   <component name="libraryTable">
     <library name="JUnit">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/lib/junit/junit-4.5.jar!/" />
+        <root url="file://$PROJECT_DIR$/lib/junit" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/junit" recursive="false" />
     </library>
     <library name="Log4j">
       <CLASSES>

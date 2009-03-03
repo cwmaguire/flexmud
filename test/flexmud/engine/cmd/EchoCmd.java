@@ -1,5 +1,5 @@
 /*
-Copyright 2008 Chris Maguire (cwmaguire@gmail.com)
+Copyright 2009 Chris Maguire (cwmaguire@gmail.com)
 
 flexmud is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,10 +14,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package flexmud.engine.cmd;
 
-public class FetchCmd<T> {
+import flexmud.engine.Command;
+import org.apache.log4j.Logger;
 
+public class EchoCmd implements Command {
+    private static Logger LOGGER = Logger.getLogger(EchoCmd.class);
 
+    @Override
+    public void run() {
+        LOGGER.info("EchoCmd class ran");
+    }
 }
