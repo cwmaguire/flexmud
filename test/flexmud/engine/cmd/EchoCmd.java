@@ -16,10 +16,9 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package flexmud.engine.cmd;
 
-import flexmud.engine.Command;
 import org.apache.log4j.Logger;
 
-public class EchoCmd implements Command {
+public class EchoCmd implements Runnable {
     private static Logger LOGGER = Logger.getLogger(EchoCmd.class);
 
     @Override

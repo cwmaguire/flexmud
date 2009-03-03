@@ -23,6 +23,8 @@ public class Executor {
     public static ExecutorService executorService = Executors.newCachedThreadPool();
 
     public static void exec(Runnable command){
-        executorService.submit(command);
+        if(command != null){
+            executorService.submit(command);
+        }
     }
 }

@@ -17,25 +17,23 @@ along with MUD Cartographer.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.engine.context;
 
 import flexmud.db.HibernateUtil;
+import flexmud.engine.cmd.Command;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
+import java.util.*;
 
-public class ContextSwitcher {
-    private static final Logger LOGGER = Logger.getLogger(ContextSwitcher.class);
+public class ClientContextHandler {
+    private static final Logger LOGGER = Logger.getLogger(ClientContextHandler.class);
 
     private Context context;
     private Client client;
     private Map<Context, Integer> contextEntryCounts = new HashMap<Context, Integer>();
 
-    public ContextSwitcher(Client client){
+    public ClientContextHandler(Client client){
         this.client = client;
     }
 
@@ -72,7 +70,19 @@ public class ContextSwitcher {
 
         context = newContext;
 
-        Executor.exec(context.getEntryCommand());
+        /* ToDo CM: it looks like CachedThreadPool executes jobs in order from a queue,
+           ToDo     but we may still need to put in a delay to prevent later commands
+           ToDo     from sneaking ahead of earlier commands
+           ToDo     We could also put in some sort of dependency check where if a command
+           ToDo     is processed out of order it gets put back in the queue
+        */
+        initializeAndExecuteCommand(context.getEntryCommand());
+        initializeAndExecuteCommand(context.getPromptCommand());
+    }
+
+    private void initializeAndExecuteCommand(Command command) {
+        command.setClient(client);
+        Executor.exec(command);
     }
 
     private boolean isMaxEntriesExceeded(Context newContext) {
@@ -93,7 +103,7 @@ public class ContextSwitcher {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
         detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));
         contexts = (List<Context>) HibernateUtil.fetch(detachedCriteria);
-        if (contexts != null && contexts.size() > 0) {
+        if (contexts != null && !contexts.isEmpty()) {
             return contexts.get(0);
         } else {
             return null;
@@ -110,4 +120,38 @@ public class ContextSwitcher {
         return null;
     }
 
+    public void runCommand(String commandString){
+        StringTokenizer stringTokenizer;
+        String[] tokens;
+        String commandAlias;
+        String arguments;
+        Command command;
+
+        if(commandString == null || commandString.trim().isEmpty()){
+            initializeAndExecuteCommand(context.getPromptCommand());
+            return;
+        }
+
+        stringTokenizer = new StringTokenizer(commandString);
+
+        command = context.getCommandForAlias(getNextWord(stringTokenizer));
+        command.setCommandArguments(getRemainingWords(stringTokenizer));
+    }
+
+    private String getNextWord(StringTokenizer stringTokenizer){
+        if(stringTokenizer.hasMoreElements()){
+            return stringTokenizer.nextToken();
+        }else{
+            return "";
+        }
+    }
+
+    private List<String> getRemainingWords(StringTokenizer stringTokenizer){
+        List<String> words = new ArrayList<String>();
+        while (stringTokenizer.hasMoreElements()) {
+            words.add(stringTokenizer.nextToken());
+        }
+
+        return words;
+    }
 }

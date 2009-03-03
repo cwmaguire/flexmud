@@ -18,7 +18,7 @@ package flexmud.net;
 
 import flexmud.cfg.Constants;
 import flexmud.engine.context.Context;
-import flexmud.engine.context.ContextSwitcher;
+import flexmud.engine.context.ClientContextHandler;
 import flexmud.sec.Account;
 import org.apache.log4j.Logger;
 
@@ -34,7 +34,7 @@ public class Client {
     private ClientState connState;
     protected ClientListener clientListener;
     protected CommandBuffer cmdBuffer;
-    protected ContextSwitcher contextSwitcher;
+    protected ClientContextHandler clientContextHandler;
 
     private Account account;
 
@@ -44,9 +44,9 @@ public class Client {
 
         cmdBuffer = new CommandBuffer();
         connID = clientListener.getNewConnectionID();
-        contextSwitcher = new ContextSwitcher(this);
+        clientContextHandler = new ClientContextHandler(this);
 
-        contextSwitcher.init();
+        clientContextHandler.init();
     }
 
     public UUID getConnectionID() {
@@ -83,28 +83,24 @@ public class Client {
             this.disconnect();
         }
 
-        LOGGER.error(this.cmdBuffer.toString());
+        LOGGER.info(this.cmdBuffer.toString());
 
-        // If a valid command exists, then route it and generate a job.
-        if (this.cmdBuffer.hasNextCommand() == false) {
-            return;
+        if (cmdBuffer.hasCompleteCommand()) {
+            clientContextHandler.runCommand(cmdBuffer.getNextCommand());
         }
 
-        // Determine Action appropriate for the current ConnectionState
-        //ConnectionStateJob j = new ConnectionStateJob(this);
-        //j.selfSubmit();
     }
 
     public Context getContext(){
-        return contextSwitcher.getContext();
+        return clientContextHandler.getContext();
     }
 
     public void setContext(Context context){
-        contextSwitcher.setContext(context);
+        clientContextHandler.setContext(context);
     }
 
-    public ContextSwitcher getContextSwitcher() {
-        return contextSwitcher;
+    public ClientContextHandler getContextSwitcher() {
+        return clientContextHandler;
     }
 
     public void sendCRLFs(int numberOfCRLFs) {
