@@ -24,7 +24,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "alias_command")
+@Table(name = "context_command")
 public class AliasCommandClassNameMap {
     public static final String ID_PROPERTY = "id";
     public static final String CONTEXT_PROPERTY = "context";
@@ -38,7 +38,7 @@ public class AliasCommandClassNameMap {
 
     @Id
     @GeneratedValue
-    @Column(name = "alias_command_id")
+    @Column(name = "context_command_id")
     public long getId() {
         return id;
     }
@@ -48,6 +48,8 @@ public class AliasCommandClassNameMap {
     }
 
     @CollectionOfElements(fetch = FetchType.EAGER)
+    @Column(name = "alias")
+    @JoinTable(name = "context_command_alias", joinColumns= {@JoinColumn(name = "context_command_id")})
     public Set<String> getAliases() {
         return aliases;
     }
@@ -56,7 +58,7 @@ public class AliasCommandClassNameMap {
         this.aliases = aliases;
     }
 
-    @Column(name = "command")
+    @Column(name = "command_class", nullable = false)
     public String getCommandClassName() {
         return commandClassName;
     }
@@ -66,7 +68,7 @@ public class AliasCommandClassNameMap {
     }
 
     @ManyToOne
-    @JoinColumn(name = "context_id", nullable = true)
+    @JoinColumn(name = "context_id", nullable = false)
     public Context getContext() {
         return context;
     }
