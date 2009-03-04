@@ -106,7 +106,7 @@
         </java>
     </target>
 
-    <target name="load-dbunit-pa-data">
+    <target name="load-base-data">
         <dbunit driver="hsqldb.dbdriver" url="hsqldb.server.url" userid="sa"
                 schema="public" password=""
                 dataTypeFactory="org.dbunit.ext.oracle.OracleDataTypeFactory">

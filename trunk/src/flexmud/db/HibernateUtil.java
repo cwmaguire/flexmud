@@ -81,10 +81,11 @@ public class HibernateUtil {
 
         try{
             session.save(obj);
+            transaction.commit();
         }catch(Exception e){
             LOGGER.error("Error saving object", e);
+            transaction.rollback();
         }finally{
-            transaction.commit();
             session.close();
         }
     }
