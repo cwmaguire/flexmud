@@ -1,460 +1,468 @@
-1343 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1], was: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1] (initialized)
-1343 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 3 objects
-1343 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 (re)creations, 0 updates, 0 removals to 3 collections
-1343 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
-1343 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.Context{listedInParent=false, id=1, maxEntriesExceededMessage=, entryMessage=null, name=a, aliasCommandClassNameMaps=[flexmud.engine.cmd.AliasCommandClassNameMap#1], promptCommandClassName=null, childGroup=flexmud.engine.context.ContextGroup#1, characterPromptable=false, entryCommandClassName=null, parentGroup=null, maxEntries=-1}
-1343 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.cmd.AliasCommandClassNameMap{id=1, context=flexmud.engine.context.Context#1, aliases=[b, c, a], commandClassName=CommandClass}
-1343 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.ContextGroup{id=1, childContexts=<uninitialized>, parentContext=flexmud.engine.context.Context#1}
-1343 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
-1343 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
-1343 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
-0    [main] INFO  org.hibernate.cfg.annotations.Version  - Hibernate Annotations 3.4.0.GA
-31   [main] INFO  org.hibernate.cfg.Environment  - Hibernate 3.3.0.SP1
-31   [main] INFO  org.hibernate.cfg.Environment  - hibernate.properties not found
-46   [main] INFO  org.hibernate.cfg.Environment  - Bytecode provider name : javassist
-46   [main] INFO  org.hibernate.cfg.Environment  - using JDK 1.4 java.sql.Timestamp handling
-156  [main] INFO  org.hibernate.annotations.common.Version  - Hibernate Commons Annotations 3.1.0.GA
-156  [main] INFO  org.hibernate.cfg.Configuration  - configuring from resource: /flexmud/db/hibernate.cfg.xml
-156  [main] INFO  org.hibernate.cfg.Configuration  - Configuration resource: /flexmud/db/hibernate.cfg.xml
-250  [main] DEBUG org.hibernate.util.DTDEntityResolver  - trying to resolve system-id [http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd]
-250  [main] DEBUG org.hibernate.util.DTDEntityResolver  - recognized hibernate namespace; attempting to resolve on classpath under org/hibernate/
-250  [main] DEBUG org.hibernate.util.DTDEntityResolver  - located [http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd] in classpath
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.connection.driver_class=org.hsqldb.jdbcDriver
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.connection.url=jdbc:hsqldb:hsql://localhost
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.connection.username=sa
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.c3p0.min_size=5
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.c3p0.max_size=20
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.c3p0.timeout=300
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.c3p0.max_statements=50
-296  [main] DEBUG org.hibernate.cfg.Configuration  - hibernate.c3p0.idle_test_period=3000
-296  [main] DEBUG org.hibernate.cfg.Configuration  - dialect=org.hibernate.dialect.HSQLDialect
-296  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - null <- org.dom4j.tree.DefaultAttribute@15b0333 [Attribute: name class value "flexmud.engine.obj.Object"]
-328  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - null <- org.dom4j.tree.DefaultAttribute@457d21 [Attribute: name class value "flexmud.engine.context.Context"]
-328  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - null <- org.dom4j.tree.DefaultAttribute@1a0ae6 [Attribute: name class value "flexmud.engine.context.ContextGroup"]
-328  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - null <- org.dom4j.tree.DefaultAttribute@1c18a4c [Attribute: name class value "flexmud.engine.cmd.AliasCommandClassNameMap"]
-328  [main] INFO  org.hibernate.cfg.Configuration  - Configured SessionFactory: null
-328  [main] DEBUG org.hibernate.cfg.Configuration  - properties: {java.runtime.name=Java(TM) SE Runtime Environment, sun.boot.library.path=C:\Program Files\Java\jdk1.6.0_10\jre\bin, java.vm.version=11.0-b15, hibernate.connection.username=sa, java.vm.vendor=Sun Microsystems Inc., java.vendor.url=http://java.sun.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.country=US, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 3, java.vm.specification.name=Java Virtual Machine Specification, user.dir=E:\dev\flexmud, java.runtime.version=1.6.0_10-b33, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, hibernate.c3p0.max_statements=50, java.endorsed.dirs=C:\Program Files\Java\jdk1.6.0_10\jre\lib\endorsed, os.arch=x86, java.io.tmpdir=C:\WINDOWS\TEMP\, line.separator=
-, java.vm.specification.vendor=Sun Microsystems Inc., user.variant=, os.name=Windows XP, hibernate.c3p0.idle_test_period=3000, sun.jnu.encoding=Cp1252, hibernate.c3p0.timeout=300, java.library.path=C:\Program Files\Java\jdk1.6.0_10\bin;.;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;E:\Program Files\QuickTime\QTSystem\;C:\mysql\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Nero\Lib\, java.specification.name=Java Platform API Specification, java.class.version=50.0, sun.management.compiler=HotSpot Client Compiler, os.version=5.1, user.home=C:\Documents and Settings\Administrator, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=windows-1252, java.specification.version=1.6, hibernate.c3p0.min_size=5, hibernate.connection.driver_class=org.hsqldb.jdbcDriver, user.name=Administrator, java.class.path=C:\Program Files\Java\jdk1.6.0_10\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunpkcs11.jar;E:\dev\flexmud\build\test\flexmud;E:\dev\flexmud\build\production\flexmud;E:\dev\flexmud\lib\junit\dbunit-2.4.2.jar;E:\dev\flexmud\lib\junit;E:\dev\flexmud\lib\junit\junit.jar;E:\dev\flexmud\lib\junit\junit-4.5.jar;E:\dev\flexmud\lib\junit\junit-3.8.1.jar;E:\dev\flexmud\lib\log4j\log4j-1.2.15.jar;E:\dev\flexmud\lib\hibernate\hibernate-core.jar;E:\dev\flexmud\lib\hibernate\asm.jar;E:\dev\flexmud\lib\hibernate\dom4j-1.6.1.jar;E:\dev\flexmud\lib\hibernate;E:\dev\flexmud\lib\hibernate\antlr-2.7.6.jar;E:\dev\flexmud\lib\hibernate\hibernate-annotations.jar;E:\dev\flexmud\lib\hibernate\slf4j-api-1.5.6.jar;E:\dev\flexmud\lib\hibernate\freemarker.jar;E:\dev\flexmud\lib\hibernate\ejb3-persistence.jar;E:\dev\flexmud\lib\hibernate\slf4j-api.jar;E:\dev\flexmud\lib\hibernate\dom4j.jar;E:\dev\flexmud\lib\hibernate\hibernate3.jar;E:\dev\flexmud\lib\hibernate\hibernate-commons-annotations.jar;E:\dev\flexmud\lib\hibernate\jta-1.1.jar;E:\dev\flexmud\lib\hibernate\slf4j-log4j12-1.5.6.jar;E:\dev\flexmud\lib\hibernate\commons-collections-3.1.jar;E:\dev\flexmud\lib\hibernate\javassist-3.4.GA.jar;E:\dev\flexmud\lib\hibernate\c3p0-0.9.1.jar;E:\dev\flexmud\lib\hibernate\hsqldb.jar;E:\dev\flexmud\lib\hibernate\hibernate-tools.jar;E:\dev\flexmud\lib\hibernate\commons-logging-1.0.4.jar;C:\Program Files\JetBrains\IntelliJ IDEA 8.1\lib\idea_rt.jar, hibernate.bytecode.use_reflection_optimizer=false, java.vm.specification.version=1.0, java.home=C:\Program Files\Java\jdk1.6.0_10\jre, sun.arch.data.model=32, hibernate.dialect=org.hibernate.dialect.HSQLDialect, hibernate.connection.url=jdbc:hsqldb:hsql://localhost, user.language=en, java.specification.vendor=Sun Microsystems Inc., hibernate.c3p0.max_size=20, awt.toolkit=sun.awt.windows.WToolkit, java.vm.info=mixed mode, java.version=1.6.0_10, java.ext.dirs=C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.boot.class.path=C:\Program Files\Java\jdk1.6.0_10\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_10\jre\classes, java.vendor=Sun Microsystems Inc., file.separator=\, java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, dialect=org.hibernate.dialect.HSQLDialect, sun.cpu.isalist=}
-343  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - Validator not present in classpath, ignoring event listener registration
-343  [main] DEBUG org.hibernate.cfg.search.HibernateSearchEventListenerRegister  - Search not present in classpath, ignoring event listener registration.
-343  [main] INFO  org.hibernate.cfg.search.HibernateSearchEventListenerRegister  - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-343  [main] DEBUG org.hibernate.cfg.Configuration  - Preparing to build session factory with filters : {}
-343  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - Execute first pass mapping processing
-437  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - Process hbm files
-437  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - Process annotated classes
-453  [main] INFO  org.hibernate.cfg.AnnotationBinder  - Binding entity from annotated class: flexmud.engine.obj.Object
-484  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column DTYPE. Unique false. Nullable false.
-515  [main] DEBUG org.hibernate.cfg.annotations.EntityBinder  - Import with entity name Object
-515  [main] INFO  org.hibernate.cfg.annotations.EntityBinder  - Bind entity flexmud.engine.obj.Object on table object
-531  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing flexmud.engine.obj.Object property annotation
-562  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.obj.Object.id
-562  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column object_id. Unique false. Nullable true.
-578  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - id is an id
-578  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for id
-593  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property id
-593  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Bind @Id on id
-593  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.obj.Object.name
-593  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column name. Unique false. Nullable true.
-609  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property name with lazy=false
-609  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for name
-609  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property name
-609  [main] INFO  org.hibernate.cfg.AnnotationBinder  - Binding entity from annotated class: flexmud.engine.context.Context
-609  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column DTYPE. Unique false. Nullable false.
-609  [main] DEBUG org.hibernate.cfg.annotations.EntityBinder  - Import with entity name Context
-609  [main] INFO  org.hibernate.cfg.annotations.EntityBinder  - Bind entity flexmud.engine.context.Context on table context
-609  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing flexmud.engine.context.Context property annotation
-656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.id
-656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_id. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column entry_command_class_name. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property entryCommandClassName with lazy=false
+656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for entryCommandClassName
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property entryCommandClassName
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.entryMessage
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column entry_message. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property entryMessage with lazy=false
+656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for entryMessage
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property entryMessage
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.listedInParent
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column is_listed_in_parent. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property listedInParent with lazy=false
+656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for listedInParent
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property listedInParent
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.maxEntries
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column max_entries. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property maxEntries with lazy=false
+656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for maxEntries
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property maxEntries
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.maxEntriesExceededMessage
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column max_entries_exceeded_message. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property maxEntriesExceededMessage with lazy=false
+656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for maxEntriesExceededMessage
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property maxEntriesExceededMessage
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.name
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column name. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property name with lazy=false
+656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for name
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property name
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.parentGroup
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column parent_group_id. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column parentGroup. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property parentGroup
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.promptCommandClassName
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column prompt_command_class_name. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property promptCommandClassName with lazy=false
+656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for promptCommandClassName
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property promptCommandClassName
+656  [main] INFO  org.hibernate.cfg.AnnotationBinder  - Binding entity from annotated class: flexmud.engine.context.ContextGroup
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column DTYPE. Unique false. Nullable false.
+656  [main] DEBUG org.hibernate.cfg.annotations.EntityBinder  - Import with entity name ContextGroup
+656  [main] INFO  org.hibernate.cfg.annotations.EntityBinder  - Bind entity flexmud.engine.context.ContextGroup on table context_group
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing flexmud.engine.context.ContextGroup property annotation
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.ContextGroup.id
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_group_id. Unique false. Nullable true.
 656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - id is an id
 656  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for id
 656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property id
 656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Bind @Id on id
-656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.aliasCommandClassNameMaps
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.ContextGroup.childContexts
 656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column aliasCommandClassNameMaps. Unique false. Nullable true.
-671  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-687  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column element. Unique false. Nullable true.
-703  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column mapkey. Unique false. Nullable true.
-703  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-703  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
-703  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
-703  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Collection role: flexmud.engine.context.Context.aliasCommandClassNameMaps
-703  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property aliasCommandClassNameMaps
-703  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.characterPromptable
-703  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column is_character_promptable. Unique false. Nullable true.
-703  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property characterPromptable with lazy=false
-703  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for characterPromptable
-703  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property characterPromptable
-703  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.childGroup
-703  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column child_group_id. Unique false. Nullable true.
-703  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column childGroup. Unique false. Nullable true.
-703  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Fetching childGroup with JOIN
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property childGroup
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.entryCommandClassName
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column entry_command_class_name. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property entryCommandClassName with lazy=false
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for entryCommandClassName
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property entryCommandClassName
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.entryMessage
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column entry_message. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property entryMessage with lazy=false
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for entryMessage
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property entryMessage
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.listedInParent
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column is_listed_in_parent. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property listedInParent with lazy=false
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for listedInParent
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property listedInParent
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.maxEntries
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column max_entries. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property maxEntries with lazy=false
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for maxEntries
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property maxEntries
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.maxEntriesExceededMessage
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column max_entries_exceeded_message. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property maxEntriesExceededMessage with lazy=false
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for maxEntriesExceededMessage
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property maxEntriesExceededMessage
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.name
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column name. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property name with lazy=false
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for name
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property name
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.parentGroup
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column parent_group_id. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column parentGroup. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property parentGroup
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.Context.promptCommandClassName
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column prompt_command_class_name. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property promptCommandClassName with lazy=false
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for promptCommandClassName
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property promptCommandClassName
-718  [main] INFO  org.hibernate.cfg.AnnotationBinder  - Binding entity from annotated class: flexmud.engine.context.ContextGroup
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column DTYPE. Unique false. Nullable false.
-718  [main] DEBUG org.hibernate.cfg.annotations.EntityBinder  - Import with entity name ContextGroup
-718  [main] INFO  org.hibernate.cfg.annotations.EntityBinder  - Bind entity flexmud.engine.context.ContextGroup on table context_group
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing flexmud.engine.context.ContextGroup property annotation
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.ContextGroup.id
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_group_id. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - id is an id
-718  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for id
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property id
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Bind @Id on id
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.ContextGroup.childContexts
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column childContexts. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column element. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column mapkey. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
-718  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Collection role: flexmud.engine.context.ContextGroup.childContexts
-718  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property childContexts
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.ContextGroup.parentContext
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column parentContext. Unique false. Nullable true.
-718  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Fetching parentContext with JOIN
-734  [main] INFO  org.hibernate.cfg.AnnotationBinder  - Binding entity from annotated class: flexmud.engine.cmd.AliasCommandClassNameMap
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column DTYPE. Unique false. Nullable false.
-734  [main] DEBUG org.hibernate.cfg.annotations.EntityBinder  - Import with entity name AliasCommandClassNameMap
-734  [main] INFO  org.hibernate.cfg.annotations.EntityBinder  - Bind entity flexmud.engine.cmd.AliasCommandClassNameMap on table context_command
-734  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing flexmud.engine.cmd.AliasCommandClassNameMap property annotation
-734  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.id
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_command_id. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - id is an id
-734  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for id
-734  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property id
-734  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Bind @Id on id
-734  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column alias. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column alias. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column mapkey. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_command_id. Unique false. Nullable false.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
-734  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Collection role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-734  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property aliases
-734  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.commandClassName
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column command_class. Unique false. Nullable false.
-734  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property commandClassName with lazy=false
-734  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for commandClassName
-734  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property commandClassName
-734  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.context
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_id. Unique false. Nullable false.
-734  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context. Unique false. Nullable true.
-734  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property context
-734  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - processing fk mappings (*ToOne and JoinedSubclass)
-843  [main] DEBUG org.hibernate.cfg.Configuration  - processing extends queue
-843  [main] DEBUG org.hibernate.cfg.Configuration  - processing collection mappings
-843  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Second pass for collection: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-843  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Binding a collection of element: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-843  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for null
-843  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Mapped collection key: context_command_id, element: alias
-843  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Second pass for collection: flexmud.engine.context.Context.aliasCommandClassNameMaps
-859  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Binding a OneToMany: flexmud.engine.context.Context.aliasCommandClassNameMaps through a foreign key
-859  [main] INFO  org.hibernate.cfg.annotations.CollectionBinder  - Mapping collection: flexmud.engine.context.Context.aliasCommandClassNameMaps -> context_command
-859  [main] DEBUG org.hibernate.cfg.annotations.TableBinder  - Retrieving property flexmud.engine.cmd.AliasCommandClassNameMap.context
-859  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Mapped collection key: context_id, one-to-many: flexmud.engine.cmd.AliasCommandClassNameMap
-859  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Second pass for collection: flexmud.engine.context.ContextGroup.childContexts
-859  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Binding a OneToMany: flexmud.engine.context.ContextGroup.childContexts through a foreign key
-859  [main] INFO  org.hibernate.cfg.annotations.CollectionBinder  - Mapping collection: flexmud.engine.context.ContextGroup.childContexts -> context
-859  [main] DEBUG org.hibernate.cfg.annotations.TableBinder  - Retrieving property flexmud.engine.context.Context.parentGroup
-859  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Mapped collection key: parent_group_id, one-to-many: flexmud.engine.context.Context
-859  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property parentContext
-859  [main] DEBUG org.hibernate.cfg.Configuration  - processing native query and ResultSetMapping mappings
-859  [main] DEBUG org.hibernate.cfg.Configuration  - processing association property references
-859  [main] DEBUG org.hibernate.cfg.Configuration  - processing foreign key constraints
-859  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.context.ContextGroup
-859  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.context.ContextGroup
-859  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.context.Context
-859  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.cmd.AliasCommandClassNameMap
-859  [main] INFO  org.hibernate.cfg.AnnotationConfiguration  - Hibernate Validator not found: ignoring
-875  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - Using Hibernate built-in connection pool (not for production use!)
-875  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - Hibernate connection pool size: 20
-875  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - autocommit mode: false
-890  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - using driver: org.hsqldb.jdbcDriver at URL: jdbc:hsqldb:hsql://localhost
-890  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - connection properties: {user=sa}
-890  [main] DEBUG org.hibernate.connection.DriverManagerConnectionProvider  - opening new JDBC connection
-984  [main] DEBUG org.hibernate.connection.DriverManagerConnectionProvider  - created connection to: jdbc:hsqldb:hsql://localhost, Isolation Level: 2
-1000 [main] INFO  org.hibernate.cfg.SettingsFactory  - RDBMS: HSQL Database Engine, version: 1.8.0
-1000 [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC driver: HSQL Database Engine Driver, version: 1.8.0
-1031 [main] INFO  org.hibernate.dialect.Dialect  - Using dialect: org.hibernate.dialect.HSQLDialect
-1046 [main] INFO  org.hibernate.transaction.TransactionFactoryFactory  - Using default transaction strategy (direct JDBC transactions)
-1046 [main] INFO  org.hibernate.transaction.TransactionManagerLookupFactory  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-1046 [main] INFO  org.hibernate.cfg.SettingsFactory  - Automatic flush during beforeCompletion(): disabled
-1046 [main] INFO  org.hibernate.cfg.SettingsFactory  - Automatic session close at end of transaction: disabled
-1046 [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC batch size: 15
-1046 [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC batch updates for versioned data: disabled
-1046 [main] INFO  org.hibernate.cfg.SettingsFactory  - Scrollable result sets: enabled
-1046 [main] DEBUG org.hibernate.cfg.SettingsFactory  - Wrap result sets: disabled
-1046 [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC3 getGeneratedKeys(): disabled
-1046 [main] INFO  org.hibernate.cfg.SettingsFactory  - Connection release mode: auto
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Default batch fetch size: 1
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Generate SQL with comments: disabled
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Order SQL updates by primary key: disabled
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Order SQL inserts for batching: disabled
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-1062 [main] INFO  org.hibernate.hql.ast.ASTQueryTranslatorFactory  - Using ASTQueryTranslatorFactory
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Query language substitutions: {}
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - JPA-QL strict compliance: disabled
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Second-level cache: enabled
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Query cache: disabled
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Optimize cache for minimal puts: disabled
-1062 [main] INFO  org.hibernate.cfg.SettingsFactory  - Structured second-level cache entries: disabled
-1078 [main] INFO  org.hibernate.cfg.SettingsFactory  - Statistics: disabled
-1078 [main] INFO  org.hibernate.cfg.SettingsFactory  - Deleted entity synthetic identifier rollback: disabled
-1078 [main] INFO  org.hibernate.cfg.SettingsFactory  - Default entity-mode: pojo
-1078 [main] INFO  org.hibernate.cfg.SettingsFactory  - Named query checking : enabled
-1156 [main] INFO  org.hibernate.impl.SessionFactoryImpl  - building session factory
-1156 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - Session factory constructed with filter configurations : {}
-1156 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - instantiating session factory with properties: {java.runtime.name=Java(TM) SE Runtime Environment, sun.boot.library.path=C:\Program Files\Java\jdk1.6.0_10\jre\bin, java.vm.version=11.0-b15, hibernate.connection.username=sa, java.vm.vendor=Sun Microsystems Inc., java.vendor.url=http://java.sun.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.country=US, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 3, java.vm.specification.name=Java Virtual Machine Specification, user.dir=E:\dev\flexmud, java.runtime.version=1.6.0_10-b33, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, java.endorsed.dirs=C:\Program Files\Java\jdk1.6.0_10\jre\lib\endorsed, os.arch=x86, hibernate.c3p0.max_statements=50, java.io.tmpdir=C:\WINDOWS\TEMP\, line.separator=
-, java.vm.specification.vendor=Sun Microsystems Inc., user.variant=, os.name=Windows XP, hibernate.c3p0.idle_test_period=3000, sun.jnu.encoding=Cp1252, hibernate.c3p0.timeout=300, java.library.path=C:\Program Files\Java\jdk1.6.0_10\bin;.;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;E:\Program Files\QuickTime\QTSystem\;C:\mysql\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Nero\Lib\, java.specification.name=Java Platform API Specification, java.class.version=50.0, sun.management.compiler=HotSpot Client Compiler, os.version=5.1, user.home=C:\Documents and Settings\Administrator, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, java.specification.version=1.6, file.encoding=windows-1252, hibernate.c3p0.min_size=5, hibernate.connection.driver_class=org.hsqldb.jdbcDriver, java.class.path=C:\Program Files\Java\jdk1.6.0_10\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunpkcs11.jar;E:\dev\flexmud\build\test\flexmud;E:\dev\flexmud\build\production\flexmud;E:\dev\flexmud\lib\junit\dbunit-2.4.2.jar;E:\dev\flexmud\lib\junit;E:\dev\flexmud\lib\junit\junit.jar;E:\dev\flexmud\lib\junit\junit-4.5.jar;E:\dev\flexmud\lib\junit\junit-3.8.1.jar;E:\dev\flexmud\lib\log4j\log4j-1.2.15.jar;E:\dev\flexmud\lib\hibernate\hibernate-core.jar;E:\dev\flexmud\lib\hibernate\asm.jar;E:\dev\flexmud\lib\hibernate\dom4j-1.6.1.jar;E:\dev\flexmud\lib\hibernate;E:\dev\flexmud\lib\hibernate\antlr-2.7.6.jar;E:\dev\flexmud\lib\hibernate\hibernate-annotations.jar;E:\dev\flexmud\lib\hibernate\slf4j-api-1.5.6.jar;E:\dev\flexmud\lib\hibernate\freemarker.jar;E:\dev\flexmud\lib\hibernate\ejb3-persistence.jar;E:\dev\flexmud\lib\hibernate\slf4j-api.jar;E:\dev\flexmud\lib\hibernate\dom4j.jar;E:\dev\flexmud\lib\hibernate\hibernate3.jar;E:\dev\flexmud\lib\hibernate\hibernate-commons-annotations.jar;E:\dev\flexmud\lib\hibernate\jta-1.1.jar;E:\dev\flexmud\lib\hibernate\slf4j-log4j12-1.5.6.jar;E:\dev\flexmud\lib\hibernate\commons-collections-3.1.jar;E:\dev\flexmud\lib\hibernate\javassist-3.4.GA.jar;E:\dev\flexmud\lib\hibernate\c3p0-0.9.1.jar;E:\dev\flexmud\lib\hibernate\hsqldb.jar;E:\dev\flexmud\lib\hibernate\hibernate-tools.jar;E:\dev\flexmud\lib\hibernate\commons-logging-1.0.4.jar;C:\Program Files\JetBrains\IntelliJ IDEA 8.1\lib\idea_rt.jar, user.name=Administrator, hibernate.bytecode.use_reflection_optimizer=false, java.vm.specification.version=1.0, sun.arch.data.model=32, java.home=C:\Program Files\Java\jdk1.6.0_10\jre, hibernate.connection.url=jdbc:hsqldb:hsql://localhost, hibernate.dialect=org.hibernate.dialect.HSQLDialect, java.specification.vendor=Sun Microsystems Inc., user.language=en, awt.toolkit=sun.awt.windows.WToolkit, hibernate.c3p0.max_size=20, java.vm.info=mixed mode, java.version=1.6.0_10, java.ext.dirs=C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.boot.class.path=C:\Program Files\Java\jdk1.6.0_10\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_10\jre\classes, java.vendor=Sun Microsystems Inc., file.separator=\, java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi, sun.cpu.endian=little, sun.io.unicode.encoding=UnicodeLittle, sun.desktop=windows, sun.cpu.isalist=, dialect=org.hibernate.dialect.HSQLDialect}
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.context.Context
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select context_id from context where context_id =?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select context_.context_id, context_.is_character_promptable as is2_1_, context_.child_group_id as child10_1_, context_.entry_command_class_name as entry3_1_, context_.entry_message as entry4_1_, context_.is_listed_in_parent as is5_1_, context_.max_entries as max6_1_, context_.max_entries_exceeded_message as max7_1_, context_.name as name1_, context_.parent_group_id as parent11_1_, context_.prompt_command_class_name as prompt9_1_ from context context_ where context_.context_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into context (is_character_promptable, child_group_id, entry_command_class_name, entry_message, is_listed_in_parent, max_entries, max_entries_exceeded_message, name, parent_group_id, prompt_command_class_name, context_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: update context set is_character_promptable=?, child_group_id=?, entry_command_class_name=?, entry_message=?, is_listed_in_parent=?, max_entries=?, max_entries_exceeded_message=?, name=?, parent_group_id=?, prompt_command_class_name=? where context_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from context where context_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into context (context_id, is_character_promptable, child_group_id, entry_command_class_name, entry_message, is_listed_in_parent, max_entries, max_entries_exceeded_message, name, parent_group_id, prompt_command_class_name) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.context.ContextGroup
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select context_group_id from context_group where context_group_id =?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select contextgro_.context_group_id from context_group contextgro_ where contextgro_.context_group_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into context_group (context_group_id) values (?)
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: null
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from context_group where context_group_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into context_group (context_group_id) values (null)
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.obj.Object
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select object_id from object where object_id =?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select object_.object_id, object_.name as name0_ from object object_ where object_.object_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into object (name, object_id) values (?, ?)
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: update object set name=? where object_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from object where object_id=?
-1515 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into object (object_id, name) values (null, ?)
-1531 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.cmd.AliasCommandClassNameMap
-1531 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select context_command_id from context_command where context_command_id =?
-1531 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select aliascomma_.context_command_id, aliascomma_.command_class as command2_3_, aliascomma_.context_id as context3_3_ from context_command aliascomma_ where aliascomma_.context_command_id=?
-1531 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into context_command (command_class, context_id, context_command_id) values (?, ?, ?)
-1531 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: update context_command set command_class=?, context_id=? where context_command_id=?
-1531 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from context_command where context_command_id=?
-1531 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into context_command (context_command_id, command_class, context_id) values (null, ?, ?)
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Static SQL for collection: flexmud.engine.context.Context.aliasCommandClassNameMaps
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row insert: update context_command set context_id=? where context_command_id=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row delete: update context_command set context_id=null where context_id=? and context_command_id=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  One-shot delete: update context_command set context_id=null where context_id=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Static SQL for collection: flexmud.engine.context.ContextGroup.childContexts
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row insert: update context set parent_group_id=? where context_id=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row delete: update context set parent_group_id=null where parent_group_id=? and context_id=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  One-shot delete: update context set parent_group_id=null where parent_group_id=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Static SQL for collection: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row insert: insert into context_command_alias (context_command_id, alias) values (?, ?)
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row update: update context_command_alias set alias=? where context_command_id=? and alias=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row delete: delete from context_command_alias where context_command_id=? and alias=?
-1546 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  One-shot delete: delete from context_command_alias where context_command_id=?
-1593 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.context_id=?
-1593 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.context_id=?
-1593 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_0_, context0_.is_character_promptable as is2_1_0_, context0_.child_group_id as child10_1_0_, context0_.entry_command_class_name as entry3_1_0_, context0_.entry_message as entry4_1_0_, context0_.is_listed_in_parent as is5_1_0_, context0_.max_entries as max6_1_0_, context0_.max_entries_exceeded_message as max7_1_0_, context0_.name as name1_0_, context0_.parent_group_id as parent11_1_0_, context0_.prompt_command_class_name as prompt9_1_0_ from context context0_ where context0_.context_id=?
-1593 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_0_, context0_.is_character_promptable as is2_1_0_, context0_.child_group_id as child10_1_0_, context0_.entry_command_class_name as entry3_1_0_, context0_.entry_message as entry4_1_0_, context0_.is_listed_in_parent as is5_1_0_, context0_.max_entries as max6_1_0_, context0_.max_entries_exceeded_message as max7_1_0_, context0_.name as name1_0_, context0_.parent_group_id as parent11_1_0_, context0_.prompt_command_class_name as prompt9_1_0_ from context context0_ where context0_.context_id=?
-1593 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_0_, context0_.is_character_promptable as is2_1_0_, context0_.child_group_id as child10_1_0_, context0_.entry_command_class_name as entry3_1_0_, context0_.entry_message as entry4_1_0_, context0_.is_listed_in_parent as is5_1_0_, context0_.max_entries as max6_1_0_, context0_.max_entries_exceeded_message as max7_1_0_, context0_.name as name1_0_, context0_.parent_group_id as parent11_1_0_, context0_.prompt_command_class_name as prompt9_1_0_ from context context0_ where context0_.context_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.context.Context: select context0_.context_id as context1_1_2_, context0_.is_character_promptable as is2_1_2_, context0_.child_group_id as child10_1_2_, context0_.entry_command_class_name as entry3_1_2_, context0_.entry_message as entry4_1_2_, context0_.is_listed_in_parent as is5_1_2_, context0_.max_entries as max6_1_2_, context0_.max_entries_exceeded_message as max7_1_2_, context0_.name as name1_2_, context0_.parent_group_id as parent11_1_2_, context0_.prompt_command_class_name as prompt9_1_2_, aliascomma1_.context_id as context3_4_, aliascomma1_.context_command_id as context1_4_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, contextgro2_.context_group_id as context1_2_1_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_group contextgro2_ on context0_.child_group_id=contextgro2_.context_group_id where context0_.context_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.context.Context: select context0_.context_id as context1_1_2_, context0_.is_character_promptable as is2_1_2_, context0_.child_group_id as child10_1_2_, context0_.entry_command_class_name as entry3_1_2_, context0_.entry_message as entry4_1_2_, context0_.is_listed_in_parent as is5_1_2_, context0_.max_entries as max6_1_2_, context0_.max_entries_exceeded_message as max7_1_2_, context0_.name as name1_2_, context0_.parent_group_id as parent11_1_2_, context0_.prompt_command_class_name as prompt9_1_2_, aliascomma1_.context_id as context3_4_, aliascomma1_.context_command_id as context1_4_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, contextgro2_.context_group_id as context1_2_1_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_group contextgro2_ on context0_.child_group_id=contextgro2_.context_group_id where context0_.context_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.child_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_3_, context1_.context_id as context1_1_0_, context1_.is_character_promptable as is2_1_0_, context1_.child_group_id as child10_1_0_, context1_.entry_command_class_name as entry3_1_0_, context1_.entry_message as entry4_1_0_, context1_.is_listed_in_parent as is5_1_0_, context1_.max_entries as max6_1_0_, context1_.max_entries_exceeded_message as max7_1_0_, context1_.name as name1_0_, context1_.parent_group_id as parent11_1_0_, context1_.prompt_command_class_name as prompt9_1_0_, aliascomma2_.context_id as context3_5_, aliascomma2_.context_command_id as context1_5_, aliascomma2_.context_command_id as context1_3_1_, aliascomma2_.command_class as command2_3_1_, aliascomma2_.context_id as context3_3_1_, aliases3_.context_command_id as context1_6_, aliases3_.alias as alias6_, contextgro4_.context_group_id as context1_2_2_ from context_group contextgro0_ left outer join context context1_ on contextgro0_.context_group_id=context1_.child_group_id left outer join context_command aliascomma2_ on context1_.context_id=aliascomma2_.context_id left outer join context_command_alias aliases3_ on aliascomma2_.context_command_id=aliases3_.context_command_id left outer join context_group contextgro4_ on context1_.parent_group_id=contextgro4_.context_group_id where contextgro0_.context_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_3_, context1_.context_id as context1_1_0_, context1_.is_character_promptable as is2_1_0_, context1_.child_group_id as child10_1_0_, context1_.entry_command_class_name as entry3_1_0_, context1_.entry_message as entry4_1_0_, context1_.is_listed_in_parent as is5_1_0_, context1_.max_entries as max6_1_0_, context1_.max_entries_exceeded_message as max7_1_0_, context1_.name as name1_0_, context1_.parent_group_id as parent11_1_0_, context1_.prompt_command_class_name as prompt9_1_0_, aliascomma2_.context_id as context3_5_, aliascomma2_.context_command_id as context1_5_, aliascomma2_.context_command_id as context1_3_1_, aliascomma2_.command_class as command2_3_1_, aliascomma2_.context_id as context3_3_1_, aliases3_.context_command_id as context1_6_, aliases3_.alias as alias6_, contextgro4_.context_group_id as context1_2_2_ from context_group contextgro0_ left outer join context context1_ on contextgro0_.context_group_id=context1_.child_group_id left outer join context_command aliascomma2_ on context1_.context_id=aliascomma2_.context_id left outer join context_command_alias aliases3_ on aliascomma2_.context_command_id=aliases3_.context_command_id left outer join context_group contextgro4_ on context1_.parent_group_id=contextgro4_.context_group_id where contextgro0_.context_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_0_ from context_group contextgro0_ where contextgro0_.context_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_0_ from context_group contextgro0_ where contextgro0_.context_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_0_ from context_group contextgro0_ where contextgro0_.context_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_2_, childconte1_.parent_group_id as parent11_4_, childconte1_.context_id as context1_4_, childconte1_.context_id as context1_1_0_, childconte1_.is_character_promptable as is2_1_0_, childconte1_.child_group_id as child10_1_0_, childconte1_.entry_command_class_name as entry3_1_0_, childconte1_.entry_message as entry4_1_0_, childconte1_.is_listed_in_parent as is5_1_0_, childconte1_.max_entries as max6_1_0_, childconte1_.max_entries_exceeded_message as max7_1_0_, childconte1_.name as name1_0_, childconte1_.parent_group_id as parent11_1_0_, childconte1_.prompt_command_class_name as prompt9_1_0_, contextgro2_.context_group_id as context1_2_1_ from context_group contextgro0_ left outer join context childconte1_ on contextgro0_.context_group_id=childconte1_.parent_group_id left outer join context_group contextgro2_ on childconte1_.child_group_id=contextgro2_.context_group_id where contextgro0_.context_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_2_, childconte1_.parent_group_id as parent11_4_, childconte1_.context_id as context1_4_, childconte1_.context_id as context1_1_0_, childconte1_.is_character_promptable as is2_1_0_, childconte1_.child_group_id as child10_1_0_, childconte1_.entry_command_class_name as entry3_1_0_, childconte1_.entry_message as entry4_1_0_, childconte1_.is_listed_in_parent as is5_1_0_, childconte1_.max_entries as max6_1_0_, childconte1_.max_entries_exceeded_message as max7_1_0_, childconte1_.name as name1_0_, childconte1_.parent_group_id as parent11_1_0_, childconte1_.prompt_command_class_name as prompt9_1_0_, contextgro2_.context_group_id as context1_2_1_ from context_group contextgro0_ left outer join context childconte1_ on contextgro0_.context_group_id=childconte1_.parent_group_id left outer join context_group contextgro2_ on childconte1_.child_group_id=contextgro2_.context_group_id where contextgro0_.context_group_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_3_, aliascomma0_.command_class as command2_3_3_, aliascomma0_.context_id as context3_3_3_, aliases1_.context_command_id as context1_5_, aliases1_.alias as alias5_, context2_.context_id as context1_1_0_, context2_.is_character_promptable as is2_1_0_, context2_.child_group_id as child10_1_0_, context2_.entry_command_class_name as entry3_1_0_, context2_.entry_message as entry4_1_0_, context2_.is_listed_in_parent as is5_1_0_, context2_.max_entries as max6_1_0_, context2_.max_entries_exceeded_message as max7_1_0_, context2_.name as name1_0_, context2_.parent_group_id as parent11_1_0_, context2_.prompt_command_class_name as prompt9_1_0_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context_command aliascomma0_ left outer join context_command_alias aliases1_ on aliascomma0_.context_command_id=aliases1_.context_command_id inner join context context2_ on aliascomma0_.context_id=context2_.context_id left outer join context_group contextgro3_ on context2_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context2_.parent_group_id=contextgro4_.context_group_id where aliascomma0_.context_command_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_3_, aliascomma0_.command_class as command2_3_3_, aliascomma0_.context_id as context3_3_3_, aliases1_.context_command_id as context1_5_, aliases1_.alias as alias5_, context2_.context_id as context1_1_0_, context2_.is_character_promptable as is2_1_0_, context2_.child_group_id as child10_1_0_, context2_.entry_command_class_name as entry3_1_0_, context2_.entry_message as entry4_1_0_, context2_.is_listed_in_parent as is5_1_0_, context2_.max_entries as max6_1_0_, context2_.max_entries_exceeded_message as max7_1_0_, context2_.name as name1_0_, context2_.parent_group_id as parent11_1_0_, context2_.prompt_command_class_name as prompt9_1_0_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context_command aliascomma0_ left outer join context_command_alias aliases1_ on aliascomma0_.context_command_id=aliases1_.context_command_id inner join context context2_ on aliascomma0_.context_id=context2_.context_id left outer join context_group contextgro3_ on context2_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context2_.parent_group_id=contextgro4_.context_group_id where aliascomma0_.context_command_id=?
-1609 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
-1625 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
-1625 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
-1625 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
-1625 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
-1625 [main] DEBUG org.hibernate.loader.collection.OneToManyLoader  - Static select for one-to-many flexmud.engine.context.Context.aliasCommandClassNameMaps: select aliascomma0_.context_id as context3_1_, aliascomma0_.context_command_id as context1_1_, aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_id=?
-1625 [main] DEBUG org.hibernate.loader.collection.OneToManyLoader  - Static select for one-to-many flexmud.engine.context.ContextGroup.childContexts: select childconte0_.parent_group_id as parent11_2_, childconte0_.context_id as context1_2_, childconte0_.context_id as context1_1_1_, childconte0_.is_character_promptable as is2_1_1_, childconte0_.child_group_id as child10_1_1_, childconte0_.entry_command_class_name as entry3_1_1_, childconte0_.entry_message as entry4_1_1_, childconte0_.is_listed_in_parent as is5_1_1_, childconte0_.max_entries as max6_1_1_, childconte0_.max_entries_exceeded_message as max7_1_1_, childconte0_.name as name1_1_, childconte0_.parent_group_id as parent11_1_1_, childconte0_.prompt_command_class_name as prompt9_1_1_, contextgro1_.context_group_id as context1_2_0_ from context childconte0_ left outer join context_group contextgro1_ on childconte0_.child_group_id=contextgro1_.context_group_id where childconte0_.parent_group_id=?
-1640 [main] DEBUG org.hibernate.loader.collection.BasicCollectionLoader  - Static select for collection flexmud.engine.cmd.AliasCommandClassNameMap.aliases: select aliases0_.context_command_id as context1_0_, aliases0_.alias as alias0_ from context_command_alias aliases0_ where aliases0_.context_command_id=?
-1640 [main] DEBUG org.hibernate.impl.SessionFactoryObjectFactory  - initializing class SessionFactoryObjectFactory
-1640 [main] DEBUG org.hibernate.impl.SessionFactoryObjectFactory  - registered: 402881c01fd058a4011fd058a7000000 (unnamed)
-1640 [main] INFO  org.hibernate.impl.SessionFactoryObjectFactory  - Not binding factory to JNDI, no JNDI name configured
-1640 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - instantiated session factory
-1640 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - Checking 0 named HQL queries
-1640 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - Checking 0 named SQL queries
-1703 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12361510848
-1703 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
-1703 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
-1718 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
-1750 [main] DEBUG org.hibernate.event.def.AbstractSaveEventListener  - executing identity-insert immediately
-1750 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-1765 [main] DEBUG org.hibernate.SQL  - insert into context_group (context_group_id) values (null)
-1765 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-1765 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-1765 [main] DEBUG org.hibernate.SQL  - call identity()
-1765 [main] DEBUG org.hibernate.id.IdentifierGeneratorFactory  - Natively generated identity: 1
-1765 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-1781 [main] DEBUG org.hibernate.event.def.AbstractSaveEventListener  - executing identity-insert immediately
-1781 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-1781 [main] DEBUG org.hibernate.SQL  - insert into context (context_id, is_character_promptable, child_group_id, entry_command_class_name, entry_message, is_listed_in_parent, max_entries, max_entries_exceeded_message, name, parent_group_id, prompt_command_class_name) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-1781 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-1781 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-1781 [main] DEBUG org.hibernate.SQL  - call identity()
-1781 [main] DEBUG org.hibernate.id.IdentifierGeneratorFactory  - Natively generated identity: 1
-1781 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-1781 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
-1781 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
-1781 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
-1796 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1], was: [<unreferenced>] (initialized)
-1796 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.ContextGroup.childContexts#1], was: [<unreferenced>] (initialized)
-1812 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
-1812 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 2 (re)creations, 0 updates, 0 removals to 2 collections
-1812 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
-1812 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.Context{listedInParent=false, id=1, maxEntriesExceededMessage=, entryMessage=null, name=a, aliasCommandClassNameMaps=[], promptCommandClassName=null, childGroup=flexmud.engine.context.ContextGroup#1, characterPromptable=false, entryCommandClassName=null, parentGroup=null, maxEntries=-1}
-1812 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.ContextGroup{id=1, childContexts=[], parentContext=null}
-1812 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
-1812 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
-1812 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
-1812 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12361510849
-1812 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
-1812 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
-1812 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
-1812 [main] DEBUG org.hibernate.event.def.AbstractSaveEventListener  - executing identity-insert immediately
-1812 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-1812 [main] DEBUG org.hibernate.SQL  - insert into context_command (context_command_id, command_class, context_id) values (null, ?, ?)
-1812 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-1812 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-1812 [main] DEBUG org.hibernate.SQL  - call identity()
-1812 [main] DEBUG org.hibernate.id.IdentifierGeneratorFactory  - Natively generated identity: 1
-1812 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-1812 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
-1812 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
-1812 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
-1828 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1], was: [<unreferenced>] (initialized)
-1828 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
-1828 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 1 (re)creations, 0 updates, 0 removals to 1 collections
-1828 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
-1828 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.cmd.AliasCommandClassNameMap{id=1, context=flexmud.engine.context.Context#1, aliases=[b, c, a], commandClassName=CommandClass}
-1828 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Inserting collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-1828 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-1828 [main] DEBUG org.hibernate.SQL  - insert into context_command_alias (context_command_id, alias) values (?, ?)
-1828 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - reusing prepared statement
-1828 [main] DEBUG org.hibernate.SQL  - insert into context_command_alias (context_command_id, alias) values (?, ?)
-1828 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - reusing prepared statement
-1828 [main] DEBUG org.hibernate.SQL  - insert into context_command_alias (context_command_id, alias) values (?, ?)
-1828 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - done inserting collection: 3 rows inserted
-1828 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - Executing batch size: 3
-1828 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-1828 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
-1828 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
-1828 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
-2640 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12361510858
-2671 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
-2687 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
-2765 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
-3859 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-3875 [main] DEBUG org.hibernate.SQL  - select this_.context_command_id as context1_3_3_, this_.command_class as command2_3_3_, this_.context_id as context3_3_3_, aliases2_.context_command_id as context1_5_, aliases2_.alias as alias5_, context3_.context_id as context1_1_0_, context3_.is_character_promptable as is2_1_0_, context3_.child_group_id as child10_1_0_, context3_.entry_command_class_name as entry3_1_0_, context3_.entry_message as entry4_1_0_, context3_.is_listed_in_parent as is5_1_0_, context3_.max_entries as max6_1_0_, context3_.max_entries_exceeded_message as max7_1_0_, context3_.name as name1_0_, context3_.parent_group_id as parent11_1_0_, context3_.prompt_command_class_name as prompt9_1_0_, contextgro4_.context_group_id as context1_2_1_, contextgro5_.context_group_id as context1_2_2_ from context_command this_ left outer join context_command_alias aliases2_ on this_.context_command_id=aliases2_.context_command_id inner join context context3_ on this_.context_id=context3_.context_id left outer join context_group contextgro4_ on context3_.child_group_id=contextgro4_.context_group_id left outer join context_group contextgro5_ on context3_.parent_group_id=contextgro5_.context_group_id
-4453 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open ResultSet (open ResultSets: 0, globally: 0)
-4546 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
-4781 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-5203 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
-5234 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-5343 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
-5406 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-5421 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close ResultSet (open ResultSets: 1, globally: 1)
-5453 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-5671 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.context.Context#1]
-5812 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.context.Context#1]
-5843 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.context.ContextGroup#1]
-6015 [main] DEBUG org.hibernate.loader.Loader  - loading entity: [flexmud.engine.context.Context#1]
-6046 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
-6062 [main] DEBUG org.hibernate.SQL  - select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.child_group_id=?
-6687 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open ResultSet (open ResultSets: 0, globally: 0)
-6781 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
-6828 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
-6890 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-6968 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
-7031 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
-7093 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-7187 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
-7234 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
-7296 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-7328 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close ResultSet (open ResultSets: 1, globally: 1)
-7359 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
-7406 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections were found in result set for role: flexmud.engine.context.Context.aliasCommandClassNameMaps
-7453 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - collection fully initialized: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
-7453 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections initialized for role: flexmud.engine.context.Context.aliasCommandClassNameMaps
-7500 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - no collections were found in result set for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-7531 [main] DEBUG org.hibernate.loader.Loader  - done entity load
-7562 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.context.ContextGroup#1]
-7593 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.cmd.AliasCommandClassNameMap#1]
-7640 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.cmd.AliasCommandClassNameMap#1]
-7656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections were found in result set for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-7703 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - collection fully initialized: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
-7734 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections initialized for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
-7765 [main] DEBUG org.hibernate.engine.StatefulPersistenceContext  - initializing non-lazy collections
-7781 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
-7796 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
-7953 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
-8000 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1], was: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1] (initialized)
-8062 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.ContextGroup.childContexts#1], was: [flexmud.engine.context.ContextGroup.childContexts#1] (uninitialized)
-8093 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1], was: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1] (initialized)
-8156 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 3 objects
-8171 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 (re)creations, 0 updates, 0 removals to 3 collections
-8203 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
-8265 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.Context{listedInParent=false, id=1, maxEntriesExceededMessage=, entryMessage=null, name=a, aliasCommandClassNameMaps=[flexmud.engine.cmd.AliasCommandClassNameMap#1], promptCommandClassName=null, childGroup=flexmud.engine.context.ContextGroup#1, characterPromptable=false, entryCommandClassName=null, parentGroup=null, maxEntries=-1}
-8343 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.cmd.AliasCommandClassNameMap{id=1, context=flexmud.engine.context.Context#1, aliases=[b, c, a], commandClassName=CommandClass}
-8375 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.ContextGroup{id=1, childContexts=<uninitialized>, parentContext=flexmud.engine.context.Context#1}
-8468 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
-8484 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
-8500 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column childContexts. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column element. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column mapkey. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
+656  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Collection role: flexmud.engine.context.ContextGroup.childContexts
+656  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property childContexts
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.context.ContextGroup.parentContext
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column parentContext. Unique false. Nullable true.
+656  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Fetching parentContext with JOIN
+672  [main] INFO  org.hibernate.cfg.AnnotationBinder  - Binding entity from annotated class: flexmud.engine.cmd.AliasCommandClassNameMap
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column DTYPE. Unique false. Nullable false.
+672  [main] DEBUG org.hibernate.cfg.annotations.EntityBinder  - Import with entity name AliasCommandClassNameMap
+672  [main] INFO  org.hibernate.cfg.annotations.EntityBinder  - Bind entity flexmud.engine.cmd.AliasCommandClassNameMap on table context_command
+672  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing flexmud.engine.cmd.AliasCommandClassNameMap property annotation
+672  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.id
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_command_id. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - id is an id
+672  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for id
+672  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property id
+672  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Bind @Id on id
+672  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column alias. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column alias. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column mapkey. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_command_id. Unique false. Nullable false.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column null. Unique false. Nullable false.
+672  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Collection role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+672  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property aliases
+672  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.commandClassName
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column command_class. Unique false. Nullable false.
+672  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - binding property commandClassName with lazy=false
+672  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for commandClassName
+672  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property commandClassName
+672  [main] DEBUG org.hibernate.cfg.AnnotationBinder  - Processing annotations of flexmud.engine.cmd.AliasCommandClassNameMap.context
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context_id. Unique false. Nullable false.
+672  [main] DEBUG org.hibernate.cfg.Ejb3Column  - Binding column context. Unique false. Nullable true.
+672  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property context
+672  [main] DEBUG org.hibernate.cfg.AnnotationConfiguration  - processing fk mappings (*ToOne and JoinedSubclass)
+734  [main] DEBUG org.hibernate.cfg.Configuration  - processing extends queue
+734  [main] DEBUG org.hibernate.cfg.Configuration  - processing collection mappings
+734  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Second pass for collection: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+734  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Binding a collection of element: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+750  [main] DEBUG org.hibernate.cfg.annotations.SimpleValueBinder  - building SimpleValue for null
+750  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Mapped collection key: context_command_id, element: alias
+750  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Second pass for collection: flexmud.engine.context.Context.aliasCommandClassNameMaps
+750  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Binding a OneToMany: flexmud.engine.context.Context.aliasCommandClassNameMaps through a foreign key
+750  [main] INFO  org.hibernate.cfg.annotations.CollectionBinder  - Mapping collection: flexmud.engine.context.Context.aliasCommandClassNameMaps -> context_command
+750  [main] DEBUG org.hibernate.cfg.annotations.TableBinder  - Retrieving property flexmud.engine.cmd.AliasCommandClassNameMap.context
+750  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Mapped collection key: context_id, one-to-many: flexmud.engine.cmd.AliasCommandClassNameMap
+750  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Second pass for collection: flexmud.engine.context.ContextGroup.childContexts
+750  [main] DEBUG org.hibernate.cfg.annotations.CollectionBinder  - Binding a OneToMany: flexmud.engine.context.ContextGroup.childContexts through a foreign key
+750  [main] INFO  org.hibernate.cfg.annotations.CollectionBinder  - Mapping collection: flexmud.engine.context.ContextGroup.childContexts -> context
+750  [main] DEBUG org.hibernate.cfg.annotations.TableBinder  - Retrieving property flexmud.engine.context.Context.parentGroup
+750  [main] DEBUG org.hibernate.cfg.CollectionSecondPass  - Mapped collection key: parent_group_id, one-to-many: flexmud.engine.context.Context
+750  [main] DEBUG org.hibernate.cfg.annotations.PropertyBinder  - Building property parentContext
+750  [main] DEBUG org.hibernate.cfg.Configuration  - processing native query and ResultSetMapping mappings
+750  [main] DEBUG org.hibernate.cfg.Configuration  - processing association property references
+750  [main] DEBUG org.hibernate.cfg.Configuration  - processing foreign key constraints
+750  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.context.ContextGroup
+750  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.context.ContextGroup
+750  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.context.Context
+750  [main] DEBUG org.hibernate.cfg.Configuration  - resolving reference to class: flexmud.engine.cmd.AliasCommandClassNameMap
+750  [main] INFO  org.hibernate.cfg.AnnotationConfiguration  - Hibernate Validator not found: ignoring
+766  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - Using Hibernate built-in connection pool (not for production use!)
+766  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - Hibernate connection pool size: 20
+766  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - autocommit mode: false
+766  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - using driver: org.hsqldb.jdbcDriver at URL: jdbc:hsqldb:hsql://localhost
+766  [main] INFO  org.hibernate.connection.DriverManagerConnectionProvider  - connection properties: {user=sa}
+766  [main] DEBUG org.hibernate.connection.DriverManagerConnectionProvider  - opening new JDBC connection
+813  [main] DEBUG org.hibernate.connection.DriverManagerConnectionProvider  - created connection to: jdbc:hsqldb:hsql://localhost, Isolation Level: 2
+828  [main] INFO  org.hibernate.cfg.SettingsFactory  - RDBMS: HSQL Database Engine, version: 1.8.0
+828  [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC driver: HSQL Database Engine Driver, version: 1.8.0
+859  [main] INFO  org.hibernate.dialect.Dialect  - Using dialect: org.hibernate.dialect.HSQLDialect
+859  [main] INFO  org.hibernate.transaction.TransactionFactoryFactory  - Using default transaction strategy (direct JDBC transactions)
+859  [main] INFO  org.hibernate.transaction.TransactionManagerLookupFactory  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Automatic flush during beforeCompletion(): disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Automatic session close at end of transaction: disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC batch size: 15
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC batch updates for versioned data: disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Scrollable result sets: enabled
+859  [main] DEBUG org.hibernate.cfg.SettingsFactory  - Wrap result sets: disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - JDBC3 getGeneratedKeys(): disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Connection release mode: auto
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Default batch fetch size: 1
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Generate SQL with comments: disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Order SQL updates by primary key: disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Order SQL inserts for batching: disabled
+859  [main] INFO  org.hibernate.cfg.SettingsFactory  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+875  [main] INFO  org.hibernate.hql.ast.ASTQueryTranslatorFactory  - Using ASTQueryTranslatorFactory
+875  [main] INFO  org.hibernate.cfg.SettingsFactory  - Query language substitutions: {}
+875  [main] INFO  org.hibernate.cfg.SettingsFactory  - JPA-QL strict compliance: disabled
+875  [main] INFO  org.hibernate.cfg.SettingsFactory  - Second-level cache: enabled
+875  [main] INFO  org.hibernate.cfg.SettingsFactory  - Query cache: disabled
+875  [main] INFO  org.hibernate.cfg.SettingsFactory  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+875  [main] INFO  org.hibernate.cfg.SettingsFactory  - Optimize cache for minimal puts: disabled
+875  [main] INFO  org.hibernate.cfg.SettingsFactory  - Structured second-level cache entries: disabled
+891  [main] INFO  org.hibernate.cfg.SettingsFactory  - Statistics: disabled
+891  [main] INFO  org.hibernate.cfg.SettingsFactory  - Deleted entity synthetic identifier rollback: disabled
+891  [main] INFO  org.hibernate.cfg.SettingsFactory  - Default entity-mode: pojo
+891  [main] INFO  org.hibernate.cfg.SettingsFactory  - Named query checking : enabled
+984  [main] INFO  org.hibernate.impl.SessionFactoryImpl  - building session factory
+984  [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - Session factory constructed with filter configurations : {}
+984  [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - instantiating session factory with properties: {java.runtime.name=Java(TM) SE Runtime Environment, sun.boot.library.path=C:\Program Files\Java\jdk1.6.0_10\jre\bin, java.vm.version=11.0-b15, hibernate.connection.username=sa, java.vm.vendor=Sun Microsystems Inc., java.vendor.url=http://java.sun.com/, path.separator=;, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, idea.launcher.port=7537, user.country=US, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=Service Pack 3, java.vm.specification.name=Java Virtual Machine Specification, user.dir=E:\dev\flexmud, java.runtime.version=1.6.0_10-b33, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, java.endorsed.dirs=C:\Program Files\Java\jdk1.6.0_10\jre\lib\endorsed, os.arch=x86, hibernate.c3p0.max_statements=50, java.io.tmpdir=C:\WINDOWS\TEMP\, line.separator=
+, java.vm.specification.vendor=Sun Microsystems Inc., user.variant=, os.name=Windows XP, hibernate.c3p0.idle_test_period=3000, sun.jnu.encoding=Cp1252, hibernate.c3p0.timeout=300, java.library.path=C:\Program Files\Java\jdk1.6.0_10\bin;.;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;E:\Program Files\QuickTime\QTSystem\;C:\mysql\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Nero\Lib\, java.specification.name=Java Platform API Specification, java.class.version=50.0, sun.management.compiler=HotSpot Client Compiler, os.version=5.1, user.home=C:\Documents and Settings\Administrator, user.timezone=, java.awt.printerjob=sun.awt.windows.WPrinterJob, java.specification.version=1.6, idea.launcher.bin.path=C:\Program Files\JetBrains\IntelliJ IDEA 8.1\bin, file.encoding=windows-1252, hibernate.c3p0.min_size=5, hibernate.connection.driver_class=org.hsqldb.jdbcDriver, user.name=Administrator, java.class.path=C:\Program Files\Java\jdk1.6.0_10\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext\sunpkcs11.jar;E:\dev\flexmud\build\test\flexmud;E:\dev\flexmud\build\production\flexmud;E:\dev\flexmud\lib\junit\dbunit-2.4.2.jar;E:\dev\flexmud\lib\junit;E:\dev\flexmud\lib\junit\junit.jar;E:\dev\flexmud\lib\junit\junit-4.5.jar;E:\dev\flexmud\lib\junit\junit-3.8.1.jar;E:\dev\flexmud\lib\log4j\log4j-1.2.15.jar;E:\dev\flexmud\lib\hibernate\hibernate-core.jar;E:\dev\flexmud\lib\hibernate\asm.jar;E:\dev\flexmud\lib\hibernate\dom4j-1.6.1.jar;E:\dev\flexmud\lib\hibernate;E:\dev\flexmud\lib\hibernate\antlr-2.7.6.jar;E:\dev\flexmud\lib\hibernate\hibernate-annotations.jar;E:\dev\flexmud\lib\hibernate\slf4j-api-1.5.6.jar;E:\dev\flexmud\lib\hibernate\freemarker.jar;E:\dev\flexmud\lib\hibernate\ejb3-persistence.jar;E:\dev\flexmud\lib\hibernate\slf4j-api.jar;E:\dev\flexmud\lib\hibernate\dom4j.jar;E:\dev\flexmud\lib\hibernate\hibernate3.jar;E:\dev\flexmud\lib\hibernate\hibernate-commons-annotations.jar;E:\dev\flexmud\lib\hibernate\jta-1.1.jar;E:\dev\flexmud\lib\hibernate\slf4j-log4j12-1.5.6.jar;E:\dev\flexmud\lib\hibernate\commons-collections-3.1.jar;E:\dev\flexmud\lib\hibernate\javassist-3.4.GA.jar;E:\dev\flexmud\lib\hibernate\c3p0-0.9.1.jar;E:\dev\flexmud\lib\hibernate\hsqldb.jar;E:\dev\flexmud\lib\hibernate\hibernate-tools.jar;E:\dev\flexmud\lib\hibernate\commons-logging-1.0.4.jar;C:\Program Files\JetBrains\IntelliJ IDEA 8.1\lib\idea_rt.jar, hibernate.bytecode.use_reflection_optimizer=false, java.vm.specification.version=1.0, sun.arch.data.model=32, java.home=C:\Program Files\Java\jdk1.6.0_10\jre, hibernate.connection.url=jdbc:hsqldb:hsql://localhost, hibernate.dialect=org.hibernate.dialect.HSQLDialect, java.specification.vendor=Sun Microsystems Inc., user.language=en, awt.toolkit=sun.awt.windows.WToolkit, hibernate.c3p0.max_size=20, java.vm.info=mixed mode, sharing, java.version=1.6.0_10, java.ext.dirs=C:\Program Files\Java\jdk1.6.0_10\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.boot.class.path=C:\Program Files\Java\jdk1.6.0_10\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_10\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_10\jre\classes, java.vendor=Sun Microsystems Inc., file.separator=\, java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi, sun.cpu.endian=little, sun.io.unicode.encoding=UnicodeLittle, sun.desktop=windows, sun.cpu.isalist=, dialect=org.hibernate.dialect.HSQLDialect}
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.context.Context
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select context_id from context where context_id =?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select context_.context_id, context_.is_character_promptable as is2_1_, context_.child_group_id as child10_1_, context_.entry_command_class_name as entry3_1_, context_.entry_message as entry4_1_, context_.is_listed_in_parent as is5_1_, context_.max_entries as max6_1_, context_.max_entries_exceeded_message as max7_1_, context_.name as name1_, context_.parent_group_id as parent11_1_, context_.prompt_command_class_name as prompt9_1_ from context context_ where context_.context_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into context (is_character_promptable, child_group_id, entry_command_class_name, entry_message, is_listed_in_parent, max_entries, max_entries_exceeded_message, name, parent_group_id, prompt_command_class_name, context_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: update context set is_character_promptable=?, child_group_id=?, entry_command_class_name=?, entry_message=?, is_listed_in_parent=?, max_entries=?, max_entries_exceeded_message=?, name=?, parent_group_id=?, prompt_command_class_name=? where context_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from context where context_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into context (context_id, is_character_promptable, child_group_id, entry_command_class_name, entry_message, is_listed_in_parent, max_entries, max_entries_exceeded_message, name, parent_group_id, prompt_command_class_name) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.context.ContextGroup
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select context_group_id from context_group where context_group_id =?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select contextgro_.context_group_id from context_group contextgro_ where contextgro_.context_group_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into context_group (context_group_id) values (?)
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: null
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from context_group where context_group_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into context_group (context_group_id) values (null)
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.obj.Object
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select object_id from object where object_id =?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select object_.object_id, object_.name as name0_ from object object_ where object_.object_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into object (name, object_id) values (?, ?)
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: update object set name=? where object_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from object where object_id=?
+1281 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into object (object_id, name) values (null, ?)
+1297 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  - Static SQL for entity: flexmud.engine.cmd.AliasCommandClassNameMap
+1297 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Version select: select context_command_id from context_command where context_command_id =?
+1297 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Snapshot select: select aliascomma_.context_command_id, aliascomma_.command_class as command2_3_, aliascomma_.context_id as context3_3_ from context_command aliascomma_ where aliascomma_.context_command_id=?
+1297 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Insert 0: insert into context_command (command_class, context_id, context_command_id) values (?, ?, ?)
+1297 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Update 0: update context_command set command_class=?, context_id=? where context_command_id=?
+1297 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Delete 0: delete from context_command where context_command_id=?
+1297 [main] DEBUG org.hibernate.persister.entity.AbstractEntityPersister  -  Identity insert: insert into context_command (context_command_id, command_class, context_id) values (null, ?, ?)
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Static SQL for collection: flexmud.engine.context.Context.aliasCommandClassNameMaps
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row insert: update context_command set context_id=? where context_command_id=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row delete: update context_command set context_id=null where context_id=? and context_command_id=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  One-shot delete: update context_command set context_id=null where context_id=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Static SQL for collection: flexmud.engine.context.ContextGroup.childContexts
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row insert: update context set parent_group_id=? where context_id=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row delete: update context set parent_group_id=null where parent_group_id=? and context_id=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  One-shot delete: update context set parent_group_id=null where parent_group_id=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Static SQL for collection: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row insert: insert into context_command_alias (context_command_id, alias) values (?, ?)
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row update: update context_command_alias set alias=? where context_command_id=? and alias=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  Row delete: delete from context_command_alias where context_command_id=? and alias=?
+1297 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  -  One-shot delete: delete from context_command_alias where context_command_id=?
+1344 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.context_id=?
+1344 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.context_id=?
+1344 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_0_, context0_.is_character_promptable as is2_1_0_, context0_.child_group_id as child10_1_0_, context0_.entry_command_class_name as entry3_1_0_, context0_.entry_message as entry4_1_0_, context0_.is_listed_in_parent as is5_1_0_, context0_.max_entries as max6_1_0_, context0_.max_entries_exceeded_message as max7_1_0_, context0_.name as name1_0_, context0_.parent_group_id as parent11_1_0_, context0_.prompt_command_class_name as prompt9_1_0_ from context context0_ where context0_.context_id=?
+1344 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_0_, context0_.is_character_promptable as is2_1_0_, context0_.child_group_id as child10_1_0_, context0_.entry_command_class_name as entry3_1_0_, context0_.entry_message as entry4_1_0_, context0_.is_listed_in_parent as is5_1_0_, context0_.max_entries as max6_1_0_, context0_.max_entries_exceeded_message as max7_1_0_, context0_.name as name1_0_, context0_.parent_group_id as parent11_1_0_, context0_.prompt_command_class_name as prompt9_1_0_ from context context0_ where context0_.context_id=?
+1344 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_0_, context0_.is_character_promptable as is2_1_0_, context0_.child_group_id as child10_1_0_, context0_.entry_command_class_name as entry3_1_0_, context0_.entry_message as entry4_1_0_, context0_.is_listed_in_parent as is5_1_0_, context0_.max_entries as max6_1_0_, context0_.max_entries_exceeded_message as max7_1_0_, context0_.name as name1_0_, context0_.parent_group_id as parent11_1_0_, context0_.prompt_command_class_name as prompt9_1_0_ from context context0_ where context0_.context_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.context.Context: select context0_.context_id as context1_1_2_, context0_.is_character_promptable as is2_1_2_, context0_.child_group_id as child10_1_2_, context0_.entry_command_class_name as entry3_1_2_, context0_.entry_message as entry4_1_2_, context0_.is_listed_in_parent as is5_1_2_, context0_.max_entries as max6_1_2_, context0_.max_entries_exceeded_message as max7_1_2_, context0_.name as name1_2_, context0_.parent_group_id as parent11_1_2_, context0_.prompt_command_class_name as prompt9_1_2_, aliascomma1_.context_id as context3_4_, aliascomma1_.context_command_id as context1_4_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, contextgro2_.context_group_id as context1_2_1_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_group contextgro2_ on context0_.child_group_id=contextgro2_.context_group_id where context0_.context_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.context.Context: select context0_.context_id as context1_1_2_, context0_.is_character_promptable as is2_1_2_, context0_.child_group_id as child10_1_2_, context0_.entry_command_class_name as entry3_1_2_, context0_.entry_message as entry4_1_2_, context0_.is_listed_in_parent as is5_1_2_, context0_.max_entries as max6_1_2_, context0_.max_entries_exceeded_message as max7_1_2_, context0_.name as name1_2_, context0_.parent_group_id as parent11_1_2_, context0_.prompt_command_class_name as prompt9_1_2_, aliascomma1_.context_id as context3_4_, aliascomma1_.context_command_id as context1_4_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, contextgro2_.context_group_id as context1_2_1_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_group contextgro2_ on context0_.child_group_id=contextgro2_.context_group_id where context0_.context_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.Context: select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.child_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_3_, context1_.context_id as context1_1_0_, context1_.is_character_promptable as is2_1_0_, context1_.child_group_id as child10_1_0_, context1_.entry_command_class_name as entry3_1_0_, context1_.entry_message as entry4_1_0_, context1_.is_listed_in_parent as is5_1_0_, context1_.max_entries as max6_1_0_, context1_.max_entries_exceeded_message as max7_1_0_, context1_.name as name1_0_, context1_.parent_group_id as parent11_1_0_, context1_.prompt_command_class_name as prompt9_1_0_, aliascomma2_.context_id as context3_5_, aliascomma2_.context_command_id as context1_5_, aliascomma2_.context_command_id as context1_3_1_, aliascomma2_.command_class as command2_3_1_, aliascomma2_.context_id as context3_3_1_, aliases3_.context_command_id as context1_6_, aliases3_.alias as alias6_, contextgro4_.context_group_id as context1_2_2_ from context_group contextgro0_ left outer join context context1_ on contextgro0_.context_group_id=context1_.child_group_id left outer join context_command aliascomma2_ on context1_.context_id=aliascomma2_.context_id left outer join context_command_alias aliases3_ on aliascomma2_.context_command_id=aliases3_.context_command_id left outer join context_group contextgro4_ on context1_.parent_group_id=contextgro4_.context_group_id where contextgro0_.context_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_3_, context1_.context_id as context1_1_0_, context1_.is_character_promptable as is2_1_0_, context1_.child_group_id as child10_1_0_, context1_.entry_command_class_name as entry3_1_0_, context1_.entry_message as entry4_1_0_, context1_.is_listed_in_parent as is5_1_0_, context1_.max_entries as max6_1_0_, context1_.max_entries_exceeded_message as max7_1_0_, context1_.name as name1_0_, context1_.parent_group_id as parent11_1_0_, context1_.prompt_command_class_name as prompt9_1_0_, aliascomma2_.context_id as context3_5_, aliascomma2_.context_command_id as context1_5_, aliascomma2_.context_command_id as context1_3_1_, aliascomma2_.command_class as command2_3_1_, aliascomma2_.context_id as context3_3_1_, aliases3_.context_command_id as context1_6_, aliases3_.alias as alias6_, contextgro4_.context_group_id as context1_2_2_ from context_group contextgro0_ left outer join context context1_ on contextgro0_.context_group_id=context1_.child_group_id left outer join context_command aliascomma2_ on context1_.context_id=aliascomma2_.context_id left outer join context_command_alias aliases3_ on aliascomma2_.context_command_id=aliases3_.context_command_id left outer join context_group contextgro4_ on context1_.parent_group_id=contextgro4_.context_group_id where contextgro0_.context_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_0_ from context_group contextgro0_ where contextgro0_.context_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_0_ from context_group contextgro0_ where contextgro0_.context_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_0_ from context_group contextgro0_ where contextgro0_.context_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_2_, childconte1_.parent_group_id as parent11_4_, childconte1_.context_id as context1_4_, childconte1_.context_id as context1_1_0_, childconte1_.is_character_promptable as is2_1_0_, childconte1_.child_group_id as child10_1_0_, childconte1_.entry_command_class_name as entry3_1_0_, childconte1_.entry_message as entry4_1_0_, childconte1_.is_listed_in_parent as is5_1_0_, childconte1_.max_entries as max6_1_0_, childconte1_.max_entries_exceeded_message as max7_1_0_, childconte1_.name as name1_0_, childconte1_.parent_group_id as parent11_1_0_, childconte1_.prompt_command_class_name as prompt9_1_0_, contextgro2_.context_group_id as context1_2_1_ from context_group contextgro0_ left outer join context childconte1_ on contextgro0_.context_group_id=childconte1_.parent_group_id left outer join context_group contextgro2_ on childconte1_.child_group_id=contextgro2_.context_group_id where contextgro0_.context_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.context.ContextGroup: select contextgro0_.context_group_id as context1_2_2_, childconte1_.parent_group_id as parent11_4_, childconte1_.context_id as context1_4_, childconte1_.context_id as context1_1_0_, childconte1_.is_character_promptable as is2_1_0_, childconte1_.child_group_id as child10_1_0_, childconte1_.entry_command_class_name as entry3_1_0_, childconte1_.entry_message as entry4_1_0_, childconte1_.is_listed_in_parent as is5_1_0_, childconte1_.max_entries as max6_1_0_, childconte1_.max_entries_exceeded_message as max7_1_0_, childconte1_.name as name1_0_, childconte1_.parent_group_id as parent11_1_0_, childconte1_.prompt_command_class_name as prompt9_1_0_, contextgro2_.context_group_id as context1_2_1_ from context_group contextgro0_ left outer join context childconte1_ on contextgro0_.context_group_id=childconte1_.parent_group_id left outer join context_group contextgro2_ on childconte1_.child_group_id=contextgro2_.context_group_id where contextgro0_.context_group_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
+1359 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.obj.Object: select object0_.object_id as object1_0_0_, object0_.name as name0_0_ from object object0_ where object0_.object_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_3_, aliascomma0_.command_class as command2_3_3_, aliascomma0_.context_id as context3_3_3_, aliases1_.context_command_id as context1_5_, aliases1_.alias as alias5_, context2_.context_id as context1_1_0_, context2_.is_character_promptable as is2_1_0_, context2_.child_group_id as child10_1_0_, context2_.entry_command_class_name as entry3_1_0_, context2_.entry_message as entry4_1_0_, context2_.is_listed_in_parent as is5_1_0_, context2_.max_entries as max6_1_0_, context2_.max_entries_exceeded_message as max7_1_0_, context2_.name as name1_0_, context2_.parent_group_id as parent11_1_0_, context2_.prompt_command_class_name as prompt9_1_0_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context_command aliascomma0_ left outer join context_command_alias aliases1_ on aliascomma0_.context_command_id=aliases1_.context_command_id inner join context context2_ on aliascomma0_.context_id=context2_.context_id left outer join context_group contextgro3_ on context2_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context2_.parent_group_id=contextgro4_.context_group_id where aliascomma0_.context_command_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_3_, aliascomma0_.command_class as command2_3_3_, aliascomma0_.context_id as context3_3_3_, aliases1_.context_command_id as context1_5_, aliases1_.alias as alias5_, context2_.context_id as context1_1_0_, context2_.is_character_promptable as is2_1_0_, context2_.child_group_id as child10_1_0_, context2_.entry_command_class_name as entry3_1_0_, context2_.entry_message as entry4_1_0_, context2_.is_listed_in_parent as is5_1_0_, context2_.max_entries as max6_1_0_, context2_.max_entries_exceeded_message as max7_1_0_, context2_.name as name1_0_, context2_.parent_group_id as parent11_1_0_, context2_.prompt_command_class_name as prompt9_1_0_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context_command aliascomma0_ left outer join context_command_alias aliases1_ on aliascomma0_.context_command_id=aliases1_.context_command_id inner join context context2_ on aliascomma0_.context_id=context2_.context_id left outer join context_group contextgro3_ on context2_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context2_.parent_group_id=contextgro4_.context_group_id where aliascomma0_.context_command_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_MERGE on entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
+1375 [main] DEBUG org.hibernate.loader.entity.EntityLoader  - Static select for action ACTION_REFRESH on entity flexmud.engine.cmd.AliasCommandClassNameMap: select aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_command_id=?
+1375 [main] DEBUG org.hibernate.loader.collection.OneToManyLoader  - Static select for one-to-many flexmud.engine.context.Context.aliasCommandClassNameMaps: select aliascomma0_.context_id as context3_1_, aliascomma0_.context_command_id as context1_1_, aliascomma0_.context_command_id as context1_3_0_, aliascomma0_.command_class as command2_3_0_, aliascomma0_.context_id as context3_3_0_ from context_command aliascomma0_ where aliascomma0_.context_id=?
+1375 [main] DEBUG org.hibernate.loader.collection.OneToManyLoader  - Static select for one-to-many flexmud.engine.context.ContextGroup.childContexts: select childconte0_.parent_group_id as parent11_2_, childconte0_.context_id as context1_2_, childconte0_.context_id as context1_1_1_, childconte0_.is_character_promptable as is2_1_1_, childconte0_.child_group_id as child10_1_1_, childconte0_.entry_command_class_name as entry3_1_1_, childconte0_.entry_message as entry4_1_1_, childconte0_.is_listed_in_parent as is5_1_1_, childconte0_.max_entries as max6_1_1_, childconte0_.max_entries_exceeded_message as max7_1_1_, childconte0_.name as name1_1_, childconte0_.parent_group_id as parent11_1_1_, childconte0_.prompt_command_class_name as prompt9_1_1_, contextgro1_.context_group_id as context1_2_0_ from context childconte0_ left outer join context_group contextgro1_ on childconte0_.child_group_id=contextgro1_.context_group_id where childconte0_.parent_group_id=?
+1375 [main] DEBUG org.hibernate.loader.collection.BasicCollectionLoader  - Static select for collection flexmud.engine.cmd.AliasCommandClassNameMap.aliases: select aliases0_.context_command_id as context1_0_, aliases0_.alias as alias0_ from context_command_alias aliases0_ where aliases0_.context_command_id=?
+1406 [main] DEBUG org.hibernate.impl.SessionFactoryObjectFactory  - initializing class SessionFactoryObjectFactory
+1406 [main] DEBUG org.hibernate.impl.SessionFactoryObjectFactory  - registered: 402881c01fd46b7e011fd46b80570000 (unnamed)
+1406 [main] INFO  org.hibernate.impl.SessionFactoryObjectFactory  - Not binding factory to JNDI, no JNDI name configured
+1406 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - instantiated session factory
+1406 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - Checking 0 named HQL queries
+1406 [main] DEBUG org.hibernate.impl.SessionFactoryImpl  - Checking 0 named SQL queries
+1453 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12362194289
+1469 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
+1469 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
+1469 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
+1516 [main] DEBUG org.hibernate.event.def.AbstractSaveEventListener  - executing identity-insert immediately
+1516 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1516 [main] DEBUG org.hibernate.SQL  - insert into context_group (context_group_id) values (null)
+1516 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1516 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1516 [main] DEBUG org.hibernate.SQL  - call identity()
+1531 [main] DEBUG org.hibernate.id.IdentifierGeneratorFactory  - Natively generated identity: 1
+1531 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1547 [main] DEBUG org.hibernate.event.def.AbstractSaveEventListener  - executing identity-insert immediately
+1547 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1547 [main] DEBUG org.hibernate.SQL  - insert into context (context_id, is_character_promptable, child_group_id, entry_command_class_name, entry_message, is_listed_in_parent, max_entries, max_entries_exceeded_message, name, parent_group_id, prompt_command_class_name) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+1547 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1547 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1547 [main] DEBUG org.hibernate.SQL  - call identity()
+1547 [main] DEBUG org.hibernate.id.IdentifierGeneratorFactory  - Natively generated identity: 1
+1547 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1547 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
+1547 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
+1547 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
+1562 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1], was: [<unreferenced>] (initialized)
+1562 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.ContextGroup.childContexts#1], was: [<unreferenced>] (initialized)
+1562 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+1562 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 2 (re)creations, 0 updates, 0 removals to 2 collections
+1562 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
+1562 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.Context{listedInParent=false, id=1, maxEntriesExceededMessage=, entryMessage=null, name=a, aliasCommandClassNameMaps=[], promptCommandClassName=null, childGroup=flexmud.engine.context.ContextGroup#1, characterPromptable=false, entryCommandClassName=null, parentGroup=null, maxEntries=-1}
+1562 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.ContextGroup{id=1, childContexts=[], parentContext=null}
+1578 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
+1578 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
+1578 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+1578 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12362194291
+1578 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
+1578 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
+1578 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
+1578 [main] DEBUG org.hibernate.event.def.AbstractSaveEventListener  - executing identity-insert immediately
+1578 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1578 [main] DEBUG org.hibernate.SQL  - insert into context_command (context_command_id, command_class, context_id) values (null, ?, ?)
+1578 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1578 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1578 [main] DEBUG org.hibernate.SQL  - call identity()
+1578 [main] DEBUG org.hibernate.id.IdentifierGeneratorFactory  - Natively generated identity: 1
+1578 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1578 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
+1578 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
+1578 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
+1578 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1], was: [<unreferenced>] (initialized)
+1578 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+1578 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 1 (re)creations, 0 updates, 0 removals to 1 collections
+1578 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
+1578 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.cmd.AliasCommandClassNameMap{id=1, context=flexmud.engine.context.Context#1, aliases=[b, c, a], commandClassName=CommandClass}
+1578 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Inserting collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1578 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1578 [main] DEBUG org.hibernate.SQL  - insert into context_command_alias (context_command_id, alias) values (?, ?)
+1594 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - reusing prepared statement
+1594 [main] DEBUG org.hibernate.SQL  - insert into context_command_alias (context_command_id, alias) values (?, ?)
+1594 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - reusing prepared statement
+1594 [main] DEBUG org.hibernate.SQL  - insert into context_command_alias (context_command_id, alias) values (?, ?)
+1594 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - done inserting collection: 3 rows inserted
+1594 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - Executing batch size: 3
+1594 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1594 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
+1594 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
+1594 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+1609 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12362194291
+1609 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
+1609 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
+1609 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
+1625 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1625 [main] DEBUG org.hibernate.SQL  - select this_.context_command_id as context1_3_3_, this_.command_class as command2_3_3_, this_.context_id as context3_3_3_, aliases2_.context_command_id as context1_5_, aliases2_.alias as alias5_, context3_.context_id as context1_1_0_, context3_.is_character_promptable as is2_1_0_, context3_.child_group_id as child10_1_0_, context3_.entry_command_class_name as entry3_1_0_, context3_.entry_message as entry4_1_0_, context3_.is_listed_in_parent as is5_1_0_, context3_.max_entries as max6_1_0_, context3_.max_entries_exceeded_message as max7_1_0_, context3_.name as name1_0_, context3_.parent_group_id as parent11_1_0_, context3_.prompt_command_class_name as prompt9_1_0_, contextgro4_.context_group_id as context1_2_1_, contextgro5_.context_group_id as context1_2_2_ from context_command this_ left outer join context_command_alias aliases2_ on this_.context_command_id=aliases2_.context_command_id inner join context context3_ on this_.context_id=context3_.context_id left outer join context_group contextgro4_ on context3_.child_group_id=contextgro4_.context_group_id left outer join context_group contextgro5_ on context3_.parent_group_id=contextgro5_.context_group_id
+1625 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open ResultSet (open ResultSets: 0, globally: 0)
+1625 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1625 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1641 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close ResultSet (open ResultSets: 1, globally: 1)
+1641 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1641 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.context.Context#1]
+1641 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.context.Context#1]
+1641 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.context.ContextGroup#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - loading entity: [flexmud.engine.context.Context#1]
+1641 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1641 [main] DEBUG org.hibernate.SQL  - select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.child_group_id=?
+1641 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open ResultSet (open ResultSets: 0, globally: 0)
+1641 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1641 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1656 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close ResultSet (open ResultSets: 1, globally: 1)
+1656 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections were found in result set for role: flexmud.engine.context.Context.aliasCommandClassNameMaps
+1656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - collection fully initialized: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections initialized for role: flexmud.engine.context.Context.aliasCommandClassNameMaps
+1656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - no collections were found in result set for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1656 [main] DEBUG org.hibernate.loader.Loader  - done entity load
+1656 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.context.ContextGroup#1]
+1656 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1656 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections were found in result set for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - collection fully initialized: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1656 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections initialized for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1656 [main] DEBUG org.hibernate.engine.StatefulPersistenceContext  - initializing non-lazy collections
+1656 [main] DEBUG org.hibernate.transform.DistinctResultTransformer  - transformed: 3 rows to: 1 distinct results
+1656 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
+1656 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
+1656 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
+1656 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1], was: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1] (initialized)
+1656 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.ContextGroup.childContexts#1], was: [flexmud.engine.context.ContextGroup.childContexts#1] (uninitialized)
+1656 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1], was: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1] (initialized)
+1656 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 3 objects
+1656 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 (re)creations, 0 updates, 0 removals to 3 collections
+1656 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
+1656 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.Context{listedInParent=false, id=1, maxEntriesExceededMessage=, entryMessage=null, name=a, aliasCommandClassNameMaps=[flexmud.engine.cmd.AliasCommandClassNameMap#1], promptCommandClassName=null, childGroup=flexmud.engine.context.ContextGroup#1, characterPromptable=false, entryCommandClassName=null, parentGroup=null, maxEntries=-1}
+1656 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.cmd.AliasCommandClassNameMap{id=1, context=flexmud.engine.context.Context#1, aliases=[b, c, a], commandClassName=CommandClass}
+1656 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.ContextGroup{id=1, childContexts=<uninitialized>, parentContext=flexmud.engine.context.Context#1}
+1656 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
+1656 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
+1656 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+1656 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12362194292
+1656 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
+1656 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
+1656 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
+1656 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1656 [main] DEBUG org.hibernate.SQL  - select this_.context_command_id as context1_3_3_, this_.command_class as command2_3_3_, this_.context_id as context3_3_3_, aliases2_.context_command_id as context1_5_, aliases2_.alias as alias5_, context3_.context_id as context1_1_0_, context3_.is_character_promptable as is2_1_0_, context3_.child_group_id as child10_1_0_, context3_.entry_command_class_name as entry3_1_0_, context3_.entry_message as entry4_1_0_, context3_.is_listed_in_parent as is5_1_0_, context3_.max_entries as max6_1_0_, context3_.max_entries_exceeded_message as max7_1_0_, context3_.name as name1_0_, context3_.parent_group_id as parent11_1_0_, context3_.prompt_command_class_name as prompt9_1_0_, contextgro4_.context_group_id as context1_2_1_, contextgro5_.context_group_id as context1_2_2_ from context_command this_ left outer join context_command_alias aliases2_ on this_.context_command_id=aliases2_.context_command_id inner join context context3_ on this_.context_id=context3_.context_id left outer join context_group contextgro4_ on context3_.child_group_id=contextgro4_.context_group_id left outer join context_group contextgro5_ on context3_.parent_group_id=contextgro5_.context_group_id
+1656 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open ResultSet (open ResultSets: 0, globally: 0)
+1656 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1656 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1656 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1656 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1656 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.context.Context#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1656 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1656 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close ResultSet (open ResultSets: 1, globally: 1)
+1656 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1656 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.context.Context#1]
+1656 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.context.Context#1]
+1656 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.context.ContextGroup#1]
+1656 [main] DEBUG org.hibernate.loader.Loader  - loading entity: [flexmud.engine.context.Context#1]
+1656 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1656 [main] DEBUG org.hibernate.SQL  - select context0_.context_id as context1_1_3_, context0_.is_character_promptable as is2_1_3_, context0_.child_group_id as child10_1_3_, context0_.entry_command_class_name as entry3_1_3_, context0_.entry_message as entry4_1_3_, context0_.is_listed_in_parent as is5_1_3_, context0_.max_entries as max6_1_3_, context0_.max_entries_exceeded_message as max7_1_3_, context0_.name as name1_3_, context0_.parent_group_id as parent11_1_3_, context0_.prompt_command_class_name as prompt9_1_3_, aliascomma1_.context_id as context3_5_, aliascomma1_.context_command_id as context1_5_, aliascomma1_.context_command_id as context1_3_0_, aliascomma1_.command_class as command2_3_0_, aliascomma1_.context_id as context3_3_0_, aliases2_.context_command_id as context1_6_, aliases2_.alias as alias6_, contextgro3_.context_group_id as context1_2_1_, contextgro4_.context_group_id as context1_2_2_ from context context0_ left outer join context_command aliascomma1_ on context0_.context_id=aliascomma1_.context_id left outer join context_command_alias aliases2_ on aliascomma1_.context_command_id=aliases2_.context_command_id left outer join context_group contextgro3_ on context0_.child_group_id=contextgro3_.context_group_id left outer join context_group contextgro4_ on context0_.parent_group_id=contextgro4_.context_group_id where context0_.child_group_id=?
+1672 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open ResultSet (open ResultSets: 0, globally: 0)
+1672 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - result row: EntityKey[flexmud.engine.cmd.AliasCommandClassNameMap#1], EntityKey[flexmud.engine.context.ContextGroup#1], null, EntityKey[flexmud.engine.context.Context#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1672 [main] DEBUG org.hibernate.loader.Loader  - found row of collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1672 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close ResultSet (open ResultSets: 1, globally: 1)
+1672 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1672 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections were found in result set for role: flexmud.engine.context.Context.aliasCommandClassNameMaps
+1672 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - collection fully initialized: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1]
+1672 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections initialized for role: flexmud.engine.context.Context.aliasCommandClassNameMaps
+1672 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - no collections were found in result set for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1672 [main] DEBUG org.hibernate.loader.Loader  - done entity load
+1672 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.context.ContextGroup#1]
+1672 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - resolving associations for [flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1672 [main] DEBUG org.hibernate.engine.TwoPhaseLoad  - done materializing entity [flexmud.engine.cmd.AliasCommandClassNameMap#1]
+1672 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections were found in result set for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1672 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - collection fully initialized: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1672 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - 1 collections initialized for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1672 [main] DEBUG org.hibernate.engine.StatefulPersistenceContext  - initializing non-lazy collections
+1672 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
+1672 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1], was: [flexmud.engine.context.Context.aliasCommandClassNameMaps#1] (initialized)
+1672 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.context.ContextGroup.childContexts#1], was: [flexmud.engine.context.ContextGroup.childContexts#1] (uninitialized)
+1672 [main] DEBUG org.hibernate.engine.Collections  - Collection found: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1], was: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1] (initialized)
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 0 deletions to 3 objects
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 (re)creations, 0 updates, 0 removals to 3 collections
+1672 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
+1672 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.Context{listedInParent=false, id=1, maxEntriesExceededMessage=, entryMessage=null, name=a, aliasCommandClassNameMaps=[flexmud.engine.cmd.AliasCommandClassNameMap#1], promptCommandClassName=null, childGroup=flexmud.engine.context.ContextGroup#1, characterPromptable=false, entryCommandClassName=null, parentGroup=null, maxEntries=-1}
+1672 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.cmd.AliasCommandClassNameMap{id=1, context=flexmud.engine.context.Context#1, aliases=[b, c, a], commandClassName=CommandClass}
+1672 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.context.ContextGroup{id=1, childContexts=<uninitialized>, parentContext=flexmud.engine.context.Context#1}
+1672 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
+1672 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
+1672 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+1672 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12362194292
+1672 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
+1672 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
+1672 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
+1672 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - processing flush-time cascades
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - dirty checking collections
+1672 [main] DEBUG org.hibernate.engine.Collections  - Collection dereferenced: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 insertions, 0 updates, 1 deletions to 1 objects
+1672 [main] DEBUG org.hibernate.event.def.AbstractFlushingEventListener  - Flushed: 0 (re)creations, 0 updates, 1 removals to 1 collections
+1672 [main] DEBUG org.hibernate.pretty.Printer  - listing entities:
+1672 [main] DEBUG org.hibernate.pretty.Printer  - flexmud.engine.cmd.AliasCommandClassNameMap{id=1, context=flexmud.engine.context.Context#1, aliases=[b, c, a], commandClassName=CommandClass}
+1672 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - Deleting collection: [flexmud.engine.cmd.AliasCommandClassNameMap.aliases#1]
+1672 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1672 [main] DEBUG org.hibernate.SQL  - delete from context_command_alias where context_command_id=?
+1672 [main] DEBUG org.hibernate.persister.collection.AbstractCollectionPersister  - done deleting collection
+1672 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - Executing batch size: 1
+1672 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1672 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1687 [main] DEBUG org.hibernate.SQL  - delete from context_command where context_command_id=?
+1687 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - Executing batch size: 1
+1687 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1687 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
+1687 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
+1687 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+1687 [main] DEBUG org.hibernate.impl.SessionImpl  - opened session at timestamp: 12362194292
+1687 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - begin
+1687 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - opening JDBC connection
+1687 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - current autocommit status: false
+1687 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+1687 [main] DEBUG org.hibernate.SQL  - select this_.context_command_id as context1_3_3_, this_.command_class as command2_3_3_, this_.context_id as context3_3_3_, aliases2_.context_command_id as context1_5_, aliases2_.alias as alias5_, context3_.context_id as context1_1_0_, context3_.is_character_promptable as is2_1_0_, context3_.child_group_id as child10_1_0_, context3_.entry_command_class_name as entry3_1_0_, context3_.entry_message as entry4_1_0_, context3_.is_listed_in_parent as is5_1_0_, context3_.max_entries as max6_1_0_, context3_.max_entries_exceeded_message as max7_1_0_, context3_.name as name1_0_, context3_.parent_group_id as parent11_1_0_, context3_.prompt_command_class_name as prompt9_1_0_, contextgro4_.context_group_id as context1_2_1_, contextgro5_.context_group_id as context1_2_2_ from context_command this_ left outer join context_command_alias aliases2_ on this_.context_command_id=aliases2_.context_command_id inner join context context3_ on this_.context_id=context3_.context_id left outer join context_group contextgro4_ on context3_.child_group_id=contextgro4_.context_group_id left outer join context_group contextgro5_ on context3_.parent_group_id=contextgro5_.context_group_id
+1687 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to open ResultSet (open ResultSets: 0, globally: 0)
+1687 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close ResultSet (open ResultSets: 1, globally: 1)
+1687 [main] DEBUG org.hibernate.jdbc.AbstractBatcher  - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+1687 [main] DEBUG org.hibernate.engine.loading.CollectionLoadContext  - no collections were found in result set for role: flexmud.engine.cmd.AliasCommandClassNameMap.aliases
+1687 [main] DEBUG org.hibernate.engine.StatefulPersistenceContext  - initializing non-lazy collections
+1687 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - commit
+1687 [main] DEBUG org.hibernate.transaction.JDBCTransaction  - committed JDBC Connection
+1687 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - aggressively releasing JDBC connection
+1687 [main] DEBUG org.hibernate.jdbc.ConnectionManager  - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
