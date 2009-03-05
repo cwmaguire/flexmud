@@ -21,6 +21,7 @@ import flexmud.engine.cmd.AliasCommandClassNameMap;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
 import flexmud.log.LoggingUtil;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;
 import org.junit.Assert;
@@ -66,12 +67,14 @@ public class TestPersistAliasCommandClassNameMap {
         // ToDo CM: three aliases (i.e. do a distinct)
         List<AliasCommandClassNameMap> aliasCommandMaps;
         DetachedCriteria criteria = DetachedCriteria.forClass(AliasCommandClassNameMap.class);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
         aliasCommandMaps = (List<AliasCommandClassNameMap>) HibernateUtil.fetch(criteria);
+
         Assert.assertNotNull("List of AliasCommandMaps should not be null", aliasCommandMaps);
         Assert.assertEquals("Database should only contain one AliasCommandMap", 1, aliasCommandMaps.size());
     }
 
-    /*
     @Test
     public void testDelete(){
         List<AliasCommandClassNameMap> aliasCommandMaps;
@@ -86,5 +89,4 @@ public class TestPersistAliasCommandClassNameMap {
         Assert.assertNotNull("List of alias command maps should not be null", aliasCommandMaps);
         Assert.assertEquals("Database should contain no alias command maps", 0, aliasCommandMaps.size());
     }
-    */
 }

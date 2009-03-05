@@ -17,13 +17,15 @@
 
 package flexmud.db;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.criterion.DetachedCriteria;
-import org.apache.log4j.Logger;
+
+import java.util.List;
 
 
 /**
@@ -52,7 +54,7 @@ public class HibernateUtil {
         getSessionFactory().close();
     }
 
-    public static java.util.List fetch(DetachedCriteria detachedCriteria){
+    public static List fetch(DetachedCriteria detachedCriteria){
         Session session;
         Transaction transaction;
 
