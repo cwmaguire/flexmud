@@ -1,7 +1,13 @@
-<dataset><?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE dataset SYSTEM "enterovision.dtd">-->
+<dataset>
+    <CONTEXT_GROUP CONTEXT_GROUP_ID="0"/>
+    <CONTEXT_GROUP CONTEXT_GROUP_ID="1"/>
 
-    <context context_id="0" name="welcome" child_group_id="0" />
+    <CONTEXT CONTEXT_ID="0" NAME="welcome" CHILD_GROUP_ID="0" />
+    <CONTEXT CONTEXT_ID="1" NAME="login" PARENT_GROUP_ID="0" CHILD_GROUP_ID="1"/>
 
-    <context_group />
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0" CONTEXT_ID="0" COMMAND_CLASS="WecomeMsgCmd"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1" CONTEXT_ID="1" COMMAND_CLASS="LoginPromptCommand"/>
 
-    <context_command />
+</dataset>

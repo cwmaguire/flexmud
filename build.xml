@@ -63,7 +63,7 @@
              classpathref="project.classpath"/>
 
     <!-- Export the database schema -->
-    <target name="schemaexport" depends="compile, copymetafiles"
+    <target name="load-schema" depends="compile, copymetafiles"
         description="Exports a generated schema to DB and file">
 
         <hibernatetool destdir="${basedir}">
@@ -80,7 +80,7 @@
     </target>
 
     <!-- Start the HSQL DB server -->
-    <target name="startdb" description="Run HSQL database server with clean DB">
+    <target name="start-database" description="Run HSQL database server with clean DB">
         <!-- Delete database files -->
         <delete dir="${database.dir}"/>
         <java classname="org.hsqldb.Server"
@@ -93,7 +93,7 @@
     </target>
 
     <!-- Start the HSQL DB browser tool -->
-    <target name="dbmanager" description="Start HSQL DB manager">
+    <target name="start-database-manager" description="Start HSQL DB manager">
         <java
             classname="org.hsqldb.util.DatabaseManagerSwing"
             fork="yes"
@@ -107,12 +107,36 @@
     </target>
 
     <target name="load-base-data">
-        <dbunit driver="hsqldb.dbdriver" url="hsqldb.server.url" userid="sa"
-                schema="public" password=""
-                dataTypeFactory="org.dbunit.ext.oracle.OracleDataTypeFactory">
-            <operation type="INSERT" src="${database.dir}/pa.xml" transaction="true"/>
+        <dbunit driver="org.hsqldb.jdbcDriver"
+                url="jdbc:hsqldb:hsql://localhost/"
+                userid="sa"
+                password=""
+                dataTypeFactory="org.dbunit.ext.hsqldb.HsqldbDataTypeFactory">
+            <operation type="INSERT" src="database/base.xml" transaction="true"/>
             <classpath refid="project.classpath"/>
         </dbunit>
     </target>
+
+    <target name="export-existing-data">
+        <dbunit driver="org.hsqldb.jdbcDriver"
+                url="jdbc:hsqldb:hsql://localhost/"
+                userid="sa"
+                password=""
+                dataTypeFactory="org.dbunit.ext.hsqldb.HsqldbDataTypeFactory">
+            <dbconfig>
+                <property  name="escapePattern" value="\"/>
+            </dbconfig>
+            <export dest="database/existing_db.xml" format="xml"/>
+            <classpath refid="project.classpath"/>
+        </dbunit>
+    </target>
+
+    <!--
+    schema="public"
+            <dbconfig>
+                <feature name="qualifiedTableNames" value="true"/>
+                <property  name="escapePattern" value="\"/>
+            </dbconfig>
+    -->
 
 </project>

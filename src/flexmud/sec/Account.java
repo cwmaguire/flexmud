@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+
 package flexmud.sec;
 
 import javax.persistence.*;
