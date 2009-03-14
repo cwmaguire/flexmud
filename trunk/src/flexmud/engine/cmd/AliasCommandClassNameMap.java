@@ -29,7 +29,7 @@ public class AliasCommandClassNameMap {
     public static final String ID_PROPERTY = "id";
     public static final String CONTEXT_PROPERTY = "context";
     public static final String ALIASES_PROPERTY = "aliases";
-    public static final String COMMAND_PROPERTY = "command";
+    public static final String COMMAND_CLASS_NAME_PROPERTY = "commandClassName";
 
     private long id;
     private Set<String> aliases = new HashSet<String>();
