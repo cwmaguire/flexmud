@@ -4,8 +4,20 @@
     <CONTEXT_GROUP CONTEXT_GROUP_ID="0"/>
     <CONTEXT_GROUP CONTEXT_GROUP_ID="1"/>
 
-    <CONTEXT CONTEXT_ID="0" NAME="welcome" CHILD_GROUP_ID="0" />
-    <CONTEXT CONTEXT_ID="1" NAME="login" PARENT_GROUP_ID="0" CHILD_GROUP_ID="1"/>
+    <CONTEXT CONTEXT_ID="0"
+             NAME="welcome"
+             CHILD_GROUP_ID="0"
+             IS_CHARACTER_PROMPTABLE="0"
+             IS_LISTED_IN_PARENT="0"
+             MAX_ENTRIES="0"/>
+    
+    <CONTEXT CONTEXT_ID="1"
+             NAME="login"
+             PARENT_GROUP_ID="0"
+             CHILD_GROUP_ID="1"
+             IS_CHARACTER_PROMPTABLE="0"
+             IS_LISTED_IN_PARENT="1"
+             MAX_ENTRIES="0"/>
 
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0" CONTEXT_ID="0" COMMAND_CLASS="WecomeMsgCmd"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1" CONTEXT_ID="1" COMMAND_CLASS="LoginPromptCommand"/>

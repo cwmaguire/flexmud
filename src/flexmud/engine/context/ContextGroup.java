@@ -27,11 +27,11 @@ import java.util.Set;
 @Table(name = "context_group")
 public class ContextGroup {
     public static final String ID_PROPERTY = "id";
-    public static final String PARENT_CONTEXT_PROPERTY = "parentContext";
+    public static final String CONTEXT_PROPERTY = "context";
     public static final String CHILD_CONTEXTS_PROPERTY = "childContexts";
 
     private long id;
-    private Context parentContext;
+    private Context context;
     private Set<Context> childContexts = new HashSet<Context>();
 
     @Id @GeneratedValue
@@ -40,20 +40,20 @@ public class ContextGroup {
         return id;
     }
 
-    private void setId(long id){
+    public void setId(long id){
         this.id = id;
     }
 
     @OneToOne(mappedBy = Context.CHILD_GROUP_PROPERTY)
-    public Context getParentContext() {
-        return parentContext;
+    public Context getContext() {
+        return context;
     }
 
-    public void setParentContext(Context parentContext) {
-        this.parentContext = parentContext;
+    public void setContext(Context context) {
+        this.context = context;
     }
 
-    @OneToMany(mappedBy = Context.PARENT_GROUP_PROPERTY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = Context.PARENT_GROUP_PROPERTY, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
     public Set<Context> getChildContexts() {
         return childContexts;

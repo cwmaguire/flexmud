@@ -17,13 +17,16 @@
 package flexmud.engine.cmd;
 
 import flexmud.cfg.Preferences;
+import flexmud.engine.context.ClientContextHandler;
 
 public class WelcomeMsgCmd extends Command{
 
     @Override
     public void run() {
+        ClientContextHandler clientContextHandler;
         client.sendTextLn(Preferences.getPreference("welcome message"));
-        client.setContext(client.getContextSwitcher().getFirstChildContext());
+        clientContextHandler = client.getContextHandler();
+        clientContextHandler.loadFirstChildContext();
     }
 
 }

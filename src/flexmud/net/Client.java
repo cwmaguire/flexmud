@@ -31,12 +31,9 @@ public class Client {
     private static final Logger LOGGER = Logger.getLogger(Client.class);
     protected UUID connID;
     protected SocketChannel socketChannel = null;
-    private ClientState connState;
     protected ClientListener clientListener;
     protected CommandBuffer cmdBuffer;
     protected ClientContextHandler clientContextHandler;
-
-    private Account account;
 
     public Client(ClientListener clientListener, SocketChannel socketChannel) {
         this.clientListener = clientListener;
@@ -99,7 +96,7 @@ public class Client {
         clientContextHandler.setContext(context);
     }
 
-    public ClientContextHandler getContextSwitcher() {
+    public ClientContextHandler getContextHandler() {
         return clientContextHandler;
     }
 
