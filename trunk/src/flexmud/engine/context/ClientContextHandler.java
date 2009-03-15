@@ -38,7 +38,7 @@ public class ClientContextHandler {
     }
 
     public void init(){
-        setContext(fetchFirstContext());
+        loadFirstContext();
     }
 
     public Context getContext(){
@@ -47,24 +47,9 @@ public class ClientContextHandler {
 
     public void setContext(Context newContext){
 
-        if (newContext == null && context == null) {
-            client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
-            LOGGER.error("Could not locate first context");
-            client.disconnect();
-            return;
-        }else if(newContext == null){
-            client.sendText("The area you are trying to get to doesn't seem to exist.");
-            // ToDO CM: need to reprompt at this point.
-            LOGGER.error("Tried to send to null context, keeping client in old context.");
-            return;
-        }
+        if (doesContextCheckFail(newContext)) return;
 
-        if(isMaxEntriesExceeded(newContext)){
-            client.sendTextLn(context.getMaxEntriesExceededMessage());
-            client.sendTextLn("disconnecting");
-            client.disconnect();
-            return;
-        }
+        if (doesMaxEntriesCheckFail(newContext)) return;
 
         incrementEntryCount(newContext);
 
@@ -80,9 +65,36 @@ public class ClientContextHandler {
         initializeAndExecuteCommand(context.getPromptCommand());
     }
 
+    private boolean doesMaxEntriesCheckFail(Context newContext) {
+        if(isMaxEntriesExceeded(newContext)){
+            client.sendTextLn(context.getMaxEntriesExceededMessage());
+            client.sendTextLn("disconnecting");
+            client.disconnect();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean doesContextCheckFail(Context newContext) {
+        if (newContext == null && context == null) {
+            client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
+            LOGGER.error("Could not locate first context");
+            client.disconnect();
+            return true;
+        }else if(newContext == null){
+            client.sendText("The area you are trying to get to doesn't seem to exist.");
+            // ToDO CM: need to reprompt at this point.
+            LOGGER.error("Tried to send to null context, keeping client in old context.");
+            return true;
+        }
+        return false;
+    }
+
     private void initializeAndExecuteCommand(Command command) {
-        command.setClient(client);
-        Executor.exec(command);
+        if(command != null){
+            command.setClient(client);
+            Executor.exec(command);
+        }
     }
 
     private boolean isMaxEntriesExceeded(Context newContext) {
@@ -98,26 +110,27 @@ public class ClientContextHandler {
         contextEntryCounts.put(context, entryCount == null ? 1 : entryCount + 1);
     }
 
-    public Context fetchFirstContext() {
+    public void loadFirstContext() {
         List<Context> contexts;
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
         detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));
         contexts = (List<Context>) HibernateUtil.fetch(detachedCriteria);
+
         if (contexts != null && !contexts.isEmpty()) {
-            return contexts.get(0);
+            setContext(contexts.get(0));
         } else {
-            return null;
+            setContext(null);
         }
     }
 
-    public Context getFirstChildContext() {
+    public void loadFirstChildContext() {
         ContextGroup childContextGroup = context.getChildGroup();
         List<Context> childContexts = new ArrayList<Context>(childContextGroup.getChildContexts());
         if (!childContexts.isEmpty()) {
-            return childContexts.get(0);
+            setContext(childContexts.get(0));
+        }else{
+            setContext(null);
         }
-
-        return null;
     }
 
     public void runCommand(String commandString){

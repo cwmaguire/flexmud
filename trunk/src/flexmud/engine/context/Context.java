@@ -34,7 +34,7 @@ public class Context {
     public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
     public static final String CHILD_GROUP_PROPERTY = "childGroup";
-    public static final String PARENT_GROUP_PROPERTY = "parentContext";
+    public static final String PARENT_GROUP_PROPERTY = "parentGroup";
     public static final String COMMAND_CLASS_NAME_ALIASES_PROPERTY = "aliasCommandClassNameMaps";
     public static final String ENTRY_MESSAGE_PROPERTY = "entryMessage";
     public static final String IS_LISTED_IN_PARENT_PROPERTY = "isListedInParent";
@@ -47,7 +47,7 @@ public class Context {
     private long id;
     private String name;
     private ContextGroup childGroup;
-    private Context parentContext;
+    private ContextGroup parentGroup;
     private Set<AliasCommandClassNameMap> aliasCommandClassNameMaps = new HashSet<AliasCommandClassNameMap>();
     private String entryMessage;
     private boolean isListedInParent;
@@ -203,12 +203,12 @@ public class Context {
 
     @ManyToOne
     @JoinColumn(name = "parent_group_id", nullable = true)
-    public Context getParentContext() {
-        return parentContext;
+    public ContextGroup getParentGroup() {
+        return parentGroup;
     }
 
-    public void setParentContext(Context parentContext) {
-        this.parentContext = parentContext;
+    public void setParentGroup(ContextGroup parentGroup) {
+        this.parentGroup = parentGroup;
     }
 
 
@@ -229,6 +229,10 @@ public class Context {
 
     @Transient
     public Command getEntryCommand() {
+        if(entryCommandClass == null){
+            return null;
+        }
+
         try{
             return (Command) entryCommandClass.newInstance();
         }catch(Exception e){
@@ -240,10 +244,14 @@ public class Context {
 
     @Transient
     public Command getPromptCommand() {
+        if (promptCommandClass == null) {
+            return null;
+        }
+
         try {
             return (Command) promptCommandClass.newInstance();
         } catch (Exception e) {
-            LOGGER.error("Could not instantiate instance of entry command " + entryCommandClass.getName() + " for context " + name, e);
+            LOGGER.error("Could not instantiate instance of entry command " + promptCommandClass.getName() + " for context " + name, e);
         }
 
         return null;

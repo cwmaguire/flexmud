@@ -462,10 +462,11 @@
     </library>
     <library name="Log4j">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/lib/log4j/log4j-1.2.15.jar!/" />
+        <root url="file://$PROJECT_DIR$/lib/log4j" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/log4j" recursive="false" />
     </library>
     <library name="Hibernate">
       <CLASSES>

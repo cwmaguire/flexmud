@@ -77,7 +77,7 @@ public class TestPersisteContext {
         DetachedCriteria criteria = DetachedCriteria.forClass(ContextGroup.class);
         contextGroups = (List<ContextGroup>) HibernateUtil.fetch(criteria);
         Assert.assertNotNull("List of Contexts should not be null", contextGroups);
-        context = contextGroups.get(0).getParentContext();
+        context = contextGroups.get(0).getContext();
         Assert.assertNotNull("Context group parent context should not be null", context);
     }
 
