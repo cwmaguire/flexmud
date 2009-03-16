@@ -10,16 +10,73 @@
              IS_CHARACTER_PROMPTABLE="0"
              IS_LISTED_IN_PARENT="0"
              MAX_ENTRIES="0"/>
-    
+
     <CONTEXT CONTEXT_ID="1"
              NAME="login"
              PARENT_GROUP_ID="0"
              CHILD_GROUP_ID="1"
-             IS_CHARACTER_PROMPTABLE="0"
+             IS_CHARACTER_PROMPTABLE="1"
+             IS_LISTED_IN_PARENT="0"
+             MAX_ENTRIES="3"/>
+
+    <CONTEXT CONTEXT_ID="2"
+             NAME="password"
+             PARENT_GROUP_ID="1"
+             CHILD_GROUP_ID="2"
+             IS_CHARACTER_PROMPTABLE="1"
+             IS_LISTED_IN_PARENT="0"
+             MAX_ENTRIES="3"/>
+
+    <CONTEXT CONTEXT_ID="3"
+             NAME="main menu"
+             PARENT_GROUP_ID="2"
+             CHILD_GROUP_ID="3"
+             IS_CHARACTER_PROMPTABLE="1"
+             IS_LISTED_IN_PARENT="0"
+             MAX_ENTRIES="0"/>
+
+    <CONTEXT CONTEXT_ID="4"
+             NAME="Character Management"
+             PARENT_GROUP_ID="3"
+             CHILD_GROUP_ID="4"
+             IS_CHARACTER_PROMPTABLE="1"
+             IS_LISTED_IN_PARENT="1"
+             MAX_ENTRIES="0"/>
+
+    <CONTEXT CONTEXT_ID="5"
+             NAME="Game"
+             PARENT_GROUP_ID="3"
+             CHILD_GROUP_ID="5"
+             IS_CHARACTER_PROMPTABLE="1"
+             IS_LISTED_IN_PARENT="1"
+             MAX_ENTRIES="0"/>
+
+    <CONTEXT CONTEXT_ID="6"
+             NAME="Create Character"
+             PARENT_GROUP_ID="4"
+             CHILD_GROUP_ID="6"
+             IS_CHARACTER_PROMPTABLE="1"
+             IS_LISTED_IN_PARENT="1"
+             MAX_ENTRIES="0"/>
+
+    <CONTEXT CONTEXT_ID="7"
+             NAME="Edit Character"
+             PARENT_GROUP_ID="4"
+             CHILD_GROUP_ID="7"
+             IS_CHARACTER_PROMPTABLE="1"
+             IS_LISTED_IN_PARENT="1"
+             MAX_ENTRIES="0"/>
+
+    <CONTEXT CONTEXT_ID="8"
+             NAME="Delete Character"
+             PARENT_GROUP_ID="4"
+             CHILD_GROUP_ID="8"
+             IS_CHARACTER_PROMPTABLE="1"
              IS_LISTED_IN_PARENT="1"
              MAX_ENTRIES="0"/>
 
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0" CONTEXT_ID="0" COMMAND_CLASS="WecomeMsgCmd"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1" CONTEXT_ID="1" COMMAND_CLASS="LoginPromptCommand"/>
+
+    <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="0" ALIAS=""
 
 </dataset>

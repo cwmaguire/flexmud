@@ -16,11 +16,25 @@
  **************************************************************************************************/
 package flexmud.engine.cmd;
 
-public class LoginPromptCommand extends Command{
+import flexmud.net.Client;
+import flexmud.cfg.Preferences;
+
+public class PromptCommand extends Command{
     @Override
     public void run() {
+        String prompt;
+
         if(client != null){
-            client.sendText("login: ");
+            prompt = getContextGenericPrompt(client);
+            client.sendText(client.getContext().getPrompt());
         }
+    }
+
+    private String getContextGenericPrompt(Client client){
+        String prompt = client.getContext().getPrompt();
+        if(prompt == null){
+            prompt = Preferences.getPreference(Preferences.GENERIC_PROMPT);
+        }
+        return prompt;
     }
 }

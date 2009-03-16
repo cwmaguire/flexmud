@@ -30,8 +30,8 @@ import java.util.List;
 public class LoggingTest {
     private static Logger LOGGER = Logger.getLogger(LoggingTest.class);
     private static final String TEST_LOG_MESSAGE = "Test Log Message";
-    private static final String TEST_LOG_FILE_NAME = "testLog4j.flexmud.log";
-    private static final String DEFAULT_LOG_FILE_NAME = "flexmud.log";
+    private static final String TEST_LOG_FILE_NAME = "log/testLog4j.flexmud.log";
+    private static final String DEFAULT_LOG_FILE_NAME = "log/flexmud.log";
 
     @Before
     public void setup() {

@@ -3,20 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flexmud.iws" afterPath="$PROJECT_DIR$/flexmud.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/engine/context/ContextGroup.java" afterPath="$PROJECT_DIR$/src/flexmud/engine/context/ContextGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/db/TestPersisteContext.java" afterPath="$PROJECT_DIR$/test/flexmud/db/TestPersisteContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/net/ClientListener.java" afterPath="$PROJECT_DIR$/src/flexmud/net/ClientListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log4j-test.lcf" afterPath="$PROJECT_DIR$/log4j-test.lcf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log4j.lcf" afterPath="$PROJECT_DIR$/log4j.lcf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/net/FakeClientListener.java" afterPath="$PROJECT_DIR$/test/flexmud/net/FakeClientListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/log/LoggingTest.java" afterPath="$PROJECT_DIR$/test/flexmud/log/LoggingTest.java" />
-      <change type="DELETED" beforePath="D:\dev\flexmud\testLog4j.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/base.xml" afterPath="$PROJECT_DIR$/database/base.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/cfg/Preferences.java" afterPath="$PROJECT_DIR$/src/flexmud/cfg/Preferences.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/net/Client.java" afterPath="$PROJECT_DIR$/src/flexmud/net/Client.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/engine/context/Context.java" afterPath="$PROJECT_DIR$/src/flexmud/engine/context/Context.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java" afterPath="$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java" afterPath="$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flexmud.ipr" afterPath="$PROJECT_DIR$/flexmud.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/engine/cmd/WelcomeMsgCmd.java" afterPath="$PROJECT_DIR$/src/flexmud/engine/cmd/WelcomeMsgCmd.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log4j-test.lcf" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/flexmud.log" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/flexmud/net/FakeClient.java" />
+      <change type="MOVED" beforePath="D:\dev\flexmud\src\flexmud\engine\cmd\LoginPromptCommand.java" afterPath="$PROJECT_DIR$/src/flexmud/engine/cmd/PromptCommand.java" />
     </list>
     <ignored path="flexmud.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,66 +69,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="log4j-test.lcf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/log4j-test.lcf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientContextHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="0" selection-start="3037" selection-end="3037" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContextGroup.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ContextGroup.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="5" selection-start="2238" selection-end="2238" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WelcomeMsgCmd.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/WelcomeMsgCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="53" selection-start="2034" selection-end="2034" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Client.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/net/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="56" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.21643518">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FakeRemoteClient.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/flexmud/util/FakeRemoteClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="38" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TestClientContextHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="62" selection-start="1389" selection-end="1389" vertical-scroll-proportion="0.0">
+            <state line="15" column="13" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,25 +81,81 @@
       <file leaf-file-name="base.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/base.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="4" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
+            <state line="77" column="89" selection-start="2357" selection-end="2357" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Character.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/character/Character.java">
+      <file leaf-file-name="ClientContextHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0">
+            <state line="70" column="41" selection-start="3323" selection-end="3323" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Context.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PromptCommand.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/PromptCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="22" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AliasCommandClassNameMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/AliasCommandClassNameMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="13" selection-start="1856" selection-end="1856" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Command.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/Command.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="29" selection-start="1944" selection-end="1944" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/net/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="13" selection-start="1959" selection-end="1959" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Context.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/Context.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="6" selection-start="1954" selection-end="1960" vertical-scroll-proportion="0.0">
+            <state line="54" column="42" selection-start="3356" selection-end="3399" vertical-scroll-proportion="0.48056537">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Preferences.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/cfg/Preferences.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="4" selection-start="1991" selection-end="1991" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RemoteClientReadWriteTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/flexmud/net/RemoteClientReadWriteTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="13" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -695,6 +694,24 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
+          <option name="myItemId" value="log" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
           <option name="myItemId" value="db" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
@@ -1002,109 +1019,116 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/flexmud/db/TestPersistObject.java">
+    <entry file="file://$PROJECT_DIR$/log4j-test.lcf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="5" selection-start="972" selection-end="1098" vertical-scroll-proportion="0.0">
+        <state line="24" column="66" selection-start="962" selection-end="962" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/log4j/log4j.jar!/org/apache/log4j/Logger.class">
+    <entry file="file://$PROJECT_DIR$/test/flexmud/log/LoggingTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="42" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/log/LoggingUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/cfg/Preferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="36" selection-start="1892" selection-end="1892" vertical-scroll-proportion="0.0">
+        <state line="32" column="58" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/flexmud/net/ClientListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="0" selection-start="6088" selection-end="6088" vertical-scroll-proportion="0.0">
+        <state line="272" column="22" selection-start="10875" selection-end="10875" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/util/FakeRemoteClient.java">
+    <entry file="file://$PROJECT_DIR$/test/flexmud/net/ClientListenerStartStopTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="38" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0">
+        <state line="48" column="27" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log4j-test.lcf">
+    <entry file="file://$PROJECT_DIR$/test/flexmud/net/FakeClientListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
+        <state line="32" column="31" selection-start="1132" selection-end="1132" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/character/Character.java">
+    <entry file="file://$PROJECT_DIR$/test/flexmud/net/ClientListenerConnectionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0">
+        <state line="27" column="13" selection-start="917" selection-end="917" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/base.xml">
+    <entry file="file://$PROJECT_DIR$/test/flexmud/net/RemoteClientReadWriteTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="4" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/WelcomeMsgCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="53" selection-start="2034" selection-end="2034" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="6" selection-start="1954" selection-end="1960" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ContextGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="2238" selection-end="2238" vertical-scroll-proportion="0.0">
+        <state line="30" column="13" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="62" selection-start="1389" selection-end="1389" vertical-scroll-proportion="0.0">
+        <state line="15" column="13" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/AliasCommandClassNameMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="3037" selection-end="3037" vertical-scroll-proportion="0.0">
+        <state line="27" column="13" selection-start="1856" selection-end="1856" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="29" selection-start="1944" selection-end="1944" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/PromptCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="22" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/flexmud/cfg/Preferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="4" selection-start="1991" selection-end="1991" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/base.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="89" selection-start="2357" selection-end="2357" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/flexmud/net/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="56" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.21643518">
+        <state line="29" column="13" selection-start="1959" selection-end="1959" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="41" selection-start="3323" selection-end="3323" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/Context.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="42" selection-start="3356" selection-end="3399" vertical-scroll-proportion="0.48056537">
           <folding />
         </state>
       </provider>

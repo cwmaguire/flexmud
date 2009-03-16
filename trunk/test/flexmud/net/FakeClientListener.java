@@ -30,8 +30,8 @@ public class FakeClientListener extends ClientListener {
     private boolean shouldInterceptRead;
 
 
-    public FakeClientListener() throws IOException {
-        this(false);
+    public FakeClientListener(){
+        super();
     }
 
     public FakeClientListener(boolean shouldInterceptRead) throws IOException{
@@ -44,6 +44,7 @@ public class FakeClientListener extends ClientListener {
             try{
                 readFromSocketChannel((SocketChannel) key.channel());
             }catch(IOException e){
+                LOGGER.error("Error reading from socket channel", e);
             }
         }else{
             super.read(key);
