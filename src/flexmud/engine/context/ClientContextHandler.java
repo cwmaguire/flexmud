@@ -18,6 +18,7 @@ package flexmud.engine.context;
 
 import flexmud.db.HibernateUtil;
 import flexmud.engine.cmd.Command;
+import flexmud.engine.cmd.PromptCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
 import org.apache.log4j.Logger;
@@ -62,7 +63,17 @@ public class ClientContextHandler {
            ToDo     is processed out of order it gets put back in the queue
         */
         initializeAndExecuteCommand(context.getEntryCommand());
-        initializeAndExecuteCommand(context.getPromptCommand());
+        if(context.isCharacterPromptable()){
+            initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
+        }
+    }
+
+    private Command getSpecificOrGenericPromptCommand(){
+        Command promptCommand = context.getPromptCommand();
+        if(promptCommand == null){
+            promptCommand = new PromptCommand();
+        }
+        return promptCommand;
     }
 
     private boolean doesMaxEntriesCheckFail(Context newContext) {
@@ -101,7 +112,7 @@ public class ClientContextHandler {
         Integer contextCount;
         contextCount = contextEntryCounts.get(newContext);
 
-        return contextCount != null && context.getMaxEntries() >= 0 && contextCount == context.getMaxEntries();
+        return contextCount != null && context.getMaxEntries() > 0 && contextCount >= context.getMaxEntries();
 
     }
 

@@ -14,27 +14,23 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.cfg;
 
-import java.util.HashMap;
-import java.util.Map;
+package flexmud.net;
 
-public class Preferences {
-    public static final String LOG4J_CONFIG_FILE = "log4j config file";
-    public static final String LOG4J_TEST_CONFIG_FILE = "log4j test config file";
-    public static final String WELCOME_MESSAGE = "welcome message";
-    public static final String GENERIC_PROMPT = "generic prompt";
-    
-    private static Map<String, String> preferences = new HashMap<String, String>();
+import java.nio.channels.SocketChannel;
 
-    static {
-        preferences.put(LOG4J_CONFIG_FILE, "log4j.lcf");
-        preferences.put(LOG4J_TEST_CONFIG_FILE, "log4j-test.lcf");
-        preferences.put(WELCOME_MESSAGE, "welcome to flexmud\n.\n.\n.");
-        preferences.put(GENERIC_PROMPT, "flexmud>");
+public class FakeClient extends Client{
+    private boolean isConnected = true;
+
+    public FakeClient(ClientListener clientListener, SocketChannel socketChannel){
+        super(clientListener, socketChannel);
     }
 
-    public static String getPreference(String preferenceName) {
-        return preferences.get(preferenceName);
+    public void disconnect(){
+        isConnected = false;
+    }
+
+    public boolean isConnected(){
+        return isConnected;
     }
 }

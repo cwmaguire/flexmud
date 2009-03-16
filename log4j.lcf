@@ -1,7 +1,39 @@
-log4j.rootLogger=DEBUG, rollingFileAppender
-log4j.appender.rollingFileAppender=org.apache.log4j.RollingFileAppender
-log4j.appender.rollingFileAppender.File=flexmud.log
-log4j.appender.rollingFileAppender.MaxFileSize=100KB
-log4j.appender.rollingFileAppender.MaxBackupIndex=1
-log4j.appender.rollingFileAppender.layout=org.apache.log4j.PatternLayout
-log4j.appender.rollingFileAppender.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+log4j.rootLogger = ERROR, errorsLog
+
+# Hibernate logs
+log4j.logger.org.hibernate = DEBUG, hibernateLog
+log4j.additivity.org.hibernate = false
+
+# flexmud logs
+log4j.logger.com.mycompany = DEBUG, mycompanyLog
+log4j.additivity.com.mycompany = false
+
+# hibernate appender
+log4j.appender.hibernateLog = org.apache.log4j.RollingFileAppender
+log4j.appender.hibernateLog.File = log/hibernate.log
+# Set the maximum log file size (use KB, MB or GB)
+log4j.appender.hibernateLog.MaxFileSize = 4MB
+# Set the number of log files (0 means no backup files at all)
+log4j.appender.hibernateLog.MaxBackupIndex = 3
+# Append to the end of the file or overwrites the file at start.
+log4j.appender.hibernateLog.Append = false
+log4j.appender.hibernateLog.layout = org.apache.log4j.PatternLayout
+log4j.appender.hibernateLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n
+
+
+# flexmud appender
+log4j.appender.mycompanyLog = org.apache.log4j.RollingFileAppender
+log4j.appender.mycompanyLog.File = log/flexmud.log
+log4j.appender.mycompanyLog.MaxFileSize = 4MB
+log4j.appender.mycompanyLog.MaxBackupIndex = 3
+log4j.appender.mycompanyLog.layout = org.apache.log4j.PatternLayout
+log4j.appender.mycompanyLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n
+
+
+# errors appender
+log4j.appender.errorsLog = org.apache.log4j.RollingFileAppender
+log4j.appender.errorsLog.File = logs/errorsLogFile.txt
+log4j.appender.errorsLog.MaxFileSize = 4096KB
+log4j.appender.errorsLog.MaxBackupIndex = 1
+log4j.appender.errorsLog.layout = org.apache.log4j.PatternLayout
+log4j.appender.errorsLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n 

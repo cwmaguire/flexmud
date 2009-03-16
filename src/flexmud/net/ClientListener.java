@@ -39,6 +39,8 @@ public class ClientListener implements Runnable{
     private final Map<SocketChannel, List<ByteBuffer>> socketChannelByteBuffers = new HashMap<SocketChannel, List<ByteBuffer>>();
     protected final Map<SocketChannel, Client> socketChannelConnections = new HashMap<SocketChannel, Client>();
 
+    public ClientListener(){}
+
     public ClientListener(int port) throws IOException {
         this(InetAddress.getLocalHost(), port);
     }
@@ -50,7 +52,7 @@ public class ClientListener implements Runnable{
 
         bindServerChannelToAddress(hostAddress, port, serverChannel);
 
-        LOGGER.info("ConnectionManager is configured to listen at: " + hostAddress.getCanonicalHostName() + " on port: " + port);
+        LOGGER.info("ClientListener is configured to listen at: " + hostAddress.getCanonicalHostName() + " on port: " + port);
 
         registerToAcceptConnections(serverChannel);
     }

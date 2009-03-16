@@ -43,6 +43,7 @@ public class Context {
     public static final String MAX_ENTRIES_EXCEEDED_MESSAGE_PROPERTY = "maxEntriesExceededMessage";
     public static final String ENTRY_COMMAND_CLASS_NAME_PROPERTY = "entryCommandClassName";
     public static final String PROMPT_COMMAND_CLASS_NAME_PROPERTY = "promptCommandClassName";
+    public static final String PROMPT_PROPERTY = "prompt";
 
     private long id;
     private String name;
@@ -56,6 +57,7 @@ public class Context {
     private String maxEntriesExceededMessage = "";
     private String entryCommandClassName;
     private String promptCommandClassName;
+    private String prompt;
 
     private Class entryCommandClass;
     private Class promptCommandClass;
@@ -188,6 +190,16 @@ public class Context {
 
     public void setMaxEntriesExceededMessage(String maxEntriesExceededMessage) {
         this.maxEntriesExceededMessage = maxEntriesExceededMessage;
+    }
+
+    // allows the user to have a generic prompt instead of a specific prompt command
+    @Column(name = "prompt")
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
     }
 
     @OneToOne(targetEntity = ContextGroup.class, cascade = CascadeType.ALL, optional = true)
