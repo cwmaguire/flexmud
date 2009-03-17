@@ -32,7 +32,7 @@ log4j.appender.mycompanyLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:
 
 # errors appender
 log4j.appender.errorsLog = org.apache.log4j.RollingFileAppender
-log4j.appender.errorsLog.File = logs/errorsLogFile.txt
+log4j.appender.errorsLog.File = log/error.log
 log4j.appender.errorsLog.MaxFileSize = 4096KB
 log4j.appender.errorsLog.MaxBackupIndex = 1
 log4j.appender.errorsLog.layout = org.apache.log4j.PatternLayout

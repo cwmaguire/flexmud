@@ -63,14 +63,12 @@ public class ClientContextHandler {
            ToDo     is processed out of order it gets put back in the queue
         */
         initializeAndExecuteCommand(context.getEntryCommand());
-        if(context.isCharacterPromptable()){
-            initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
-        }
+        initializeAndExecuteCommand(getSpecificOrGenericPromptCommandOrNull());
     }
 
-    private Command getSpecificOrGenericPromptCommand(){
+    private Command getSpecificOrGenericPromptCommandOrNull(){
         Command promptCommand = context.getPromptCommand();
-        if(promptCommand == null){
+        if(promptCommand == null && context.getPrompt() != null){
             promptCommand = new PromptCommand();
         }
         return promptCommand;
