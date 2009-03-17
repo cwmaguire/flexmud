@@ -14,66 +14,71 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.cmd;
 
-import flexmud.engine.context.Context;
-import org.hibernate.annotations.CollectionOfElements;
+package flexmud.engine.context;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "context_command")
-public class AliasCommandClassNameMap {
+@Table(name = "context_command_alias")
+public class ContextCommandAlias {
     public static final String ID_PROPERTY = "id";
-    public static final String CONTEXT_PROPERTY = "context";
-    public static final String ALIASES_PROPERTY = "aliases";
-    public static final String COMMAND_CLASS_NAME_PROPERTY = "commandClassName";
+    public static final String CONTEXT_COMMAND_PROPERTY = "contextCommand";
+    public static final String ALIAS_PROPERTY = "alias";
+    public static final String IS_BULLET_PROPTERY = "isBullet";
+    public static final String IS_ACCELERATOR_PROPERTY = "isAccelerator";
 
-    private long id;
-    private Set<String> aliases = new HashSet<String>();
-    private String commandClassName;
-    private Context context;
+    private int id;
+    private ContextCommand contextCommand;
+    private String alias;
+    private boolean isBullet;
+    private boolean isAccelerator;
 
     @Id
     @GeneratedValue
-    @Column(name = "context_command_id")
-    public long getId() {
+    @Column(name = "context_command_alias_id")
+    public int getId() {
         return id;
     }
 
-    private void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @CollectionOfElements(fetch = FetchType.EAGER)
-    @Column(name = "alias")
-    @JoinTable(name = "context_command_alias", joinColumns= {@JoinColumn(name = "context_command_id")})
-    public Set<String> getAliases() {
-        return aliases;
+    @Column(name = "alias", nullable = false)
+    public String getAlias() {
+        return alias;
     }
 
-    public void setAliases(Set<String> aliases) {
-        this.aliases = aliases;
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
-    @Column(name = "command_class", nullable = false)
-    public String getCommandClassName() {
-        return commandClassName;
+    @Column(name = "is_bullet", nullable = false)
+    public boolean isBullet() {
+        return isBullet;
     }
 
-    public void setCommandClassName(String commandClassName) {
-        this.commandClassName = commandClassName;
+    public void setBullet(boolean bullet) {
+        isBullet = bullet;
+    }
+
+    @Column(name = "is_accelerator", nullable = false)
+    public boolean isAccelerator() {
+        return isAccelerator;
+    }
+
+    public void setAccelerator(boolean accelerator) {
+        isAccelerator = accelerator;
     }
 
     @ManyToOne
-    @JoinColumn(name = "context_id", nullable = false)
-    public Context getContext() {
-        return context;
+    @JoinColumn(name = "context_command_id", nullable = false)
+    public ContextCommand getContextCommand() {
+        return contextCommand;
     }
 
-    public void setContext(Context context) {
-        this.context = context;
+    public void setContextCommand(ContextCommand contextCommand) {
+        this.contextCommand = contextCommand;
     }
 }

@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class TestPersisteContext {
+public class TestPersistContext {
     private static final String CONTEXT_NAME = "ctxt1";
 
     @Before
