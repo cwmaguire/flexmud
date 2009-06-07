@@ -57,6 +57,7 @@ public class ClientListenerStartStopTest {
 
         if (clientListener != null) {
             clientListener.stop();
+            Util.pause(Util.CLIENT_SHUTDOWN_WAIT_TIME);
         }
 
         Assert.assertNotNull("ClientListener should not be null", clientListener);

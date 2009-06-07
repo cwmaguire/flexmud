@@ -34,19 +34,19 @@ public class ClientContextHandler {
     private Client client;
     private Map<Context, Integer> contextEntryCounts = new HashMap<Context, Integer>();
 
-    public ClientContextHandler(Client client){
+    public ClientContextHandler(Client client) {
         this.client = client;
     }
 
-    public void init(){
+    public void init() {
         loadFirstContext();
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return context;
     }
 
-    public void setContext(Context newContext){
+    public void setContext(Context newContext) {
 
         if (doesContextCheckFail(newContext)) return;
 
@@ -62,20 +62,35 @@ public class ClientContextHandler {
            ToDo     We could also put in some sort of dependency check where if a command
            ToDo     is processed out of order it gets put back in the queue
         */
-        initializeAndExecuteCommand(context.getEntryCommand());
-        initializeAndExecuteCommand(getSpecificOrGenericPromptCommandOrNull());
+        initializeAndExecuteCommand(getFlaggedCommandOrNull(ContextCommandFlag.ENTRY));
+        initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
     }
 
-    private Command getSpecificOrGenericPromptCommandOrNull(){
-        Command promptCommand = context.getPromptCommand();
-        if(promptCommand == null && context.getPrompt() != null){
+    private Command getSpecificOrGenericPromptCommand() {
+        Command promptCommand = getFlaggedCommandOrNull(ContextCommandFlag.PROMPT);
+
+        if (promptCommand == null && context.getPrompt() != null) {
             promptCommand = new PromptCommand();
         }
         return promptCommand;
     }
 
+    private Command getFlaggedCommandOrNull(ContextCommandFlag flag) {
+        Command command = null;
+        Class commandClass = context.getFlaggedCommandClass(flag);
+        if (commandClass != null) {
+            try {
+                command = (Command) commandClass.newInstance();
+            } catch (Exception e) {
+                LOGGER.error("Could not instantiate flagged command [" + commandClass.getName() + "] for context [" +
+                        context.getName() + "] and flag [" + flag.name() + "]", e);
+            }
+        }
+        return command;
+    }
+
     private boolean doesMaxEntriesCheckFail(Context newContext) {
-        if(isMaxEntriesExceeded(newContext)){
+        if (isMaxEntriesExceeded(newContext)) {
             client.sendTextLn(context.getMaxEntriesExceededMessage());
             client.sendTextLn("disconnecting");
             client.disconnect();
@@ -86,12 +101,16 @@ public class ClientContextHandler {
 
     private boolean doesContextCheckFail(Context newContext) {
         if (newContext == null && context == null) {
-            client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
+            if(client != null){
+                client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
+                client.disconnect();
+            }
             LOGGER.error("Could not locate first context");
-            client.disconnect();
             return true;
-        }else if(newContext == null){
-            client.sendText("The area you are trying to get to doesn't seem to exist.");
+        } else if (newContext == null) {
+            if(client != null){
+                client.sendText("The area you are trying to get to doesn't seem to exist.");
+            }
             // ToDO CM: need to reprompt at this point.
             LOGGER.error("Tried to send to null context, keeping client in old context.");
             return true;
@@ -100,7 +119,7 @@ public class ClientContextHandler {
     }
 
     private void initializeAndExecuteCommand(Command command) {
-        if(command != null){
+        if (command != null) {
             command.setClient(client);
             Executor.exec(command);
         }
@@ -114,7 +133,7 @@ public class ClientContextHandler {
 
     }
 
-    private void incrementEntryCount(Context context){
+    private void incrementEntryCount(Context context) {
         Integer entryCount = contextEntryCounts.get(context);
         contextEntryCounts.put(context, entryCount == null ? 1 : entryCount + 1);
     }
@@ -137,47 +156,44 @@ public class ClientContextHandler {
         List<Context> childContexts = new ArrayList<Context>(childContextGroup.getChildContexts());
         if (!childContexts.isEmpty()) {
             setContext(childContexts.get(0));
-        }else{
+        } else {
             setContext(null);
         }
     }
 
-    public void runCommand(String commandString){
+    public void runCommand(String commandString) {
         StringTokenizer stringTokenizer;
-        String[] tokens;
-        String commandAlias;
-        String arguments;
         Class commandClass;
         Command command;
 
-        if(commandString == null || commandString.trim().isEmpty()){
-            initializeAndExecuteCommand(context.getPromptCommand());
+        if (commandString == null || commandString.trim().isEmpty()) {
+            initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
             return;
         }
 
         stringTokenizer = new StringTokenizer(commandString);
 
         commandClass = context.getCommandClassForAlias(getNextWord(stringTokenizer));
-        try{
+        try {
             command = (Command) commandClass.newInstance();
-        }catch(Exception e){
+        } catch (Exception e) {
             LOGGER.error("Could not instantiate Command for class " + commandClass.getName(), e);
             client.sendTextLn("An error occurred trying to run \'" + commandString + "\"");
-            initializeAndExecuteCommand(context.getPromptCommand());
+            initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
             return;
         }
         command.setCommandArguments(getRemainingWords(stringTokenizer));
     }
 
-    private String getNextWord(StringTokenizer stringTokenizer){
-        if(stringTokenizer.hasMoreElements()){
+    private String getNextWord(StringTokenizer stringTokenizer) {
+        if (stringTokenizer.hasMoreElements()) {
             return stringTokenizer.nextToken();
-        }else{
+        } else {
             return "";
         }
     }
 
-    private List<String> getRemainingWords(StringTokenizer stringTokenizer){
+    private List<String> getRemainingWords(StringTokenizer stringTokenizer) {
         List<String> words = new ArrayList<String>();
         while (stringTokenizer.hasMoreElements()) {
             words.add(stringTokenizer.nextToken());

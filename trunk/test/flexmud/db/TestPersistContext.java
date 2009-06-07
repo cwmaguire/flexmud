@@ -56,7 +56,7 @@ public class TestPersistContext {
         DetachedCriteria criteria = DetachedCriteria.forClass(Context.class);
         contexts = (List<Context>) HibernateUtil.fetch(criteria);
         Assert.assertNotNull("List of Contexts should not be null", contexts);
-        Assert.assertEquals("Database should only contain one context", 1, contexts.size());
+        Assert.assertEquals("Database should only contain one context:", 1, contexts.size());
     }
 
     @Test

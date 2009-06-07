@@ -65,6 +65,7 @@ public class LoggingTest {
 
         List<String> logFileLines = new ArrayList<String>();
         LOGGER.info(TEST_LOG_MESSAGE);
+        System.out.println("Logger info is " + (LOGGER.isInfoEnabled() ? "" : "not") + " enabled");
 
         try {
             logFileLines = readLogFileByLines(DEFAULT_LOG_FILE_NAME);
@@ -74,13 +75,13 @@ public class LoggingTest {
 
         Assert.assertNotNull("Failed to read flexmud.log file", logFileLines);
         Assert.assertEquals( "Incorrect number of flexmud.log file lines read", 1, logFileLines.size());
-        Assert.assertTrue( "Expected text not found; expected " + TEST_LOG_MESSAGE, logFileLines.get(0).contains(TEST_LOG_MESSAGE));
+        Assert.assertTrue( "Expected text not found, ", logFileLines.get(0).contains(TEST_LOG_MESSAGE));
     }
 
     @Test
     public void testFileConfigurationLogging() {
         LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging(Preferences.getPreference("log4j test config file"));
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
 
         List<String> logFileLines = new ArrayList<String>();
         LOGGER.info(TEST_LOG_MESSAGE);
@@ -92,7 +93,7 @@ public class LoggingTest {
         }
 
         Assert.assertNotNull("Failed to read flexmud.log file", logFileLines);
-        Assert.assertEquals( "Incorrect number of flexmud.log file lines read; expected 1, read " + logFileLines.size(), 1, logFileLines.size());
+        Assert.assertEquals( "Incorrect number of flexmud.log file lines read", 1, logFileLines.size());
         Assert.assertTrue( "Expected text not found; expected " + TEST_LOG_MESSAGE, logFileLines.get(0).contains(TEST_LOG_MESSAGE));
     }
 

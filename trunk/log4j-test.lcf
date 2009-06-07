@@ -5,7 +5,7 @@ log4j.logger.org.hibernate = DEBUG, hibernateLog
 log4j.additivity.org.hibernate = false
 
 # flexmud logs
-log4j.logger.com.mycompany = DEBUG, mycompanyLog
+log4j.logger.flexmud = DEBUG, flexmudLog
 log4j.additivity.com.mycompany = false
 
 # hibernate appender
@@ -22,12 +22,12 @@ log4j.appender.hibernateLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:
 
 
 # flexmud appender
-log4j.appender.mycompanyLog = org.apache.log4j.RollingFileAppender
-log4j.appender.mycompanyLog.File = log/testLog4j.flexmud.log
-log4j.appender.mycompanyLog.MaxFileSize = 4MB
-log4j.appender.mycompanyLog.MaxBackupIndex = 3
-log4j.appender.mycompanyLog.layout = org.apache.log4j.PatternLayout
-log4j.appender.mycompanyLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n
+log4j.appender.flexmudLog = org.apache.log4j.RollingFileAppender
+log4j.appender.flexmudLog.File = log/testLog4j.flexmud.log
+log4j.appender.flexmudLog.MaxFileSize = 4MB
+log4j.appender.flexmudLog.MaxBackupIndex = 3
+log4j.appender.flexmudLog.layout = org.apache.log4j.PatternLayout
+log4j.appender.flexmudLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n
 
 
 # errors appender

@@ -37,9 +37,9 @@ public class LoggingUtil {
     }
 
     public static void configureLogging() {
-        File log4jConfigurationFile = new File(Preferences.getPreference("log4j config file"));
+        File log4jConfigurationFile = new File(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
         if (log4jConfigurationFile.canRead()) {
-            PropertyConfigurator.configure(Preferences.getPreference("log4j config file"));
+            PropertyConfigurator.configure(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
         } else {
             PropertyConfigurator.configure(createDefaultLoggingProperties());
         }

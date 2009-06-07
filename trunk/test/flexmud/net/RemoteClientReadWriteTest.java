@@ -29,8 +29,8 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class RemoteClientReadWriteTest {
-    private static ClientListener clientListener;
-    private static FakeRemoteClient fakeRemoteClient;
+    private ClientListener clientListener;
+    private FakeRemoteClient fakeRemoteClient;
 
     static {
         LoggingUtil.resetConfiguration();
@@ -39,12 +39,13 @@ public class RemoteClientReadWriteTest {
 
     @Before
     public void setup() {
-        clientListener = Util.getNewFakeClientListener(true);
+        int port = Util.getTestPort();
+        clientListener = Util.getNewFakeClientListener(port, true);
         clientListener.start();
 
         fakeRemoteClient = new FakeRemoteClient();
         try {
-            fakeRemoteClient.connect(Util.TEST_PORT);
+            fakeRemoteClient.connect(port);
         } catch (Exception e) {
             Assert.fail("Failed to connect client");
         }
@@ -52,6 +53,7 @@ public class RemoteClientReadWriteTest {
 
     @After
     public void tearDown(){
+        //Util.pause(1000);
         Assert.assertNotNull("FakeRemoteClient not found", fakeRemoteClient);
 
         try{
