@@ -26,6 +26,7 @@ import flexmud.util.FakeRemoteClient;
 import flexmud.util.Util;
 
 public class ClientListenerConnectionTest {
+    private int port;
     private ClientListener clientListener;
 
     static {
@@ -35,7 +36,8 @@ public class ClientListenerConnectionTest {
 
     @Before
     public void setup() {
-        clientListener = Util.getNewClientListener();
+        port = Util.getTestPort();
+        clientListener = Util.getNewClientListener(port);
         clientListener.start();
     }
 
@@ -54,7 +56,7 @@ public class ClientListenerConnectionTest {
 
         FakeRemoteClient fakeRemoteClient = new FakeRemoteClient();
         try {
-            fakeRemoteClient.connect(Util.TEST_PORT);
+            fakeRemoteClient.connect(port);
         } catch (Exception e) {
             Assert.fail("Failed to connect to client listener");
         }

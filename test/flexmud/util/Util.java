@@ -22,12 +22,16 @@ import flexmud.net.FakeClientListener;
 import java.io.IOException;
 
 public class Util {
-    public static int TEST_PORT = 54321;
+    public static int CURRENT_TEST_PORT = 54321;
     public static int CLIENT_SHUTDOWN_WAIT_TIME = 1000;
 
     public static ClientListener getNewClientListener(){
+        return getNewClientListener(getTestPort());
+    }
+
+    public static ClientListener getNewClientListener(int port) {
         try {
-            return new ClientListener(TEST_PORT);
+            return new ClientListener(port);
         } catch (IOException e) {
             return null;
         }
@@ -38,8 +42,12 @@ public class Util {
     }
 
     public static FakeClientListener getNewFakeClientListener(boolean shouldInterceptRead) {
+        return getNewFakeClientListener(Util.getTestPort(), shouldInterceptRead);
+    }
+
+    public static FakeClientListener getNewFakeClientListener(int port, boolean shouldInterceptRead) {
         try {
-            return new FakeClientListener(shouldInterceptRead);
+            return new FakeClientListener(port, shouldInterceptRead);
         } catch (IOException e) {
             return null;
         }
@@ -52,6 +60,10 @@ public class Util {
             e.printStackTrace();
         }
 
+    }
+
+    public static int getTestPort(){
+        return CURRENT_TEST_PORT++;
     }
 
 }

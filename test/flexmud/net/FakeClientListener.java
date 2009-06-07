@@ -34,8 +34,8 @@ public class FakeClientListener extends ClientListener {
         super();
     }
 
-    public FakeClientListener(boolean shouldInterceptRead) throws IOException{
-        super(Util.TEST_PORT);
+    public FakeClientListener(int port, boolean shouldInterceptRead) throws IOException{
+        super(port);
         this.shouldInterceptRead = shouldInterceptRead;
     }
 

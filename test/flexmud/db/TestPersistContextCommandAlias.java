@@ -20,6 +20,7 @@ package flexmud.db;
 import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
+import flexmud.engine.context.ContextCommandAlias;
 import flexmud.log.LoggingUtil;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
@@ -31,15 +32,16 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class TestPersistAliasCommandClassNameMap {
+public class TestPersistContextCommandAlias {
     private static final String COMMAND_CLASS_NAME = "CommandClass";
+    private Context context;
 
     @Before
     public void setup(){
         LoggingUtil.resetConfiguration();
         LoggingUtil.configureLogging();
-
     }
 
     @After
@@ -48,45 +50,60 @@ public class TestPersistAliasCommandClassNameMap {
 
     @Test
     public void testSave(){
-        Context context = new Context("a");
+        this.context = new Context("Command Alias Context");
+        Context context = this.context;
         ContextGroup contextGroup = new ContextGroup();
         context.setChildGroup(contextGroup);
         HibernateUtil.save(context);
 
-        ContextCommand aliasCommandMap = new ContextCommand();
-        aliasCommandMap.setCommandClassName(COMMAND_CLASS_NAME);
-        aliasCommandMap.setAliases(new HashSet<String>(Arrays.asList("a", "b", "c")));
-        aliasCommandMap.setContext(context);
-        HibernateUtil.save(aliasCommandMap);
-        Assert.assertNotSame("Alias command ID was not updated automatically after save", 0, aliasCommandMap.getId());
+        ContextCommand contextCommand = new ContextCommand();
+        contextCommand.setContext(context);
+        contextCommand.setCommandClassName(COMMAND_CLASS_NAME);
+        contextCommand.setDescription("Command Alias Command");
+
+        ContextCommandAlias alias1 = new ContextCommandAlias();
+        alias1.setContextCommand(contextCommand);
+        alias1.setAccelerator(true);
+        alias1.setBullet(false);
+        alias1.setAlias("T");
+
+        ContextCommandAlias alias2 = new ContextCommandAlias();
+        alias2.setContextCommand(contextCommand);
+        alias2.setAccelerator(false);
+        alias2.setBullet(true);
+        alias2.setAlias("1");
+
+        contextCommand.setAliases(new HashSet<ContextCommandAlias>(Arrays.asList(alias1, alias2)));
+
+        HibernateUtil.save(contextCommand);
+        Assert.assertNotSame("Alias command ID was not updated automatically after save", 0, contextCommand.getId());
     }
 
     @Test
     public void testFetch(){
-        // ToDo CM: fix the join so that we don't get three context_commands because of the
-        // ToDo CM: three aliases (i.e. do a distinct)
-        List<ContextCommand> aliasCommandMaps;
+        List<ContextCommand> contextCommands;
         DetachedCriteria criteria = DetachedCriteria.forClass(ContextCommand.class);
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
-        aliasCommandMaps = (List<ContextCommand>) HibernateUtil.fetch(criteria);
+        contextCommands = (List<ContextCommand>) HibernateUtil.fetch(criteria);
 
-        Assert.assertNotNull("List of AliasCommandMaps should not be null", aliasCommandMaps);
-        Assert.assertEquals("Database should only contain one AliasCommandMap", 1, aliasCommandMaps.size());
+        Assert.assertNotNull("List of context commands should not be null", contextCommands);
+        Assert.assertEquals("Database should only contain one context command", 1, contextCommands.size());
     }
 
     @Test
     public void testDelete(){
-        List<ContextCommand> aliasCommandMaps;
+        List<ContextCommand> contextCommands;
 
         DetachedCriteria criteria = DetachedCriteria.forClass(ContextCommand.class);
-        aliasCommandMaps = (List<ContextCommand>) HibernateUtil.fetch(criteria);
-        Assert.assertNotNull("List of alias command maps should not be null", aliasCommandMaps);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        contextCommands = (List<ContextCommand>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of context commands should not be null", contextCommands);
 
-        HibernateUtil.delete(aliasCommandMaps.get(0));
+        HibernateUtil.delete(contextCommands.get(0).getContext());
 
-        aliasCommandMaps = (List<ContextCommand>) HibernateUtil.fetch(criteria);
-        Assert.assertNotNull("List of alias command maps should not be null", aliasCommandMaps);
-        Assert.assertEquals("Database should contain no alias command maps", 0, aliasCommandMaps.size());
+        contextCommands = (List<ContextCommand>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of context commands should not be null", contextCommands);
+        Assert.assertEquals("Database should contain no context commands:", 0, contextCommands.size());
     }
 }

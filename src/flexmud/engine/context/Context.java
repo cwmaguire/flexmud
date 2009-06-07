@@ -75,10 +75,10 @@ public class Context {
     private void mapFlaggedCommandClasses(){
         ContextCommandFlag flag;
         if (contextCommands != null) {
-            for (ContextCommand aliasMap : contextCommands) {
-                flag = aliasMap.getContextCommandFlag();
+            for (ContextCommand contextCommand : contextCommands) {
+                flag = contextCommand.getContextCommandFlag();
                 if(flag != null){
-                    flaggedCommandClasses.put(flag, loadClass(aliasMap.getCommandClassName()));
+                    flaggedCommandClasses.put(flag, loadClass(contextCommand.getCommandClassName()));
                 }
             }
         }

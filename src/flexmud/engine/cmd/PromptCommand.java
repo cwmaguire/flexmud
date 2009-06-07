@@ -25,12 +25,12 @@ public class PromptCommand extends Command{
         String prompt;
 
         if(client != null){
-            prompt = getContextGenericPrompt(client);
-            client.sendText(client.getContext().getPrompt());
+            prompt = getContextOrGenericPrompt(client);
+            client.sendText(prompt);
         }
     }
 
-    private String getContextGenericPrompt(Client client){
+    private String getContextOrGenericPrompt(Client client){
         String prompt = client.getContext().getPrompt();
         if(prompt == null){
             prompt = Preferences.getPreference(Preferences.GENERIC_PROMPT);
