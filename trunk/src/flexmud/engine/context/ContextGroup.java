@@ -44,6 +44,7 @@ public class ContextGroup {
         this.id = id;
     }
 
+    // get any context whose child_group_id matches this group (i.e. the parent)
     @OneToOne(mappedBy = Context.CHILD_GROUP_PROPERTY)
     public Context getContext() {
         return context;
@@ -53,8 +54,9 @@ public class ContextGroup {
         this.context = context;
     }
 
+    // get any context that has a parent_group_id matching this group (i.e. the children)
     @OneToMany(mappedBy = Context.PARENT_GROUP_PROPERTY, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public Set<Context> getChildContexts() {
         return childContexts;
     }
