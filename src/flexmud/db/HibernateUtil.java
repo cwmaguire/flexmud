@@ -101,10 +101,11 @@ public class HibernateUtil {
 
         try{
             session.delete(obj);
-        }catch(Exception e){
-            LOGGER.error("Error saving object", e);
-        }finally{
             transaction.commit();
+        }catch(Exception e){
+            LOGGER.error("Error deleting object", e);
+            transaction.rollback();
+        }finally{
             session.close();
         }
     }

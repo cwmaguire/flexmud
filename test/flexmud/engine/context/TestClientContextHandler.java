@@ -11,19 +11,47 @@ import flexmud.net.FakeClientListener;
 import flexmud.util.Util;
 import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
+import flexmud.db.HibernateUtil;
 import junit.framework.Assert;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class TestClientContextHandler {
     private FakeClientListener clientListener = null;
+    private List<Object> objectsToDelete;
 
     static {
         LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging(Preferences.getPreference("log4j test config file"));
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
     }
 
     @Before
     public void setup(){
+        objectsToDelete = new ArrayList<Object>();
         clientListener = new FakeClientListener();
+
+        Context context1 = new Context("ctxt1");
+        context1.setMaxEntries(1);
+        ContextGroup contextGroup = new ContextGroup();
+        context1.setChildGroup(contextGroup);
+        HibernateUtil.save(context1);
+        objectsToDelete.add(context1);
+
+        Context context2 = new Context("ctxt2");
+        context2.setParentGroup(contextGroup);
+        HibernateUtil.save(context2);
+        objectsToDelete.add(context2);
+    }
+
+    @After
+    public void tearDown(){
+        Collections.reverse(objectsToDelete);
+        for(Object obj : objectsToDelete){
+            HibernateUtil.delete(obj);
+        }
     }
 
     @Test
@@ -50,14 +78,14 @@ public class TestClientContextHandler {
     public void testExceedingMaxContextEntriesDisconnectsClient(){
         FakeClient client = new FakeClient(clientListener, null);
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
-        Context firstChildContext;
+        Context context;
 
         clientContextHandler.loadFirstContext();
-        clientContextHandler.loadFirstChildContext();
-        firstChildContext = clientContextHandler.getContext();
-        clientContextHandler.setContext(firstChildContext);
+        context = clientContextHandler.getContext();
+        for(int i = 0; i < context.getMaxEntries(); i++){
+            clientContextHandler.setContext(context);
+        }
 
         Assert.assertFalse(client.isConnected());
-
     }
 }

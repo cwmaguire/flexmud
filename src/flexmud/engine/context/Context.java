@@ -180,6 +180,7 @@ public class Context {
         this.prompt = prompt;
     }
 
+    // maps to the context_group that holds this context's children
     @OneToOne(targetEntity = ContextGroup.class, cascade = CascadeType.ALL, optional = true)
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     @JoinColumn(name = "child_group_id")
@@ -191,6 +192,7 @@ public class Context {
         this.childGroup = childGroup;
     }
 
+    // maps to the group that holds the contexts for this context's parent and siblings
     @ManyToOne
     @JoinColumn(name = "parent_group_id", nullable = true)
     public ContextGroup getParentGroup() {
