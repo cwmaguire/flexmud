@@ -16,25 +16,23 @@
  **************************************************************************************************/
 package flexmud.cfg;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.junit.Test;
 
-public enum Preferences {
-    LOG4J_CONFIG_FILE,
-    LOG4J_TEST_CONFIG_FILE,
-    WELCOME_MESSAGE,
-    GENERIC_PROMPT;
-    
-    private static final Map<Enum, String> preferences = new HashMap<Enum, String>();
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
-    static {
-        preferences.put(LOG4J_CONFIG_FILE, "log4j.lcf");
-        preferences.put(LOG4J_TEST_CONFIG_FILE, "log4j-test.lcf");
-        preferences.put(WELCOME_MESSAGE, "welcome to flexmud\n.\n.\n.");
-        preferences.put(GENERIC_PROMPT, "flexmud>");
-    }
+import junit.framework.Assert;
 
-    public static String getPreference(Enum preferenceName) {
-        return preferences.get(preferenceName);
+public class TestConstantModifiers {
+    @Test
+    public void testAllConstantModifiers(){
+        int fieldModifiers;
+
+        for(Field field : Constants.class.getDeclaredFields()){
+            fieldModifiers = field.getModifiers();
+            Assert.assertTrue("Constant " + field.getName() + " should be final: ", Modifier.isFinal(fieldModifiers));
+            Assert.assertTrue("Constant " + field.getName() + " should be public: ", Modifier.isPublic(fieldModifiers));
+            Assert.assertTrue("Constant " + field.getName() + " should be static: ", Modifier.isStatic(fieldModifiers));
+        }
     }
 }

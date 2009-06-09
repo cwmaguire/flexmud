@@ -22,6 +22,7 @@ import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
 import flexmud.engine.context.ContextCommandAlias;
 import flexmud.log.LoggingUtil;
+import flexmud.cfg.Preferences;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;
@@ -38,14 +39,9 @@ public class TestPersistContextCommandAlias {
     private static final String COMMAND_CLASS_NAME = "CommandClass";
     private Context context;
 
-    @Before
-    public void setup(){
+    static {
         LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging();
-    }
-
-    @After
-    public void teardown(){
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
     }
 
     @Test

@@ -14,27 +14,7 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.cfg;
+package flexmud.engine.cmd;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public enum Preferences {
-    LOG4J_CONFIG_FILE,
-    LOG4J_TEST_CONFIG_FILE,
-    WELCOME_MESSAGE,
-    GENERIC_PROMPT;
-    
-    private static final Map<Enum, String> preferences = new HashMap<Enum, String>();
-
-    static {
-        preferences.put(LOG4J_CONFIG_FILE, "log4j.lcf");
-        preferences.put(LOG4J_TEST_CONFIG_FILE, "log4j-test.lcf");
-        preferences.put(WELCOME_MESSAGE, "welcome to flexmud\n.\n.\n.");
-        preferences.put(GENERIC_PROMPT, "flexmud>");
-    }
-
-    public static String getPreference(Enum preferenceName) {
-        return preferences.get(preferenceName);
-    }
+public class TestPromptCommand {
 }

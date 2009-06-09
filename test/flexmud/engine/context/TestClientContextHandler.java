@@ -9,11 +9,11 @@ import flexmud.net.FakeClientCommunicator;
 import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
 import flexmud.db.HibernateUtil;
+import flexmud.engine.cmd.EchoCmd;
+import flexmud.util.Util;
 import junit.framework.Assert;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class TestClientContextHandler {
     private FakeClientCommunicator clientCommunicator = null;
@@ -58,7 +58,7 @@ public class TestClientContextHandler {
         Context firstChildContext;
 
         clientContextHandler = new ClientContextHandler(null);
-        clientContextHandler.loadFirstContext();
+        clientContextHandler.loadAndSetFirstContext();
 
         firstContext = clientContextHandler.getContext();
 
@@ -77,12 +77,41 @@ public class TestClientContextHandler {
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
         Context context;
 
-        clientContextHandler.loadFirstContext();
+        clientContextHandler.loadAndSetFirstContext();
         context = clientContextHandler.getContext();
         for(int i = 0; i < context.getMaxEntries(); i++){
             clientContextHandler.setContext(context);
         }
 
         Assert.assertFalse(client.isConnected());
+    }
+
+    @Test
+    public void testNullContextDisconnectsClient(){
+        FakeClient client = new FakeClient(clientCommunicator, null);
+        ClientContextHandler clientContextHandler = new ClientContextHandler(client);
+
+        clientContextHandler.setContext(null);
+
+        Assert.assertFalse(client.isConnected());
+    }
+
+    @Test
+    public void testEntryCommandIsRunOnContextEntry(){
+        FakeClient client = new FakeClient(clientCommunicator, null);
+        ClientContextHandler clientContextHandler = new ClientContextHandler(client);
+        Context contextWithEntryCommand = new Context();
+        ContextCommand entryContextCommand = new ContextCommand();
+        entryContextCommand.setCommandClassName(EchoCmd.class.getName());
+        entryContextCommand.setContextCommandFlag(ContextCommandFlag.ENTRY);
+        contextWithEntryCommand.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand)));
+        contextWithEntryCommand.init();
+
+        clientContextHandler.setContext(contextWithEntryCommand);
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertTrue("Entry command did not run on context entry", EchoCmd.hasRun());
+
     }
 }

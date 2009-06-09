@@ -24,6 +24,7 @@ import java.io.IOException;
 public class Util {
     public static int CURRENT_TEST_PORT = 54321;
     public static int CLIENT_SHUTDOWN_WAIT_TIME = 1000;
+    public static int ENGINE_WAIT_TIME = 1000;
 
     public static ClientCommunicator getNewClientCommunicator(){
         return getNewClientCommunicator(getTestPort());
