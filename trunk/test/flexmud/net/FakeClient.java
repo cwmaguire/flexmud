@@ -22,8 +22,8 @@ import java.nio.channels.SocketChannel;
 public class FakeClient extends Client{
     private boolean isConnected = true;
 
-    public FakeClient(ClientListener clientListener, SocketChannel socketChannel){
-        super(clientListener, socketChannel);
+    public FakeClient(ClientCommunicator clientCommunicator, SocketChannel socketChannel){
+        super(clientCommunicator, socketChannel);
     }
 
     public void disconnect(){

@@ -25,9 +25,9 @@ import org.junit.Test;
 import flexmud.util.FakeRemoteClient;
 import flexmud.util.Util;
 
-public class ClientListenerConnectionTest {
+public class ClientCommunicatorConnectionTest {
     private int port;
-    private ClientListener clientListener;
+    private ClientCommunicator clientCommunicator;
 
     static {
         LoggingUtil.resetConfiguration();
@@ -37,28 +37,28 @@ public class ClientListenerConnectionTest {
     @Before
     public void setup() {
         port = Util.getTestPort();
-        clientListener = Util.getNewClientListener(port);
-        clientListener.start();
+        clientCommunicator = Util.getNewClientCommunicator(port);
+        clientCommunicator.start();
     }
 
     @After
     public void tearDown() {
-        if (clientListener != null) {
-            clientListener.stop();
+        if (clientCommunicator != null) {
+            clientCommunicator.stop();
         }
-        clientListener = null;
+        clientCommunicator = null;
 
         Util.pause(Util.CLIENT_SHUTDOWN_WAIT_TIME);
     }
 
     @Test
-    public void testConnectToClientListener() {
+    public void testConnectToClientCommunicator() {
 
         FakeRemoteClient fakeRemoteClient = new FakeRemoteClient();
         try {
             fakeRemoteClient.connect(port);
         } catch (Exception e) {
-            Assert.fail("Failed to connect to client listener");
+            Assert.fail("Failed to connect to client communicator");
         }
 
         Assert.assertTrue("FakeRemoteClient socket is not connected.", fakeRemoteClient.socket.isConnected());

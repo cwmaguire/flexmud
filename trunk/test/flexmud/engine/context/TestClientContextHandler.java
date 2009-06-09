@@ -4,11 +4,8 @@ package flexmud.engine.context;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
-import flexmud.net.ClientListener;
-import flexmud.net.Client;
 import flexmud.net.FakeClient;
-import flexmud.net.FakeClientListener;
-import flexmud.util.Util;
+import flexmud.net.FakeClientCommunicator;
 import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
 import flexmud.db.HibernateUtil;
@@ -16,11 +13,10 @@ import junit.framework.Assert;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class TestClientContextHandler {
-    private FakeClientListener clientListener = null;
+    private FakeClientCommunicator clientCommunicator = null;
     private List<Object> objectsToDelete;
 
     static {
@@ -31,7 +27,8 @@ public class TestClientContextHandler {
     @Before
     public void setup(){
         objectsToDelete = new ArrayList<Object>();
-        clientListener = new FakeClientListener();
+        clientCommunicator = new FakeClientCommunicator();
+        clientCommunicator.setShouldInterceptWrite(true);
 
         Context context1 = new Context("ctxt1");
         context1.setMaxEntries(1);
@@ -76,7 +73,7 @@ public class TestClientContextHandler {
 
     @Test
     public void testExceedingMaxContextEntriesDisconnectsClient(){
-        FakeClient client = new FakeClient(clientListener, null);
+        FakeClient client = new FakeClient(clientCommunicator, null);
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
         Context context;
 

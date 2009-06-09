@@ -26,8 +26,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
-public class ClientListener implements Runnable{
-    private static Logger LOGGER = Logger.getLogger(ClientListener.class);
+public class ClientCommunicator implements Runnable{
+    private static Logger LOGGER = Logger.getLogger(ClientCommunicator.class);
     private static final Object CLIENT_READ_LOCK = new Object();
 
     private boolean isRunning = true;
@@ -39,20 +39,20 @@ public class ClientListener implements Runnable{
     private final Map<SocketChannel, List<ByteBuffer>> socketChannelByteBuffers = new HashMap<SocketChannel, List<ByteBuffer>>();
     protected final Map<SocketChannel, Client> socketChannelConnections = new HashMap<SocketChannel, Client>();
 
-    public ClientListener(){}
+    public ClientCommunicator(){}
 
-    public ClientListener(int port) throws IOException {
+    public ClientCommunicator(int port) throws IOException {
         this(InetAddress.getLocalHost(), port);
     }
 
-    public ClientListener(InetAddress hostAddress, int port) throws IOException {
+    public ClientCommunicator(InetAddress hostAddress, int port) throws IOException {
         this.selector = SelectorProvider.provider().openSelector();
 
         ServerSocketChannel serverChannel = createNonBlockingServerChannel();
 
         bindServerChannelToAddress(hostAddress, port, serverChannel);
 
-        LOGGER.info("ClientListener is configured to listen at: " + hostAddress.getCanonicalHostName() + " on port: " + port);
+        LOGGER.info("ClientCommunicator is configured to listen at: " + hostAddress.getCanonicalHostName() + " on port: " + port);
 
         registerToAcceptConnections(serverChannel);
     }
@@ -167,7 +167,7 @@ public class ClientListener implements Runnable{
         }
     }
 
-    public final void send(final SocketChannel sockChan, String text) {
+    public void send(final SocketChannel sockChan, String text) {
         this.send(sockChan, text.getBytes());
     }
 
@@ -233,7 +233,7 @@ public class ClientListener implements Runnable{
 
     public final void run() {
         this.isRunning = true;
-        LOGGER.info("ClientListener: Running.");
+        LOGGER.info("ClientCommunicator: Running.");
 
         while (this.shouldRunCommands) {
             this.processPendingEvents();
@@ -241,11 +241,11 @@ public class ClientListener implements Runnable{
             this.handleNewEvents();
         }
 
-        LOGGER.info("ClientListener: Shutting down...");
+        LOGGER.info("ClientCommunicator: Shutting down...");
 
         this.shutdown();
 
-        LOGGER.info("ClientListener: Shutdown.");
+        LOGGER.info("ClientCommunicator: Shutdown.");
     }
 
     private void shutdown() {
@@ -255,14 +255,14 @@ public class ClientListener implements Runnable{
                 try {
                     socketChannel.close();
                 } catch (IOException e) {
-                    LOGGER.error("ClientListener.shutdown() -> SocketChannel.close() failed.", e);
+                    LOGGER.error("ClientCommunicator.shutdown() -> SocketChannel.close() failed.", e);
                 }
             }
             this.selector.close();
             this.socketChannelConnections.clear();
             this.socketChannelByteBuffers.clear();
         } catch (IOException e) {
-            LOGGER.info("ClientListener.shutdown() failed: ", e);
+            LOGGER.info("ClientCommunicator.shutdown() failed: ", e);
         }
     }
 
@@ -271,10 +271,10 @@ public class ClientListener implements Runnable{
      * sets the ThreadRun Command to true and starts the thread.
      */
     public final void start() {
-        LOGGER.info("ClientListener: Received Startup Command.");
+        LOGGER.info("ClientCommunicator: Received Startup Command.");
         this.shouldRunCommands = true;
         this.isRunning = true;
-        this.clientListenerThread = new Thread(this, "ClientListener-Thread");
+        this.clientListenerThread = new Thread(this, "ClientCommunicator-Thread");
         this.clientListenerThread.start();
     }
 
@@ -282,7 +282,7 @@ public class ClientListener implements Runnable{
      * Sets the thread's run command to false and wakes the selector.
      */
     public final void stop() {
-        LOGGER.info("ClientListener: Received Shutdown Command.");
+        LOGGER.info("ClientCommunicator: Received Shutdown Command.");
         this.shouldRunCommands = false;
         this.selector.wakeup();
     }

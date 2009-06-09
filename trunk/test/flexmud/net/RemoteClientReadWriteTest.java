@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class RemoteClientReadWriteTest {
-    private ClientListener clientListener;
+    private ClientCommunicator clientCommunicator;
     private FakeRemoteClient fakeRemoteClient;
 
     static {
@@ -40,8 +40,8 @@ public class RemoteClientReadWriteTest {
     @Before
     public void setup() {
         int port = Util.getTestPort();
-        clientListener = Util.getNewFakeClientListener(port, true);
-        clientListener.start();
+        clientCommunicator = Util.getNewFakeClientCommunicator(port, true);
+        clientCommunicator.start();
 
         fakeRemoteClient = new FakeRemoteClient();
         try {
@@ -62,10 +62,10 @@ public class RemoteClientReadWriteTest {
             Assert.fail("Failed to disconnect client");
         }
 
-        if (clientListener != null) {
-            clientListener.stop();
+        if (clientCommunicator != null) {
+            clientCommunicator.stop();
         }
-        clientListener = null;
+        clientCommunicator = null;
 
         Util.pause(Util.CLIENT_SHUTDOWN_WAIT_TIME);
     }

@@ -24,8 +24,8 @@ import org.junit.Before;
 import org.junit.Test;
 import flexmud.util.Util;
 
-public class ClientListenerStartStopTest {
-    private static ClientListener clientListener;
+public class ClientCommunicatorStartStopTest {
+    private static ClientCommunicator clientCommunicator;
 
     static {
         LoggingUtil.resetConfiguration();
@@ -42,28 +42,28 @@ public class ClientListenerStartStopTest {
     }
 
     @Test
-    public void testClientListenerStarts(){
-        clientListener = Util.getNewClientListener();
-        Assert.assertNotNull("ClientListener was not created", clientListener);
+    public void testClientCommunicatorStarts(){
+        clientCommunicator = Util.getNewClientCommunicator();
+        Assert.assertNotNull("Client communicator was not created", clientCommunicator);
 
-        clientListener.start();
-        Assert.assertTrue("ClientListener is not running", clientListener.isRunning());
-        Assert.assertTrue("ClientListener cannot accept connections", clientListener.canAcceptConnection());
-        Assert.assertTrue("ClientListener will not run commands", clientListener.shouldRunCommands());
+        clientCommunicator.start();
+        Assert.assertTrue("Client communicator is not running", clientCommunicator.isRunning());
+        Assert.assertTrue("Client communicator cannot accept connections", clientCommunicator.canAcceptConnection());
+        Assert.assertTrue("Client communicator will not run commands", clientCommunicator.shouldRunCommands());
     }
 
     @Test
-    public void testClientListenerStops(){
+    public void testClientCommunicatorStops(){
 
-        if (clientListener != null) {
-            clientListener.stop();
+        if (clientCommunicator != null) {
+            clientCommunicator.stop();
             Util.pause(Util.CLIENT_SHUTDOWN_WAIT_TIME);
         }
 
-        Assert.assertNotNull("ClientListener should not be null", clientListener);
-        Assert.assertFalse("ClientListener should not be running", clientListener.isRunning());
-        Assert.assertFalse("ClientListener should not run commands", clientListener.shouldRunCommands());
+        Assert.assertNotNull("Client communicator should not be null", clientCommunicator);
+        Assert.assertFalse("Client communicator should not be running", clientCommunicator.isRunning());
+        Assert.assertFalse("Client communicator should not run commands", clientCommunicator.shouldRunCommands());
 
-        clientListener = null;
+        clientCommunicator = null;
     }
 }

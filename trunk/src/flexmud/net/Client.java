@@ -19,7 +19,6 @@ package flexmud.net;
 import flexmud.cfg.Constants;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ClientContextHandler;
-import flexmud.sec.Account;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -31,16 +30,16 @@ public class Client {
     private static final Logger LOGGER = Logger.getLogger(Client.class);
     protected UUID connID;
     protected SocketChannel socketChannel = null;
-    protected ClientListener clientListener;
+    protected ClientCommunicator clientCommunicator;
     protected CommandBuffer cmdBuffer;
     protected ClientContextHandler clientContextHandler;
 
-    public Client(ClientListener clientListener, SocketChannel socketChannel) {
-        this.clientListener = clientListener;
+    public Client(ClientCommunicator clientCommunicator, SocketChannel socketChannel) {
+        this.clientCommunicator = clientCommunicator;
         this.socketChannel = socketChannel;
 
         cmdBuffer = new CommandBuffer();
-        connID = clientListener.getNewConnectionID();
+        connID = clientCommunicator.getNewConnectionID();
         clientContextHandler = new ClientContextHandler(this);
 
         clientContextHandler.init();
@@ -50,8 +49,8 @@ public class Client {
         return this.connID;
     }
 
-    public ClientListener getClientListener() {
-        return this.clientListener;
+    public ClientCommunicator getClientListener() {
+        return this.clientCommunicator;
     }
 
     public SocketChannel getSocketChannel() {
@@ -63,7 +62,7 @@ public class Client {
     }
 
     public void disconnect() {
-        this.clientListener.disconnect(this);
+        this.clientCommunicator.disconnect(this);
         try {
             socketChannel.close();
         } catch (IOException e) {
@@ -117,7 +116,7 @@ public class Client {
     }
 
     public void sendText(String text) {
-        this.clientListener.send(this.socketChannel, text);
+        this.clientCommunicator.send(this.socketChannel, text);
     }
 
     public void sendPrompt() {
