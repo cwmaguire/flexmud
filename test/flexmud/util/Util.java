@@ -16,8 +16,8 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
  */
 package flexmud.util;
 
-import flexmud.net.ClientListener;
-import flexmud.net.FakeClientListener;
+import flexmud.net.ClientCommunicator;
+import flexmud.net.FakeClientCommunicator;
 
 import java.io.IOException;
 
@@ -25,32 +25,35 @@ public class Util {
     public static int CURRENT_TEST_PORT = 54321;
     public static int CLIENT_SHUTDOWN_WAIT_TIME = 1000;
 
-    public static ClientListener getNewClientListener(){
-        return getNewClientListener(getTestPort());
+    public static ClientCommunicator getNewClientCommunicator(){
+        return getNewClientCommunicator(getTestPort());
     }
 
-    public static ClientListener getNewClientListener(int port) {
+    public static ClientCommunicator getNewClientCommunicator(int port) {
         try {
-            return new ClientListener(port);
+            return new ClientCommunicator(port);
         } catch (IOException e) {
             return null;
         }
     }
 
-    public static FakeClientListener getNewFakeClientListener(){
-        return getNewFakeClientListener(false);
+    public static FakeClientCommunicator getNewFakeClientCommunicator(){
+        return getNewFakeClientCommunicator(false);
     }
 
-    public static FakeClientListener getNewFakeClientListener(boolean shouldInterceptRead) {
-        return getNewFakeClientListener(Util.getTestPort(), shouldInterceptRead);
+    public static FakeClientCommunicator getNewFakeClientCommunicator(boolean shouldInterceptRead) {
+        return getNewFakeClientCommunicator(Util.getTestPort(), shouldInterceptRead);
     }
 
-    public static FakeClientListener getNewFakeClientListener(int port, boolean shouldInterceptRead) {
+    public static FakeClientCommunicator getNewFakeClientCommunicator(int port, boolean shouldInterceptRead) {
+        FakeClientCommunicator fakeClientCommunicator;
         try {
-            return new FakeClientListener(port, shouldInterceptRead);
+            fakeClientCommunicator = new FakeClientCommunicator(port);
         } catch (IOException e) {
             return null;
         }
+        fakeClientCommunicator.setShouldInterceptRead(shouldInterceptRead);
+        return fakeClientCommunicator;
     }
 
     public static void pause(long ms) {

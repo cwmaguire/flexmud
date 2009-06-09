@@ -17,7 +17,6 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.net;
 
 import org.apache.log4j.Logger;
-import flexmud.util.Util;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -25,18 +24,26 @@ import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-public class FakeClientListener extends ClientListener {
-    private static Logger LOGGER = Logger.getLogger(FakeClientListener.class);
+public class FakeClientCommunicator extends ClientCommunicator {
+    private static Logger LOGGER = Logger.getLogger(FakeClientCommunicator.class);
     private boolean shouldInterceptRead;
+    private boolean shouldInterceptWrite;
 
 
-    public FakeClientListener(){
+    public FakeClientCommunicator(){
         super();
     }
 
-    public FakeClientListener(int port, boolean shouldInterceptRead) throws IOException{
+    public FakeClientCommunicator(int port) throws IOException{
         super(port);
+    }
+
+    public void setShouldInterceptRead(boolean shouldInterceptRead) {
         this.shouldInterceptRead = shouldInterceptRead;
+    }
+
+    public void setShouldInterceptWrite(boolean shouldInterceptWrite) {
+        this.shouldInterceptWrite = shouldInterceptWrite;
     }
 
     protected void read(SelectionKey key){
@@ -74,5 +81,13 @@ public class FakeClientListener extends ClientListener {
         } catch (IOException e) {
             throw new ClosedChannelException();
         }
+    }
+
+    @Override
+    public void send(SocketChannel sockChan, String text) {
+        if(!shouldInterceptWrite){
+            super.send(sockChan, text);
+        }
+
     }
 }
