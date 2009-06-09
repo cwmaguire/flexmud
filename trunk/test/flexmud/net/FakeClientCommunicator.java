@@ -28,6 +28,7 @@ public class FakeClientCommunicator extends ClientCommunicator {
     private static Logger LOGGER = Logger.getLogger(FakeClientCommunicator.class);
     private boolean shouldInterceptRead;
     private boolean shouldInterceptWrite;
+    private String lastSentText;
 
 
     public FakeClientCommunicator(){
@@ -85,7 +86,9 @@ public class FakeClientCommunicator extends ClientCommunicator {
 
     @Override
     public void send(SocketChannel sockChan, String text) {
-        if(!shouldInterceptWrite){
+        if(shouldInterceptWrite){
+            lastSentText = text;
+        }else{
             super.send(sockChan, text);
         }
 

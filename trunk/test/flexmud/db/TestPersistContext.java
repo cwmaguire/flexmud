@@ -20,6 +20,7 @@ package flexmud.db;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
 import flexmud.log.LoggingUtil;
+import flexmud.cfg.Preferences;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;
 import org.junit.Assert;
@@ -31,10 +32,9 @@ import java.util.List;
 public class TestPersistContext {
     private static final String CONTEXT_NAME = "ctxt1";
 
-    @Before
-    public void setup(){
+    static {
         LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging();
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
     }
 
     @After

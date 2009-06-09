@@ -24,7 +24,7 @@ public class WelcomeMsgCmd extends Command{
     @Override
     public void run() {
         ClientContextHandler clientContextHandler;
-        client.sendTextLn(Preferences.getPreference("welcome message"));
+        client.sendTextLn(Preferences.getPreference(Preferences.WELCOME_MESSAGE));
         clientContextHandler = client.getContextHandler();
         clientContextHandler.loadFirstChildContext();
     }

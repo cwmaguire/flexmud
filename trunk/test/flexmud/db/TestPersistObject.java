@@ -18,6 +18,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.db;
 
 import flexmud.log.LoggingUtil;
+import flexmud.cfg.Preferences;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;
 import org.junit.Assert;
@@ -29,15 +30,9 @@ import java.util.List;
 public class TestPersistObject {
     private static final String OBJECT_NAME = "Object 1";
 
-    @Before
-    public void setup(){
+    static {
         LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging();
-
-    }
-
-    @After
-    public void teardown(){
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
     }
 
     @Test

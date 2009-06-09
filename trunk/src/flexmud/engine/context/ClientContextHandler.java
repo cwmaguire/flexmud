@@ -39,7 +39,7 @@ public class ClientContextHandler {
     }
 
     public void init() {
-        loadFirstContext();
+        loadAndSetFirstContext();
     }
 
     public Context getContext() {
@@ -101,16 +101,12 @@ public class ClientContextHandler {
 
     private boolean doesContextCheckFail(Context newContext) {
         if (newContext == null && context == null) {
-            if(client != null){
-                client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
-                client.disconnect();
-            }
+            client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
+            client.disconnect();
             LOGGER.error("Could not locate first context");
             return true;
         } else if (newContext == null) {
-            if(client != null){
-                client.sendText("The area you are trying to get to doesn't seem to exist.");
-            }
+            client.sendText("The area you are trying to get to doesn't seem to exist.");
             // ToDO CM: need to reprompt at this point.
             LOGGER.error("Tried to send to null context, keeping client in old context.");
             return true;
@@ -138,7 +134,7 @@ public class ClientContextHandler {
         contextEntryCounts.put(context, entryCount == null ? 1 : entryCount + 1);
     }
 
-    public void loadFirstContext() {
+    public void loadAndSetFirstContext() {
         List<Context> contexts;
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
         detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));

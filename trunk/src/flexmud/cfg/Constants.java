@@ -18,7 +18,7 @@
 package flexmud.cfg;
 
 public class Constants {
-    public static char CR = '\r';
-    public static char LF = '\n';
-    public static String CRLF = String.valueOf(CR) + LF;
+    public static final char CR = '\r';
+    public static final char LF = '\n';
+    public static final String CRLF = String.valueOf(CR) + LF;
 }

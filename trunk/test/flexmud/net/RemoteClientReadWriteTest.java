@@ -34,7 +34,7 @@ public class RemoteClientReadWriteTest {
 
     static {
         LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging(Preferences.getPreference("log4j config file"));
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
     }
 
     @Before

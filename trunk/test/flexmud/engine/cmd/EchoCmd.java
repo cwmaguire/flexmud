@@ -18,11 +18,17 @@ package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
 
-public class EchoCmd implements Runnable {
+public class EchoCmd extends Command {
     private static Logger LOGGER = Logger.getLogger(EchoCmd.class);
+    private static boolean hasRun;
 
     @Override
     public void run() {
+        hasRun = true;
         LOGGER.info("EchoCmd class ran");
+    }
+
+    public static boolean hasRun() {
+        return hasRun;
     }
 }
