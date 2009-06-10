@@ -26,6 +26,9 @@ public class FakeClient extends Client{
         super(clientCommunicator, socketChannel);
     }
 
+    protected void init(){
+    }
+
     public void disconnect(){
         isConnected = false;
     }

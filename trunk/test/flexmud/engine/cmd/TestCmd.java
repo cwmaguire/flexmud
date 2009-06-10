@@ -18,17 +18,21 @@ package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
 
-public class EchoCmd extends Command {
-    private static Logger LOGGER = Logger.getLogger(EchoCmd.class);
+public class TestCmd extends Command {
+    private static Logger LOGGER = Logger.getLogger(TestCmd.class);
     private static boolean hasRun;
 
     @Override
     public void run() {
         hasRun = true;
-        LOGGER.info("EchoCmd class ran");
+        LOGGER.info("TestCmd class ran");
     }
 
     public static boolean hasRun() {
         return hasRun;
+    }
+
+    public static void resetHasRun() {
+        TestCmd.hasRun = false;
     }
 }

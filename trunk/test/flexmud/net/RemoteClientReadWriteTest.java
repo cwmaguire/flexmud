@@ -22,13 +22,15 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import flexmud.util.FakeRemoteClient;
+import org.apache.log4j.Logger;
+import flexmud.net.FakeRemoteClient;
 import flexmud.util.Util;
 
 import java.io.IOException;
 import java.util.UUID;
 
 public class RemoteClientReadWriteTest {
+    private static final Logger LOGGER = Logger.getLogger(RemoteClientReadWriteTest.class);
     private ClientCommunicator clientCommunicator;
     private FakeRemoteClient fakeRemoteClient;
 
@@ -53,7 +55,6 @@ public class RemoteClientReadWriteTest {
 
     @After
     public void tearDown(){
-        //Util.pause(1000);
         Assert.assertNotNull("FakeRemoteClient not found", fakeRemoteClient);
 
         try{
@@ -79,12 +80,12 @@ public class RemoteClientReadWriteTest {
         fakeRemoteClient.outStream.writeBytes(testString);
         fakeRemoteClient.inStream.read(buffer);
 
-        System.out.println("Reading received bytes: ");
+        LOGGER.info("Reading received bytes: ");
         for (int i = 0; i < buffer.length; ++i) {
             System.out.print((char) buffer[i]);
             charsRead[i] = (char) buffer[i];
         }
-        System.out.println("\nFinished reading received bytes");
+        LOGGER.info("\nFinished reading received bytes");
 
         Assert.assertEquals("Data received was not the same as data sent", testString, String.valueOf(charsRead));
     }

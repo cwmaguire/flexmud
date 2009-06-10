@@ -9,7 +9,7 @@ import flexmud.net.FakeClientCommunicator;
 import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
 import flexmud.db.HibernateUtil;
-import flexmud.engine.cmd.EchoCmd;
+import flexmud.engine.cmd.TestCmd;
 import flexmud.util.Util;
 import junit.framework.Assert;
 
@@ -102,16 +102,37 @@ public class TestClientContextHandler {
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
         Context contextWithEntryCommand = new Context();
         ContextCommand entryContextCommand = new ContextCommand();
-        entryContextCommand.setCommandClassName(EchoCmd.class.getName());
+        entryContextCommand.setCommandClassName(TestCmd.class.getName());
         entryContextCommand.setContextCommandFlag(ContextCommandFlag.ENTRY);
         contextWithEntryCommand.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand)));
         contextWithEntryCommand.init();
+
+        TestCmd.resetHasRun();
 
         clientContextHandler.setContext(contextWithEntryCommand);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertTrue("Entry command did not run on context entry", EchoCmd.hasRun());
+        Assert.assertTrue("Entry command did not run on context entry", TestCmd.hasRun());
+    }
 
+    @Test
+    public void testPromptCommandIsRunOnContextEntry() {
+        FakeClient client = new FakeClient(clientCommunicator, null);
+        ClientContextHandler clientContextHandler = new ClientContextHandler(client);
+        Context contextWithEntryCommand = new Context();
+        ContextCommand entryContextCommand = new ContextCommand();
+        entryContextCommand.setCommandClassName(TestCmd.class.getName());
+        entryContextCommand.setContextCommandFlag(ContextCommandFlag.PROMPT);
+        contextWithEntryCommand.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand)));
+        contextWithEntryCommand.init();
+
+        TestCmd.resetHasRun();
+
+        clientContextHandler.setContext(contextWithEntryCommand);
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertTrue("Prompt command did not run on context entry", TestCmd.hasRun());
     }
 }
