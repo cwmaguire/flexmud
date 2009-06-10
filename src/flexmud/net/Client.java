@@ -37,10 +37,14 @@ public class Client {
     public Client(ClientCommunicator clientCommunicator, SocketChannel socketChannel) {
         this.clientCommunicator = clientCommunicator;
         this.socketChannel = socketChannel;
+        clientContextHandler = new ClientContextHandler(this);
 
+        init();
+    }
+
+    protected void init() {
         cmdBuffer = new CommandBuffer();
         connID = clientCommunicator.getNewConnectionID();
-        clientContextHandler = new ClientContextHandler(this);
 
         clientContextHandler.init();
     }

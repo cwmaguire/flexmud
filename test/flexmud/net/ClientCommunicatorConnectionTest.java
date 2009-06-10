@@ -22,7 +22,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import flexmud.util.FakeRemoteClient;
+import flexmud.net.FakeRemoteClient;
 import flexmud.util.Util;
 
 public class ClientCommunicatorConnectionTest {
