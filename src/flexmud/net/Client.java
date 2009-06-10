@@ -123,9 +123,4 @@ public class Client {
         this.clientCommunicator.send(this.socketChannel, text);
     }
 
-    public void sendPrompt() {
-        this.sendCRLF();
-        this.sendText("fm:>");
-    }
-
 }

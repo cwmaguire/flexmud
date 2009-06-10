@@ -80,7 +80,7 @@ public class ClientCommunicator implements Runnable{
 
         this.mapSocketChannelToNewClient(socketChannel);
 
-        LOGGER.info("ConnectionManager: Total Connections now: " + this.socketChannelConnections.size());
+        LOGGER.info("Total Connections now: " + this.socketChannelConnections.size());
     }
 
     private ServerSocketChannel getNewConnectionServerSocketChannel(SelectionKey key) {
@@ -92,7 +92,7 @@ public class ClientCommunicator implements Runnable{
 
         Client client = new Client(this, socketChannel);
 
-        LOGGER.info("ConnectionManager: New Connection. ID: " + client.getConnectionID());
+        LOGGER.info("New Connection. ID: " + client.getConnectionID());
 
         this.socketChannelConnections.put(socketChannel, client);
 
@@ -233,7 +233,7 @@ public class ClientCommunicator implements Runnable{
 
     public final void run() {
         this.isRunning = true;
-        LOGGER.info("ClientCommunicator: Running.");
+        LOGGER.info("Running.");
 
         while (this.shouldRunCommands) {
             this.processPendingEvents();
@@ -241,11 +241,11 @@ public class ClientCommunicator implements Runnable{
             this.handleNewEvents();
         }
 
-        LOGGER.info("ClientCommunicator: Shutting down...");
+        LOGGER.info("Shutting down...");
 
         this.shutdown();
 
-        LOGGER.info("ClientCommunicator: Shutdown.");
+        LOGGER.info("Shutdown.");
     }
 
     private void shutdown() {
@@ -282,16 +282,18 @@ public class ClientCommunicator implements Runnable{
      * Sets the thread's run command to false and wakes the selector.
      */
     public final void stop() {
-        LOGGER.info("ClientCommunicator: Received Shutdown Command.");
+        LOGGER.info("Received Shutdown Command.");
         this.shouldRunCommands = false;
         this.selector.wakeup();
     }
 
     private void processPendingEvents() {
-        synchronized (this.pendingEvents) {
+        synchronized (pendingEvents) {
             SelectionKey selKey;
 
-            for (ClientEvent connEvent : this.pendingEvents) {
+            LOGGER.debug("processing pending events");
+
+            for (ClientEvent connEvent : pendingEvents) {
                 switch (connEvent.eventType) {
                     case CHANGEOPS:
                         selKey = connEvent.socket.keyFor(this.selector);
@@ -338,6 +340,8 @@ public class ClientCommunicator implements Runnable{
     private void handleNewEvents() {
         SelectionKey key;
 
+        LOGGER.debug("Handling new events");
+
         Iterator<SelectionKey> selectedKeys = this.selector.selectedKeys().iterator();
         while (selectedKeys.hasNext()) {
             key = selectedKeys.next();
@@ -354,13 +358,13 @@ public class ClientCommunicator implements Runnable{
                     write(key);
 
                 } else {
-                    System.err.println("Unhandled keystate: " + key.toString());
+                    LOGGER.error("Unhandled keystate: " + key.toString());
                 }
             } catch (CancelledKeyException cke) {
-                System.err.print(cke.getMessage());
+                LOGGER.error(cke);
                 this.disconnect(key);
             } catch (IOException e) {
-                System.err.println("Exception: " + key.toString());
+                LOGGER.error("Exception: " + key.toString(), e);
             }
         }
     }

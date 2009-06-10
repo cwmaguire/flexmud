@@ -15,45 +15,29 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.sec;
+package flexmud;
 
-import javax.persistence.*;
+import flexmud.net.ClientCommunicator;
+import flexmud.log.LoggingUtil;
+import flexmud.cfg.Preferences;
+import flexmud.engine.exec.Executor;
+import org.apache.log4j.Logger;
 
-@Entity
-@Table(name = "account")
-public class Account {
-    private long id;
-    private String username;
-    private String password;
+public class Flexmud {
+    private static final Logger LOGGER = Logger.getLogger(Flexmud.class);
+    private static final int PORT = 9000;
 
-    public Account(){}
-
-    @Id
-    @GeneratedValue()
-    @Column(name = "account_id")
-    public long getId() {
-        return id;
+    static {
+        LoggingUtil.resetConfiguration();
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Column(name = "username")
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public static void main(String[] args){
+        try{
+            Executor.exec(new ClientCommunicator(PORT));
+            //new ClientCommunicator(PORT).run();
+        }catch(Exception e){
+            LOGGER.error("Error launching client communicator", e);
+        }
     }
 }

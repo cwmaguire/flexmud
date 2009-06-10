@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<!DOCTYPE dataset SYSTEM "enterovision.dtd">-->
 <dataset>
+    <ACCOUNT USERNAME="l" PASSWORD="q"/>
+
     <CONTEXT_GROUP CONTEXT_GROUP_ID="0"/>
     <CONTEXT_GROUP CONTEXT_GROUP_ID="1"/>
     <CONTEXT_GROUP CONTEXT_GROUP_ID="2"/>
@@ -86,7 +88,7 @@
 
 
     <!-- Welcome, login, password -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0" FLAG="ENTRY"   COMMAND_CLASS="WecomeMsgCmd"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.WelcomeMsgCmd"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1"  CONTEXT_ID="1" FLAG="DEFAULT" COMMAND_CLASS="LoginCommand"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="2"  CONTEXT_ID="2" FLAG="DEFAULT" COMMAND_CLASS="PasswordCommand"/>
 

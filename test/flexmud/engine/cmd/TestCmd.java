@@ -20,19 +20,19 @@ import org.apache.log4j.Logger;
 
 public class TestCmd extends Command {
     private static Logger LOGGER = Logger.getLogger(TestCmd.class);
-    private static boolean hasRun;
+    private static int runCount;
 
     @Override
     public void run() {
-        hasRun = true;
+        runCount++;
         LOGGER.info("TestCmd class ran");
     }
 
-    public static boolean hasRun() {
-        return hasRun;
+    public static int getRunCount() {
+        return runCount;
     }
 
-    public static void resetHasRun() {
-        TestCmd.hasRun = false;
+    public static void resetRunCount() {
+        runCount = 0;
     }
 }

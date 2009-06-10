@@ -91,6 +91,7 @@ public class ClientContextHandler {
 
     private boolean doesMaxEntriesCheckFail(Context newContext) {
         if (isMaxEntriesExceeded(newContext)) {
+            LOGGER.info("Max context entries exceeded for client " + client.getConnectionID() + ", disconnecting");
             client.sendTextLn(context.getMaxEntriesExceededMessage());
             client.sendTextLn("disconnecting");
             client.disconnect();
@@ -101,14 +102,14 @@ public class ClientContextHandler {
 
     private boolean doesContextCheckFail(Context newContext) {
         if (newContext == null && context == null) {
+            LOGGER.info("Could not locate first context");
             client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
             client.disconnect();
-            LOGGER.error("Could not locate first context");
             return true;
         } else if (newContext == null) {
+            LOGGER.info("Tried to send to null context, keeping client in old context.");
             client.sendText("The area you are trying to get to doesn't seem to exist.");
             // ToDO CM: need to reprompt at this point.
-            LOGGER.error("Tried to send to null context, keeping client in old context.");
             return true;
         }
         return false;
@@ -116,6 +117,7 @@ public class ClientContextHandler {
 
     private void initializeAndExecuteCommand(Command command) {
         if (command != null) {
+            LOGGER.info("Executing command " + command.getClass().getName());
             command.setClient(client);
             Executor.exec(command);
         }
@@ -135,13 +137,15 @@ public class ClientContextHandler {
     }
 
     public void loadAndSetFirstContext() {
-        List<Context> contexts;
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
         detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));
-        contexts = (List<Context>) HibernateUtil.fetch(detachedCriteria);
-
+        List<Context> contexts = (List<Context>) HibernateUtil.fetch(detachedCriteria);
+        
+        Context firstContext;
         if (contexts != null && !contexts.isEmpty()) {
-            setContext(contexts.get(0));
+            firstContext = contexts.get(0);
+            firstContext.init();
+            setContext(firstContext);
         } else {
             setContext(null);
         }
@@ -150,8 +154,11 @@ public class ClientContextHandler {
     public void loadFirstChildContext() {
         ContextGroup childContextGroup = context.getChildGroup();
         List<Context> childContexts = new ArrayList<Context>(childContextGroup.getChildContexts());
+        Context firstContext;
         if (!childContexts.isEmpty()) {
-            setContext(childContexts.get(0));
+            firstContext = childContexts.get(0);
+            firstContext.init();
+            setContext(firstContext);
         } else {
             setContext(null);
         }
@@ -173,7 +180,7 @@ public class ClientContextHandler {
         try {
             command = (Command) commandClass.newInstance();
         } catch (Exception e) {
-            LOGGER.error("Could not instantiate Command for class " + commandClass.getName(), e);
+            LOGGER.error("Could not instantiate Command for class " + (commandClass == null ? "[null]" : commandClass.getName()), e);
             client.sendTextLn("An error occurred trying to run \'" + commandString + "\"");
             initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
             return;
