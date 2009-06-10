@@ -47,6 +47,10 @@ public class FakeClientCommunicator extends ClientCommunicator {
         this.shouldInterceptWrite = shouldInterceptWrite;
     }
 
+    public String getLastSentText() {
+        return lastSentText;
+    }
+
     protected void read(SelectionKey key){
         if(shouldInterceptRead){
             try{
