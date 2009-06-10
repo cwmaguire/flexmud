@@ -30,10 +30,21 @@ public class TestClientContextHandler {
         clientCommunicator = new FakeClientCommunicator();
         clientCommunicator.setShouldInterceptWrite(true);
 
+        ContextCommand entryContextCommand = new ContextCommand();
+        entryContextCommand.setCommandClassName(TestCmd.class.getName());
+        entryContextCommand.setContextCommandFlag(ContextCommandFlag.ENTRY);
+
+        ContextCommand promptContextCommand = new ContextCommand();
+        promptContextCommand.setCommandClassName(TestCmd.class.getName());
+        promptContextCommand.setContextCommandFlag(ContextCommandFlag.PROMPT);
+
         Context context1 = new Context("ctxt1");
         context1.setMaxEntries(1);
         ContextGroup contextGroup = new ContextGroup();
         context1.setChildGroup(contextGroup);
+        context1.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand, promptContextCommand)));
+        entryContextCommand.setContext(context1);
+        promptContextCommand.setContext(context1);
         HibernateUtil.save(context1);
         objectsToDelete.add(context1);
 
@@ -59,6 +70,10 @@ public class TestClientContextHandler {
 
         clientContextHandler = new ClientContextHandler(null);
         clientContextHandler.loadAndSetFirstContext();
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertEquals("Context entry and prompt commands did not both run", 2, TestCmd.getRunCount());
 
         firstContext = clientContextHandler.getContext();
 
@@ -107,13 +122,13 @@ public class TestClientContextHandler {
         contextWithEntryCommand.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand)));
         contextWithEntryCommand.init();
 
-        TestCmd.resetHasRun();
+        TestCmd.resetRunCount();
 
         clientContextHandler.setContext(contextWithEntryCommand);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertTrue("Entry command did not run on context entry", TestCmd.hasRun());
+        Assert.assertEquals("Entry command did not run on context entry", 0, TestCmd.getRunCount());
     }
 
     @Test
@@ -121,18 +136,18 @@ public class TestClientContextHandler {
         FakeClient client = new FakeClient(clientCommunicator, null);
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
         Context contextWithEntryCommand = new Context();
-        ContextCommand entryContextCommand = new ContextCommand();
-        entryContextCommand.setCommandClassName(TestCmd.class.getName());
-        entryContextCommand.setContextCommandFlag(ContextCommandFlag.PROMPT);
-        contextWithEntryCommand.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand)));
+        ContextCommand promptContextCommand = new ContextCommand();
+        promptContextCommand.setCommandClassName(TestCmd.class.getName());
+        promptContextCommand.setContextCommandFlag(ContextCommandFlag.PROMPT);
+        contextWithEntryCommand.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(promptContextCommand)));
         contextWithEntryCommand.init();
 
-        TestCmd.resetHasRun();
+        TestCmd.resetRunCount();
 
         clientContextHandler.setContext(contextWithEntryCommand);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertTrue("Prompt command did not run on context entry", TestCmd.hasRun());
+        Assert.assertEquals("Prompt command did not run on context entry", 0, TestCmd.getRunCount());
     }
 }

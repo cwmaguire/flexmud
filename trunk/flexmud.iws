@@ -2,17 +2,18 @@
 <project relativePaths="false" version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/net/ClientCommunicatorConnectionTest.java" afterPath="$PROJECT_DIR$/test/flexmud/net/ClientCommunicatorConnectionTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flexmud.iws" afterPath="$PROJECT_DIR$/flexmud.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/net/FakeClient.java" afterPath="$PROJECT_DIR$/test/flexmud/net/FakeClient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/flexmud/engine/cmd/TestWelcomeMessageCommand.java" />
-      <change type="MOVED" beforePath="D:\dev\flexmud\test\flexmud\util\FakeRemoteClient.java" afterPath="$PROJECT_DIR$/test/flexmud/net/FakeRemoteClient.java" />
-      <change type="MOVED" beforePath="D:\dev\flexmud\test\flexmud\engine\cmd\EchoCmd.java" afterPath="$PROJECT_DIR$/test/flexmud/engine/cmd/TestCmd.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/flexmud/Flexmud.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flexmud-ddl.sql" afterPath="$PROJECT_DIR$/flexmud-ddl.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/sec/Account.java" afterPath="$PROJECT_DIR$/src/flexmud/sec/Account.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/db/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/flexmud/db/hibernate.cfg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/base.xml" afterPath="$PROJECT_DIR$/database/base.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/net/ClientCommunicator.java" afterPath="$PROJECT_DIR$/src/flexmud/net/ClientCommunicator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/net/Client.java" afterPath="$PROJECT_DIR$/src/flexmud/net/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java" afterPath="$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java" afterPath="$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/flexmud/engine/cmd/WelcomeMsgCmd.java" afterPath="$PROJECT_DIR$/src/flexmud/engine/cmd/WelcomeMsgCmd.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/engine/cmd/TestPromptCommand.java" afterPath="$PROJECT_DIR$/test/flexmud/engine/cmd/TestPromptCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/net/RemoteClientReadWriteTest.java" afterPath="$PROJECT_DIR$/test/flexmud/net/RemoteClientReadWriteTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/flexmud/db/TestPersistAccount.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/flexmud/engine/cmd/TestCmd.java" afterPath="$PROJECT_DIR$/test/flexmud/engine/cmd/TestCmd.java" />
     </list>
     <list name="ignore-on-commit" comment="" />
     <ignored path="flexmud.iws" />
@@ -78,19 +79,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RemoteClientReadWriteTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/flexmud/net/RemoteClientReadWriteTest.java">
+      <file leaf-file-name="ClientCommunicator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/net/ClientCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="57" selection-start="2310" selection-end="2368" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestClientContextHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="5" selection-start="549" selection-end="712" vertical-scroll-proportion="0.0">
+            <state line="41" column="33" selection-start="2625" selection-end="2625" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -99,74 +91,79 @@
       <file leaf-file-name="ClientContextHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="11" selection-start="2235" selection-end="2235" vertical-scroll-proportion="0.0">
+            <state line="147" column="0" selection-start="6493" selection-end="6493" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestPromptCommand.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/flexmud/engine/cmd/TestPromptCommand.java">
+      <file leaf-file-name="hibernate.log" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log/hibernate.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="80" selection-start="2918" selection-end="2918" vertical-scroll-proportion="0.3900463">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FakeClientCommunicator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/flexmud/net/FakeClientCommunicator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="11" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Preferences.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/cfg/Preferences.java">
+      <file leaf-file-name="testLog4j.flexmud.log" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log/testLog4j.flexmud.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="63" selection-start="2082" selection-end="2082" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FakeClient.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/flexmud/net/FakeClient.java">
+      <file leaf-file-name="error.log" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log/error.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1244607740000" expanded="true" signature="1835:1892" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PromptCommand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/PromptCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="36" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/flexmud/net/Client.java">
+      <file leaf-file-name="flexmud.log" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log/flexmud.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="15" selection-start="2505" selection-end="2505" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestWelcomeMessageCommand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/flexmud/engine/cmd/TestWelcomeMessageCommand.java">
+      <file leaf-file-name="TestClientContextHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="13" selection-start="1930" selection-end="1930" vertical-scroll-proportion="0.0">
+            <state line="76" column="0" selection-start="2667" selection-end="2667" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/base.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="111" column="30" selection-start="4567" selection-end="4567" vertical-scroll-proportion="0.6891892">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestCmd.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/flexmud/engine/cmd/TestCmd.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="20" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Context.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/Context.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="13" selection-start="1926" selection-end="1926" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -215,6 +212,170 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="flexmud" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.6 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.6 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.6 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.6 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="nio" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.6 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="nio" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="channels" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.6 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="lang" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -440,6 +601,58 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="sec" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="prompt" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -697,6 +910,60 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="log" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="db" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="flexmud" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="database" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
     </subPane>
   </component>
   <component name="ProjectReloadState">
@@ -747,19 +1014,19 @@
     </key>
   </component>
   <component name="RegexUtilComponent" text="1900-01-01 2007/08/13 1900.01.01 1900 01 01 1900-01.01 1900 13 01 1900 02 31" flags="0" regex="(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])" mode="0" />
-  <component name="RunManager" selected="JUnit.TestPromptCommand">
-    <tempConfiguration default="false" name="TestPromptCommand" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
+  <component name="RunManager" selected="Application.flexmud">
+    <tempConfiguration default="false" name="TestClientContextHandler.testLoadFirstContextAndFirstChild" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <pattern>
-        <option name="PATTERN" value="flexmud.engine.cmd.*" />
+        <option name="PATTERN" value="flexmud.engine.context.*" />
         <option name="ENABLED" value="true" />
       </pattern>
       <module name="flexmud" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="flexmud.engine.cmd" />
-      <option name="MAIN_CLASS_NAME" value="flexmud.engine.cmd.TestPromptCommand" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="flexmud.engine.context" />
+      <option name="MAIN_CLASS_NAME" value="flexmud.engine.context.TestClientContextHandler" />
+      <option name="METHOD_NAME" value="testLoadFirstContextAndFirstChild" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -771,7 +1038,7 @@
       </option>
       <envs />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="65484" />
+        <option name="DEBUG_PORT" value="53482" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -832,7 +1099,8 @@
       <envs />
     </configuration>
     <configuration default="false" name="flexmud" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <log_file path="$PROJECT_DIR$/log/flexmud.log" checked="true" skipped="true" show_all="false" alias="flexmud" />
+      <option name="MAIN_CLASS_NAME" value="flexmud.Flexmud" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -843,7 +1111,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="flexmud" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50292" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" value="true" />
@@ -920,7 +1194,7 @@
       <item index="0" class="java.lang.String" itemvalue="Application.flexmud" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.TestPersistContextCommandAlias.testSave" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.All Tests" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestPromptCommand" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestClientContextHandler.testLoadFirstContextAndFirstChild" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -983,15 +1257,15 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983872" sideWeight="0.6261161" order="3" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32713756" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10452323" sideWeight="0.5689085" order="1" side_tool="false" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42337376" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3263506" sideWeight="0.5" order="1" side_tool="false" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14731051" sideWeight="0.7166483" order="1" side_tool="false" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27563396" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39029768" sideWeight="0.5" order="7" side_tool="false" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946634" sideWeight="0.5" order="6" side_tool="false" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855567" sideWeight="0.5" order="6" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.200489" sideWeight="0.5689085" order="0" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.200489" sideWeight="0.7166483" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43991178" sideWeight="0.5" order="2" side_tool="false" />
@@ -1052,119 +1326,115 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/flexmud/log/LoggingUtil.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_10/src.zip!/java/lang/Runnable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.0">
+        <state line="38" column="10" selection-start="1550" selection-end="1550" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/db/TestPersistObject.java">
+    <entry file="file://$PROJECT_DIR$/src/flexmud/net/ClientEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0">
+        <state line="20" column="13" selection-start="1677" selection-end="1677" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/character/Character.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_10/src.zip!/java/nio/channels/Selector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="1650" selection-end="1650" vertical-scroll-proportion="0.0">
+        <state line="331" column="24" selection-start="13138" selection-end="13138" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/db/HibernateUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/flexmud/net/CommandBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="79" selection-start="2020" selection-end="2100" vertical-scroll-proportion="0.0">
+        <state line="193" column="41" selection-start="6419" selection-end="6419" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/WelcomeMsgCmd.java">
+    <entry file="file://$PROJECT_DIR$/src/flexmud/net/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="5" selection-start="1759" selection-end="1886" vertical-scroll-proportion="0.0">
+        <state line="39" column="46" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/flexmud/Flexmud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="38" selection-start="1658" selection-end="1658" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/flexmud/net/ClientCommunicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="33" selection-start="2625" selection-end="2625" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/flexmud/engine/cmd/TestCmd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="29" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
+        <state line="35" column="20" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/net/RemoteClientReadWriteTest.java">
+    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/Context.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="57" selection-start="2310" selection-end="2368" vertical-scroll-proportion="0.0">
+        <state line="30" column="13" selection-start="1926" selection-end="1926" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/net/FakeClient.java">
+    <entry file="file://$PROJECT_DIR$/log/testLog4j.flexmud.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1244607740000" expanded="true" signature="1835:1892" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/net/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="15" selection-start="2505" selection-end="2505" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/cfg/Preferences.java">
+    <entry file="file://$PROJECT_DIR$/log/hibernate.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="63" selection-start="2082" selection-end="2082" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/engine/cmd/TestWelcomeMessageCommand.java">
+    <entry file="file://$PROJECT_DIR$/log/flexmud.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="1930" selection-end="1930" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/net/FakeClientCommunicator.java">
+    <entry file="file://$PROJECT_DIR$/log/error.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="11" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="5" selection-start="549" selection-end="712" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/flexmud/engine/context/ClientContextHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="11" selection-start="2235" selection-end="2235" vertical-scroll-proportion="0.0">
+        <state line="147" column="0" selection-start="6493" selection-end="6493" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/flexmud/engine/cmd/PromptCommand.java">
+    <entry file="file://$PROJECT_DIR$/test/flexmud/engine/context/TestClientContextHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="36" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0">
+        <state line="76" column="0" selection-start="2667" selection-end="2667" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/flexmud/engine/cmd/TestPromptCommand.java">
+    <entry file="file://$PROJECT_DIR$/database/base.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="80" selection-start="2918" selection-end="2918" vertical-scroll-proportion="0.3900463">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="111" column="30" selection-start="4567" selection-end="4567" vertical-scroll-proportion="0.6891892">
+          <folding />
         </state>
       </provider>
     </entry>
