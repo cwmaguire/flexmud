@@ -29,6 +29,7 @@
         <mapping class="flexmud.engine.context.ContextGroup"/>
         <mapping class="flexmud.engine.context.ContextCommand"/>
         <mapping class="flexmud.engine.context.ContextCommandAlias"/>
+        <mapping class="flexmud.engine.context.ContextCommandParameter"/>
         <mapping class="flexmud.sec.Account"/>
 
     </session-factory>

@@ -128,7 +128,7 @@ public class TestClientContextHandler {
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertEquals("Entry command did not run on context entry", 0, TestCmd.getRunCount());
+        Assert.assertEquals("Entry command did not run on context entry", 1, TestCmd.getRunCount());
     }
 
     @Test
@@ -148,6 +148,6 @@ public class TestClientContextHandler {
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertEquals("Prompt command did not run on context entry", 0, TestCmd.getRunCount());
+        Assert.assertEquals("Prompt command did not run on context entry", 1, TestCmd.getRunCount());
     }
 }

@@ -28,6 +28,10 @@
         <include name="**/*.properties"/>
     </patternset>
 
+    <target name="init">
+        <record name="build.log" loglevel="verbose" append="false"/>
+    </target>
+
     <!-- Clean up -->
     <target name="clean" description="Clean the build directory">
         <delete dir="${build.dir}"/>
@@ -63,7 +67,7 @@
              classpathref="project.classpath"/>
 
     <!-- Export the database schema -->
-    <target name="load-schema" depends="compile, copymetafiles"
+    <target name="load-schema" depends="init, compile, copymetafiles"
         description="Exports a generated schema to DB and file">
 
         <hibernatetool destdir="${basedir}">
@@ -106,14 +110,14 @@
         </java>
     </target>
 
-    <target name="load-base-data">
+    <target name="load-base-data" depends="init">
         <dbunit driver="org.hsqldb.jdbcDriver"
                 url="jdbc:hsqldb:hsql://localhost/"
                 userid="sa"
                 password=""
                 dataTypeFactory="org.dbunit.ext.hsqldb.HsqldbDataTypeFactory">
-            <operation type="INSERT" src="database/base.xml" transaction="true"/>
             <classpath refid="project.classpath"/>
+            <operation type="INSERT" src="database/base.xml" transaction="true"/>
         </dbunit>
     </target>
 

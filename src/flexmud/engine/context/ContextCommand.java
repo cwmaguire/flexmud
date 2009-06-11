@@ -31,10 +31,12 @@ public class ContextCommand {
     public static final String ID_PROPERTY = "id";
     public static final String CONTEXT_PROPERTY = "context";
     public static final String ALIASES_PROPERTY = "aliases";
+    public static final String PARAMETERS_PROPERTY = "parameters";
     public static final String COMMAND_CLASS_NAME_PROPERTY = "commandClassName";
 
     private long id;
     private Set<ContextCommandAlias> aliases = new HashSet<ContextCommandAlias>();
+    private Set<ContextCommandParameter> parameters = new HashSet<ContextCommandParameter>();
     private String commandClassName;
     private Context context;
     private String description;
@@ -60,6 +62,16 @@ public class ContextCommand {
 
     public void setAliases(Set<ContextCommandAlias> aliases) {
         this.aliases = aliases;
+    }
+
+    @OneToMany(mappedBy = ContextCommandParameter.CONTEXT_COMMAND_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    public Set<ContextCommandParameter> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(Set<ContextCommandParameter> parameters) {
+        this.parameters = parameters;
     }
 
     @Column(name = "command_class", nullable = false)
