@@ -16,15 +16,11 @@
  **************************************************************************************************/
 package flexmud.engine.context;
 
-import flexmud.engine.context.ContextCommand;
 import org.apache.log4j.Logger;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "context")
@@ -57,7 +53,7 @@ public class Context {
     private String prompt;
 
     private Map<String, Class> aliasCommandClasses = new HashMap<String, Class>();
-    private Map<ContextCommandFlag, Class> flaggedCommandClasses = new HashMap<ContextCommandFlag, Class>();
+    private Map<ContextCommandFlag, List<Class>> flaggedCommandClasses = new HashMap<ContextCommandFlag, List<Class>>();
 
     public Context() {
     }
@@ -73,14 +69,51 @@ public class Context {
     }
 
     private void mapFlaggedCommandClasses(){
-        ContextCommandFlag flag;
-        if (contextCommands != null) {
-            for (ContextCommand contextCommand : contextCommands) {
-                flag = contextCommand.getContextCommandFlag();
-                if(flag != null){
-                    flaggedCommandClasses.put(flag, loadClass(contextCommand.getCommandClassName()));
+        List<ContextCommand> contextCommandsList = new ArrayList<ContextCommand>(contextCommands);
+        if (contextCommands != null && !contextCommands.isEmpty()) {
+
+            Collections.sort(contextCommandsList, new Comparator<ContextCommand>(){
+                @Override
+                public int compare(ContextCommand contextCommand1, ContextCommand contextCommand2) {
+                    int sequence1 = contextCommand1.getSequence();
+                    int sequence2 = contextCommand2.getSequence();
+
+                    // if the sequence isn't set then it defaults to zero and should come
+                    // after any context command with a specified sequence
+                    if(sequence1 == sequence2){
+                        return 0;
+                    }else if(sequence1 == 0){
+                        return sequence2;
+                    }else if(sequence2 == 0){
+                        return sequence1;
+                    }else if(sequence1 > sequence2){
+                        return 1;
+                    }else if(sequence1 < sequence2){
+                        return -1;
+                    }
+
+                    return 0;
                 }
+            });
+
+            for (ContextCommand contextCommand : contextCommandsList) {
+                mapFlaggedCommandClass(contextCommand);
             }
+        }
+    }
+
+    private void mapFlaggedCommandClass(ContextCommand contextCommand) {
+        ContextCommandFlag flag;
+        List<Class> flagClasses;
+        flag = contextCommand.getContextCommandFlag();
+
+        if(flag != null){
+            flagClasses = flaggedCommandClasses.get(flag);
+            if(flagClasses == null){
+                flagClasses = new ArrayList<Class>();
+            }
+            flagClasses.add(loadClass(contextCommand.getCommandClassName()));
+            flaggedCommandClasses.put(flag, flagClasses);
         }
     }
 
@@ -215,7 +248,7 @@ public class Context {
     }
 
     @Transient
-    public Class getFlaggedCommandClass(ContextCommandFlag flag){
+    public List<Class> getFlaggedCommandClasses(ContextCommandFlag flag){
         return flaggedCommandClasses.get(flag);
     }
 

@@ -6,7 +6,11 @@ log4j.additivity.org.hibernate = false
 
 # flexmud logs
 log4j.logger.flexmud = DEBUG, flexmudLog
-log4j.additivity.com.flexmud = false
+log4j.additivity.flexmud = false
+
+# dbunit logs
+log4j.logger.org.dbunit = DEBUG, dbunitLog
+log4j.additivity.org.dbunit = false
 
 # hibernate appender
 log4j.appender.hibernateLog = org.apache.log4j.RollingFileAppender
@@ -20,7 +24,6 @@ log4j.appender.hibernateLog.Append = false
 log4j.appender.hibernateLog.layout = org.apache.log4j.PatternLayout
 log4j.appender.hibernateLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n
 
-
 # flexmud appender
 log4j.appender.flexmudLog = org.apache.log4j.RollingFileAppender
 log4j.appender.flexmudLog.File = log/flexmud.log
@@ -29,6 +32,13 @@ log4j.appender.flexmudLog.MaxBackupIndex = 3
 log4j.appender.flexmudLog.layout = org.apache.log4j.PatternLayout
 log4j.appender.flexmudLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n
 
+# dbunit appender
+log4j.appender.dbunitLog = org.apache.log4j.RollingFileAppender
+log4j.appender.dbunitLog.File = log/dbunit.log
+log4j.appender.dbunitLog.MaxFileSize = 4MB
+log4j.appender.dbunitLog.MaxBackupIndex = 3
+log4j.appender.dbunitLog.layout = org.apache.log4j.PatternLayout
+log4j.appender.dbunitLog.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd @ HH:mm:ss}] [%t|%c{1}] %m%n
 
 # errors appender
 log4j.appender.errorsLog = org.apache.log4j.RollingFileAppender

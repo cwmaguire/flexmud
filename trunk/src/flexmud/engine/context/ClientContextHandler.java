@@ -62,31 +62,38 @@ public class ClientContextHandler {
            ToDo     We could also put in some sort of dependency check where if a command
            ToDo     is processed out of order it gets put back in the queue
         */
-        initializeAndExecuteCommand(getFlaggedCommandOrNull(ContextCommandFlag.ENTRY));
+        initializeAndExecuteCommands(getFlaggedCommandsOrNull(ContextCommandFlag.ENTRY));
         initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
     }
 
     private Command getSpecificOrGenericPromptCommand() {
-        Command promptCommand = getFlaggedCommandOrNull(ContextCommandFlag.PROMPT);
+        List<Command> promptCommands = getFlaggedCommandsOrNull(ContextCommandFlag.PROMPT);
 
-        if (promptCommand == null && context.getPrompt() != null) {
-            promptCommand = new PromptCommand();
+        if ((promptCommands != null && !promptCommands.isEmpty()) ) {
+            return promptCommands.get(0);
+        }else if(context.getPrompt() != null){
+            return new PromptCommand();
         }
-        return promptCommand;
+
+        return null;
     }
 
-    private Command getFlaggedCommandOrNull(ContextCommandFlag flag) {
-        Command command = null;
-        Class commandClass = context.getFlaggedCommandClass(flag);
-        if (commandClass != null) {
-            try {
-                command = (Command) commandClass.newInstance();
-            } catch (Exception e) {
-                LOGGER.error("Could not instantiate flagged command [" + commandClass.getName() + "] for context [" +
-                        context.getName() + "] and flag [" + flag.name() + "]", e);
+    private List<Command> getFlaggedCommandsOrNull(ContextCommandFlag flag) {
+        List<Command> commands = new ArrayList<Command>();
+        List<Class> commandClasses = context.getFlaggedCommandClasses(flag);
+
+        if (commandClasses != null) {
+            for(Class clazz : commandClasses){
+                try {
+                    commands.add((Command) clazz.newInstance());
+                } catch (Exception e) {
+                    LOGGER.error("Could not instantiate flagged command [" + clazz.getName() + "] for context [" +
+                            context.getName() + "] and flag [" + flag.name() + "]", e);
+                }
             }
         }
-        return command;
+
+        return commands;
     }
 
     private boolean doesMaxEntriesCheckFail(Context newContext) {
@@ -113,6 +120,15 @@ public class ClientContextHandler {
             return true;
         }
         return false;
+    }
+
+
+    private void initializeAndExecuteCommands(List<Command> commands) {
+        if (commands != null) {
+            for(Command command : commands){
+                initializeAndExecuteCommand(command);
+            }
+        }
     }
 
     private void initializeAndExecuteCommand(Command command) {

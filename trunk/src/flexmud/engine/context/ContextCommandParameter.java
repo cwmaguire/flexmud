@@ -23,8 +23,9 @@ import javax.persistence.*;
 @Table(name = "context_command_parameter")
 public class ContextCommandParameter {
     public static final String ID_PROPERTY = "id";
-    public static final String CLASS_PROPERTY = "clazz";
+    public static final String CLAZZ_PROPERTY = "clazz";
     public static final String VALUE_PROPERTY = "value";
+    public static final String CONTEXT_COMMAND_PROPERTY = "contextCommand";
 
     private int id;
     private ContextCommand contextCommand;
@@ -33,7 +34,7 @@ public class ContextCommandParameter {
 
     @Id
     @GeneratedValue
-    @Column(name = "context_command_alias_id")
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -52,7 +53,7 @@ public class ContextCommandParameter {
         this.contextCommand = contextCommand;
     }
 
-    @Column(name = "clazz", nullable = false)
+    @Column(name = "param_class", nullable = false)
     public String getClazz() {
         return clazz;
     }
@@ -61,7 +62,7 @@ public class ContextCommandParameter {
         this.clazz = clazz;
     }
 
-    @Column(name = "value", nullable = false)
+    @Column(name = "param_value", nullable = false)
     public String getValue() {
         return value;
     }
