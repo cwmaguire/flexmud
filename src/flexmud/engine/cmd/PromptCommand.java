@@ -22,8 +22,19 @@ import flexmud.cfg.Preferences;
 public class PromptCommand extends Command{
     @Override
     public void run() {
+        String prompt;
 
-        if(client != null){
+        if (client != null) {
+            prompt = getContextOrGenericPrompt(client);
+            client.sendText(prompt);
         }
+    }
+
+    private String getContextOrGenericPrompt(Client client) {
+        String prompt = client.getContext().getPrompt();
+        if (prompt == null) {
+            prompt = Preferences.getPreference(Preferences.GENERIC_PROMPT);
+        }
+        return prompt;
     }
 }

@@ -234,7 +234,7 @@ public class ClientCommunicator implements Runnable{
         while (this.shouldRunCommands) {
             this.registerInterestOpsWithWritableSocketChannels();
             this.blockForSelectOnRegisteredChannels();
-            this.handleNewEvents();
+            this.handleNewSelectorKeyEvents();
         }
 
         LOGGER.info("Shutting down...");
@@ -320,7 +320,7 @@ public class ClientCommunicator implements Runnable{
         this.isRunning = true;
     }
 
-    private void handleNewEvents() {
+    private void handleNewSelectorKeyEvents() {
         SelectionKey key;
 
         LOGGER.debug("Handling new events");
