@@ -14,16 +14,60 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.cmd;
 
-import flexmud.net.Client;
-import flexmud.cfg.Preferences;
+package flexmud.engine.context;
 
-public class PromptCommand extends Command{
-    @Override
-    public void run() {
+import javax.persistence.*;
 
-        if(client != null){
-        }
+@Entity
+@Table(name = "context_command_parameter")
+public class ContextCommandParameter {
+    public static final String ID_PROPERTY = "id";
+    public static final String CLASS_PROPERTY = "clazz";
+    public static final String VALUE_PROPERTY = "value";
+
+    private int id;
+    private ContextCommand contextCommand;
+    private String clazz;
+    private String value;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "context_command_alias_id")
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "context_command_id", nullable = false)
+    public ContextCommand getContextCommand() {
+        return contextCommand;
+    }
+
+    public void setContextCommand(ContextCommand contextCommand) {
+        this.contextCommand = contextCommand;
+    }
+
+    @Column(name = "clazz", nullable = false)
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+
+    @Column(name = "value", nullable = false)
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
 }
