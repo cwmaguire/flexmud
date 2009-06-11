@@ -14,16 +14,22 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+
 package flexmud.engine.cmd;
 
-import flexmud.net.Client;
-import flexmud.cfg.Preferences;
+import flexmud.engine.context.Context;
 
-public class PromptCommand extends Command{
+public class SetContextCommand extends Command{
+    private Context newContext;
+
     @Override
     public void run() {
-
-        if(client != null){
+        if(newContext != null){
+            client.setContext(newContext);
         }
+    }
+
+    public void setNewContext(Context newContext) {
+        this.newContext = newContext;
     }
 }

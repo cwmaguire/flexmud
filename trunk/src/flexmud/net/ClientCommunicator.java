@@ -35,7 +35,7 @@ public class ClientCommunicator implements Runnable{
     private int maxAllowedConns = 1024;
     private Thread clientListenerThread;
     private Selector selector;
-    private final List<ClientEvent> pendingEvents = new LinkedList<ClientEvent>();
+    private final List<SocketChannel> socketChannelsReadyToWrite = new LinkedList<SocketChannel>();
     private final Map<SocketChannel, List<ByteBuffer>> socketChannelByteBuffers = new HashMap<SocketChannel, List<ByteBuffer>>();
     protected final Map<SocketChannel, Client> socketChannelConnections = new HashMap<SocketChannel, Client>();
 
@@ -172,12 +172,10 @@ public class ClientCommunicator implements Runnable{
     }
 
     public final void send(SocketChannel socketChannel, byte[] data) {
-        synchronized (this.pendingEvents) {
-
-            registerSocketChannelForReading(socketChannel);
-
-            bufferData(socketChannel, data);
+        synchronized (this.socketChannelsReadyToWrite) {
+            socketChannelsReadyToWrite.add(socketChannel);
         }
+        bufferData(socketChannel, data);
         this.selector.wakeup();
     }
 
@@ -188,6 +186,8 @@ public class ClientCommunicator implements Runnable{
         }
     }
 
+    // ByteBuffers keep track of how much data has been read; this is convenient when the
+    // entire buffer can't be written out to the client
     private List<ByteBuffer> createOrGetSocketChannelBuffers(SocketChannel socketChannel) {
         List<ByteBuffer> buffers = this.socketChannelByteBuffers.get(socketChannel);
 
@@ -196,10 +196,6 @@ public class ClientCommunicator implements Runnable{
             this.socketChannelByteBuffers.put(socketChannel, buffers);
         }
         return buffers;
-    }
-
-    private void registerSocketChannelForReading(SocketChannel socketChannel) {
-        this.pendingEvents.add(new ClientEvent(socketChannel, ClientEvent.EventType.CHANGEOPS, SelectionKey.OP_WRITE));
     }
 
     private void write(final SelectionKey key) throws IOException {
@@ -236,7 +232,7 @@ public class ClientCommunicator implements Runnable{
         LOGGER.info("Running.");
 
         while (this.shouldRunCommands) {
-            this.processPendingEvents();
+            this.registerInterestOpsWithWritableSocketChannels();
             this.blockForSelectOnRegisteredChannels();
             this.handleNewEvents();
         }
@@ -272,10 +268,10 @@ public class ClientCommunicator implements Runnable{
      */
     public final void start() {
         LOGGER.info("ClientCommunicator: Received Startup Command.");
-        this.shouldRunCommands = true;
-        this.isRunning = true;
-        this.clientListenerThread = new Thread(this, "ClientCommunicator-Thread");
-        this.clientListenerThread.start();
+        shouldRunCommands = true;
+        isRunning = true;
+        clientListenerThread = new Thread(this, "ClientCommunicator-Thread");
+        clientListenerThread.start();
     }
 
     /**
@@ -283,54 +279,41 @@ public class ClientCommunicator implements Runnable{
      */
     public final void stop() {
         LOGGER.info("Received Shutdown Command.");
-        this.shouldRunCommands = false;
-        this.selector.wakeup();
+        shouldRunCommands = false;
+        selector.wakeup();
     }
 
-    private void processPendingEvents() {
-        synchronized (pendingEvents) {
-            SelectionKey selKey;
+    private void registerInterestOpsWithWritableSocketChannels() {
+        synchronized (socketChannelsReadyToWrite) {
+            SelectionKey selectorKey;
 
             LOGGER.debug("processing pending events");
 
-            for (ClientEvent connEvent : pendingEvents) {
-                switch (connEvent.eventType) {
-                    case CHANGEOPS:
-                        selKey = connEvent.socket.keyFor(this.selector);
+            for (SocketChannel socketChannel : socketChannelsReadyToWrite) {
+                selectorKey = socketChannel.keyFor(selector);
 
-                        if (selKey == null) {
-                            System.out.println(connEvent.toString());
-                            if (!connEvent.socket.isConnected()) {
-                                this.disconnect(connEvent.socket);
-                            }
-                            continue;
-                        }
-
-                        if (!selKey.isValid()) {
-                            continue;
-                        }
-
-                        selKey.interestOps(connEvent.operations);
-                        break;
-
-                    // case REGISTER:
-                    // System.out.println("Register");
-                    // try {
-                    // connEvent.socket.register(this.selector, connEvent.operations);
-                    // } catch (ClosedChannelException e) {
-                    // System.err.println("Exception: " + e.getMessage());
-                    // }
-                    // break;
+                if (selectorKey == null) {
+                    LOGGER.info("Null selector key for socket channel " + socketChannel.toString() + " and selector " + selector.toString());
+                    if (!socketChannel.isConnected()) {
+                        this.disconnect(socketChannel);
+                    }
+                    continue;
                 }
+
+                if (!selectorKey.isValid()) {
+                    continue;
+                }
+
+                selectorKey.interestOps(SelectionKey.OP_WRITE);
             }
-            this.pendingEvents.clear();
+            this.socketChannelsReadyToWrite.clear();
         }
     }
 
     private void blockForSelectOnRegisteredChannels() {
-        this.isRunning = false;
+        isRunning = false;
         try {
-            this.selector.select();
+            selector.select();
         } catch (IOException e) {
             LOGGER.error("Exception: ", e);
         }

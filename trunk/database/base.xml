@@ -14,83 +14,26 @@
     <CONTEXT_GROUP CONTEXT_GROUP_ID="8"/>
     <CONTEXT_GROUP CONTEXT_GROUP_ID="9"/>
 
-    <CONTEXT CONTEXT_ID="0"
-             NAME="welcome"
-             CHILD_GROUP_ID="0"
-             IS_LISTED_IN_PARENT="0"
-             MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="0" NAME="welcome"                                  CHILD_GROUP_ID="0"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="1" NAME="login"                PARENT_GROUP_ID="0" CHILD_GROUP_ID="1"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="3" PROMPT="login:>"/>
+    <CONTEXT CONTEXT_ID="2" NAME="password"             PARENT_GROUP_ID="1" CHILD_GROUP_ID="2"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="3" PROMPT="password:>"/>
+    <CONTEXT CONTEXT_ID="3" NAME="main menu"            PARENT_GROUP_ID="2" CHILD_GROUP_ID="3"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="4" NAME="character management" PARENT_GROUP_ID="3" CHILD_GROUP_ID="4"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="8" NAME="choose character"     PARENT_GROUP_ID="3" CHILD_GROUP_ID="8"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0" PROMPT="character:>"/>
+    <CONTEXT CONTEXT_ID="9" NAME="game"                 PARENT_GROUP_ID="3" CHILD_GROUP_ID="9"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="5" NAME="create character"     PARENT_GROUP_ID="4" CHILD_GROUP_ID="5"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="6" NAME="edit character"       PARENT_GROUP_ID="4" CHILD_GROUP_ID="6"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="7" NAME="delete character"     PARENT_GROUP_ID="4" CHILD_GROUP_ID="7"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
 
-    <CONTEXT CONTEXT_ID="1"
-             NAME="login"
-             PARENT_GROUP_ID="0"
-             CHILD_GROUP_ID="1"
-             IS_LISTED_IN_PARENT="0"
-             MAX_ENTRIES="3"
-             PROMPT="login:>"/>
+    <!-- Welcome -->
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0" FLAG="ENTRY"    COMMAND_CLASS="flexmud.engine.cmd.WelcomeMsgCmd"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0" FLAG="ENTRY"    COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"/>
 
-    <CONTEXT CONTEXT_ID="2"
-             NAME="password"
-             PARENT_GROUP_ID="1"
-             CHILD_GROUP_ID="2"
-             IS_LISTED_IN_PARENT="0"
-             MAX_ENTRIES="3"
-             PROMPT="password:>"/>
+    <CONTEXT_COMMAND_PARAMETER ID="0" CONTEXT_COMMAND_ID="0" CLASS="java.lang.Integer.TYPE" VALUE="1"/>
 
-    <CONTEXT CONTEXT_ID="3"
-             NAME="main menu"
-             PARENT_GROUP_ID="2"
-             CHILD_GROUP_ID="3"
-             IS_LISTED_IN_PARENT="0"
-             MAX_ENTRIES="0"/>
-
-    <CONTEXT CONTEXT_ID="4"
-             NAME="character management"
-             PARENT_GROUP_ID="3"
-             CHILD_GROUP_ID="4"
-             IS_LISTED_IN_PARENT="1"
-             MAX_ENTRIES="0"/>
-
-    <CONTEXT CONTEXT_ID="5"
-             NAME="create character"
-             PARENT_GROUP_ID="4"
-             CHILD_GROUP_ID="5"
-             IS_LISTED_IN_PARENT="1"
-             MAX_ENTRIES="0"/>
-
-    <CONTEXT CONTEXT_ID="6"
-             NAME="edit character"
-             PARENT_GROUP_ID="4"
-             CHILD_GROUP_ID="6"
-             IS_LISTED_IN_PARENT="1"
-             MAX_ENTRIES="0"/>
-
-    <CONTEXT CONTEXT_ID="7"
-             NAME="delete character"
-             PARENT_GROUP_ID="4"
-             CHILD_GROUP_ID="7"
-             IS_LISTED_IN_PARENT="1"
-             MAX_ENTRIES="0"/>
-
-    <CONTEXT CONTEXT_ID="8"
-             NAME="choose character"
-             PARENT_GROUP_ID="3"
-             CHILD_GROUP_ID="8"
-             IS_LISTED_IN_PARENT="1"
-             MAX_ENTRIES="0"
-             PROMPT="character:>"/>
-
-    <CONTEXT CONTEXT_ID="9"
-             NAME="game"
-             PARENT_GROUP_ID="3"
-             CHILD_GROUP_ID="9"
-             IS_LISTED_IN_PARENT="0"
-             MAX_ENTRIES="0"/>
-
-
-    <!-- Welcome, login, password -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.WelcomeMsgCmd"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1"  CONTEXT_ID="1" FLAG="DEFAULT" COMMAND_CLASS="LoginCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="2"  CONTEXT_ID="2" FLAG="DEFAULT" COMMAND_CLASS="PasswordCommand"/>
+    <!-- login, password -->
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1"  CONTEXT_ID="1" FLAG="DEFAULT"  COMMAND_CLASS="LoginCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="2"  CONTEXT_ID="2" FLAG="DEFAULT"  COMMAND_CLASS="PasswordCommand"/>
 
     <!-- Main Menu -->
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="3"  CONTEXT_ID="3" FLAG="ENTRY"   COMMAND_CLASS="MainMenuMsgCommand"/>

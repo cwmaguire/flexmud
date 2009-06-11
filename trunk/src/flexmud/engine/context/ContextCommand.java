@@ -39,6 +39,7 @@ public class ContextCommand {
     private Context context;
     private String description;
     private ContextCommandFlag contextCommandFlag;
+    private int sequence;
 
     @Id
     @GeneratedValue
@@ -97,5 +98,14 @@ public class ContextCommand {
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    @Column(name = "sequence", nullable = true)
+    public int getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
     }
 }
