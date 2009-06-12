@@ -10,6 +10,8 @@ import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
 import flexmud.db.HibernateUtil;
 import flexmud.engine.cmd.TestCmd;
+import flexmud.engine.cmd.TestCmd2;
+import flexmud.engine.cmd.TestCmd3;
 import flexmud.util.Util;
 import junit.framework.Assert;
 
@@ -30,20 +32,15 @@ public class TestClientContextHandler {
         clientCommunicator = new FakeClientCommunicator();
         clientCommunicator.setShouldInterceptWrite(true);
 
-        ContextCommand entryContextCommand = new ContextCommand();
-        entryContextCommand.setCommandClassName(TestCmd.class.getName());
-        entryContextCommand.setContextCommandFlag(ContextCommandFlag.ENTRY);
-
-        ContextCommand promptContextCommand = new ContextCommand();
-        promptContextCommand.setCommandClassName(TestCmd.class.getName());
-        promptContextCommand.setContextCommandFlag(ContextCommandFlag.PROMPT);
+        ContextCommand entryCntxtCmd1 = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+        ContextCommand promptContextCommand = createContextCommand(TestCmd.class, ContextCommandFlag.PROMPT);
 
         Context context1 = new Context("ctxt1");
         context1.setMaxEntries(1);
         ContextGroup contextGroup = new ContextGroup();
         context1.setChildGroup(contextGroup);
-        context1.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand, promptContextCommand)));
-        entryContextCommand.setContext(context1);
+        context1.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd1, promptContextCommand)));
+        entryCntxtCmd1.setContext(context1);
         promptContextCommand.setContext(context1);
         HibernateUtil.save(context1);
         objectsToDelete.add(context1);
@@ -52,6 +49,13 @@ public class TestClientContextHandler {
         context2.setParentGroup(contextGroup);
         HibernateUtil.save(context2);
         objectsToDelete.add(context2);
+    }
+
+    private ContextCommand createContextCommand(Class clazz, ContextCommandFlag flag) {
+        ContextCommand entryCntxtCmd1 = new ContextCommand();
+        entryCntxtCmd1.setCommandClassName(clazz.getName());
+        entryCntxtCmd1.setContextCommandFlag(flag);
+        return entryCntxtCmd1;
     }
 
     @After
@@ -67,6 +71,8 @@ public class TestClientContextHandler {
         ClientContextHandler clientContextHandler;
         Context firstContext;
         Context firstChildContext;
+
+        TestCmd.resetRunCount();
 
         clientContextHandler = new ClientContextHandler(null);
         clientContextHandler.loadAndSetFirstContext();
@@ -115,16 +121,15 @@ public class TestClientContextHandler {
     public void testEntryCommandIsRunOnContextEntry(){
         FakeClient client = new FakeClient(clientCommunicator, null);
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
-        Context contextWithEntryCommand = new Context();
-        ContextCommand entryContextCommand = new ContextCommand();
-        entryContextCommand.setCommandClassName(TestCmd.class.getName());
-        entryContextCommand.setContextCommandFlag(ContextCommandFlag.ENTRY);
-        contextWithEntryCommand.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryContextCommand)));
-        contextWithEntryCommand.init();
+        Context contextWithEntryCmd = new Context();
+        ContextCommand entryCntxtCmd = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+
+        contextWithEntryCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd)));
+        contextWithEntryCmd.init();
 
         TestCmd.resetRunCount();
 
-        clientContextHandler.setContext(contextWithEntryCommand);
+        clientContextHandler.setContext(contextWithEntryCmd);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
@@ -149,5 +154,43 @@ public class TestClientContextHandler {
         Util.pause(Util.ENGINE_WAIT_TIME);
 
         Assert.assertEquals("Prompt command did not run on context entry", 1, TestCmd.getRunCount());
+    }
+
+    @Test
+    public void testMultipleCommandsWithSameFlagAreRunInSequenceOrder(){
+        FakeClient client = new FakeClient(clientCommunicator, null);
+        ClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        Context contextWithEntryCmd = new Context();
+
+        ContextCommand entryCntxtCmd0 = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+        // setting this explicity for clarity
+        entryCntxtCmd0.setSequence(0);
+        entryCntxtCmd0.setContext(contextWithEntryCmd);
+
+        ContextCommand entryCntxtCmd1 = createContextCommand(TestCmd2.class, ContextCommandFlag.ENTRY);
+        entryCntxtCmd1.setSequence(1);
+        entryCntxtCmd1.setContext(contextWithEntryCmd);
+
+        ContextCommand entryCntxtCmd2 = createContextCommand(TestCmd3.class, ContextCommandFlag.ENTRY);
+        entryCntxtCmd2.setSequence(2);
+        entryCntxtCmd2.setContext(contextWithEntryCmd);
+
+        contextWithEntryCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd0, entryCntxtCmd1, entryCntxtCmd2)));
+        contextWithEntryCmd.init();
+
+        TestCmd.resetRunCount();
+        TestCmd2.resetRunCount();
+        TestCmd3.resetRunCount();
+
+        clientContextHandler.setContext(contextWithEntryCmd);
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertEquals("Zeroth entry command did not run on context entry", 1, TestCmd.getRunCount());
+        Assert.assertEquals("First entry command did not run on context entry", 1, TestCmd2.getRunCount());
+        Assert.assertEquals("Second entry command did not run on context entry", 1, TestCmd3.getRunCount());
+        Assert.assertTrue("First entry command was not run before second entry command: 1 = " + TestCmd2.getLastRunMillis() + ", 2 = " + TestCmd3.getLastRunMillis(), TestCmd2.getLastRunMillis() < TestCmd3.getLastRunMillis());
+        Assert.assertTrue("Second entry command was not run before zeroth entry command: 2 = " + TestCmd2.getLastRunMillis() + ", 0 = " + TestCmd3.getLastRunMillis(), TestCmd3.getLastRunMillis() < TestCmd.getLastRunMillis());
+
     }
 }

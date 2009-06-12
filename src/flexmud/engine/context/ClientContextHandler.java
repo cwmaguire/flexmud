@@ -93,6 +93,8 @@ public class ClientContextHandler {
             }
         }
 
+        // ToDo CM: we could establish a dependency chain right here.
+
         return commands;
     }
 
@@ -123,7 +125,7 @@ public class ClientContextHandler {
     }
 
 
-    private void initializeAndExecuteCommands(List<Command> commands) {
+    protected void initializeAndExecuteCommands(List<Command> commands) {
         if (commands != null) {
             for(Command command : commands){
                 initializeAndExecuteCommand(command);
@@ -131,7 +133,7 @@ public class ClientContextHandler {
         }
     }
 
-    private void initializeAndExecuteCommand(Command command) {
+    protected void initializeAndExecuteCommand(Command command) {
         if (command != null) {
             LOGGER.info("Executing command " + command.getClass().getName());
             command.setClient(client);
