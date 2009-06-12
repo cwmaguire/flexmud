@@ -17,14 +17,17 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
+import flexmud.engine.context.ContextCommand;
 
 public class TestCmd extends Command {
     private static Logger LOGGER = Logger.getLogger(TestCmd.class);
     private static int runCount;
+    private static long lastRunMillis;
 
     @Override
     public void run() {
         runCount++;
+        lastRunMillis = System.currentTimeMillis();
         LOGGER.info("TestCmd class ran");
     }
 
@@ -34,5 +37,9 @@ public class TestCmd extends Command {
 
     public static void resetRunCount() {
         runCount = 0;
+    }
+
+    public static long getLastRunMillis(){
+        return lastRunMillis;
     }
 }

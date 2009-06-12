@@ -6,7 +6,7 @@ log4j.additivity.org.hibernate = false
 
 # flexmud logs
 log4j.logger.flexmud = DEBUG, flexmudLog
-log4j.additivity.com.mycompany = false
+log4j.additivity.flexmud = false
 
 # hibernate appender
 log4j.appender.hibernateLog = org.apache.log4j.RollingFileAppender
