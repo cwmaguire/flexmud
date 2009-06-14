@@ -63,12 +63,12 @@ public class ClientContextHandler {
            ToDo     We could also put in some sort of dependency check where if a command
            ToDo     is processed out of order it gets put back in the queue
         */
-        initializeAndExecuteCommands(getFlaggedCommandsOrNull(ContextCommandFlag.ENTRY));
+        initializeAndExecuteCommands(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
         initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
     }
 
     private Command getSpecificOrGenericPromptCommand() {
-        List<Command> promptCommands = getFlaggedCommandsOrNull(ContextCommandFlag.PROMPT);
+        List<Command> promptCommands = getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.PROMPT);
 
         if ((promptCommands != null && !promptCommands.isEmpty()) ) {
             return promptCommands.get(0);
@@ -77,26 +77,6 @@ public class ClientContextHandler {
         }
 
         return null;
-    }
-
-    private List<Command> getFlaggedCommandsOrNull(ContextCommandFlag flag) {
-        List<Command> commands = new ArrayList<Command>();
-        List<Class> commandClasses = context.getFlaggedCommandClasses(flag);
-
-        if (commandClasses != null) {
-            for(Class clazz : commandClasses){
-                try {
-                    commands.add((Command) clazz.newInstance());
-                } catch (Exception e) {
-                    LOGGER.error("Could not instantiate flagged command [" + clazz.getName() + "] for context [" +
-                            context.getName() + "] and flag [" + flag.name() + "]", e);
-                }
-            }
-        }
-
-        // ToDo CM: we could establish a dependency chain right here.
-
-        return commands;
     }
 
     private boolean doesMaxEntriesCheckFail(Context newContext) {
@@ -120,9 +100,48 @@ public class ClientContextHandler {
             LOGGER.info("Tried to send to null context, keeping client in old context.");
             client.sendText("The area you are trying to get to doesn't seem to exist.");
             // ToDO CM: need to reprompt at this point.
+            // ToDo CM: or, we could simply re-enter them in their current context
             return true;
         }
         return false;
+    }
+
+    private List<Command> getFlaggedCommandsWithParamsOrNull(ContextCommandFlag flag) {
+        Command command;
+        List<Command> commands = new ArrayList<Command>();
+        List<ContextCommand> cntxtCmds = context.getFlaggedCommandClasses(flag);
+
+        if (cntxtCmds != null) {
+            for(ContextCommand cntxtCmd : cntxtCmds){
+                try {
+                    command = (Command) Class.forName(cntxtCmd.getCommandClassName()).newInstance();
+                } catch (Exception e) {
+                    LOGGER.error("Could not instantiate flagged command [" + cntxtCmd.getCommandClassName() +
+                            "] for context [" + context.getName() +
+                            "] and flag [" + flag.name() + "]", e);
+                    continue;
+                }
+                addParameters(command, cntxtCmd);
+                commands.add(command);
+            }
+        }
+
+        // ToDo CM: we could establish a dependency chain right here.
+
+        return commands;
+    }
+
+    private void addParameters(Command cmd, ContextCommand cntxtCmd){
+        List<ContextCommandParameter> cntxtCmdParams = new ArrayList<ContextCommandParameter>(cntxtCmd.getParameters());
+        List<String> parameters = new ArrayList<String>();
+
+        Collections.sort(cntxtCmdParams, new SequenceComparator());
+
+        for(ContextCommandParameter cntxtCmdParam : cntxtCmdParams){
+            parameters.add(cntxtCmdParam.getValue());
+        }
+
+        cmd.setCommandArguments(parameters);
     }
 
 

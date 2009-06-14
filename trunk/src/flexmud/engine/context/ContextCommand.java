@@ -27,7 +27,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "context_command")
-public class ContextCommand {
+public class ContextCommand implements Sequenceable{
     public static final String ID_PROPERTY = "id";
     public static final String CONTEXT_PROPERTY = "context";
     public static final String ALIASES_PROPERTY = "aliases";

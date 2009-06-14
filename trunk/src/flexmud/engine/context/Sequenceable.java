@@ -15,38 +15,8 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.context;
 
-import org.apache.log4j.Logger;
-import flexmud.engine.context.ContextCommand;
-
-import java.sql.Date;
-
-/**
- * We can't attach command _objects_ to a context, only command classes; in order to test that
- * the sequence order is maintained we need several different classes.
- */
-public class TestCmd2 extends Command {
-    private static Logger LOGGER = Logger.getLogger(TestCmd2.class);
-    private static int runCount;
-    private static long lastRunMillis;
-
-    @Override
-    public void run() {
-        runCount++;
-        lastRunMillis = System.currentTimeMillis();
-        LOGGER.info("TestCmd2 class ran");
-    }
-
-    public static int getRunCount() {
-        return runCount;
-    }
-
-    public static void resetRunCount() {
-        runCount = 0;
-    }
-
-    public static long getLastRunMillis(){
-        return lastRunMillis;
-    }
+public interface Sequenceable {
+    public int getSequence();
 }

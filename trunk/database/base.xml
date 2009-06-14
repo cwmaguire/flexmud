@@ -59,8 +59,8 @@
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="19" CONTEXT_ID="9"                COMMAND_CLASS="QuitCommand"                   DESCRIPTION="Exit to the main menu"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="20" CONTEXT_ID="9"                COMMAND_CLASS="LookCommand"                   DESCRIPTION="Find out what's around you"/>
 
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="0" PARAM_CLASS="" PARAM_VALUE=""/>
-    
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="0" PARAM_VALUE="1"/>
+
     <!-- Main Menu -->
     <!-- 1) [C]haracter Management -->
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="5" ALIAS="C" IS_ACCELERATOR="1" IS_BULLET="0"/>
