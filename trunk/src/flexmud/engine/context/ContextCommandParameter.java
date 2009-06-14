@@ -30,7 +30,7 @@ public class ContextCommandParameter implements Sequenceable{
     private int id;
     private ContextCommand contextCommand;
     private String value;
-    private int sequence;
+    private Integer sequence;
 
     @Id
     @GeneratedValue
@@ -63,11 +63,11 @@ public class ContextCommandParameter implements Sequenceable{
     }
 
     @Column(name = "sequence", nullable = false)
-    public int getSequence() {
+    public Integer getSequence() {
         return sequence;
     }
 
-    public void setSequence(int sequence) {
+    public void setSequence(Integer sequence) {
         this.sequence = sequence;
     }
 }

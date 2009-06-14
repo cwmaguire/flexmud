@@ -25,41 +25,41 @@
     <CONTEXT CONTEXT_ID="7" NAME="delete character"     PARENT_GROUP_ID="4" CHILD_GROUP_ID="7"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
 
     <!-- Welcome -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0" FLAG="ENTRY"    SEQUENCE="1" COMMAND_CLASS="flexmud.engine.cmd.WelcomeMsgCmd"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1"  CONTEXT_ID="0" FLAG="ENTRY"    SEQUENCE="2" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0" FLAG="ENTRY"   SEQUENCE="1" COMMAND_CLASS="flexmud.engine.cmd.WelcomeMsgCmd"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1"  CONTEXT_ID="0" FLAG="ENTRY"   SEQUENCE="2" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"/>
 
     <!-- login, password -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="2"  CONTEXT_ID="1" FLAG="DEFAULT"  COMMAND_CLASS="LoginCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="3"  CONTEXT_ID="2" FLAG="DEFAULT"  COMMAND_CLASS="PasswordCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="2"  CONTEXT_ID="1" FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.LoginCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="3"  CONTEXT_ID="2" FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.PasswordCommand"/>
 
     <!-- Main Menu -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3" FLAG="ENTRY"   COMMAND_CLASS="MainMenuMsgCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3" FLAG="DEFAULT" COMMAND_CLASS="InvalidMainMenuChoiceCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"                COMMAND_CLASS="CharacterMenuItemCommand"       DESCRIPTION="Character Management"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="3"                COMMAND_CLASS="GameMenuItemCommand"            DESCRIPTION="Play"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.MainMenuMsgCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3" FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidMainMenuChoiceCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"                COMMAND_CLASS="flexmud.engine.cmd.CharacterMenuItemCommand"       DESCRIPTION="Character Management"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="3"                COMMAND_CLASS="flexmud.engine.cmd.GameMenuItemCommand"            DESCRIPTION="Play"/>
 
     <!-- Character create, edit and delete -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="8"  CONTEXT_ID="4" FLAG="ENTRY"   COMMAND_CLASS="CharacterMenuMsgCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="9"  CONTEXT_ID="4" FLAG="DEFAULT" COMMAND_CLASS="InvalidCharacterMenuItemCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="10" CONTEXT_ID="4"                COMMAND_CLASS="CreateCharacterMenuItemCommand" DESCRIPTION="Create Character"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="11" CONTEXT_ID="4"                COMMAND_CLASS="EditCharacterMenuItemCommand"   DESCRIPTION="Edit Character"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="12" CONTEXT_ID="4"                COMMAND_CLASS="DeleteCharacterMenuItemCommand" DESCRIPTION="Delete Character"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="8"  CONTEXT_ID="4" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.CharacterMenuMsgCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="9"  CONTEXT_ID="4" FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidCharacterMenuItemCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="10" CONTEXT_ID="4"                COMMAND_CLASS="flexmud.engine.cmd.CreateCharacterMenuItemCommand" DESCRIPTION="Create Character"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="11" CONTEXT_ID="4"                COMMAND_CLASS="flexmud.engine.cmd.EditCharacterMenuItemCommand"   DESCRIPTION="Edit Character"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="12" CONTEXT_ID="4"                COMMAND_CLASS="flexmud.engine.cmd.DeleteCharacterMenuItemCommand" DESCRIPTION="Delete Character"/>
 
     <!-- Choosing a character -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="13" CONTEXT_ID="8" FLAG="ENTRY"   COMMAND_CLASS="CharacterChoiceMsgCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="14" CONTEXT_ID="8" FLAG="DEFAULT" COMMAND_CLASS="ChooseCharacterCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="13" CONTEXT_ID="8" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.CharacterChoiceMsgCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="14" CONTEXT_ID="8" FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.ChooseCharacterCommand"/>
 
     <!-- Entering the game -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="15" CONTEXT_ID="9" FLAG="ENTRY"   COMMAND_CLASS="LookCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="16" CONTEXT_ID="9" FLAG="PROMPT"  COMMAND_CLASS="CharacterPromptCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="17" CONTEXT_ID="9" FLAG="DEFAULT" COMMAND_CLASS="InvalidGameCommandCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="15" CONTEXT_ID="9" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.LookCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="16" CONTEXT_ID="9" FLAG="PROMPT"  COMMAND_CLASS="flexmud.engine.cmd.CharacterPromptCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="17" CONTEXT_ID="9" FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidGameCommandCommand"/>
 
     <!-- Game Commands -->
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="18" CONTEXT_ID="9"                COMMAND_CLASS="HelpCommand"                   DESCRIPTION="Get help with game commands"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="19" CONTEXT_ID="9"                COMMAND_CLASS="QuitCommand"                   DESCRIPTION="Exit to the main menu"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="20" CONTEXT_ID="9"                COMMAND_CLASS="LookCommand"                   DESCRIPTION="Find out what's around you"/>
 
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="0" PARAM_VALUE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="1" PARAM_VALUE="1" SEQUENCE="1"/>
 
     <!-- Main Menu -->
     <!-- 1) [C]haracter Management -->

@@ -18,5 +18,5 @@
 package flexmud.engine.context;
 
 public interface Sequenceable {
-    public int getSequence();
+    public Integer getSequence();
 }
