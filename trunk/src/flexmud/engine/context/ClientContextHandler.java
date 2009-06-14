@@ -26,6 +26,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.*;
+import java.util.concurrent.Future;
 
 public class ClientContextHandler {
     private static final Logger LOGGER = Logger.getLogger(ClientContextHandler.class);
@@ -133,12 +134,14 @@ public class ClientContextHandler {
         }
     }
 
-    protected void initializeAndExecuteCommand(Command command) {
+    protected Future initializeAndExecuteCommand(Command command) {
         if (command != null) {
             LOGGER.info("Executing command " + command.getClass().getName());
             command.setClient(client);
-            Executor.exec(command);
+            return Executor.exec(command);
         }
+
+        return null;
     }
 
     private boolean isMaxEntriesExceeded(Context newContext) {
@@ -158,7 +161,7 @@ public class ClientContextHandler {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Context.class);
         detachedCriteria.add(Restrictions.isNull(Context.PARENT_GROUP_PROPERTY));
         List<Context> contexts = (List<Context>) HibernateUtil.fetch(detachedCriteria);
-        
+
         Context firstContext;
         if (contexts != null && !contexts.isEmpty()) {
             firstContext = contexts.get(0);

@@ -18,13 +18,16 @@ package flexmud.engine.exec;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Executor {
     public static ExecutorService executorService = Executors.newCachedThreadPool();
 
-    public static void exec(Runnable command){
+    public static Future exec(Runnable command){
         if(command != null){
-            executorService.submit(command);
+            return executorService.submit(command);
         }
+
+        return null;
     }
 }

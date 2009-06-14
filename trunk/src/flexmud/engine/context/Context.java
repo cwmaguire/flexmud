@@ -74,25 +74,18 @@ public class Context {
 
             Collections.sort(contextCommandsList, new Comparator<ContextCommand>(){
                 @Override
-                public int compare(ContextCommand contextCommand1, ContextCommand contextCommand2) {
-                    int sequence1 = contextCommand1.getSequence();
-                    int sequence2 = contextCommand2.getSequence();
+                public int compare(ContextCommand cntxtCmd1, ContextCommand cntxtCmd2) {
+                    int sequence1 = cntxtCmd1.getSequence();
+                    int sequence2 = cntxtCmd2.getSequence();
 
-                    // if the sequence isn't set then it defaults to zero and should come
-                    // after any context command with a specified sequence
-                    if(sequence1 == sequence2){
-                        return 0;
-                    }else if(sequence1 == 0){
+                    // sort in reverse order except zero is always last
+                    if(sequence1 == 0){
                         return sequence2;
                     }else if(sequence2 == 0){
-                        return sequence1;
-                    }else if(sequence1 > sequence2){
-                        return 1;
-                    }else if(sequence1 < sequence2){
-                        return -1;
+                        return 0;
+                    }else{
+                        return sequence1 - sequence2;
                     }
-
-                    return 0;
                 }
             });
 
