@@ -53,7 +53,7 @@ public class Context {
     private String prompt;
 
     private Map<String, Class> aliasCommandClasses = new HashMap<String, Class>();
-    private Map<ContextCommandFlag, List<Class>> flaggedCommandClasses = new HashMap<ContextCommandFlag, List<Class>>();
+    private Map<ContextCommandFlag, List<ContextCommand>> flaggedCntxtCmds = new HashMap<ContextCommandFlag, List<ContextCommand>>();
 
     public Context() {
     }
@@ -90,23 +90,23 @@ public class Context {
             });
 
             for (ContextCommand contextCommand : contextCommandsList) {
-                mapFlaggedCommandClass(contextCommand);
+                mapFlaggedContxtCommands(contextCommand);
             }
         }
     }
 
-    private void mapFlaggedCommandClass(ContextCommand contextCommand) {
+    private void mapFlaggedContxtCommands(ContextCommand contextCommand) {
         ContextCommandFlag flag;
-        List<Class> flagClasses;
+        List<ContextCommand> flaggedCntxtCmdsList;
         flag = contextCommand.getContextCommandFlag();
 
         if(flag != null){
-            flagClasses = flaggedCommandClasses.get(flag);
-            if(flagClasses == null){
-                flagClasses = new ArrayList<Class>();
+            flaggedCntxtCmdsList = this.flaggedCntxtCmds.get(flag);
+            if(flaggedCntxtCmdsList == null){
+                flaggedCntxtCmdsList = new ArrayList<ContextCommand>();
             }
-            flagClasses.add(loadClass(contextCommand.getCommandClassName()));
-            flaggedCommandClasses.put(flag, flagClasses);
+            flaggedCntxtCmdsList.add(contextCommand);
+            this.flaggedCntxtCmds.put(flag, flaggedCntxtCmdsList);
         }
     }
 
@@ -241,8 +241,8 @@ public class Context {
     }
 
     @Transient
-    public List<Class> getFlaggedCommandClasses(ContextCommandFlag flag){
-        return flaggedCommandClasses.get(flag);
+    public List<ContextCommand> getFlaggedCommandClasses(ContextCommandFlag flag){
+        return flaggedCntxtCmds.get(flag);
     }
 
     @Transient

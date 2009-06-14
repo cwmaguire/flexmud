@@ -21,16 +21,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "context_command_parameter")
-public class ContextCommandParameter {
+public class ContextCommandParameter implements Sequenceable{
     public static final String ID_PROPERTY = "id";
-    public static final String CLAZZ_PROPERTY = "clazz";
     public static final String VALUE_PROPERTY = "value";
+    public static final String SEQUENCE_PROPERTY = "sequence";
     public static final String CONTEXT_COMMAND_PROPERTY = "contextCommand";
 
     private int id;
     private ContextCommand contextCommand;
-    private String clazz;
     private String value;
+    private int sequence;
 
     @Id
     @GeneratedValue
@@ -53,15 +53,6 @@ public class ContextCommandParameter {
         this.contextCommand = contextCommand;
     }
 
-    @Column(name = "param_class", nullable = false)
-    public String getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(String clazz) {
-        this.clazz = clazz;
-    }
-
     @Column(name = "param_value", nullable = false)
     public String getValue() {
         return value;
@@ -71,4 +62,12 @@ public class ContextCommandParameter {
         this.value = value;
     }
 
+    @Column(name = "sequence", nullable = false)
+    public int getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
+    }
 }

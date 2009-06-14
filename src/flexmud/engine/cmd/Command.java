@@ -36,4 +36,8 @@ public abstract class Command implements Runnable{
     public void setCommandArguments(List<String> commandArguments) {
         this.commandArguments = commandArguments;
     }
+
+    public List<String> getCommandArguments() {
+        return commandArguments;
+    }
 }

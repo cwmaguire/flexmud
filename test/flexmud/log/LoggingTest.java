@@ -65,7 +65,6 @@ public class LoggingTest {
 
         List<String> logFileLines = new ArrayList<String>();
         LOGGER.info(TEST_LOG_MESSAGE);
-        System.out.println("Logger info is " + (LOGGER.isInfoEnabled() ? "" : "not") + " enabled");
 
         try {
             logFileLines = readLogFileByLines(DEFAULT_LOG_FILE_NAME);

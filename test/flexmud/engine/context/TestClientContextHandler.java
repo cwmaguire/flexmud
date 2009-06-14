@@ -137,6 +137,44 @@ public class TestClientContextHandler {
     }
 
     @Test
+    public void testCommandHasParameters() {
+        String testParam1 = UUID.randomUUID().toString();
+        String testParam2 = UUID.randomUUID().toString();
+        List<String> paramList = Arrays.asList(testParam1, testParam2);
+        FakeClient client = new FakeClient(clientCommunicator, null);
+        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        Context contextWithEntryCmd = new Context();
+        ContextCommand entryCntxtCmd = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+        entryCntxtCmd.setParameters(createContextCommandParameters(entryCntxtCmd, paramList));
+
+        contextWithEntryCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd)));
+        contextWithEntryCmd.init();
+
+        TestCmd.resetRunCount();
+
+        clientContextHandler.setContext(contextWithEntryCmd);
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertTrue("Command did not contain specified parameters", clientContextHandler.getLastCommandArguments().containsAll(paramList));
+    }
+
+    private Set<ContextCommandParameter> createContextCommandParameters(ContextCommand cntxtCmd, List<String> parameters){
+        Set<ContextCommandParameter> cntxtCmdParams = new HashSet<ContextCommandParameter>();
+        for(String param : parameters){
+            cntxtCmdParams.add(createContextCommandParameter(cntxtCmd, param));
+        }
+        return cntxtCmdParams;
+    }
+
+    private ContextCommandParameter createContextCommandParameter(ContextCommand cntxtCmd, String parameter){
+        ContextCommandParameter cntxtCmdParam = new ContextCommandParameter();
+        cntxtCmdParam.setContextCommand(cntxtCmd);
+        cntxtCmdParam.setValue(parameter);
+        return cntxtCmdParam;
+    }
+
+    @Test
     public void testPromptCommandIsRunOnContextEntry() {
         FakeClient client = new FakeClient(clientCommunicator, null);
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);

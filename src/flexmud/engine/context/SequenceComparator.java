@@ -15,38 +15,28 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.context;
 
-import org.apache.log4j.Logger;
-import flexmud.engine.context.ContextCommand;
+import java.util.Comparator;
 
-import java.sql.Date;
+public class SequenceComparator implements Comparator<Sequenceable> {
+    @Override
+    public int compare(Sequenceable sequenceable1, Sequenceable sequenceable2) {
+        int sequence1 = sequenceable1.getSequence();
+        int sequence2 = sequenceable2.getSequence();
 
-/**
- * We can't attach command _objects_ to a context, only command classes; in order to test that
- * the sequence order is maintained we need several different classes.
- */
-public class TestCmd2 extends Command {
-    private static Logger LOGGER = Logger.getLogger(TestCmd2.class);
-    private static int runCount;
-    private static long lastRunMillis;
+        // sort in reverse order except zero is always last
+        if (sequence1 == 0) {
+            return sequence2;
+        } else if (sequence2 == 0) {
+            return 0;
+        } else {
+            return sequence1 - sequence2;
+        }
+    }
 
     @Override
-    public void run() {
-        runCount++;
-        lastRunMillis = System.currentTimeMillis();
-        LOGGER.info("TestCmd2 class ran");
-    }
-
-    public static int getRunCount() {
-        return runCount;
-    }
-
-    public static void resetRunCount() {
-        runCount = 0;
-    }
-
-    public static long getLastRunMillis(){
-        return lastRunMillis;
+    public boolean equals(Object obj) {
+        return obj instanceof ContextCommand && super.equals(obj);
     }
 }

@@ -34,7 +34,6 @@ import java.util.Set;
 
 public class TestPersistContextCommand {
     private static final String COMMAND_CLASS_NAME = "CommandClass";
-    private Context context;
 
     static {
         LoggingUtil.resetConfiguration();
@@ -43,8 +42,7 @@ public class TestPersistContextCommand {
 
     @Test
     public void testSave(){
-        this.context = new Context("Command Alias Context");
-        Context context = this.context;
+        Context context = new Context("Command Alias Context");
         ContextGroup contextGroup = new ContextGroup();
         context.setChildGroup(contextGroup);
         HibernateUtil.save(context);
@@ -68,7 +66,6 @@ public class TestPersistContextCommand {
 
         ContextCommandParameter param1 = new ContextCommandParameter();
         param1.setContextCommand(contextCommand);
-        param1.setClazz("");
         param1.setValue("");
 
         contextCommand.setAliases(new HashSet<ContextCommandAlias>(Arrays.asList(alias1, alias2)));

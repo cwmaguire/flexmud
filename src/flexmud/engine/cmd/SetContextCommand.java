@@ -18,18 +18,29 @@
 package flexmud.engine.cmd;
 
 import flexmud.engine.context.Context;
+import flexmud.db.HibernateUtil;
+
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 public class SetContextCommand extends Command{
-    private Context newContext;
 
     @Override
     public void run() {
-        if(newContext != null){
-            client.setContext(newContext);
+        List<String> cmdArguments = getCommandArguments();
+        if(cmdArguments.isEmpty()){
+           return;
         }
-    }
 
-    public void setNewContext(Context newContext) {
-        this.newContext = newContext;
+        DetachedCriteria criteria = DetachedCriteria.forClass(Context.class);
+        criteria.add(Restrictions.eq(Context.ID_PROPERTY, Long.parseLong(cmdArguments.get(0))));
+
+        List<Context> contexts = HibernateUtil.fetch(criteria);
+
+        if(contexts != null && !contexts.isEmpty()){
+            client.setContext(contexts.get(0));
+        }
     }
 }

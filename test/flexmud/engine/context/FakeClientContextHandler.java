@@ -22,11 +22,13 @@ import flexmud.engine.cmd.Command;
 import flexmud.util.Util;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
 public class FakeClientContextHandler extends ClientContextHandler {
     private static Logger LOGGER = Logger.getLogger(FakeClientContextHandler.class);
+    private List<String> lastCommandArguments;
 
     public FakeClientContextHandler(Client client) {
         super(client);
@@ -36,6 +38,7 @@ public class FakeClientContextHandler extends ClientContextHandler {
         if (commands != null) {
             for (Command command : commands) {
                 LOGGER.debug("Received command " + command.getClass().getCanonicalName());
+                lastCommandArguments = command.getCommandArguments();
             }
 
             for (Command command : commands) {
@@ -52,6 +55,10 @@ public class FakeClientContextHandler extends ClientContextHandler {
                 LOGGER.debug("Exec'd command " + command.getClass().getCanonicalName() + " at " + System.currentTimeMillis());
             }
         }
+    }
+
+    public List<String> getLastCommandArguments() {
+        return lastCommandArguments;
     }
 
     private class SleepingCommand extends Command {
