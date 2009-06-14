@@ -24,8 +24,10 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.apache.log4j.Logger;
 
 public class SetContextCommand extends Command{
+    private static final Logger LOGGER = Logger.getLogger(SetContextCommand.class);
 
     @Override
     public void run() {
@@ -40,6 +42,7 @@ public class SetContextCommand extends Command{
         List<Context> contexts = HibernateUtil.fetch(criteria);
 
         if(contexts != null && !contexts.isEmpty()){
+            LOGGER.info("Setting context to " + contexts.get(0).getName() + " for client " + client.getConnectionID());
             client.setContext(contexts.get(0));
         }
     }
