@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+
 package flexmud.engine.cmd;
 
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class TestTestCommands {
         new TestCmd().run();
         new TestCmd2().run();
         new TestCmd3().run();
-        
+
         Assert.assertEquals("TestCmd did not record running once", TestCmd.getRunCount(), 1);
         Assert.assertEquals("TestCmd2 did not record running once", TestCmd2.getRunCount(), 1);
         Assert.assertEquals("TestCmd3 did not record running once", TestCmd3.getRunCount(), 1);

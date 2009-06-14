@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+
 package flexmud.engine.context;
 
 import flexmud.net.Client;
@@ -26,7 +27,6 @@ import org.apache.log4j.Logger;
 
 public class FakeClientContextHandler extends ClientContextHandler {
     private static Logger LOGGER = Logger.getLogger(FakeClientContextHandler.class);
-    public static Boolean LOCKED = false;
 
     public FakeClientContextHandler(Client client) {
         super(client);
@@ -35,46 +35,36 @@ public class FakeClientContextHandler extends ClientContextHandler {
     protected void initializeAndExecuteCommands(List<Command> commands) {
         if (commands != null) {
             for (Command command : commands) {
+                LOGGER.debug("Received command " + command.getClass().getCanonicalName());
+            }
+
+            for (Command command : commands) {
 
                 LOGGER.debug("init & exec command " + command.getClass().getName());
 
-                synchronized(LOCKED){
-                    LOCKED = true;
+                try {
+                    initializeAndExecuteCommand(new SleepingCommand(command)).get();
+                } catch (Exception e) {
+                    LOGGER.error("init & exec command " + command.getClass().getName(), e);
+                    return;
                 }
 
-                initializeAndExecuteCommand(new LockingCommand(command));
-
-                while(true){
-                    synchronized(LOCKED){
-                        if(LOCKED){
-                            LOGGER.debug("locked is true");
-                            Util.pause(100);
-                        }else{
-                            break;
-                        }
-                    }
-                }
-
-
+                LOGGER.debug("Exec'd command " + command.getClass().getCanonicalName() + " at " + System.currentTimeMillis());
             }
         }
     }
 
-    private class LockingCommand extends Command {
+    private class SleepingCommand extends Command {
         private Command innerCommand;
 
-        public LockingCommand(Command innerCommand) {
+        public SleepingCommand(Command innerCommand) {
             this.innerCommand = innerCommand;
         }
 
         @Override
         public void run() {
-
-            synchronized (LOCKED) {
-                innerCommand.run();
-                LOGGER.debug("unlocking");
-                LOCKED = false;
-            }
+            innerCommand.run();
+            Util.pause(3);
         }
     }
 }
