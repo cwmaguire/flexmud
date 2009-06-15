@@ -25,19 +25,19 @@ import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
-public class CommandBuffer {
-    private static final Logger LOGGER = Logger.getLogger(CommandBuffer.class);
+public class LineBuffer {
+    private static final Logger LOGGER = Logger.getLogger(LineBuffer.class);
     private static final Object CHAR_BUFFER_LOCK = new Object();
-    private static final Object COMPLETE_COMMANDS_LOCK = new Object();
+    private static final Object COMPLETE_LINES_LOCK = new Object();
 
     private ArrayList<Character> charBuffer;
-    private ArrayList<String> completeCmds;
+    private ArrayList<String> completeLines;
 
     /**
      * Default constructor.
      */
-    public CommandBuffer() {
-        this.completeCmds = new ArrayList<String>();
+    public LineBuffer() {
+        this.completeLines = new ArrayList<String>();
         this.charBuffer = new ArrayList<Character>();
     }
 
@@ -64,7 +64,6 @@ public class CommandBuffer {
                 this.charBuffer.add(c);
             }
         }
-
     }
 
     public void readFromSocketChannel(SocketChannel socketChannel) throws ClosedChannelException {
@@ -93,7 +92,7 @@ public class CommandBuffer {
         }
     }
 
-    public void storeCarriageReturnDelimitedInput() {
+    public void storeCompleteLines() {
         int carriageReturnIndex;
 
         synchronized (CHAR_BUFFER_LOCK) {
@@ -104,29 +103,36 @@ public class CommandBuffer {
             }
 
             while (hasMoreCarriageReturns(carriageReturnIndex)) {
-                synchronized (COMPLETE_COMMANDS_LOCK) {
-                    this.completeCmds.add(removeCarriageReturnDelimitedString(carriageReturnIndex));
+
+                deleteLeftoverLineFeed(carriageReturnIndex);
+
+                synchronized (COMPLETE_LINES_LOCK) {
+                    this.completeLines.add(removeCompleteLine(carriageReturnIndex));
                 }
                 carriageReturnIndex = findNextCarriageReturnPos();
             }
         }
     }
 
-    private String removeCarriageReturnDelimitedString(int carriageReturnIndex) {
-        String input;
+    private String removeCompleteLine(int carriageReturnIndex) {
+        String line;
 
+
+        line = removeCompleteLineFromCharBuffer(carriageReturnIndex);
+        line = trimCRLF(line);
+
+        LOGGER.info("LineBuffer.Parse() complete line: \"" + line + "\"");
+
+        return line;
+    }
+
+    private void deleteLeftoverLineFeed(int carriageReturnIndex) {
         if (!isLastChar(carriageReturnIndex) && nextCharIsLineFeed(carriageReturnIndex)) {
             deleteNextChar(carriageReturnIndex);
         }
-
-        input = getStringFromCharBuffer(carriageReturnIndex);
-        input = removeCRLF(input);
-
-        LOGGER.info("CommandBuffer.Parse() new command string: \"" + input + "\"");
-        return input;
     }
 
-    private String getStringFromCharBuffer(int crIndex) {
+    private String removeCompleteLineFromCharBuffer(int crIndex) {
         char[] chars = new char[crIndex + 1];
 
         for (int i = 0; i <= crIndex; ++i) {
@@ -141,7 +147,7 @@ public class CommandBuffer {
         return crIndex;
     }
 
-    private String removeCRLF(String cmd) {
+    private String trimCRLF(String cmd) {
         cmd = cmd.replace(String.valueOf(Constants.CR), "");
         //cmd = cmd.replace(String.valueOf(Constants.LF), "");
         return cmd;
@@ -168,8 +174,8 @@ public class CommandBuffer {
     }
 
     public int cmdCount() {
-        synchronized (COMPLETE_COMMANDS_LOCK) {
-            return this.completeCmds.size();
+        synchronized (COMPLETE_LINES_LOCK) {
+            return this.completeLines.size();
         }
     }
 
@@ -179,8 +185,8 @@ public class CommandBuffer {
 
     public String getNextCommand() {
         if (this.hasCompleteCommand()) {
-            synchronized (COMPLETE_COMMANDS_LOCK) {
-                return this.completeCmds.remove(0);
+            synchronized (COMPLETE_LINES_LOCK) {
+                return this.completeLines.remove(0);
             }
         }
         return "";
@@ -188,7 +194,7 @@ public class CommandBuffer {
 
     public String toString() {
         String out = "CharacterBuffer is: " + this.charBuffer.size() + " characters long.\n Completed Command Queue:\n";
-        for (String s : this.completeCmds) {
+        for (String s : this.completeLines) {
             out += "\t-" + s.replace("\r", "\\r").replace("\n", "\\n") + "\n";
         }
 
