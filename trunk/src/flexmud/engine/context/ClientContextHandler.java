@@ -47,7 +47,7 @@ public class ClientContextHandler {
         return context;
     }
 
-    public void setContext(Context newContext) {
+    public synchronized void setContext(Context newContext) {
 
         if (doesContextCheckFail(newContext)) return;
 
@@ -57,11 +57,11 @@ public class ClientContextHandler {
 
         context = newContext;
 
-        /* ToDo CM: it looks like CachedThreadPool executes jobs in order from a queue,
-           ToDo     but we may still need to put in a delay to prevent later commands
-           ToDo     from sneaking ahead of earlier commands
-           ToDo     We could also put in some sort of dependency check where if a command
-           ToDo     is processed out of order it gets put back in the queue
+        /* Future CM: it looks like CachedThreadPool executes jobs in order from a queue,
+                but we may still need to put in a delay to prevent later commands
+                from sneaking ahead of earlier commands
+                We could also put in some sort of dependency check where if a command
+                is processed out of order it gets put back in the queue
         */
         initializeAndExecuteCommands(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
         initializeAndExecuteCommand(getPromptCommand());
@@ -108,7 +108,7 @@ public class ClientContextHandler {
             LOGGER.info("Tried to send to null context, keeping client in old context.");
             client.sendText("The area you are trying to get to doesn't seem to exist.");
             // ToDO CM: need to reprompt at this point.
-            // ToDo CM: or, we could simply re-enter them in their current context
+            //          or, we could simply re-enter them in their current context
             return true;
         }
         return false;
@@ -134,7 +134,7 @@ public class ClientContextHandler {
             }
         }
 
-        // ToDo CM: we could establish a dependency chain right here.
+        // Future CM: we could establish a dependency chain right here.
 
         return commands;
     }
@@ -199,7 +199,7 @@ public class ClientContextHandler {
         }
     }
 
-    public void loadFirstChildContext() {
+    public void loadAndSetFirstChildContext() {
         ContextGroup childContextGroup = context.getChildGroup();
         List<Context> childContexts = new ArrayList<Context>(childContextGroup.getChildContexts());
         Context firstContext;
@@ -229,7 +229,7 @@ public class ClientContextHandler {
         }
 
         if(command == null){
-            // ToDo CM: put something fun in here like random phrases "What?!" "Huh?" "Does not compute", etc.
+            // Future CM: put something fun in here like random phrases "What?!" "Huh?" "Does not compute", etc.
             // "Hal reports that he's sorry, but he can't do that"
             client.sendTextLn("An error occurred trying to run \'" + commandString + "\"");
             initializeAndExecuteCommand(getPromptCommand());

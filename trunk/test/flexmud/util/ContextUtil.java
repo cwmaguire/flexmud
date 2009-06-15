@@ -14,26 +14,22 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+package flexmud.util;
 
-package flexmud.engine.cmd;
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.ContextCommandFlag;
 
-import flexmud.engine.context.Context;
-import flexmud.db.HibernateUtil;
-import flexmud.sec.Account;
+public class ContextUtil {
+    public static ContextCommand createContextCommand(Class clazz){
+        ContextCommand cntxtCmd = new ContextCommand();
+        cntxtCmd.setCommandClassName(clazz.getName());
+        cntxtCmd.setSequence(0);
+        return cntxtCmd;
+    }
 
-import java.util.List;
-
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-import org.apache.log4j.Logger;
-
-public class LoginCommand extends Command{
-    private static final Logger LOGGER = Logger.getLogger(LoginCommand.class);
-
-    @Override
-    public void run() {
-        client.setLogin(getCommandArguments().get(0));
-        LOGGER.info("Client " + client.getConnectionID() + " logging in with login \"" + client.getLogin() + "\"");
-        client.getContextHandler().loadAndSetFirstChildContext();
+    public static ContextCommand createContextCommand(Class clazz, ContextCommandFlag flag) {
+        ContextCommand cntxtCmd = createContextCommand(clazz);
+        cntxtCmd.setContextCommandFlag(flag);
+        return cntxtCmd;
     }
 }

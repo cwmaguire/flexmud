@@ -94,34 +94,36 @@ public class CommandBuffer {
     }
 
     public void storeCarriageReturnDelimitedInput() {
-        int crIndex;
-        String cmd;
+        int carriageReturnIndex;
 
         synchronized (CHAR_BUFFER_LOCK) {
-            crIndex = findCarriageReturnPos();
+            carriageReturnIndex = findNextCarriageReturnPos();
 
-            if (hasNoCarriageReturns(crIndex)) {
+            if (hasNoCarriageReturns(carriageReturnIndex)) {
                 return;
             }
 
-            while (hasMoreCarriageReturns(crIndex)) {
-
-                if (!isLastChar(crIndex) && nextCharIsLF(crIndex)) {
-                    deleteNextChar(crIndex);
-                }
-
-                cmd = getStringFromCharBuffer(crIndex);
-                cmd = removeCRLF(cmd);
-
-                LOGGER.info("CommandBuffer.Parse() new command string: \"" + cmd + "\"");
-
+            while (hasMoreCarriageReturns(carriageReturnIndex)) {
                 synchronized (COMPLETE_COMMANDS_LOCK) {
-                    this.completeCmds.add(cmd);
+                    this.completeCmds.add(removeCarriageReturnDelimitedString(carriageReturnIndex));
                 }
-
-                crIndex = findCarriageReturnPos();
+                carriageReturnIndex = findNextCarriageReturnPos();
             }
         }
+    }
+
+    private String removeCarriageReturnDelimitedString(int carriageReturnIndex) {
+        String input;
+
+        if (!isLastChar(carriageReturnIndex) && nextCharIsLineFeed(carriageReturnIndex)) {
+            deleteNextChar(carriageReturnIndex);
+        }
+
+        input = getStringFromCharBuffer(carriageReturnIndex);
+        input = removeCRLF(input);
+
+        LOGGER.info("CommandBuffer.Parse() new command string: \"" + input + "\"");
+        return input;
     }
 
     private String getStringFromCharBuffer(int crIndex) {
@@ -133,7 +135,7 @@ public class CommandBuffer {
         return new String(chars);
     }
 
-    private int findCarriageReturnPos() {
+    private int findNextCarriageReturnPos() {
         int crIndex;
         crIndex = this.charBuffer.indexOf(Constants.CR);
         return crIndex;
@@ -149,7 +151,7 @@ public class CommandBuffer {
         this.charBuffer.remove(crIndex + 1);
     }
 
-    private boolean nextCharIsLF(int crIndex) {
+    private boolean nextCharIsLineFeed(int crIndex) {
         return this.charBuffer.get(crIndex + 1) == Constants.LF;
     }
 
