@@ -82,10 +82,10 @@ public class RemoteClientReadWriteTest {
 
         LOGGER.info("Reading received bytes: ");
         for (int i = 0; i < buffer.length; ++i) {
-            System.out.print((char) buffer[i]);
+            LOGGER.info((char) buffer[i]);
             charsRead[i] = (char) buffer[i];
         }
-        LOGGER.info("\nFinished reading received bytes");
+        LOGGER.info("Finished reading received bytes");
 
         Assert.assertEquals("Data received was not the same as data sent", testString, String.valueOf(charsRead));
     }

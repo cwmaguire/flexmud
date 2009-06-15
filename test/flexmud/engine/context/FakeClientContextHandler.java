@@ -71,7 +71,7 @@ public class FakeClientContextHandler extends ClientContextHandler {
         @Override
         public void run() {
             innerCommand.run();
-            Util.pause(3);
+            Util.pause(25);
         }
     }
 }

@@ -51,11 +51,17 @@ public class TestClientContextHandler {
         objectsToDelete.add(context2);
     }
 
+    private ContextCommand createContextCommand(Class clazz){
+        ContextCommand cntxtCmd = new ContextCommand();
+        cntxtCmd.setCommandClassName(clazz.getName());
+        cntxtCmd.setSequence(0);
+        return cntxtCmd;
+    }
+
     private ContextCommand createContextCommand(Class clazz, ContextCommandFlag flag) {
-        ContextCommand entryCntxtCmd1 = new ContextCommand();
-        entryCntxtCmd1.setCommandClassName(clazz.getName());
-        entryCntxtCmd1.setContextCommandFlag(flag);
-        return entryCntxtCmd1;
+        ContextCommand cntxtCmd = createContextCommand(clazz);
+        cntxtCmd.setContextCommandFlag(flag);
+        return cntxtCmd;
     }
 
     @After
@@ -120,7 +126,7 @@ public class TestClientContextHandler {
     @Test
     public void testEntryCommandIsRunOnContextEntry(){
         FakeClient client = new FakeClient(clientCommunicator, null);
-        ClientContextHandler clientContextHandler = new ClientContextHandler(client);
+        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
         Context contextWithEntryCmd = new Context();
         ContextCommand entryCntxtCmd = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
 
@@ -230,5 +236,61 @@ public class TestClientContextHandler {
         Assert.assertTrue("First entry command was not run before second entry command: 1 = " + TestCmd2.getLastRunMillis() + ", 2 = " + TestCmd3.getLastRunMillis(), TestCmd2.getLastRunMillis() < TestCmd3.getLastRunMillis());
         Assert.assertTrue("Second entry command was not run before zeroth entry command: 2 = " + TestCmd2.getLastRunMillis() + ", 0 = " + TestCmd3.getLastRunMillis(), TestCmd3.getLastRunMillis() < TestCmd.getLastRunMillis());
 
+    }
+
+    @Test
+    public void testSpecifiedCommandIsRun(){
+        String uniqueCntxtCmdAlias = UUID.randomUUID().toString();
+        FakeClient client = new FakeClient(clientCommunicator, null);
+        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        Context cntxtWithSpecifiedCmd = new Context();
+        ContextCommand specifiedCntxtCmd = createContextCommand(TestCmd.class);
+        ContextCommand defaultCntxtCmd = createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
+        ContextCommandAlias specifiedCntxtCmdAlis = new ContextCommandAlias();
+
+        specifiedCntxtCmdAlis.setAlias(uniqueCntxtCmdAlias);
+        specifiedCntxtCmd.setAliases(new HashSet<ContextCommandAlias>(Arrays.asList(specifiedCntxtCmdAlis)));
+
+        cntxtWithSpecifiedCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(specifiedCntxtCmd, defaultCntxtCmd)));
+        cntxtWithSpecifiedCmd.init();
+
+        TestCmd.resetRunCount();
+        TestCmd2.resetRunCount();
+
+        clientContextHandler.setContext(cntxtWithSpecifiedCmd);
+        clientContextHandler.runCommand(uniqueCntxtCmdAlias);
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertEquals("Specified command did not run", 1, TestCmd.getRunCount());
+        Assert.assertEquals("Default command should not have run", 0, TestCmd2.getRunCount());
+    }
+
+    @Test
+    public void testDefaultCommandIsRun(){
+        String uniqueCntxtCmdAlias = UUID.randomUUID().toString();
+        FakeClient client = new FakeClient(clientCommunicator, null);
+        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        Context cntxtWithSpecifiedCmd = new Context();
+        ContextCommand specifiedCntxtCmd = createContextCommand(TestCmd.class);
+        ContextCommand defaultCntxtCmd = createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
+        ContextCommandAlias specifiedCntxtCmdAlis = new ContextCommandAlias();
+
+        specifiedCntxtCmdAlis.setAlias(uniqueCntxtCmdAlias);
+        specifiedCntxtCmd.setAliases(new HashSet<ContextCommandAlias>(Arrays.asList(specifiedCntxtCmdAlis)));
+
+        cntxtWithSpecifiedCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(specifiedCntxtCmd, defaultCntxtCmd)));
+        cntxtWithSpecifiedCmd.init();
+
+        TestCmd.resetRunCount();
+        TestCmd2.resetRunCount();
+
+        clientContextHandler.setContext(cntxtWithSpecifiedCmd);
+        clientContextHandler.runCommand(uniqueCntxtCmdAlias + "_GARBAGE");
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertEquals("Specified command does not exist and should not have run", 0, TestCmd.getRunCount());
+        Assert.assertEquals("Default command should have run", 1, TestCmd2.getRunCount());
     }
 }
