@@ -109,7 +109,7 @@ public class LoggingTest {
         }
     }
 
-    // ToDo CM: Anyone know how to fix this? It's not actually deleting the file.
+    // Question CM: Anyone know how to fix this? It's not actually deleting the file.
     // http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4041126
     private void deleteLogFile(String fileName) {
         File testLogFile = new File(fileName);

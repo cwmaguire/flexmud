@@ -13,6 +13,7 @@ import flexmud.engine.cmd.TestCmd;
 import flexmud.engine.cmd.TestCmd2;
 import flexmud.engine.cmd.TestCmd3;
 import flexmud.util.Util;
+import flexmud.util.ContextUtil;
 import junit.framework.Assert;
 
 import java.util.*;
@@ -32,8 +33,8 @@ public class TestClientContextHandler {
         clientCommunicator = new FakeClientCommunicator();
         clientCommunicator.setShouldInterceptWrite(true);
 
-        ContextCommand entryCntxtCmd1 = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
-        ContextCommand promptContextCommand = createContextCommand(TestCmd.class, ContextCommandFlag.PROMPT);
+        ContextCommand entryCntxtCmd1 = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+        ContextCommand promptContextCommand = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.PROMPT);
 
         Context context1 = new Context("ctxt1");
         context1.setMaxEntries(1);
@@ -49,19 +50,6 @@ public class TestClientContextHandler {
         context2.setParentGroup(contextGroup);
         HibernateUtil.save(context2);
         objectsToDelete.add(context2);
-    }
-
-    private ContextCommand createContextCommand(Class clazz){
-        ContextCommand cntxtCmd = new ContextCommand();
-        cntxtCmd.setCommandClassName(clazz.getName());
-        cntxtCmd.setSequence(0);
-        return cntxtCmd;
-    }
-
-    private ContextCommand createContextCommand(Class clazz, ContextCommandFlag flag) {
-        ContextCommand cntxtCmd = createContextCommand(clazz);
-        cntxtCmd.setContextCommandFlag(flag);
-        return cntxtCmd;
     }
 
     @After
@@ -92,7 +80,7 @@ public class TestClientContextHandler {
         Assert.assertNotNull("Unable to fetch first context or first context does not exist", firstContext);
         Assert.assertNull("First context should not have a parent context group", firstContext.getParentGroup());
 
-        clientContextHandler.loadFirstChildContext();
+        clientContextHandler.loadAndSetFirstChildContext();
         firstChildContext = clientContextHandler.getContext();
 
         Assert.assertNotNull("Unable to fetch first child context or first child context does not exist", firstChildContext);
@@ -128,7 +116,7 @@ public class TestClientContextHandler {
         FakeClient client = new FakeClient(clientCommunicator, null);
         FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
         Context contextWithEntryCmd = new Context();
-        ContextCommand entryCntxtCmd = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+        ContextCommand entryCntxtCmd = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
 
         contextWithEntryCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd)));
         contextWithEntryCmd.init();
@@ -150,7 +138,7 @@ public class TestClientContextHandler {
         FakeClient client = new FakeClient(clientCommunicator, null);
         FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
         Context contextWithEntryCmd = new Context();
-        ContextCommand entryCntxtCmd = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+        ContextCommand entryCntxtCmd = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
         entryCntxtCmd.setParameters(createContextCommandParameters(entryCntxtCmd, paramList));
 
         contextWithEntryCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd)));
@@ -206,16 +194,16 @@ public class TestClientContextHandler {
         ClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
         Context contextWithEntryCmd = new Context();
 
-        ContextCommand entryCntxtCmd0 = createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
+        ContextCommand entryCntxtCmd0 = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
         // setting this explicity for clarity
         entryCntxtCmd0.setSequence(0);
         entryCntxtCmd0.setContext(contextWithEntryCmd);
 
-        ContextCommand entryCntxtCmd1 = createContextCommand(TestCmd2.class, ContextCommandFlag.ENTRY);
+        ContextCommand entryCntxtCmd1 = ContextUtil.createContextCommand(TestCmd2.class, ContextCommandFlag.ENTRY);
         entryCntxtCmd1.setSequence(1);
         entryCntxtCmd1.setContext(contextWithEntryCmd);
 
-        ContextCommand entryCntxtCmd2 = createContextCommand(TestCmd3.class, ContextCommandFlag.ENTRY);
+        ContextCommand entryCntxtCmd2 = ContextUtil.createContextCommand(TestCmd3.class, ContextCommandFlag.ENTRY);
         entryCntxtCmd2.setSequence(2);
         entryCntxtCmd2.setContext(contextWithEntryCmd);
 
@@ -244,8 +232,8 @@ public class TestClientContextHandler {
         FakeClient client = new FakeClient(clientCommunicator, null);
         FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
         Context cntxtWithSpecifiedCmd = new Context();
-        ContextCommand specifiedCntxtCmd = createContextCommand(TestCmd.class);
-        ContextCommand defaultCntxtCmd = createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
+        ContextCommand specifiedCntxtCmd = ContextUtil.createContextCommand(TestCmd.class);
+        ContextCommand defaultCntxtCmd = ContextUtil.createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
         ContextCommandAlias specifiedCntxtCmdAlis = new ContextCommandAlias();
 
         specifiedCntxtCmdAlis.setAlias(uniqueCntxtCmdAlias);
@@ -272,8 +260,8 @@ public class TestClientContextHandler {
         FakeClient client = new FakeClient(clientCommunicator, null);
         FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
         Context cntxtWithSpecifiedCmd = new Context();
-        ContextCommand specifiedCntxtCmd = createContextCommand(TestCmd.class);
-        ContextCommand defaultCntxtCmd = createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
+        ContextCommand specifiedCntxtCmd = ContextUtil.createContextCommand(TestCmd.class);
+        ContextCommand defaultCntxtCmd = ContextUtil.createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
         ContextCommandAlias specifiedCntxtCmdAlis = new ContextCommandAlias();
 
         specifiedCntxtCmdAlis.setAlias(uniqueCntxtCmdAlias);

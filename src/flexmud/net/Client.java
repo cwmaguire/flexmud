@@ -31,7 +31,7 @@ public class Client {
     protected UUID connID;
     protected SocketChannel socketChannel = null;
     protected ClientCommunicator clientCommunicator;
-    protected CommandBuffer cmdBuffer;
+    protected CommandBuffer inputBuffer;
     protected ClientContextHandler clientContextHandler;
     protected String login;
     protected String password;
@@ -45,7 +45,7 @@ public class Client {
     }
 
     protected void init() {
-        cmdBuffer = new CommandBuffer();
+        inputBuffer = new CommandBuffer();
         connID = clientCommunicator.getNewConnectionID();
 
         clientContextHandler.init();
@@ -63,8 +63,8 @@ public class Client {
         return this.socketChannel;
     }
 
-    public CommandBuffer getCmdBuffer() {
-        return cmdBuffer;
+    public CommandBuffer getInputBuffer() {
+        return inputBuffer;
     }
 
     public void disconnect() {
@@ -79,17 +79,17 @@ public class Client {
     public void handleInputFromSocketChannel() {
 
         try {
-            this.cmdBuffer.readFromSocketChannel(this.socketChannel);
-            this.cmdBuffer.storeCarriageReturnDelimitedInput();
+            this.inputBuffer.readFromSocketChannel(this.socketChannel);
+            this.inputBuffer.storeCarriageReturnDelimitedInput();
         } catch (ClosedChannelException e) {
             this.disconnect();
         }
 
-        LOGGER.info("Command buffer: " + this.cmdBuffer.toString());
+        LOGGER.info("Command buffer: " + this.inputBuffer.toString());
 
-        if (cmdBuffer.hasCompleteCommand()) {
+        if (inputBuffer.hasCompleteCommand()) {
             LOGGER.info("Running completed command");
-            clientContextHandler.runCommand(cmdBuffer.getNextCommand());
+            clientContextHandler.runCommand(inputBuffer.getNextCommand());
         }else{
             LOGGER.info("No complete commands to run");
         }
