@@ -31,7 +31,7 @@ public class Client {
     protected UUID connID;
     protected SocketChannel socketChannel = null;
     protected ClientCommunicator clientCommunicator;
-    protected CommandBuffer inputBuffer;
+    protected LineBuffer inputBuffer;
     protected ClientContextHandler clientContextHandler;
     protected String login;
     protected String password;
@@ -45,7 +45,7 @@ public class Client {
     }
 
     protected void init() {
-        inputBuffer = new CommandBuffer();
+        inputBuffer = new LineBuffer();
         connID = clientCommunicator.getNewConnectionID();
 
         clientContextHandler.init();
@@ -63,7 +63,7 @@ public class Client {
         return this.socketChannel;
     }
 
-    public CommandBuffer getInputBuffer() {
+    public LineBuffer getInputBuffer() {
         return inputBuffer;
     }
 
@@ -80,7 +80,7 @@ public class Client {
 
         try {
             this.inputBuffer.readFromSocketChannel(this.socketChannel);
-            this.inputBuffer.storeCarriageReturnDelimitedInput();
+            this.inputBuffer.storeCompleteLines();
         } catch (ClosedChannelException e) {
             this.disconnect();
         }
