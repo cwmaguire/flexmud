@@ -41,7 +41,7 @@ public class ContextCommand implements Sequenceable{
     private Context context;
     private String description;
     private ContextCommandFlag contextCommandFlag;
-    private Integer sequence;
+    private Integer sequence = 0;
 
     @Id
     @GeneratedValue

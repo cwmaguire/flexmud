@@ -14,60 +14,46 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-
 package flexmud.engine.context;
 
-import javax.persistence.*;
+import org.junit.Test;
 
-@Entity
-@Table(name = "context_command_parameter")
-public class ContextCommandParameter implements Sequenceable{
-    public static final String ID_PROPERTY = "id";
-    public static final String VALUE_PROPERTY = "value";
-    public static final String SEQUENCE_PROPERTY = "sequence";
-    public static final String CONTEXT_COMMAND_PROPERTY = "contextCommand";
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
 
-    private int id;
-    private ContextCommand contextCommand;
-    private String value;
-    private Integer sequence = 0;
+import junit.framework.Assert;
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
+public class TestSequenceComparator {
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Test
+    public void testSorting() {
+        Sequenceable sequenceable1 = new Sequenceable() {
+            @Override
+            public Integer getSequence() {
+                return 1;
+            }
+        };
 
-    @ManyToOne
-    @JoinColumn(name = "context_command_id", nullable = false)
-    public ContextCommand getContextCommand() {
-        return contextCommand;
-    }
+        Sequenceable sequenceable2 = new Sequenceable() {
+            @Override
+            public Integer getSequence() {
+                return 2;
+            }
+        };
 
-    public void setContextCommand(ContextCommand contextCommand) {
-        this.contextCommand = contextCommand;
-    }
+        Sequenceable sequenceable0 = new Sequenceable() {
+            @Override
+            public Integer getSequence() {
+                return 0;
+            }
+        };
 
-    @Column(name = "param_value", nullable = false)
-    public String getValue() {
-        return value;
-    }
+        List<Sequenceable> sequenceables = Arrays.asList(sequenceable0, sequenceable2, sequenceable1);
+        Collections.sort(sequenceables, new SequenceComparator());
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    @Column(name = "sequence", nullable = false)
-    public Integer getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(Integer sequence) {
-        this.sequence = sequence;
+        Assert.assertEquals("Sequenceable1 should be first", sequenceable1, sequenceables.get(0));
+        Assert.assertEquals("Sequenceable2 should be second", sequenceable2, sequenceables.get(1));
+        Assert.assertEquals("Sequenceable0 should be third", sequenceable0, sequenceables.get(2));
     }
 }

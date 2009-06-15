@@ -213,49 +213,44 @@ public class ClientContextHandler {
     }
 
     public void runCommand(String commandString) {
-        StringTokenizer stringTokenizer;
-        Class commandClass;
-        Command command = null;
+        Command command;
 
         if (commandString == null || commandString.trim().isEmpty()) {
             initializeAndExecuteCommand(getPromptCommand());
             return;
         }
 
-        stringTokenizer = new StringTokenizer(commandString);
+        List<String> words = tokenize(commandString);
 
-        commandClass = context.getCommandClassForAlias(getNextWord(stringTokenizer));
-        try {
-            command = (Command) commandClass.newInstance();
-            command.setCommandArguments(getRemainingWords(stringTokenizer));
-        } catch (Exception e) {
-            LOGGER.error("Could not instantiate Command for class " + (commandClass == null ? "[null]" : commandClass.getName()), e);
-        }
+        command = getSpecifiedCommand(words.get(0));
 
         if(command == null){
             command = getDefaultCommand();
-            // the default command gets _all_ the words, including the "command" (i.e. the first word)
-            command.setCommandArguments(tokenize(commandString));
         }
 
         if(command == null){
+            // ToDo CM: put something fun in here like random phrases "What?!" "Huh?" "Does not compute", etc.
+            // "Hal reports that he's sorry, but he can't do that"
             client.sendTextLn("An error occurred trying to run \'" + commandString + "\"");
             initializeAndExecuteCommand(getPromptCommand());
             return;
         }
 
+        command.setCommandArguments(words);
+
         initializeAndExecuteCommand(command);
     }
 
-    private String getNextWord(StringTokenizer stringTokenizer) {
-        if (stringTokenizer.hasMoreElements()) {
-            return stringTokenizer.nextToken();
-        } else {
-            return "";
+    private Command getSpecifiedCommand(String command) {
+        Class commandClass = context.getCommandClassForAlias(command);
+        if(commandClass != null){
+            try {
+                return (Command) commandClass.newInstance();
+            } catch (Exception e) {
+                LOGGER.error("Could not instantiate Command for input string [" + command + "] and class " + (commandClass == null ? "[null]" : commandClass.getName()), e);
+            }
         }
-    }
-
-    private List<String> getRemainingWords(StringTokenizer stringTokenizer) {
+        return null;
     }
 
     private List<String> tokenize(String commandString){
