@@ -18,7 +18,7 @@ package flexmud.engine.context;
 
 import flexmud.db.HibernateUtil;
 import flexmud.engine.cmd.Command;
-import flexmud.engine.cmd.PromptCommand;
+import flexmud.engine.cmd.ContextOrGenericPromptCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
 import org.apache.log4j.Logger;
@@ -64,16 +64,24 @@ public class ClientContextHandler {
            ToDo     is processed out of order it gets put back in the queue
         */
         initializeAndExecuteCommands(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
-        initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
+        initializeAndExecuteCommand(getPromptCommand());
     }
 
-    private Command getSpecificOrGenericPromptCommand() {
-        List<Command> promptCommands = getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.PROMPT);
+    private Command getPromptCommand() {
+        List<Command> flaggedPromptCommands = getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.PROMPT);
 
-        if ((promptCommands != null && !promptCommands.isEmpty()) ) {
-            return promptCommands.get(0);
-        }else if(context.getPrompt() != null){
-            return new PromptCommand();
+        if ((flaggedPromptCommands != null && !flaggedPromptCommands.isEmpty()) ) {
+            return flaggedPromptCommands.get(0);
+        }
+
+        return new ContextOrGenericPromptCommand();
+    }
+
+    private Command getDefaultCommand() {
+        List<Command> flaggedDefaultCommands = getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.DEFAULT);
+
+        if ((flaggedDefaultCommands != null && !flaggedDefaultCommands.isEmpty())) {
+            return flaggedDefaultCommands.get(0);
         }
 
         return null;
@@ -207,10 +215,10 @@ public class ClientContextHandler {
     public void runCommand(String commandString) {
         StringTokenizer stringTokenizer;
         Class commandClass;
-        Command command;
+        Command command = null;
 
         if (commandString == null || commandString.trim().isEmpty()) {
-            initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
+            initializeAndExecuteCommand(getPromptCommand());
             return;
         }
 
@@ -219,13 +227,24 @@ public class ClientContextHandler {
         commandClass = context.getCommandClassForAlias(getNextWord(stringTokenizer));
         try {
             command = (Command) commandClass.newInstance();
+            command.setCommandArguments(getRemainingWords(stringTokenizer));
         } catch (Exception e) {
             LOGGER.error("Could not instantiate Command for class " + (commandClass == null ? "[null]" : commandClass.getName()), e);
+        }
+
+        if(command == null){
+            command = getDefaultCommand();
+            // the default command gets _all_ the words, including the "command" (i.e. the first word)
+            command.setCommandArguments(tokenize(commandString));
+        }
+
+        if(command == null){
             client.sendTextLn("An error occurred trying to run \'" + commandString + "\"");
-            initializeAndExecuteCommand(getSpecificOrGenericPromptCommand());
+            initializeAndExecuteCommand(getPromptCommand());
             return;
         }
-        command.setCommandArguments(getRemainingWords(stringTokenizer));
+
+        initializeAndExecuteCommand(command);
     }
 
     private String getNextWord(StringTokenizer stringTokenizer) {
@@ -237,7 +256,12 @@ public class ClientContextHandler {
     }
 
     private List<String> getRemainingWords(StringTokenizer stringTokenizer) {
+    }
+
+    private List<String> tokenize(String commandString){
+        StringTokenizer stringTokenizer = new StringTokenizer(commandString);
         List<String> words = new ArrayList<String>();
+
         while (stringTokenizer.hasMoreElements()) {
             words.add(stringTokenizer.nextToken());
         }

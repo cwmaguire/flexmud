@@ -23,7 +23,6 @@ import flexmud.engine.exec.Executor;
 import flexmud.engine.context.Context;
 import flexmud.util.Util;
 import flexmud.cfg.Preferences;
-import flexmud.cfg.Constants;
 import flexmud.log.LoggingUtil;
 import junit.framework.Assert;
 
@@ -49,10 +48,10 @@ public class TestPromptCommand {
         FakeClient fakeClient = new FakeClient(fakeClientCommunicator, null);
         fakeClient.setContext(context);
 
-        PromptCommand promptCommand = new PromptCommand();
-        promptCommand.setClient(fakeClient);
+        ContextOrGenericPromptCommand contextOrGenericPromptCommand = new ContextOrGenericPromptCommand();
+        contextOrGenericPromptCommand.setClient(fakeClient);
 
-        Executor.exec(promptCommand);
+        Executor.exec(contextOrGenericPromptCommand);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
@@ -70,9 +69,9 @@ public class TestPromptCommand {
         FakeClient fakeClient = new FakeClient(fakeClientCommunicator, null);
         fakeClient.setContext(context);
 
-        PromptCommand promptCommand = new PromptCommand();
-        promptCommand.setClient(fakeClient);
-        Executor.exec(promptCommand);
+        ContextOrGenericPromptCommand contextOrGenericPromptCommand = new ContextOrGenericPromptCommand();
+        contextOrGenericPromptCommand.setClient(fakeClient);
+        Executor.exec(contextOrGenericPromptCommand);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
