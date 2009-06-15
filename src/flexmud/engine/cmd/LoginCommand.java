@@ -14,27 +14,23 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+
 package flexmud.engine.cmd;
 
-import flexmud.net.Client;
-import flexmud.cfg.Preferences;
+import flexmud.engine.context.Context;
+import flexmud.db.HibernateUtil;
 
-public class PromptCommand extends Command{
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.apache.log4j.Logger;
+
+public class LoginCommand extends Command{
+    private static final Logger LOGGER = Logger.getLogger(LoginCommand.class);
+
     @Override
     public void run() {
-        String prompt;
-
-        if (client != null) {
-            prompt = getContextOrGenericPrompt(client);
-            client.sendText(prompt);
-        }
-    }
-
-    private String getContextOrGenericPrompt(Client client) {
-        String prompt = client.getContext().getPrompt();
-        if (prompt == null) {
-            prompt = Preferences.getPreference(Preferences.GENERIC_PROMPT);
-        }
-        return prompt;
+        
     }
 }

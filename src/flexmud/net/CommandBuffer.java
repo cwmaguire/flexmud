@@ -19,10 +19,7 @@ package flexmud.net;
 import flexmud.cfg.Constants;
 import org.apache.log4j.Logger;
 
-import java.io.DataInputStream;
-import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SocketChannel;
@@ -45,10 +42,10 @@ public class CommandBuffer {
     }
 
     public void write(byte[] data) throws IOException {
-        this.write(data, data.length);
+        this.writeToCharBuffer(data, data.length);
     }
 
-    public void write(byte[] bytes, int length) throws IOException {
+    public void writeToCharBuffer(byte[] bytes, int length) throws IOException {
 
         if (bytes.length < 1) {
             return;
@@ -82,7 +79,7 @@ public class CommandBuffer {
             while (read > 0) {
                 eightBitCharBuffer.flip();
 
-                this.write(eightBitCharBuffer.array(), eightBitCharBuffer.limit());
+                writeToCharBuffer(eightBitCharBuffer.array(), eightBitCharBuffer.limit());
                 eightBitCharBuffer.clear();
 
                 read = socketChannel.read(eightBitCharBuffer);
@@ -96,47 +93,27 @@ public class CommandBuffer {
         }
     }
 
-    public void readFromInputStream(InputStream is) throws IOException {
-        DataInputStream inputStream;
-        char input;
-
-        try {
-            inputStream = new DataInputStream(is);
-            while (inputStream.available() >= 2) {
-                input = inputStream.readChar();
-
-                LOGGER.info("CommandBuffer.write() new char: '" + input + "'");
-
-                synchronized (CHAR_BUFFER_LOCK) {
-                    this.charBuffer.add(input);
-                }
-            }
-        } catch (EOFException eofe) {
-            // we're done
-        }
-    }
-
-    public void parseCommands() {
+    public void storeCarriageReturnDelimitedInput() {
         int crIndex;
         String cmd;
-        char[] chars;
 
         synchronized (CHAR_BUFFER_LOCK) {
             crIndex = findCarriageReturnPos();
 
-            if (isCommandComplete(crIndex)) {
+            if (hasNoCarriageReturns(crIndex)) {
                 return;
             }
 
-            while (!isCommandComplete(crIndex)) {
+            while (hasMoreCarriageReturns(crIndex)) {
 
                 if (!isLastChar(crIndex) && nextCharIsLF(crIndex)) {
                     deleteNextChar(crIndex);
                 }
 
-                cmd = removeCRLF(getStringFromCharBuffer(crIndex));
+                cmd = getStringFromCharBuffer(crIndex);
+                cmd = removeCRLF(cmd);
 
-                LOGGER.info("CommandBuffer.Parse() new command: \"" + cmd + "\"");
+                LOGGER.info("CommandBuffer.Parse() new command string: \"" + cmd + "\"");
 
                 synchronized (COMPLETE_COMMANDS_LOCK) {
                     this.completeCmds.add(cmd);
@@ -148,8 +125,7 @@ public class CommandBuffer {
     }
 
     private String getStringFromCharBuffer(int crIndex) {
-        char[] chars;
-        chars = new char[crIndex + 1];
+        char[] chars = new char[crIndex + 1];
 
         for (int i = 0; i <= crIndex; ++i) {
             chars[i] = this.charBuffer.remove(0);
@@ -165,7 +141,7 @@ public class CommandBuffer {
 
     private String removeCRLF(String cmd) {
         cmd = cmd.replace(String.valueOf(Constants.CR), "");
-        cmd = cmd.replace(String.valueOf(Constants.LF), "");
+        //cmd = cmd.replace(String.valueOf(Constants.LF), "");
         return cmd;
     }
 
@@ -181,7 +157,11 @@ public class CommandBuffer {
         return crIndex == (this.charBuffer.size());
     }
 
-    private boolean isCommandComplete(int crIndex) {
+    private boolean hasMoreCarriageReturns(int crIndex) {
+        return crIndex != -1;
+    }
+
+    private boolean hasNoCarriageReturns(int crIndex) {
         return crIndex == -1;
     }
 

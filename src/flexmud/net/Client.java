@@ -33,6 +33,8 @@ public class Client {
     protected ClientCommunicator clientCommunicator;
     protected CommandBuffer cmdBuffer;
     protected ClientContextHandler clientContextHandler;
+    protected String login;
+    protected String password;
 
     public Client(ClientCommunicator clientCommunicator, SocketChannel socketChannel) {
         this.clientCommunicator = clientCommunicator;
@@ -78,15 +80,18 @@ public class Client {
 
         try {
             this.cmdBuffer.readFromSocketChannel(this.socketChannel);
-            this.cmdBuffer.parseCommands();
+            this.cmdBuffer.storeCarriageReturnDelimitedInput();
         } catch (ClosedChannelException e) {
             this.disconnect();
         }
 
-        LOGGER.info(this.cmdBuffer.toString());
+        LOGGER.info("Command buffer: " + this.cmdBuffer.toString());
 
         if (cmdBuffer.hasCompleteCommand()) {
+            LOGGER.info("Running completed command");
             clientContextHandler.runCommand(cmdBuffer.getNextCommand());
+        }else{
+            LOGGER.info("No complete commands to run");
         }
 
     }
@@ -123,4 +128,19 @@ public class Client {
         this.clientCommunicator.send(this.socketChannel, text);
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
