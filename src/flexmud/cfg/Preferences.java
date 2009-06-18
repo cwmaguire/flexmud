@@ -23,8 +23,9 @@ public enum Preferences {
     LOG4J_CONFIG_FILE,
     LOG4J_TEST_CONFIG_FILE,
     WELCOME_MESSAGE,
-    GENERIC_PROMPT;
-    
+    GENERIC_PROMPT,
+    LOGIN_FAILED_MESSAGE;
+
     private static final Map<Enum, String> preferences = new HashMap<Enum, String>();
 
     static {
@@ -32,6 +33,7 @@ public enum Preferences {
         preferences.put(LOG4J_TEST_CONFIG_FILE, "log4j-test.lcf");
         preferences.put(WELCOME_MESSAGE, "welcome to flexmud\n.\n.\n.");
         preferences.put(GENERIC_PROMPT, "flexmud>");
+        preferences.put(LOGIN_FAILED_MESSAGE, "login failed.");
     }
 
     public static String getPreference(Enum preferenceName) {

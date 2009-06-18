@@ -128,6 +128,7 @@
       <facet-type id="jpa" />
     </autodetection-disabled>
   </component>
+  <component name="HierarchyBrowserManager" />
   <component name="IdProvider" IDEtalkID="FC257E6D770F36D9676388AB099BC435" />
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />

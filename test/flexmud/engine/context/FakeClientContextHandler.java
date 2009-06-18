@@ -68,6 +68,10 @@ public class FakeClientContextHandler extends ClientContextHandler {
             this.innerCommand = innerCommand;
         }
 
+        public void setClient(Client client){
+            innerCommand.setClient(client);
+        }
+
         @Override
         public void run() {
             innerCommand.run();
