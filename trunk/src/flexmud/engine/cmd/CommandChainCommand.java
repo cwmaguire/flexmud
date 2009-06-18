@@ -16,14 +16,52 @@
  **************************************************************************************************/
 package flexmud.engine.cmd;
 
-import flexmud.cfg.Preferences;
-import flexmud.engine.context.ClientContextHandler;
+import flexmud.engine.context.Context;
+import flexmud.net.Client;
 
-public class WelcomeMsgCmd extends Command{
+import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
+
+public class CommandChainCommand extends Command {
+    List<? extends Command> commands;
+    Context startingContext;
+
+    public CommandChainCommand(List<? extends Command> commands) {
+        this.commands = commands;
+    }
+
+    @Override
+    public void setClient(Client client) {
+        super.setClient(client);
+        if (commands != null) {
+            for (Command command : commands) {
+                command.setClient(client);
+            }
+        }
+    }
+
+    @Override
+    public List<String> getCommandArguments() {
+        List<String> arguments = new ArrayList<String>();
+        if (commands != null) {
+            for (Command command : commands) {
+                arguments.addAll(command.getCommandArguments());
+            }
+        }
+        return arguments;
+    }
 
     @Override
     public void run() {
-        getClient().sendTextLn(Preferences.getPreference(Preferences.WELCOME_MESSAGE));
-    }
+        if (commands != null && !commands.isEmpty()) {
+            Client client = commands.get(0).getClient();
+            startingContext = client.getContext();
 
+            for (Iterator<? extends Command> it = commands.iterator(); it.hasNext() && startingContext.equals(client.getContext());) {
+                Command command = it.next();
+                command.run();
+            }
+        }
+    }
 }

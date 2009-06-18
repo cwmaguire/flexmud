@@ -33,31 +33,31 @@ public class ValidateLoginCommand extends Command {
 
     @Override
     public void run() {
-        String login = client.getLogin();
-        String password = client.getPassword();
+        String login = getClient().getLogin();
+        String password = getClient().getPassword();
 
 
-        LOGGER.info("Client " + client.getConnectionID() + " logging in with login \"" + (login == null ? "[null]" : login) +
+        LOGGER.info("getClient() " + getClient().getConnectionID() + " logging in with login \"" + (login == null ? "[null]" : login) +
                 "\" and password \"" + (password == null ? "[null]" : password) + "\"");
 
         if (login == null || password == null) {
-            LOGGER.info("Login or Password is null for client " + client.getConnectionID() + ", sending to login");
-            client.sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
-            client.setContext(getLoginContext());
+            LOGGER.info("Login or Password is null for getClient() " + getClient().getConnectionID() + ", sending to login");
+            getClient().sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
+            getClient().setContext(getLoginContext());
         }
 
         Account account = getMatchingAccount(login, password);
 
         if (account != null) {
-            client.setAccount(account);
+            getClient().setAccount(account);
 
-            LOGGER.info("Client " + client.getConnectionID() + " account set to " + account.getId() + "; sending to main menu");
+            LOGGER.info("getClient() " + getClient().getConnectionID() + " account set to " + account.getId() + "; sending to main menu");
 
-            client.getContextHandler().loadAndSetFirstChildContext();
+            getClient().getContextHandler().loadAndSetFirstChildContext();
         }else{
-            LOGGER.info("No account matches login credentials provided for client " + client.getConnectionID() + ", sending to login");
-            client.sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
-            client.setContext(getLoginContext());
+            LOGGER.info("No account matches login credentials provided for getClient() " + getClient().getConnectionID() + ", sending to login");
+            getClient().sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
+            getClient().setContext(getLoginContext());
         }
     }
 

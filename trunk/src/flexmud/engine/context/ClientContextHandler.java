@@ -19,6 +19,7 @@ package flexmud.engine.context;
 import flexmud.db.HibernateUtil;
 import flexmud.engine.cmd.Command;
 import flexmud.engine.cmd.ContextOrGenericPromptCommand;
+import flexmud.engine.cmd.CommandChainCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
 import org.apache.log4j.Logger;
@@ -63,11 +64,20 @@ public class ClientContextHandler {
                 We could also put in some sort of dependency check where if a command
                 is processed out of order it gets put back in the queue
         */
-        initializeAndExecuteCommands(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
-        initializeAndExecuteCommand(getPromptCommand());
+        initializeAndExecuteCommand(createCommandChainCommand());
     }
 
-    private Command getPromptCommand() {
+    protected Command createCommandChainCommand(){
+        List<Command> commands = new ArrayList<Command>();
+        
+        commands.addAll(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
+        commands.add(getPromptCommand());
+
+        CommandChainCommand cmdChainCmd = new CommandChainCommand(commands);
+        return cmdChainCmd;
+    }
+
+    protected Command getPromptCommand() {
         List<Command> flaggedPromptCommands = getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.PROMPT);
 
         if ((flaggedPromptCommands != null && !flaggedPromptCommands.isEmpty()) ) {
@@ -114,7 +124,7 @@ public class ClientContextHandler {
         return false;
     }
 
-    private List<Command> getFlaggedCommandsWithParamsOrNull(ContextCommandFlag flag) {
+    protected List<Command> getFlaggedCommandsWithParamsOrNull(ContextCommandFlag flag) {
         Command command;
         List<Command> commands = new ArrayList<Command>();
         List<ContextCommand> cntxtCmds = context.getFlaggedCommandClasses(flag);
@@ -247,7 +257,7 @@ public class ClientContextHandler {
             try {
                 return (Command) commandClass.newInstance();
             } catch (Exception e) {
-                LOGGER.error("Could not instantiate Command for input string [" + command + "] and class " + (commandClass == null ? "[null]" : commandClass.getName()), e);
+                LOGGER.error("Could not instantiate Command for input string [" + command + "] and class " + commandClass.getName(), e);
             }
         }
         return null;

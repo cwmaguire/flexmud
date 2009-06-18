@@ -24,8 +24,8 @@ public class LoginCommand extends Command{
 
     @Override
     public void run() {
-        client.setLogin(getCommandArguments().get(0));
-        LOGGER.info("Client " + client.getConnectionID() + " logging in with login \"" + client.getLogin() + "\"");
-        client.getContextHandler().loadAndSetFirstChildContext();
+        getClient().setLogin(getCommandArguments().get(0));
+        LOGGER.info("Client " + getClient().getConnectionID() + " logging in with login \"" + getClient().getLogin() + "\"");
+        getClient().getContextHandler().loadAndSetFirstChildContext();
     }
 }
