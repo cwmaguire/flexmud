@@ -24,9 +24,9 @@ public class ContextOrGenericPromptCommand extends Command{
     public void run() {
         String prompt;
 
-        if (client != null) {
-            prompt = getContextOrGenericPrompt(client);
-            client.sendText(prompt);
+        if (getClient() != null) {
+            prompt = getContextOrGenericPrompt(getClient());
+            getClient().sendText(prompt);
         }
     }
 

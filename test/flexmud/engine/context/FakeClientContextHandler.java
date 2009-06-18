@@ -19,10 +19,13 @@ package flexmud.engine.context;
 
 import flexmud.net.Client;
 import flexmud.engine.cmd.Command;
+import flexmud.engine.cmd.CommandChainCommand;
 import flexmud.util.Util;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.concurrent.Future;
 
 import org.apache.log4j.Logger;
 
@@ -34,31 +37,43 @@ public class FakeClientContextHandler extends ClientContextHandler {
         super(client);
     }
 
-    protected void initializeAndExecuteCommands(List<Command> commands) {
-        if (commands != null) {
-            for (Command command : commands) {
-                LOGGER.debug("Received command " + command.getClass().getCanonicalName());
-                lastCommandArguments = command.getCommandArguments();
-            }
-
-            for (Command command : commands) {
-
-                LOGGER.debug("init & exec command " + command.getClass().getName());
-
-                try {
-                    initializeAndExecuteCommand(new SleepingCommand(command)).get();
-                } catch (Exception e) {
-                    LOGGER.error("init & exec command " + command.getClass().getName(), e);
-                    return;
-                }
-
-                LOGGER.debug("Exec'd command " + command.getClass().getCanonicalName() + " at " + System.currentTimeMillis());
-            }
-        }
-    }
-
     public List<String> getLastCommandArguments() {
         return lastCommandArguments;
+    }
+
+    @Override
+    protected Future initializeAndExecuteCommand(Command command) {
+
+        LOGGER.debug("init & exec command " + command.getClass().getName());
+
+        lastCommandArguments = command.getCommandArguments();
+
+        try {
+            super.initializeAndExecuteCommand(command);//.get();
+        } catch (Exception e) {
+            LOGGER.error("init & exec command " + command.getClass().getName(), e);
+            return null;
+        }
+
+        LOGGER.debug("Exec'd command " + command.getClass().getCanonicalName() + " at " + System.currentTimeMillis());
+        return null;
+    }
+
+    @Override
+    protected Command createCommandChainCommand() {
+
+        List<Command> commands = new ArrayList<Command>();
+        List<Command> sleepingCommands = new ArrayList<Command>();
+
+        commands.addAll(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
+        commands.add(getPromptCommand());
+
+        for (Command command : commands) {
+            sleepingCommands.add(new SleepingCommand(command));
+        }
+
+        CommandChainCommand cmdChainCmd = new CommandChainCommand(sleepingCommands);
+        return cmdChainCmd;
     }
 
     private class SleepingCommand extends Command {
@@ -68,8 +83,18 @@ public class FakeClientContextHandler extends ClientContextHandler {
             this.innerCommand = innerCommand;
         }
 
-        public void setClient(Client client){
+        @Override
+        public Client getClient() {
+            return innerCommand.getClient();
+        }
+
+        public void setClient(Client client) {
             innerCommand.setClient(client);
+        }
+
+        @Override
+        public List<String> getCommandArguments() {
+            return innerCommand.getCommandArguments();
         }
 
         @Override

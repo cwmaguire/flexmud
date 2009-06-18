@@ -22,11 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Command implements Runnable{
-   protected Client client;
+   private Client client;
    protected List<String> commandArguments;
 
     public Command(){
         commandArguments = new ArrayList<String>();
+    }
+
+    public Client getClient() {
+        return client;
     }
 
     public void setClient(Client client) {

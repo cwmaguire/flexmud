@@ -9,9 +9,8 @@ import flexmud.net.FakeClientCommunicator;
 import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
 import flexmud.db.HibernateUtil;
-import flexmud.engine.cmd.TestCmd;
-import flexmud.engine.cmd.TestCmd2;
-import flexmud.engine.cmd.TestCmd3;
+import flexmud.engine.cmd.*;
+import flexmud.engine.exec.Executor;
 import flexmud.util.Util;
 import flexmud.util.ContextUtil;
 import junit.framework.Assert;
@@ -19,7 +18,7 @@ import junit.framework.Assert;
 import java.util.*;
 
 public class TestClientContextHandler {
-    private FakeClientCommunicator clientCommunicator = null;
+    private FakeClientCommunicator fakeClientCommunicator = null;
     private List<Object> objectsToDelete;
 
     static {
@@ -30,8 +29,8 @@ public class TestClientContextHandler {
     @Before
     public void setup(){
         objectsToDelete = new ArrayList<Object>();
-        clientCommunicator = new FakeClientCommunicator();
-        clientCommunicator.setShouldInterceptWrite(true);
+        fakeClientCommunicator = new FakeClientCommunicator();
+        fakeClientCommunicator.setShouldInterceptWrite(true);
 
         ContextCommand entryCntxtCmd1 = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
         ContextCommand promptContextCommand = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.PROMPT);
@@ -62,13 +61,13 @@ public class TestClientContextHandler {
 
     @Test
     public void testLoadFirstContextAndFirstChild(){
-        ClientContextHandler clientContextHandler;
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
+        ClientContextHandler clientContextHandler = client.getContextHandler();
         Context firstContext;
         Context firstChildContext;
 
         TestCmd.resetRunCount();
 
-        clientContextHandler = new ClientContextHandler(null);
         clientContextHandler.loadAndSetFirstContext();
 
         Util.pause(Util.ENGINE_WAIT_TIME);
@@ -88,7 +87,7 @@ public class TestClientContextHandler {
 
     @Test
     public void testExceedingMaxContextEntriesDisconnectsClient(){
-        FakeClient client = new FakeClient(clientCommunicator, null);
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
         Context context;
 
@@ -103,7 +102,7 @@ public class TestClientContextHandler {
 
     @Test
     public void testNullContextDisconnectsClient(){
-        FakeClient client = new FakeClient(clientCommunicator, null);
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
         ClientContextHandler clientContextHandler = new ClientContextHandler(client);
 
         clientContextHandler.setContext(null);
@@ -113,17 +112,19 @@ public class TestClientContextHandler {
 
     @Test
     public void testEntryCommandIsRunOnContextEntry(){
-        FakeClient client = new FakeClient(clientCommunicator, null);
-        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
-        Context contextWithEntryCmd = new Context();
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
+        FakeClientContextHandler fakeClientCntxtHndlr = new FakeClientContextHandler(client);
+        client.setClientContextHandler(fakeClientCntxtHndlr);
+
         ContextCommand entryCntxtCmd = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
 
+        Context contextWithEntryCmd = new Context();
         contextWithEntryCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd)));
         contextWithEntryCmd.init();
 
         TestCmd.resetRunCount();
 
-        clientContextHandler.setContext(contextWithEntryCmd);
+        fakeClientCntxtHndlr.setContext(contextWithEntryCmd);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
@@ -135,22 +136,25 @@ public class TestClientContextHandler {
         String testParam1 = UUID.randomUUID().toString();
         String testParam2 = UUID.randomUUID().toString();
         List<String> paramList = Arrays.asList(testParam1, testParam2);
-        FakeClient client = new FakeClient(clientCommunicator, null);
-        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
-        Context contextWithEntryCmd = new Context();
+
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
+        FakeClientContextHandler fakeClientCntxtHndlr = new FakeClientContextHandler(client);
+        client.setClientContextHandler(fakeClientCntxtHndlr);
+
         ContextCommand entryCntxtCmd = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
         entryCntxtCmd.setParameters(createContextCommandParameters(entryCntxtCmd, paramList));
 
+        Context contextWithEntryCmd = new Context();
         contextWithEntryCmd.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(entryCntxtCmd)));
         contextWithEntryCmd.init();
 
         TestCmd.resetRunCount();
 
-        clientContextHandler.setContext(contextWithEntryCmd);
+        fakeClientCntxtHndlr.setContext(contextWithEntryCmd);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertTrue("Command did not contain specified parameters", clientContextHandler.getLastCommandArguments().containsAll(paramList));
+        Assert.assertTrue("Command did not contain specified parameters", fakeClientCntxtHndlr.getLastCommandArguments().containsAll(paramList));
     }
 
     private Set<ContextCommandParameter> createContextCommandParameters(ContextCommand cntxtCmd, List<String> parameters){
@@ -170,8 +174,9 @@ public class TestClientContextHandler {
 
     @Test
     public void testPromptCommandIsRunOnContextEntry() {
-        FakeClient client = new FakeClient(clientCommunicator, null);
-        ClientContextHandler clientContextHandler = new ClientContextHandler(client);
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
+        ClientContextHandler fakeClientCntxtHndlr = new ClientContextHandler(client);
+        client.setClientContextHandler(fakeClientCntxtHndlr);
         Context contextWithEntryCommand = new Context();
         ContextCommand promptContextCommand = new ContextCommand();
         promptContextCommand.setCommandClassName(TestCmd.class.getName());
@@ -181,7 +186,7 @@ public class TestClientContextHandler {
 
         TestCmd.resetRunCount();
 
-        clientContextHandler.setContext(contextWithEntryCommand);
+        fakeClientCntxtHndlr.setContext(contextWithEntryCommand);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
@@ -190,8 +195,10 @@ public class TestClientContextHandler {
 
     @Test
     public void testMultipleCommandsWithSameFlagAreRunInSequenceOrder(){
-        FakeClient client = new FakeClient(clientCommunicator, null);
-        ClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
+        ClientContextHandler fakeClientCntxtHndlr = new FakeClientContextHandler(client);
+        client.setClientContextHandler(fakeClientCntxtHndlr);
+
         Context contextWithEntryCmd = new Context();
 
         ContextCommand entryCntxtCmd0 = ContextUtil.createContextCommand(TestCmd.class, ContextCommandFlag.ENTRY);
@@ -214,7 +221,7 @@ public class TestClientContextHandler {
         TestCmd2.resetRunCount();
         TestCmd3.resetRunCount();
 
-        clientContextHandler.setContext(contextWithEntryCmd);
+        fakeClientCntxtHndlr.setContext(contextWithEntryCmd);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
@@ -223,14 +230,15 @@ public class TestClientContextHandler {
         Assert.assertEquals("Second entry command did not run on context entry", 1, TestCmd3.getRunCount());
         Assert.assertTrue("First entry command was not run before second entry command: 1 = " + TestCmd2.getLastRunMillis() + ", 2 = " + TestCmd3.getLastRunMillis(), TestCmd2.getLastRunMillis() < TestCmd3.getLastRunMillis());
         Assert.assertTrue("Second entry command was not run before zeroth entry command: 2 = " + TestCmd2.getLastRunMillis() + ", 0 = " + TestCmd3.getLastRunMillis(), TestCmd3.getLastRunMillis() < TestCmd.getLastRunMillis());
-
     }
 
     @Test
     public void testSpecifiedCommandIsRun(){
         String uniqueCntxtCmdAlias = UUID.randomUUID().toString();
-        FakeClient client = new FakeClient(clientCommunicator, null);
-        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
+        FakeClientContextHandler fakeClientCntxtHndlr = new FakeClientContextHandler(client);
+        client.setClientContextHandler(fakeClientCntxtHndlr);
+
         Context cntxtWithSpecifiedCmd = new Context();
         ContextCommand specifiedCntxtCmd = ContextUtil.createContextCommand(TestCmd.class);
         ContextCommand defaultCntxtCmd = ContextUtil.createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
@@ -245,8 +253,8 @@ public class TestClientContextHandler {
         TestCmd.resetRunCount();
         TestCmd2.resetRunCount();
 
-        clientContextHandler.setContext(cntxtWithSpecifiedCmd);
-        clientContextHandler.runCommand(uniqueCntxtCmdAlias);
+        fakeClientCntxtHndlr.setContext(cntxtWithSpecifiedCmd);
+        fakeClientCntxtHndlr.runCommand(uniqueCntxtCmdAlias);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
@@ -257,8 +265,10 @@ public class TestClientContextHandler {
     @Test
     public void testDefaultCommandIsRun(){
         String uniqueCntxtCmdAlias = UUID.randomUUID().toString();
-        FakeClient client = new FakeClient(clientCommunicator, null);
-        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        FakeClient client = new FakeClient(fakeClientCommunicator, null);
+        FakeClientContextHandler fakeClientCntxtHndlr = new FakeClientContextHandler(client);
+        client.setClientContextHandler(fakeClientCntxtHndlr);
+
         Context cntxtWithSpecifiedCmd = new Context();
         ContextCommand specifiedCntxtCmd = ContextUtil.createContextCommand(TestCmd.class);
         ContextCommand defaultCntxtCmd = ContextUtil.createContextCommand(TestCmd2.class, ContextCommandFlag.DEFAULT);
@@ -273,12 +283,40 @@ public class TestClientContextHandler {
         TestCmd.resetRunCount();
         TestCmd2.resetRunCount();
 
-        clientContextHandler.setContext(cntxtWithSpecifiedCmd);
-        clientContextHandler.runCommand(uniqueCntxtCmdAlias + "_GARBAGE");
+        fakeClientCntxtHndlr.setContext(cntxtWithSpecifiedCmd);
+        fakeClientCntxtHndlr.runCommand(uniqueCntxtCmdAlias + "_GARBAGE");
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
         Assert.assertEquals("Specified command does not exist and should not have run", 0, TestCmd.getRunCount());
         Assert.assertEquals("Default command should have run", 1, TestCmd2.getRunCount());
+    }
+
+    @Test
+    public void testChainCommandDoesNotRunAfterContextSwitch(){
+        FakeClientCommunicator clientCommunicator = new FakeClientCommunicator();
+        FakeClient client = new FakeClient(clientCommunicator, null);
+
+        FakeClientContextHandler fakeClientCntxtHndlr = new FakeClientContextHandler(client);
+        client.setClientContextHandler(fakeClientCntxtHndlr);
+
+        Context loginCntxt = ContextUtil.createContextHierarchy();
+
+        client.setContext(loginCntxt);
+
+        TestCmd.resetRunCount();
+        TestCmd2.resetRunCount();
+
+        CommandChainCommand cmdChainCmd = new CommandChainCommand(Arrays.asList(new TestCmd(), new TestSwitchToChildContextCommand(), new TestCmd2()));
+        cmdChainCmd.setClient(client);
+
+        fakeClientCntxtHndlr.setContext(loginCntxt);
+        Executor.exec(cmdChainCmd);
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertEquals("TestCmd should have run once since it's before the context switch command in the chain ", 1, TestCmd.getRunCount());
+        Assert.assertEquals("TestSwitchToChildContextCommand did not switch to child context", loginCntxt.getChildGroup().getChildContexts().iterator().next(), client.getContext());
+        Assert.assertEquals("TestCmd2 should NOT have run since it's after the context switch command in the chain ", 0, TestCmd2.getRunCount());
     }
 }

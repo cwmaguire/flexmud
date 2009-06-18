@@ -14,16 +14,38 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.cmd;
 
-import flexmud.cfg.Preferences;
-import flexmud.engine.context.ClientContextHandler;
+package flexmud.engine.context;
 
-public class WelcomeMsgCmd extends Command{
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
 
-    @Override
-    public void run() {
-        getClient().sendTextLn(Preferences.getPreference(Preferences.WELCOME_MESSAGE));
+import junit.framework.Assert;
+import flexmud.util.ContextUtil;
+import flexmud.db.HibernateUtil;
+
+public class TestContextEquals {
+    private Context realCntxt;
+
+    @Before
+    public void setup(){
+        realCntxt = new Context();
+        HibernateUtil.save(realCntxt);
     }
 
+    @After
+    public void tearDown(){
+        HibernateUtil.delete(realCntxt);
+    }
+
+    @Test
+    public void testEquals() {
+        FakeContext fakeCntxt = new FakeContext(realCntxt.getId());
+        FakeContext fakeCntxt2 = new FakeContext(realCntxt.getId());
+        Context fakeCntxtParent = ContextUtil.createContextHierarchy();
+        Assert.assertFalse("Context and child Context should not be equal", fakeCntxtParent.equals(fakeCntxtParent.getChildGroup().getChildContexts().iterator().next()));
+        Assert.assertEquals("A FakeContext and a Context with the same ID should be equal", fakeCntxt, realCntxt);
+        Assert.assertEquals("Two FakeContexts with the same ID should be equal", fakeCntxt, fakeCntxt2);
+    }
 }

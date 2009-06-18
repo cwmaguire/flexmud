@@ -43,8 +43,8 @@ public class SetContextCommand extends Command{
         List<Context> contexts = HibernateUtil.fetch(criteria);
 
         if(contexts != null && !contexts.isEmpty()){
-            LOGGER.info("Setting context to " + contexts.get(0).getName() + " for client " + client.getConnectionID());
-            client.setContext(contexts.get(0));
+            LOGGER.info("Setting context to " + contexts.get(0).getName() + " for client " + getClient().getConnectionID());
+            getClient().setContext(contexts.get(0));
         }
     }
 }

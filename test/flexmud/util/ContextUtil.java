@@ -16,8 +16,10 @@
  **************************************************************************************************/
 package flexmud.util;
 
-import flexmud.engine.context.ContextCommand;
-import flexmud.engine.context.ContextCommandFlag;
+import flexmud.engine.context.*;
+
+import java.util.HashSet;
+import java.util.Arrays;
 
 public class ContextUtil {
     public static ContextCommand createContextCommand(Class clazz){
@@ -31,5 +33,14 @@ public class ContextUtil {
         ContextCommand cntxtCmd = createContextCommand(clazz);
         cntxtCmd.setContextCommandFlag(flag);
         return cntxtCmd;
+    }
+
+    public static Context createContextHierarchy() {
+        FakeContext parentCntxt = new FakeContext(Long.MAX_VALUE);
+        FakeContext childCntxt = new FakeContext(Long.MAX_VALUE - 1);
+        ContextGroup cntxtGroup = new ContextGroup();
+        cntxtGroup.setChildContexts(new HashSet<Context>(Arrays.asList(childCntxt)));
+        parentCntxt.setChildGroup(cntxtGroup);
+        return parentCntxt;
     }
 }

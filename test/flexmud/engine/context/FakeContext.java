@@ -14,16 +14,10 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.cmd;
+package flexmud.engine.context;
 
-import flexmud.cfg.Preferences;
-import flexmud.engine.context.ClientContextHandler;
-
-public class WelcomeMsgCmd extends Command{
-
-    @Override
-    public void run() {
-        getClient().sendTextLn(Preferences.getPreference(Preferences.WELCOME_MESSAGE));
+public class FakeContext extends Context{
+    public FakeContext(long id){
+        this.setId(id);
     }
-
 }

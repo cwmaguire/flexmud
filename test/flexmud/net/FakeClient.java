@@ -17,6 +17,8 @@
 
 package flexmud.net;
 
+import flexmud.engine.context.ClientContextHandler;
+
 import java.nio.channels.SocketChannel;
 
 public class FakeClient extends Client{

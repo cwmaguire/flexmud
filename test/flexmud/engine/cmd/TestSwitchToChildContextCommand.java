@@ -14,16 +14,15 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+
 package flexmud.engine.cmd;
 
-import flexmud.cfg.Preferences;
-import flexmud.engine.context.ClientContextHandler;
+import org.apache.log4j.Logger;
 
-public class WelcomeMsgCmd extends Command{
+public class TestSwitchToChildContextCommand extends Command{
 
     @Override
     public void run() {
-        getClient().sendTextLn(Preferences.getPreference(Preferences.WELCOME_MESSAGE));
+        getClient().getContextHandler().loadAndSetFirstChildContext();
     }
-
 }

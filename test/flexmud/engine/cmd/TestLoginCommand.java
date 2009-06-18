@@ -49,7 +49,7 @@ public class TestLoginCommand {
 
         FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
 
-        Context loginCntxt = createContextHierarchy();
+        Context loginCntxt = ContextUtil.createContextHierarchy();
 
         client.setContext(loginCntxt);
 
@@ -63,13 +63,5 @@ public class TestLoginCommand {
         Util.pause(Util.ENGINE_WAIT_TIME);
 
         Assert.assertEquals("Login command did not switch to child context", loginCntxt.getChildGroup().getChildContexts().iterator().next(), client.getContext());
-    }
-
-    private Context createContextHierarchy() {
-        Context loginCntxt = new Context();
-        ContextGroup cntxtGroup = new ContextGroup();
-        cntxtGroup.setChildContexts(new HashSet<Context>(Arrays.asList(new Context())));
-        loginCntxt.setChildGroup(cntxtGroup);
-        return loginCntxt;
     }
 }

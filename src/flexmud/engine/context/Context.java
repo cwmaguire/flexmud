@@ -147,7 +147,7 @@ public class Context {
         return id;
     }
 
-    private void setId(long id){
+    protected void setId(long id){
         this.id = id;
     }
 
@@ -253,5 +253,10 @@ public class Context {
     @Transient
     public Class getCommandClassForAlias(String alias){
         return aliasCommandClasses.get(alias);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Context.class.isAssignableFrom(obj.getClass()) && ((Context) obj).getId() == id;
     }
 }

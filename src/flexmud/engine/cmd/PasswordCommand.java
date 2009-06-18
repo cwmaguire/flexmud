@@ -24,8 +24,8 @@ public class PasswordCommand extends Command{
 
     @Override
     public void run() {
-        client.setPassword(getCommandArguments().get(0));
-        LOGGER.info("Client " + client.getConnectionID() + " logging in with password \"" + client.getPassword() + "\"");
-        client.getContextHandler().loadAndSetFirstChildContext();
+        getClient().setPassword(getCommandArguments().get(0));
+        LOGGER.info("Client " + getClient().getConnectionID() + " logging in with password \"" + getClient().getPassword() + "\"");
+        getClient().getContextHandler().loadAndSetFirstChildContext();
     }
 }

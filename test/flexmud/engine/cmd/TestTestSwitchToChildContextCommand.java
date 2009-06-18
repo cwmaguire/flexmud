@@ -14,16 +14,54 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
+
 package flexmud.engine.cmd;
 
+import org.junit.Test;
+
+import java.util.UUID;
+import java.util.HashSet;
+import java.util.Arrays;
+
+import flexmud.net.FakeClient;
+import flexmud.net.FakeClientCommunicator;
+import flexmud.engine.context.*;
+import flexmud.engine.exec.Executor;
+import flexmud.util.Util;
+import flexmud.util.ContextUtil;
+import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
-import flexmud.engine.context.ClientContextHandler;
+import junit.framework.Assert;
 
-public class WelcomeMsgCmd extends Command{
+public class TestTestSwitchToChildContextCommand {
 
-    @Override
-    public void run() {
-        getClient().sendTextLn(Preferences.getPreference(Preferences.WELCOME_MESSAGE));
+    static {
+        LoggingUtil.resetConfiguration();
+        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
     }
 
+    @Test
+    public void testLoginContextSwitchesToChildContext(){
+        FakeClientCommunicator clientCommunicator = new FakeClientCommunicator();
+        clientCommunicator.setShouldInterceptWrite(true);
+
+        FakeClient client = new FakeClient(clientCommunicator, null);
+
+        FakeClientContextHandler fakeClientContextHandler = new FakeClientContextHandler(client);
+        client.setClientContextHandler(fakeClientContextHandler);
+
+        Context context = ContextUtil.createContextHierarchy();
+
+        client.setContext(context);
+
+        TestSwitchToChildContextCommand switchCmd = new TestSwitchToChildContextCommand();
+        switchCmd.setClient(client);
+
+        fakeClientContextHandler.setContext(context);
+        Executor.exec(switchCmd);
+
+        Util.pause(Util.ENGINE_WAIT_TIME);
+
+        Assert.assertEquals("TestSwitchToChildCommand did not switch to child context", context.getChildGroup().getChildContexts().iterator().next(), client.getContext());
+    }
 }
