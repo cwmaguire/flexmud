@@ -33,7 +33,7 @@ import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
 import junit.framework.Assert;
 
-public class TestLoginCommand {
+public class TestPasswordCommand {
 
     static {
         LoggingUtil.resetConfiguration();
@@ -41,7 +41,7 @@ public class TestLoginCommand {
     }
 
     @Test
-    public void testLoginContextSwitchesToChildContext(){
+    public void testPasswordContextSwitchesToLoginValidationContext(){
         FakeClientCommunicator clientCommunicator = new FakeClientCommunicator();
         clientCommunicator.setShouldInterceptWrite(true);
 
@@ -49,27 +49,27 @@ public class TestLoginCommand {
 
         FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
 
-        Context loginCntxt = createContextHierarchy();
+        Context passwordContext = createContextHierarchy();
 
-        client.setContext(loginCntxt);
+        client.setContext(passwordContext);
 
-        LoginCommand loginCmd = new LoginCommand();
-        loginCmd.setClient(client);
-        loginCmd.setCommandArguments(Arrays.asList(""));
+        PasswordCommand passwordCmd = new PasswordCommand();
+        passwordCmd.setClient(client);
+        passwordCmd.setCommandArguments(Arrays.asList(""));
 
-        clientContextHandler.setContext(loginCntxt);
-        Executor.exec(loginCmd);
+        clientContextHandler.setContext(passwordContext);
+        Executor.exec(passwordCmd);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertEquals("Login command did not switch to child context", loginCntxt.getChildGroup().getChildContexts().iterator().next(), client.getContext());
+        Assert.assertEquals("Password command did not switch to child context", passwordContext.getChildGroup().getChildContexts().iterator().next(), client.getContext());
     }
 
     private Context createContextHierarchy() {
-        Context loginCntxt = new Context();
+        Context passwordContext = new Context();
         ContextGroup cntxtGroup = new ContextGroup();
         cntxtGroup.setChildContexts(new HashSet<Context>(Arrays.asList(new Context())));
-        loginCntxt.setChildGroup(cntxtGroup);
-        return loginCntxt;
+        passwordContext.setChildGroup(cntxtGroup);
+        return passwordContext;
     }
 }

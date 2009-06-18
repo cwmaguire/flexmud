@@ -23,20 +23,25 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.List;
+import java.util.ArrayList;
 
 public class FakeClientCommunicator extends ClientCommunicator {
     private static Logger LOGGER = Logger.getLogger(FakeClientCommunicator.class);
     private boolean shouldInterceptRead;
     private boolean shouldInterceptWrite;
     private String lastSentText;
+    private List<String> sentText;
 
 
     public FakeClientCommunicator(){
         super();
+        sentText = new ArrayList<String>();
     }
 
     public FakeClientCommunicator(int port) throws IOException{
         super(port);
+        sentText = new ArrayList<String>();
     }
 
     public void setShouldInterceptRead(boolean shouldInterceptRead) {
@@ -49,6 +54,10 @@ public class FakeClientCommunicator extends ClientCommunicator {
 
     public String getLastSentText() {
         return lastSentText;
+    }
+
+    public List<String> getSentText(){
+        return sentText;
     }
 
     protected void read(SelectionKey key){
@@ -90,9 +99,10 @@ public class FakeClientCommunicator extends ClientCommunicator {
 
     @Override
     public void send(SocketChannel sockChan, String text) {
-        if(shouldInterceptWrite){
+        if (shouldInterceptWrite) {
             lastSentText = text;
-        }else{
+            sentText.add(text);
+        } else {
             super.send(sockChan, text);
         }
 

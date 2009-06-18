@@ -17,15 +17,12 @@
 
 package flexmud.db;
 
-import flexmud.engine.context.Context;
-import flexmud.engine.context.ContextGroup;
 import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
-import flexmud.sec.Account;
+import flexmud.security.Account;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -53,7 +50,7 @@ public class TestPersistAccount {
 
     private void testSaveAccount() {
         Account account = new Account();
-        account.setUsername(username);
+        account.setLogin(username);
         account.setPassword(password);
         HibernateUtil.save(account);
         Assert.assertFalse("Acount ID was not updated automatically after save", account.getId() == 0);
@@ -65,7 +62,7 @@ public class TestPersistAccount {
         accounts = (List<Account>) HibernateUtil.fetch(criteria);
         Assert.assertNotNull("List of Accounts should not be null", accounts);
         Assert.assertEquals("Database should contain one account:", 1, accounts.size());
-        Assert.assertEquals("Account contains wrong username", username, accounts.get(0).getUsername());
+        Assert.assertEquals("Account contains wrong username", username, accounts.get(0).getLogin());
         Assert.assertEquals("Account contains wrong password", password, accounts.get(0).getPassword());
     }
 

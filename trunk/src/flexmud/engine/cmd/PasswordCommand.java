@@ -15,45 +15,17 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.sec;
+package flexmud.engine.cmd;
 
-import javax.persistence.*;
+import org.apache.log4j.Logger;
 
-@Entity
-@Table(name = "account")
-public class Account {
-    private long id;
-    private String username;
-    private String password;
+public class PasswordCommand extends Command{
+    private static final Logger LOGGER = Logger.getLogger(PasswordCommand.class);
 
-    public Account(){}
-
-    @Id
-    @GeneratedValue()
-    @Column(name = "account_id")
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Column(name = "username")
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public void run() {
+        client.setPassword(getCommandArguments().get(0));
+        LOGGER.info("Client " + client.getConnectionID() + " logging in with password \"" + client.getPassword() + "\"");
+        client.getContextHandler().loadAndSetFirstChildContext();
     }
 }

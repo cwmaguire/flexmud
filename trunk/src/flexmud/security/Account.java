@@ -15,36 +15,49 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.security;
 
-import flexmud.engine.context.Context;
-import flexmud.db.HibernateUtil;
-import flexmud.security.Account;
+import javax.persistence.*;
 
-import java.util.List;
+@Entity
+@Table(name = "account")
+public class Account {
+    public static final String ID_PROPERTY = "id";
+    public static final String LOGIN_PROPERTY = "login";
+    public static final String PASSWORD_PROPERTY = "password";
 
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-import org.apache.log4j.Logger;
+    private long id;
+    private String login;
+    private String password;
 
-public class SetContextCommand extends Command{
-    private static final Logger LOGGER = Logger.getLogger(SetContextCommand.class);
+    public Account(){}
 
-    @Override
-    public void run() {
-        List<String> cmdArguments = getCommandArguments();
-        if(cmdArguments.isEmpty()){
-           return;
-        }
+    @Id
+    @GeneratedValue()
+    @Column(name = "id")
+    public long getId() {
+        return id;
+    }
 
-        DetachedCriteria criteria = DetachedCriteria.forClass(Context.class);
-        criteria.add(Restrictions.eq(Context.ID_PROPERTY, Long.parseLong(cmdArguments.get(0))));
+    public void setId(long id) {
+        this.id = id;
+    }
 
-        List<Context> contexts = HibernateUtil.fetch(criteria);
+    @Column(name = "login")
+    public String getLogin() {
+        return login;
+    }
 
-        if(contexts != null && !contexts.isEmpty()){
-            LOGGER.info("Setting context to " + contexts.get(0).getName() + " for client " + client.getConnectionID());
-            client.setContext(contexts.get(0));
-        }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

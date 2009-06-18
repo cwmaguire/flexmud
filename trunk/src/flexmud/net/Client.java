@@ -19,6 +19,7 @@ package flexmud.net;
 import flexmud.cfg.Constants;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ClientContextHandler;
+import flexmud.security.Account;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class Client {
     protected ClientCommunicator clientCommunicator;
     protected LineBuffer inputBuffer;
     protected ClientContextHandler clientContextHandler;
+    protected Account account;
     protected String login;
     protected String password;
 
@@ -104,8 +106,20 @@ public class Client {
         clientContextHandler.setContext(context);
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public ClientContextHandler getContextHandler() {
         return clientContextHandler;
+    }
+
+    public void setClientContextHandler(ClientContextHandler clientContextHandler) {
+        this.clientContextHandler = clientContextHandler;
     }
 
     public void sendCRLFs(int numberOfCRLFs) {
