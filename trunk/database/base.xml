@@ -2,6 +2,10 @@
 <dataset>
     <ACCOUNT LOGIN="l" PASSWORD="q"/>
 
+    <!--
+    A context group is a Hibernate kludge to link a parent context with several child contexts.
+    If you know of a better way to do this, email someone on the project!
+    -->
     <CONTEXT_GROUP CONTEXT_GROUP_ID="0"/>
     <CONTEXT_GROUP CONTEXT_GROUP_ID="1"/>
     <CONTEXT_GROUP CONTEXT_GROUP_ID="2"/>
@@ -14,20 +18,35 @@
     <CONTEXT_GROUP CONTEXT_GROUP_ID="9"/>
     <CONTEXT_GROUP CONTEXT_GROUP_ID="10"/>
 
-    <CONTEXT CONTEXT_ID="0"  NAME="welcome"                                   CHILD_GROUP_ID="0"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0"/>
-    <CONTEXT CONTEXT_ID="1"  NAME="login"                PARENT_GROUP_ID="0"  CHILD_GROUP_ID="1"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0" PROMPT="login:>"/>
-    <CONTEXT CONTEXT_ID="2"  NAME="password"             PARENT_GROUP_ID="1"  CHILD_GROUP_ID="2"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0" PROMPT="password:>"/>
-    <CONTEXT CONTEXT_ID="10" NAME="validate login"       PARENT_GROUP_ID="2"  CHILD_GROUP_ID="10" IS_LISTED_IN_PARENT="0" MAX_ENTRIES="3"/>
-    <CONTEXT CONTEXT_ID="3"  NAME="main menu"            PARENT_GROUP_ID="10" CHILD_GROUP_ID="3"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0"/>
-    <CONTEXT CONTEXT_ID="4"  NAME="character management" PARENT_GROUP_ID="3"  CHILD_GROUP_ID="4"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
-    <CONTEXT CONTEXT_ID="5"  NAME="create character"     PARENT_GROUP_ID="4"  CHILD_GROUP_ID="5"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
-    <CONTEXT CONTEXT_ID="6"  NAME="edit character"       PARENT_GROUP_ID="4"  CHILD_GROUP_ID="6"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
-    <CONTEXT CONTEXT_ID="7"  NAME="delete character"     PARENT_GROUP_ID="4"  CHILD_GROUP_ID="7"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0"/>
-    <CONTEXT CONTEXT_ID="8"  NAME="choose character"     PARENT_GROUP_ID="3"  CHILD_GROUP_ID="8"  IS_LISTED_IN_PARENT="1" MAX_ENTRIES="0" PROMPT="character:>"/>
-    <CONTEXT CONTEXT_ID="9"  NAME="game"                 PARENT_GROUP_ID="3"  CHILD_GROUP_ID="9"  IS_LISTED_IN_PARENT="0" MAX_ENTRIES="0"/>
+    <!--
+    Flexmud is a state machine and each state is called a "context". User input processing is dependent on the current user context.
+    Typing "n" in the "game" context will probably run a "go north" command, but maybe in a "dialog" context (e.g. with a shopkeeper)
+    it might run the "no" command.
+
+    Child context names can be listed as menus within a parent context. Below you can see (or you can take our word for it) that
+    the "Main Menu" context has several child contexts where IS_LISTED_IN_PARENT = 1; this means that when the user enters the
+    "Main Menu" context all of the child contexts listed with IS_LISTED_IN_PARENT == 1 will be listed out in a menu. Context command
+    aliases have some control over how these child contexts are listed (e.g. with an accelerator, with a bullet, etc.)
+    -->
+    <CONTEXT CONTEXT_ID="0"  NAME="welcome"                                   CHILD_GROUP_ID="0"  MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="1"  NAME="login"                PARENT_GROUP_ID="0"  CHILD_GROUP_ID="1"  MAX_ENTRIES="0" PROMPT="login:>"/>
+    <CONTEXT CONTEXT_ID="2"  NAME="password"             PARENT_GROUP_ID="1"  CHILD_GROUP_ID="2"  MAX_ENTRIES="0" PROMPT="password:>"/>
+    <CONTEXT CONTEXT_ID="10" NAME="validate login"       PARENT_GROUP_ID="2"  CHILD_GROUP_ID="10" MAX_ENTRIES="3"/>
+    <CONTEXT CONTEXT_ID="3"  NAME="Main Menu"            PARENT_GROUP_ID="10" CHILD_GROUP_ID="3"  MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="4"  NAME="Character Management" PARENT_GROUP_ID="3"  CHILD_GROUP_ID="4"  MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="5"  NAME="Create Character"     PARENT_GROUP_ID="4"  CHILD_GROUP_ID="5"  MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="6"  NAME="Edit Character"       PARENT_GROUP_ID="4"  CHILD_GROUP_ID="6"  MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="7"  NAME="Delete Character"     PARENT_GROUP_ID="4"  CHILD_GROUP_ID="7"  MAX_ENTRIES="0"/>
+    <CONTEXT CONTEXT_ID="8"  NAME="Choose Character"     PARENT_GROUP_ID="3"  CHILD_GROUP_ID="8"  MAX_ENTRIES="0" PROMPT="character:>" IS_TITLE_PRINTED="1"/>
+    <CONTEXT CONTEXT_ID="9"  NAME="game"                 PARENT_GROUP_ID="3"  CHILD_GROUP_ID="9"  MAX_ENTRIES="0"/>
+
+    <!--
+    Context commands are commands that are applicable to a particular context. The "login" context won't have many commands
+    associated with it, whereas the "game" context could potentially have thousands of commands.
+    -->
 
     <!-- Welcome -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0"  FLAG="ENTRY"   SEQUENCE="1" COMMAND_CLASS="flexmud.engine.cmd.WelcomeMsgCmd"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="0"  CONTEXT_ID="0"  FLAG="ENTRY"   SEQUENCE="1" COMMAND_CLASS="flexmud.engine.cmd.MessageCommand"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="1"  CONTEXT_ID="0"  FLAG="ENTRY"   SEQUENCE="2" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"/>
 
     <!-- login, password -->
@@ -35,36 +54,63 @@
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="3"  CONTEXT_ID="2"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.PasswordCommand"/>
 
     <!-- Main Menu -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3"  FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.MainMenuMsgCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidMainMenuChoiceCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"                 COMMAND_CLASS="flexmud.engine.cmd.CharacterMenuItemCommand"       DESCRIPTION="Character Management"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="3"                 COMMAND_CLASS="flexmud.engine.cmd.GameMenuItemCommand"            DESCRIPTION="Play"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidMainMenuChoiceCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3"  FLAG="LIST"    COMMAND_CLASS="flexmud.engine.cmd.CharacterMenuItemCommand"       DESCRIPTION="Character Management"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"  FLAG="LIST"    COMMAND_CLASS="flexmud.engine.cmd.GameMenuItemCommand"            DESCRIPTION="Enter World"/>
 
     <!-- Character create, edit and delete -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="8"  CONTEXT_ID="4"  FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.CharacterMenuMsgCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="9"  CONTEXT_ID="4"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidCharacterMenuItemCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="10" CONTEXT_ID="4"                 COMMAND_CLASS="flexmud.engine.cmd.CreateCharacterMenuItemCommand" DESCRIPTION="Create Character"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="11" CONTEXT_ID="4"                 COMMAND_CLASS="flexmud.engine.cmd.EditCharacterMenuItemCommand"   DESCRIPTION="Edit Character"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="12" CONTEXT_ID="4"                 COMMAND_CLASS="flexmud.engine.cmd.DeleteCharacterMenuItemCommand" DESCRIPTION="Delete Character"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="4"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidCharacterMenuItemCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="8"  CONTEXT_ID="4"  FLAG="LIST"    COMMAND_CLASS="flexmud.engine.cmd.CreateCharacterMenuItemCommand" DESCRIPTION="Create Character"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="9"  CONTEXT_ID="4"  FLAG="LIST"    COMMAND_CLASS="flexmud.engine.cmd.EditCharacterMenuItemCommand"   DESCRIPTION="Edit Character"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="10" CONTEXT_ID="4"  FLAG="LIST"    COMMAND_CLASS="flexmud.engine.cmd.DeleteCharacterMenuItemCommand" DESCRIPTION="Delete Character"/>
 
     <!-- Choosing a character -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="13" CONTEXT_ID="8"  FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.CharacterChoiceMsgCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="14" CONTEXT_ID="8"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.ChooseCharacterCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="11" CONTEXT_ID="8"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.ChooseCharacterCommand"/>
 
     <!-- Entering the game -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="15" CONTEXT_ID="9"  FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.LookCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="16" CONTEXT_ID="9"  FLAG="PROMPT"  COMMAND_CLASS="flexmud.engine.cmd.CharacterPromptCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="17" CONTEXT_ID="9"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidGameCommandCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="12" CONTEXT_ID="9"  FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.LookCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="13" CONTEXT_ID="9"  FLAG="PROMPT"  COMMAND_CLASS="flexmud.engine.cmd.CharacterPromptCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="14" CONTEXT_ID="9"  FLAG="DEFAULT" COMMAND_CLASS="flexmud.engine.cmd.InvalidGameCommandCommand"/>
 
     <!-- Game Commands -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="18" CONTEXT_ID="9"                 COMMAND_CLASS="HelpCommand"                   DESCRIPTION="Get help with game commands"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="19" CONTEXT_ID="9"                 COMMAND_CLASS="QuitCommand"                   DESCRIPTION="Exit to the main menu"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="20" CONTEXT_ID="9"                 COMMAND_CLASS="LookCommand"                   DESCRIPTION="Find out what's around you"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="15" CONTEXT_ID="9"                 COMMAND_CLASS="HelpCommand"                   DESCRIPTION="Get help with game commands"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="16" CONTEXT_ID="9"                 COMMAND_CLASS="QuitCommand"                   DESCRIPTION="Exit to the main menu"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="17" CONTEXT_ID="9"                 COMMAND_CLASS="LookCommand"                   DESCRIPTION="Find out what's around you"/>
 
     <!-- login validation -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="21" CONTEXT_ID="10" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.LoginValidationCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="18" CONTEXT_ID="10" FLAG="ENTRY"   COMMAND_CLASS="flexmud.engine.cmd.LoginValidationCommand"/>
 
+    <!--
+    Context commands can take parameters but they are always strings, just like user input. In fact, the
+    parameters are treated exactly as user input.
+    -->
+
+    <!-- Welcome context, Message Command : Welcome message -->
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="0" PARAM_VALUE="1" SEQUENCE="1"/>
+
+    <!-- Welcome context, SetContext Command : login context -->
     <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="1" PARAM_VALUE="1" SEQUENCE="1"/>
+
+    <!--
+    Context command aliases are the text that is matched up within a context to a command.
+    An example would be a "north" command, available in the "game" context, with aliases "n", "no", "nor", etc.
+    If a user types "n" in the "game" context the "north" command will be run.
+
+    Menus can be modified by aliases. An alias can specify an "accelerator" for a context menu item, or
+    a "bullet" for the menu item. Remember that menu items would be the names of available child contexts.
+
+    An accelerator is a bracketed character within the name of the child context menu item; an example of
+    an accelerator would be the "[C]" in "[C]haracter Management". The first set of characters that
+    matches the accelerator will be bracketed. This will allow multiple character accelerators, e.g.
+    "[Char]acter Management".
+
+    A bullet is used to create bulleted lists; if a child context menu item has a bullet then the
+    bullet will be displayed before the child context's name. An example of this would be
+    "1) Character Management" where the bullet character is '1'; the ')' comes for free and can be
+    specified in the preferences. When the user inputs "1[Enter]" the command associated with the
+    alias will be run (in this case I think we'd all expect that command to plonk us into the
+    character management context).
+    -->
 
     <!-- Main Menu -->
     <!-- 1) [C]haracter Management -->
@@ -84,6 +130,8 @@
     <!-- 3) [D]elete Character -->
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="11" ALIAS="D" IS_ACCELERATOR="1" IS_BULLET="0"/>
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="11" ALIAS="3" IS_ACCELERATOR="0" IS_BULLET="1"/>
+
+    <MESSAGE ID="0" NAME="WELCOME MESSAGE" MESSAGE="welcome to flexmud.\n.\n.\n\r."/>
 
 
 </dataset>

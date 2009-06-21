@@ -18,37 +18,59 @@
 package flexmud.engine.cmd;
 
 import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
 import flexmud.engine.exec.Executor;
+import flexmud.engine.context.Message;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
 import flexmud.util.Util;
 import flexmud.cfg.Preferences;
 import flexmud.cfg.Constants;
 import flexmud.log.LoggingUtil;
+import flexmud.db.HibernateUtil;
 import junit.framework.Assert;
 
-public class TestWelcomeMessageCommand {
+import java.util.UUID;
+import java.util.Arrays;
+
+public class TestMessageCommand {
 
     static {
         LoggingUtil.resetConfiguration();
         LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
     }
 
+    private Message message;
+
+    @Before
+    public void setup(){
+        message = new Message();
+        message.setName("test message");
+        message.setMessage(UUID.randomUUID().toString());
+        HibernateUtil.save(message);
+    }
+
+    @After
+    public void tearDown(){
+        HibernateUtil.delete(message);
+    }
+
     @Test
-    public void testWelcomeMessageCommand(){
+    public void testMessageCommand(){
         FakeClientCommunicator fakeClientCommunicator = new FakeClientCommunicator();
         fakeClientCommunicator.setShouldInterceptWrite(true);
 
         FakeClient fakeClient = new FakeClient(fakeClientCommunicator, null);
 
-        WelcomeMsgCmd welcomeMessageCommand = new WelcomeMsgCmd();
-        welcomeMessageCommand.setClient(fakeClient);
-        Executor.exec(welcomeMessageCommand);
+        MessageCommand messageCommand = new MessageCommand();
+        messageCommand.setClient(fakeClient);
+        messageCommand.setCommandArguments(Arrays.asList(String.valueOf(message.getId())));
+        Executor.exec(messageCommand);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertEquals("Welcome message did not output correctly",
-                Preferences.getPreference(Preferences.WELCOME_MESSAGE) + Constants.CRLF,
-                fakeClientCommunicator.getLastSentText());
+        Assert.assertTrue("Message ID was not set, ergo was not saved", message.getId() != 0);
+        Assert.assertEquals("Message did not output correctly",  message.getMessage() + Constants.CRLF, fakeClientCommunicator.getLastSentText());
     }
 }

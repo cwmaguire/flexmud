@@ -18,12 +18,35 @@ package flexmud.engine.cmd;
 
 import flexmud.cfg.Preferences;
 import flexmud.engine.context.ClientContextHandler;
+import flexmud.engine.context.Context;
+import flexmud.engine.context.Message;
+import flexmud.db.HibernateUtil;
 
-public class WelcomeMsgCmd extends Command{
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.apache.log4j.Logger;
+
+public class MessageCommand extends Command{
+    private static final Logger LOGGER = Logger.getLogger(MessageCommand.class);
 
     @Override
     public void run() {
-        getClient().sendTextLn(Preferences.getPreference(Preferences.WELCOME_MESSAGE));
+        List<String> cmdArguments = getCommandArguments();
+        if (cmdArguments.isEmpty()) {
+            return;
+        }
+
+        DetachedCriteria criteria = DetachedCriteria.forClass(Message.class);
+        criteria.add(Restrictions.eq(Message.ID_PROPERTY, Long.parseLong(cmdArguments.get(0))));
+
+        List<Message> messages = HibernateUtil.fetch(criteria);
+
+        if (messages != null && !messages.isEmpty()) {
+            LOGGER.info("Sending message" + messages.get(0).getName() + " to client " + getClient().getConnectionID());
+            getClient().sendTextLn(messages.get(0).getMessage());
+        }
     }
 
 }

@@ -17,9 +17,46 @@
 
 package flexmud.engine.context;
 
-public enum ContextCommandFlag {
-    ENTRY,
-    PROMPT,
-    DEFAULT,
-    LIST
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "message")
+public class Message {
+    public static final String ID_PROPERTY = "id";
+    public static final String NAME_PROPERTY = "name";
+    public static final String MESSAGE_PROPERTY = "message";
+
+    private long id;
+    private String name;
+    private String message;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name = "message")
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
