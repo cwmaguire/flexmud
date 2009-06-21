@@ -51,6 +51,7 @@ public class Context {
     private int maxEntries = -1;
     private String maxEntriesExceededMessage = "";
     private String prompt;
+    private boolean isTitlePrinted;
 
     private Map<String, Class> aliasCommandClasses = new HashMap<String, Class>();
     private Map<ContextCommandFlag, List<ContextCommand>> flaggedCntxtCmds = new HashMap<ContextCommandFlag, List<ContextCommand>>();
@@ -174,8 +175,8 @@ public class Context {
         return isListedInParent;
     }
 
-    public void setListedInParent(boolean listedInParent) {
-        isListedInParent = listedInParent;
+    public void setListedInParent(boolean isListedInParent) {
+        this.isListedInParent = isListedInParent;
     }
 
     @Column(name = "max_entries")
@@ -234,6 +235,15 @@ public class Context {
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public Set<ContextCommand> getContextCommands() {
         return contextCommands;
+    }
+
+    @Column(name = "is_title_printed")
+    public boolean isTitlePrinted() {
+        return isTitlePrinted;
+    }
+
+    public void setTitlePrinted(boolean isTitlePrinted) {
+        this.isTitlePrinted = isTitlePrinted;
     }
 
     public void setContextCommands(Set<ContextCommand> contextCommands) {
