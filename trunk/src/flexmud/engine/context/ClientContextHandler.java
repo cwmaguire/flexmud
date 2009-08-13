@@ -70,10 +70,15 @@ public class ClientContextHandler {
 
     protected Command createFlaggedContextCommandChain(){
         List<Command> commands = new ArrayList<Command>();
+        Command menuCommand;
 
         commands.addAll(getEntryCommands());
         commands.add(getPromptCommand());
-        commands.add(createMenuCommand());
+
+        menuCommand = createMenuCommand();
+        if(menuCommand != null){
+            commands.add(createMenuCommand());
+        }
 
         return new CommandChainCommand(commands);
     }

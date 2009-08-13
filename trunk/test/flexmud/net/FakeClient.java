@@ -17,6 +17,9 @@
 
 package flexmud.net;
 
+import flexmud.engine.context.ClientContextHandler;
+import flexmud.engine.context.FakeClientContextHandler;
+
 import java.nio.channels.SocketChannel;
 
 public class FakeClient extends Client{
@@ -24,6 +27,10 @@ public class FakeClient extends Client{
 
     public FakeClient(ClientCommunicator clientCommunicator, SocketChannel socketChannel){
         super(clientCommunicator, socketChannel);
+    }
+
+    public ClientContextHandler getClientContextHandler(){
+        return new FakeClientContextHandler(this);
     }
 
     protected void init(){
