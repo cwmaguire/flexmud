@@ -24,6 +24,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class ClientCommunicatorStartStopTest {
     private static ClientCommunicator clientCommunicator;
 
@@ -42,7 +44,7 @@ public class ClientCommunicatorStartStopTest {
     }
 
     @Test
-    public void testClientCommunicatorStarts(){
+    public void testClientCommunicatorStarts() throws IOException {
         clientCommunicator = Util.getNewClientCommunicator();
         Assert.assertNotNull("Client communicator was not created", clientCommunicator);
 

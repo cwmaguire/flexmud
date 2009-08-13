@@ -24,6 +24,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class ClientCommunicatorConnectionTest {
     private int port;
     private ClientCommunicator clientCommunicator;
@@ -34,7 +36,7 @@ public class ClientCommunicatorConnectionTest {
     }
 
     @Before
-    public void setup() {
+    public void setup() throws IOException{
         port = Util.getTestPort();
         clientCommunicator = Util.getNewClientCommunicator(port);
         clientCommunicator.start();
