@@ -48,6 +48,8 @@ public class TestPasswordCommand {
 
         FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
 
+        client.setClientContextHandler(clientContextHandler);
+
         Context passwordContext = createContextHierarchy();
 
         client.setContext(passwordContext);

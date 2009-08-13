@@ -41,9 +41,13 @@ public class Client {
     public Client(ClientCommunicator clientCommunicator, SocketChannel socketChannel) {
         this.clientCommunicator = clientCommunicator;
         this.socketChannel = socketChannel;
-        clientContextHandler = new ClientContextHandler(this);
+        clientContextHandler = getClientContextHandler();
 
         init();
+    }
+
+    public ClientContextHandler getClientContextHandler() {
+        return new ClientContextHandler(this);
     }
 
     protected void init() {

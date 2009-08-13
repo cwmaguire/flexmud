@@ -21,6 +21,7 @@ import flexmud.cfg.Preferences;
 import flexmud.log.LoggingUtil;
 import flexmud.security.Account;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,6 +32,8 @@ import java.util.UUID;
 public class TestPersistAccount {
     private static final String username = UUID.randomUUID().toString();
     private static final String password = UUID.randomUUID().toString();
+
+    private Account account;
 
     static {
         LoggingUtil.resetConfiguration();
@@ -49,7 +52,7 @@ public class TestPersistAccount {
     }
 
     private void testSaveAccount() {
-        Account account = new Account();
+        account = new Account();
         account.setLogin(username);
         account.setPassword(password);
         HibernateUtil.save(account);
@@ -59,6 +62,7 @@ public class TestPersistAccount {
     public void testSelectAccount(){
         List<Account> accounts;
         DetachedCriteria criteria = DetachedCriteria.forClass(Account.class);
+        criteria.add(Restrictions.eq(Account.ID_PROPERTY, account.getId()));
         accounts = (List<Account>) HibernateUtil.fetch(criteria);
         Assert.assertNotNull("List of Accounts should not be null", accounts);
         Assert.assertEquals("Database should contain one account:", 1, accounts.size());
@@ -69,12 +73,10 @@ public class TestPersistAccount {
     public void testDeleteAccount(){
         List<Account> accounts;
 
+        HibernateUtil.delete(account);
+
         DetachedCriteria criteria = DetachedCriteria.forClass(Account.class);
-        accounts = (List<Account>) HibernateUtil.fetch(criteria);
-        Assert.assertNotNull("List of Accounts should not be null", accounts);
-
-        HibernateUtil.delete(accounts.get(0));
-
+        criteria.add(Restrictions.eq(Account.ID_PROPERTY, account.getId()));
         accounts = (List<Account>) HibernateUtil.fetch(criteria);
         Assert.assertNotNull("List of Accounts should not be null", accounts);
         Assert.assertEquals("Database should contain no Accounts", 0, accounts.size());

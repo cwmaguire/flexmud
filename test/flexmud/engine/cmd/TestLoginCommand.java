@@ -45,21 +45,18 @@ public class TestLoginCommand {
 
         FakeClient client = new FakeClient(clientCommunicator, null);
 
-        FakeClientContextHandler clientContextHandler = new FakeClientContextHandler(client);
+        Context fakeContext = ContextUtil.createContextHierarchy();
 
-        Context loginCntxt = ContextUtil.createContextHierarchy();
-
-        client.setContext(loginCntxt);
+        client.setContext(fakeContext);
 
         LoginCommand loginCmd = new LoginCommand();
         loginCmd.setClient(client);
         loginCmd.setCommandArguments(Arrays.asList(""));
 
-        clientContextHandler.setContext(loginCntxt);
         Executor.exec(loginCmd);
 
         Util.pause(Util.ENGINE_WAIT_TIME);
 
-        Assert.assertEquals("Login command did not switch to child context", loginCntxt.getChildGroup().getChildContexts().iterator().next(), client.getContext());
+        Assert.assertEquals("Login command did not switch to child context", fakeContext.getChildGroup().getChildContexts().iterator().next(), client.getContext());
     }
 }
