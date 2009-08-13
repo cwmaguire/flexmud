@@ -21,21 +21,20 @@ import flexmud.net.FakeClientCommunicator;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 public class Util {
+    private static Logger LOGGER = Logger.getLogger(ClientCommunicator.class);
     public static int CURRENT_TEST_PORT = 54321;
     public static int CLIENT_SHUTDOWN_WAIT_TIME = 1000;
     public static int ENGINE_WAIT_TIME = 1000;
 
-    public static ClientCommunicator getNewClientCommunicator(){
+    public static ClientCommunicator getNewClientCommunicator() throws IOException{
         return getNewClientCommunicator(getTestPort());
     }
 
-    public static ClientCommunicator getNewClientCommunicator(int port) {
-        try {
-            return new ClientCommunicator(port);
-        } catch (IOException e) {
-            return null;
-        }
+    public static ClientCommunicator getNewClientCommunicator(int port) throws IOException{
+        return new ClientCommunicator(port);
     }
 
     public static FakeClientCommunicator getNewFakeClientCommunicator(){
