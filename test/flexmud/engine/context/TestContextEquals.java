@@ -17,13 +17,12 @@
 
 package flexmud.engine.context;
 
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
-
-import junit.framework.Assert;
-import flexmud.util.ContextUtil;
 import flexmud.db.HibernateUtil;
+import flexmud.util.ContextUtil;
+import junit.framework.Assert;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class TestContextEquals {
     private Context realCntxt;

@@ -16,17 +16,13 @@
  **************************************************************************************************/
 package flexmud.engine.cmd;
 
-import flexmud.cfg.Preferences;
-import flexmud.engine.context.ClientContextHandler;
-import flexmud.engine.context.Context;
-import flexmud.engine.context.Message;
 import flexmud.db.HibernateUtil;
-
-import java.util.List;
-
+import flexmud.engine.context.Message;
+import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.apache.log4j.Logger;
+
+import java.util.List;
 
 public class MessageCommand extends Command{
     private static final Logger LOGGER = Logger.getLogger(MessageCommand.class);

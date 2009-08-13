@@ -17,24 +17,24 @@
 
 package flexmud.engine.cmd;
 
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
-import flexmud.engine.exec.Executor;
-import flexmud.engine.context.ContextCommand;
-import flexmud.engine.context.ContextCommandFlag;
+import flexmud.cfg.Preferences;
+import flexmud.db.HibernateUtil;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
+import flexmud.engine.exec.Executor;
+import flexmud.log.LoggingUtil;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
 import flexmud.util.Util;
-import flexmud.cfg.Preferences;
-import flexmud.cfg.Constants;
-import flexmud.log.LoggingUtil;
-import flexmud.db.HibernateUtil;
 import junit.framework.Assert;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class TestSetContextCommand {
     private FakeClientCommunicator clientCommunicator = null;

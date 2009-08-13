@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * Startup Hibernate and provide access to the singleton SessionFactory
  */
-public class HibernateUtil {
+public abstract class HibernateUtil {
     private static final Logger LOGGER = Logger.getLogger(HibernateUtil.class);
 
     private static SessionFactory sessionFactory;

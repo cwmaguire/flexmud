@@ -14,45 +14,34 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.context;
 
-import junit.framework.Assert;
-import org.junit.Test;
+package flexmud.engine.cmd;
 
-import java.util.Arrays;
-import java.util.Collections;
+import flexmud.db.HibernateUtil;
+import flexmud.engine.context.Message;
+import flexmud.engine.context.ContextCommand;
+import org.apache.log4j.Logger;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
 import java.util.List;
 
-public class TestSequenceComparator {
+public class MenuCommand extends Command{
+    private static final Logger LOGGER = Logger.getLogger(MenuCommand.class);
 
-    @Test
-    public void testSorting() {
-        Sequenceable sequenceable1 = new Sequenceable() {
-            @Override
-            public Integer getSequence() {
-                return 1;
-            }
-        };
+    private List<ContextCommand> menuContextCommands;
 
-        Sequenceable sequenceable2 = new Sequenceable() {
-            @Override
-            public Integer getSequence() {
-                return 2;
-            }
-        };
-
-        Sequenceable sequenceable0 = new Sequenceable() {
-            @Override
-            public Integer getSequence() {
-                return 0;
-            }
-        };
-
-        List<Sequenceable> sequenceables = Arrays.asList(sequenceable0, sequenceable2, sequenceable1);
-        Collections.sort(sequenceables, new SequenceComparator());
-
-        Assert.assertEquals("Sequenceable1 should be first", sequenceable1, sequenceables.get(0));
-        Assert.assertEquals("Sequenceable2 should be second", sequenceable2, sequenceables.get(1));
-        Assert.assertEquals("Sequenceable0 should be third", sequenceable0, sequenceables.get(2));
+    public void setMenuContextCommands(List<ContextCommand> menuContextCommands) {
+        this.menuContextCommands = menuContextCommands;
     }
+
+    @Override
+    public void run() {
+        if(menuContextCommands == null || menuContextCommands.isEmpty()){
+            return;
+        }
+
+        
+    }
+
 }

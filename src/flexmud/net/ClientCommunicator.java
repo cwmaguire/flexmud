@@ -18,13 +18,13 @@ package flexmud.net;
 
 import org.apache.log4j.Logger;
 
-import java.nio.channels.*;
-import java.nio.channels.spi.SelectorProvider;
-import java.nio.ByteBuffer;
-import java.util.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.*;
+import java.nio.channels.spi.SelectorProvider;
+import java.util.*;
 
 public class ClientCommunicator implements Runnable{
     private static Logger LOGGER = Logger.getLogger(ClientCommunicator.class);

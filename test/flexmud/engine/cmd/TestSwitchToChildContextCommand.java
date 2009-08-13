@@ -17,8 +17,6 @@
 
 package flexmud.engine.cmd;
 
-import org.apache.log4j.Logger;
-
 public class TestSwitchToChildContextCommand extends Command{
 
     @Override

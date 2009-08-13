@@ -18,9 +18,6 @@
 package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
-import flexmud.engine.context.ContextCommand;
-
-import java.sql.Date;
 
 /**
  * We can't attach command _objects_ to a context, only command classes; in order to test that

@@ -16,11 +16,11 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 */
 package flexmud.net;
 
-import java.net.Socket;
-import java.net.InetAddress;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 
 public class FakeRemoteClient {
     public Socket socket;

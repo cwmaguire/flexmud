@@ -19,9 +19,10 @@ package flexmud.engine.context;
 
 import javax.persistence.*;
 
+// Note:this class has a natural ordering that is inconsistent with equals.
 @Entity
 @Table(name = "context_command_alias")
-public class ContextCommandAlias {
+public class ContextCommandAlias implements Comparable {
     public static final String ID_PROPERTY = "id";
     public static final String CONTEXT_COMMAND_PROPERTY = "contextCommand";
     public static final String ALIAS_PROPERTY = "alias";
@@ -80,5 +81,20 @@ public class ContextCommandAlias {
 
     public void setContextCommand(ContextCommand contextCommand) {
         this.contextCommand = contextCommand;
+    }
+
+    // accelerators only, followed by accelerators that are bullets, followed by aliases that are neither, followed by bullets
+    @Override
+    public int compareTo(Object o) {
+        ContextCommandAlias alias2 = (ContextCommandAlias) o;
+        int isAlias1Accelerator = booleanToInt(this.isAccelerator);
+        int isAlias1Bullet = booleanToInt(this.isBullet);
+        int isAlias2Accelerator = booleanToInt(alias2.isAccelerator());
+        int isAlias2Bullet = booleanToInt(alias2.isBullet());
+        return (-2 * isAlias1Accelerator + isAlias1Bullet + 2 * isAlias2Accelerator - isAlias2Bullet);
+    }
+
+    private int booleanToInt(boolean bool) {
+        return bool ? 1 : 0;
     }
 }

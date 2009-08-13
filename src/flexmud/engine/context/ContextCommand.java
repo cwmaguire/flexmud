@@ -16,9 +16,6 @@
  **************************************************************************************************/
 package flexmud.engine.context;
 
-import flexmud.engine.context.Context;
-import flexmud.engine.context.ContextCommandFlag;
-import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;

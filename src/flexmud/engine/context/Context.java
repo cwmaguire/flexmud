@@ -237,6 +237,10 @@ public class Context {
         return contextCommands;
     }
 
+    public void setContextCommands(Set<ContextCommand> contextCommands) {
+        this.contextCommands = contextCommands;
+    }
+
     @Column(name = "is_title_printed")
     public boolean isTitlePrinted() {
         return isTitlePrinted;
@@ -246,12 +250,8 @@ public class Context {
         this.isTitlePrinted = isTitlePrinted;
     }
 
-    public void setContextCommands(Set<ContextCommand> contextCommands) {
-        this.contextCommands = contextCommands;
-    }
-
     @Transient
-    public List<ContextCommand> getFlaggedCommandClasses(ContextCommandFlag flag){
+    public List<ContextCommand> getFlaggedContextCommands(ContextCommandFlag flag){
         return flaggedCntxtCmds.get(flag);
     }
 

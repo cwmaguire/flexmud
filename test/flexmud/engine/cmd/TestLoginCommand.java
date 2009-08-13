@@ -17,21 +17,19 @@
 
 package flexmud.engine.cmd;
 
-import org.junit.Test;
-
-import java.util.UUID;
-import java.util.HashSet;
-import java.util.Arrays;
-
+import flexmud.cfg.Preferences;
+import flexmud.engine.context.Context;
+import flexmud.engine.context.FakeClientContextHandler;
+import flexmud.engine.exec.Executor;
+import flexmud.log.LoggingUtil;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
-import flexmud.engine.context.*;
-import flexmud.engine.exec.Executor;
-import flexmud.util.Util;
 import flexmud.util.ContextUtil;
-import flexmud.log.LoggingUtil;
-import flexmud.cfg.Preferences;
+import flexmud.util.Util;
 import junit.framework.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
 
 public class TestLoginCommand {
 

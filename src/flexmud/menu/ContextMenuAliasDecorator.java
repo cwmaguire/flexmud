@@ -14,27 +14,46 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.cmd;
 
+package flexmud.menu;
+
+import flexmud.engine.context.ContextCommandAlias;
 import flexmud.cfg.Preferences;
-import flexmud.net.Client;
 
-public class ContextOrGenericPromptCommand extends Command{
-    @Override
-    public void run() {
-        String prompt;
+public class ContextMenuAliasDecorator {
 
-        if (getClient() != null) {
-            prompt = getContextOrGenericPrompt(getClient());
-            getClient().sendText(prompt);
+    // this will handle accelerators before bullets otherwise the
+    // accelerator will trip over the bullet.
+    // Question: how would the accelerator trip over the bullet?
+    // Multiple aliases that are accelerators and bullets will get ugly;
+    // if you decide to clean this up please update the unit test.
+    public static String decorate(String string, ContextCommandAlias alias){
+        String aliasString = alias.getAlias();
+        String decoratedString = string;
+        if(aliasString != null && !aliasString.isEmpty()){
+            if(alias.isAccelerator()){
+                decoratedString = getAcceleratedString(string, aliasString);
+            }
+
+            if(alias.isBullet()){
+                decoratedString = getBulletedString(decoratedString, aliasString);
+            }
         }
+
+        return decoratedString;
     }
 
-    private String getContextOrGenericPrompt(Client client) {
-        String prompt = client.getContext().getPrompt();
-        if (prompt == null) {
-            prompt = Preferences.getPreference(Preferences.GENERIC_PROMPT);
-        }
-        return prompt;
+    private static String getAcceleratedString(String string, String aliasString) {
+        return string.replaceFirst(aliasString, getAccelerator(aliasString));
+    }
+
+    private static String getAccelerator(String string){
+        String leftAcceleratorBracket = Preferences.getPreference(Preferences.ACCELERATOR_LEFT_BRACKET);
+        String rightAcceleratorBracket = Preferences.getPreference(Preferences.ACCELERATOR_RIGHT_BRACKET);
+        return leftAcceleratorBracket + string + rightAcceleratorBracket;
+    }
+
+    private static String getBulletedString(String string, String bullet){
+        return bullet + Preferences.getPreference(Preferences.BULLET_SEPERATOR) + " " + string;
     }
 }

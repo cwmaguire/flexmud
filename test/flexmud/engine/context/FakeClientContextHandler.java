@@ -17,17 +17,15 @@
 
 package flexmud.engine.context;
 
-import flexmud.net.Client;
 import flexmud.engine.cmd.Command;
 import flexmud.engine.cmd.CommandChainCommand;
+import flexmud.net.Client;
 import flexmud.util.Util;
-
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.concurrent.Future;
-
 import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Future;
 
 public class FakeClientContextHandler extends ClientContextHandler {
     private static Logger LOGGER = Logger.getLogger(FakeClientContextHandler.class);
@@ -60,7 +58,7 @@ public class FakeClientContextHandler extends ClientContextHandler {
     }
 
     @Override
-    protected Command createCommandChainCommand() {
+    protected Command createFlaggedContextCommandChain() {
 
         List<Command> commands = new ArrayList<Command>();
         List<Command> sleepingCommands = new ArrayList<Command>();

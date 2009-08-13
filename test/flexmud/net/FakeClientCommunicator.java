@@ -23,8 +23,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FakeClientCommunicator extends ClientCommunicator {
     private static Logger LOGGER = Logger.getLogger(FakeClientCommunicator.class);

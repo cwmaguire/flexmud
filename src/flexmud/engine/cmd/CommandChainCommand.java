@@ -19,9 +19,9 @@ package flexmud.engine.cmd;
 import flexmud.engine.context.Context;
 import flexmud.net.Client;
 
-import java.util.List;
-import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class CommandChainCommand extends Command {
     List<? extends Command> commands;

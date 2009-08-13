@@ -17,7 +17,6 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
-import flexmud.engine.context.ContextCommand;
 
 public class TestCmd extends Command {
     private static Logger LOGGER = Logger.getLogger(TestCmd.class);

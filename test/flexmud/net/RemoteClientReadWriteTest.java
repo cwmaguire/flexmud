@@ -18,13 +18,12 @@ package flexmud.net;
 
 import flexmud.cfg.Preferences;
 import flexmud.log.LoggingUtil;
+import flexmud.util.Util;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.apache.log4j.Logger;
-import flexmud.net.FakeRemoteClient;
-import flexmud.util.Util;
 
 import java.io.IOException;
 import java.util.UUID;

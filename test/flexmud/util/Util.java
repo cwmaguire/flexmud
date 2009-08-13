@@ -18,8 +18,6 @@ package flexmud.util;
 
 import flexmud.net.ClientCommunicator;
 import flexmud.net.FakeClientCommunicator;
-import flexmud.engine.context.ContextCommand;
-import flexmud.engine.context.ContextCommandFlag;
 
 import java.io.IOException;
 

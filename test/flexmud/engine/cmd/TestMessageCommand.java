@@ -17,22 +17,22 @@
 
 package flexmud.engine.cmd;
 
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
-import flexmud.engine.exec.Executor;
+import flexmud.cfg.Constants;
+import flexmud.cfg.Preferences;
+import flexmud.db.HibernateUtil;
 import flexmud.engine.context.Message;
+import flexmud.engine.exec.Executor;
+import flexmud.log.LoggingUtil;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
 import flexmud.util.Util;
-import flexmud.cfg.Preferences;
-import flexmud.cfg.Constants;
-import flexmud.log.LoggingUtil;
-import flexmud.db.HibernateUtil;
 import junit.framework.Assert;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import java.util.UUID;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class TestMessageCommand {
 

@@ -17,8 +17,8 @@
 package flexmud.net;
 
 import flexmud.cfg.Constants;
-import flexmud.engine.context.Context;
 import flexmud.engine.context.ClientContextHandler;
+import flexmud.engine.context.Context;
 import flexmud.security.Account;
 import org.apache.log4j.Logger;
 

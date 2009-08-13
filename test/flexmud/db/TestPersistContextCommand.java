@@ -17,14 +17,12 @@
 
 package flexmud.db;
 
+import flexmud.cfg.Preferences;
 import flexmud.engine.context.*;
 import flexmud.log.LoggingUtil;
-import flexmud.cfg.Preferences;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -72,7 +70,7 @@ public class TestPersistContextCommand {
         contextCommand.setParameters(new HashSet<ContextCommandParameter>(Arrays.asList(param1)));
 
         HibernateUtil.save(contextCommand);
-        
+
         Assert.assertNotSame("Command ID was not updated automatically after save", 0, contextCommand.getId());
         Assert.assertNotSame("Alias ID was not updated automatically after save", 0, alias1.getId());
         Assert.assertNotSame("Parameter ID was not updated automatically after save", 0, param1.getId());
