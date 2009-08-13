@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module relativePaths="true" type="JAVA_MODULE" version="4">
+<module relativePaths="true" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="hibernate" name="Hibernate">
       <configuration>
@@ -10,17 +10,31 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/flexmud/build/flexmud" />
+    <output-test url="file://$MODULE_DIR$/flexmud/build/test" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/flexmud" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JUnit" level="project" />
     <orderEntry type="library" name="Log4j" level="project" />
     <orderEntry type="library" name="Hibernate" level="project" />
+    <orderEntry type="library" name="hibernate3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: junit:junit:4.6" level="project" />
+    <orderEntry type="library" exported="" name="Maven: log4j:log4j:1.2.15" level="project" />
+    <orderEntry type="library" exported="" name="Maven: javax.mail:mail:1.4" level="project" />
+    <orderEntry type="library" exported="" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: javax.jms:jms:1.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.sun.jdmk:jmxtools:1.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.sun.jmx:jmxri:1.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.hibernate:hibernate:3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.hibernate:ejb3-persistence:1.0.2.GA" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.slf4j:slf4j-api:1.5.8" level="project" />
   </component>
 </module>
 

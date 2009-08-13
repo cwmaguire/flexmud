@@ -21,5 +21,5 @@ public enum ContextCommandFlag {
     ENTRY,
     PROMPT,
     DEFAULT,
-    LIST
+    MENU_ITEM
 }

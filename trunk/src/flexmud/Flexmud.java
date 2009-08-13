@@ -17,10 +17,10 @@
 
 package flexmud;
 
-import flexmud.net.ClientCommunicator;
-import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
 import flexmud.engine.exec.Executor;
+import flexmud.log.LoggingUtil;
+import flexmud.net.ClientCommunicator;
 import org.apache.log4j.Logger;
 
 public class Flexmud {

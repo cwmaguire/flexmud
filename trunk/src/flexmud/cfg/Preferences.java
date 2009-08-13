@@ -25,7 +25,9 @@ public enum Preferences {
     WELCOME_MESSAGE,
     GENERIC_PROMPT,
     LOGIN_FAILED_MESSAGE,
-    BULLET_SEPERATOR;
+    BULLET_SEPERATOR,
+    ACCELERATOR_LEFT_BRACKET,
+    ACCELERATOR_RIGHT_BRACKET;
 
     private static final Map<Enum, String> preferences = new HashMap<Enum, String>();
 
@@ -35,6 +37,8 @@ public enum Preferences {
         preferences.put(GENERIC_PROMPT, "flexmud>");
         preferences.put(LOGIN_FAILED_MESSAGE, "login failed.");
         preferences.put(BULLET_SEPERATOR, ")");
+        preferences.put(ACCELERATOR_LEFT_BRACKET, "[");
+        preferences.put(ACCELERATOR_RIGHT_BRACKET, "]");
     }
 
     public static String getPreference(Enum preferenceName) {

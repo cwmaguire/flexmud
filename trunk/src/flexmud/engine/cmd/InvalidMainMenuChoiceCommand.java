@@ -27,8 +27,8 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-public class ValidateLoginCommand extends Command {
-    private static final Logger LOGGER = Logger.getLogger(ValidateLoginCommand.class);
+public class InvalidMainMenuChoiceCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(InvalidMainMenuChoiceCommand.class);
 
     @Override
     public void run() {

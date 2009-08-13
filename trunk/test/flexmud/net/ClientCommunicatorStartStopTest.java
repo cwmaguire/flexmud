@@ -18,11 +18,11 @@ package flexmud.net;
 
 import flexmud.cfg.Preferences;
 import flexmud.log.LoggingUtil;
+import flexmud.util.Util;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import flexmud.util.Util;
 
 public class ClientCommunicatorStartStopTest {
     private static ClientCommunicator clientCommunicator;

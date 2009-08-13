@@ -17,15 +17,13 @@
 
 package flexmud.engine.cmd;
 
-import flexmud.engine.context.Context;
 import flexmud.db.HibernateUtil;
-import flexmud.security.Account;
-
-import java.util.List;
-
+import flexmud.engine.context.Context;
+import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.apache.log4j.Logger;
+
+import java.util.List;
 
 public class SetContextCommand extends Command{
     private static final Logger LOGGER = Logger.getLogger(SetContextCommand.class);

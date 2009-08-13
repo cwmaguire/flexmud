@@ -17,8 +17,8 @@
 
 package flexmud.db;
 
-import flexmud.log.LoggingUtil;
 import flexmud.cfg.Preferences;
+import flexmud.log.LoggingUtil;
 import flexmud.security.Account;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;

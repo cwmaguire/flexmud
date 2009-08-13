@@ -17,14 +17,13 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 
 package flexmud.db;
 
+import flexmud.cfg.Preferences;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
 import flexmud.log.LoggingUtil;
-import flexmud.cfg.Preferences;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;

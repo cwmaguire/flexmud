@@ -14,45 +14,32 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.context;
 
-import junit.framework.Assert;
-import org.junit.Test;
+package flexmud.menu;
 
-import java.util.Arrays;
-import java.util.Collections;
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.ContextCommandAlias;
+
+import java.util.Set;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class TestSequenceComparator {
+public class ContextMenuRenderer {
+    public static String render(ContextCommand contextCommand){
+        String contextDescription = contextCommand.getDescription();
 
-    @Test
-    public void testSorting() {
-        Sequenceable sequenceable1 = new Sequenceable() {
-            @Override
-            public Integer getSequence() {
-                return 1;
+        List<ContextCommandAlias> aliases = new ArrayList <ContextCommandAlias>(contextCommand.getAliases());
+        // this will ensure accelerators are taken care of before bullets, but
+        // mix and match multiple bullets and accelerators at your own risk.
+        //Collections.sort(aliases);
+
+        if(!aliases.isEmpty()){
+            for(ContextCommandAlias alias : aliases){
+                contextDescription = ContextMenuAliasDecorator.decorate(contextDescription, alias);
             }
-        };
-
-        Sequenceable sequenceable2 = new Sequenceable() {
-            @Override
-            public Integer getSequence() {
-                return 2;
-            }
-        };
-
-        Sequenceable sequenceable0 = new Sequenceable() {
-            @Override
-            public Integer getSequence() {
-                return 0;
-            }
-        };
-
-        List<Sequenceable> sequenceables = Arrays.asList(sequenceable0, sequenceable2, sequenceable1);
-        Collections.sort(sequenceables, new SequenceComparator());
-
-        Assert.assertEquals("Sequenceable1 should be first", sequenceable1, sequenceables.get(0));
-        Assert.assertEquals("Sequenceable2 should be second", sequenceable2, sequenceables.get(1));
-        Assert.assertEquals("Sequenceable0 should be third", sequenceable0, sequenceables.get(2));
+        }
+        return contextDescription;
     }
+
 }

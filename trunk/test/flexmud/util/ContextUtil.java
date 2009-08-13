@@ -18,8 +18,8 @@ package flexmud.util;
 
 import flexmud.engine.context.*;
 
-import java.util.HashSet;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class ContextUtil {
     public static ContextCommand createContextCommand(Class clazz){

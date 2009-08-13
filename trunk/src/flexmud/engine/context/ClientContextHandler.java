@@ -18,8 +18,9 @@ package flexmud.engine.context;
 
 import flexmud.db.HibernateUtil;
 import flexmud.engine.cmd.Command;
-import flexmud.engine.cmd.ContextOrGenericPromptCommand;
 import flexmud.engine.cmd.CommandChainCommand;
+import flexmud.engine.cmd.ContextOrGenericPromptCommand;
+import flexmud.engine.cmd.MenuCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
 import org.apache.log4j.Logger;
@@ -64,17 +65,21 @@ public class ClientContextHandler {
                 We could also put in some sort of dependency check where if a command
                 is processed out of order it gets put back in the queue
         */
-        initializeAndExecuteCommand(createCommandChainCommand());
+        initializeAndExecuteCommand(createFlaggedContextCommandChain());
     }
 
-    protected Command createCommandChainCommand(){
+    protected Command createFlaggedContextCommandChain(){
         List<Command> commands = new ArrayList<Command>();
-        
-        commands.addAll(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
-        commands.add(getPromptCommand());
 
-        CommandChainCommand cmdChainCmd = new CommandChainCommand(commands);
-        return cmdChainCmd;
+        commands.addAll(getEntryCommands());
+        commands.add(getPromptCommand());
+        commands.add(createMenuCommand());
+
+        return new CommandChainCommand(commands);
+    }
+
+    private List<Command> getEntryCommands() {
+        return getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY);
     }
 
     protected Command getPromptCommand() {
@@ -94,6 +99,19 @@ public class ClientContextHandler {
             return flaggedDefaultCommands.get(0);
         }
 
+        return null;
+    }
+
+    private Command createMenuCommand(){
+        MenuCommand menuCommand;
+        List<ContextCommand> cntxtMenuCommands = context.getFlaggedContextCommands(ContextCommandFlag.MENU_ITEM);
+
+        if ((cntxtMenuCommands != null && !cntxtMenuCommands.isEmpty())) {
+            menuCommand = new MenuCommand();
+            menuCommand.setMenuContextCommands(cntxtMenuCommands);
+            return menuCommand;
+        }
+        
         return null;
     }
 
@@ -127,7 +145,7 @@ public class ClientContextHandler {
     protected List<Command> getFlaggedCommandsWithParamsOrNull(ContextCommandFlag flag) {
         Command command;
         List<Command> commands = new ArrayList<Command>();
-        List<ContextCommand> cntxtCmds = context.getFlaggedCommandClasses(flag);
+        List<ContextCommand> cntxtCmds = context.getFlaggedContextCommands(flag);
 
         if (cntxtCmds != null) {
             for(ContextCommand cntxtCmd : cntxtCmds){

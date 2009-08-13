@@ -16,12 +16,11 @@
  **************************************************************************************************/
 package flexmud.cfg;
 
+import junit.framework.Assert;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-
-import junit.framework.Assert;
 
 public class TestConstantModifiers {
     @Test

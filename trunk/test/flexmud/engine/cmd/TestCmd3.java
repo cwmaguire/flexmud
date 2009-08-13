@@ -18,9 +18,6 @@
 package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
-import flexmud.engine.context.ContextCommand;
-
-import java.sql.Date;
 
 public class TestCmd3 extends Command {
     private static Logger LOGGER = Logger.getLogger(TestCmd3.class);
