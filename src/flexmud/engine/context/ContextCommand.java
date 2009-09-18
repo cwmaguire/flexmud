@@ -52,7 +52,7 @@ public class ContextCommand implements Sequenceable{
     }
 
     @OneToMany(mappedBy = ContextCommandAlias.CONTEXT_COMMAND_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     public Set<ContextCommandAlias> getAliases() {
         return aliases;
     }
@@ -62,7 +62,7 @@ public class ContextCommand implements Sequenceable{
     }
 
     @OneToMany(mappedBy = ContextCommandParameter.CONTEXT_COMMAND_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     public Set<ContextCommandParameter> getParameters() {
         return parameters;
     }

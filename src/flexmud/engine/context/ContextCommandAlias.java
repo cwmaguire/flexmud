@@ -19,7 +19,7 @@ package flexmud.engine.context;
 
 import javax.persistence.*;
 
-// Note:this class has a natural ordering that is inconsistent with equals.
+// Note: this class has a natural ordering that is inconsistent with equals.
 @Entity
 @Table(name = "context_command_alias")
 public class ContextCommandAlias implements Comparable {

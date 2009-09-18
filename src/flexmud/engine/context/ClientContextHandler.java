@@ -185,7 +185,6 @@ public class ClientContextHandler {
         cmd.setCommandArguments(parameters);
     }
 
-
     protected void initializeAndExecuteCommands(List<Command> commands) {
         if (commands != null) {
             for(Command command : commands){
