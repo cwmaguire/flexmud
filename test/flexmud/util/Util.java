@@ -69,4 +69,29 @@ public class Util {
         return CURRENT_TEST_PORT++;
     }
 
+    public static String getRandomSubstring(String string, int length){
+        int start;
+
+        if(length >= string.length()){
+            return string;
+        }else if(length <= 0){
+            return "";
+        }
+
+        start = getRandomBounded(string.length() - length);
+
+        return string.substring(start, start + length);
+    }
+
+    public static int getRandomBounded(int maxLength){
+        return getRandomBounded(0, maxLength);
+    }
+
+    public static int getRandomBounded(int minLength, int maxLength) {
+        int random = (int) Math.ceil(Math.random() * (maxLength - minLength)) + minLength;
+        if(random == 0){
+            random = minLength == 0 ? 1 : minLength;
+        }
+        return random;
+    }
 }

@@ -17,69 +17,29 @@
 
 package flexmud.menu;
 
-import org.junit.Test;
-import org.junit.Assert;
+import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.ContextCommandAlias;
 
+import java.util.Set;
 import java.util.List;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 
-public class TestContextMenuRenderer {
+public class ContextCommandMenuItemRenderer {
+    public static String render(ContextCommand contextCommand){
+        String contextDescription = contextCommand.getDescription();
 
-    // ToDo: I think this can be removed because I can't see why accelerators have to be handled before bullets
+        List<ContextCommandAlias> aliases = new ArrayList <ContextCommandAlias>(contextCommand.getAliases());
+        // this will ensure accelerators are taken care of before bullets, but
+        // mix and match multiple bullets and accelerators at your own risk.
+        //Collections.sort(aliases);
 
-    /*@Test
-    public void testBulletComesAfterAccelerator(){
-        ContextCommandAlias alias1 = new ContextCommandAlias();
-        ContextCommandAlias alias2 = new ContextCommandAlias();
-
-        alias2.setBullet(true);
-
-        List<ContextCommandAlias> aliases = Arrays.asList(alias2, alias1);
-        Collections.sort(aliases);
-
-        Assert.assertEquals("Bullet alias did not come after accelerator alias; ", aliases.get(0), alias1);
+        if(!aliases.isEmpty()){
+            for(ContextCommandAlias alias : aliases){
+                contextDescription = ContextMenuAliasDecorator.decorate(contextDescription, alias);
+            }
+        }
+        return contextDescription;
     }
 
-    @Test
-    public void testAcceleratorComesBeforeNeither() {
-        Assert.fail("You need to fill in the rest of the context men renderer sorting tests");
-    }
-
-    @Test
-    public void testAcceleratorComesBeforeBoth() {
-    }
-
-    @Test
-    public void testAcceleratorBulletComesBeforeNeither() {
-    }
-
-    @Test
-    public void testAcceleratorBulletComesBeforeBullet() {
-    }
-
-    @Test
-    public void testNeitherComesAfterAcceleratorBullet() {
-    }
-
-    @Test
-    public void testNeitherComesAfterAccelerator() {
-    }
-
-    @Test
-    public void testBulletComesAfterNeither() {
-    }
-
-    @Test
-    public void testBulletComesAfterAlias() {
-    }
-
-    @Test
-    public void testBulletComesAfterBoth() {
-    }
-
-    @Test
-    public void testBothComesAfterAlias() {
-    }*/
 }
