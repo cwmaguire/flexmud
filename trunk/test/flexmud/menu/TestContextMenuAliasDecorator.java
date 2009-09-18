@@ -25,6 +25,7 @@ import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.ContextCommandAlias;
 import flexmud.cfg.Preferences;
 import flexmud.log.LoggingUtil;
+import flexmud.util.Util;
 
 import java.util.UUID;
 
@@ -37,15 +38,12 @@ public class TestContextMenuAliasDecorator {
     private String randomUUID;
     private String randomSingleCharString;
     private String randomMultiCharString;
-    private ContextCommand cntxtCmd;
     private ContextCommandAlias acceleratorAlias;
 
     static {
         LoggingUtil.resetConfiguration();
         LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
-    }
 
-    static{
         leftAcceleratorBracket = Preferences.getPreference(Preferences.ACCELERATOR_LEFT_BRACKET);
         rightAcceleratorBracket = Preferences.getPreference(Preferences.ACCELERATOR_RIGHT_BRACKET);
         bulletSeparator = Preferences.getPreference(Preferences.BULLET_SEPERATOR);
@@ -54,35 +52,9 @@ public class TestContextMenuAliasDecorator {
     @Before
     public void setup(){
         randomUUID = UUID.randomUUID().toString();
-        randomSingleCharString = getRandomSubstring(randomUUID, 1);
-        randomMultiCharString = getRandomSubstring(randomUUID, getRandomBounded(2, randomUUID.length()));
+        randomSingleCharString = Util.getRandomSubstring(randomUUID, 1);
+        randomMultiCharString = Util.getRandomSubstring(randomUUID, Util.getRandomBounded(2, randomUUID.length()));
         acceleratorAlias = new ContextCommandAlias();
-    }
-
-    private String getRandomSubstring(String string, int length){
-        int start;
-
-        if(length >= string.length()){
-            return string;
-        }else if(length <= 0){
-            return "";
-        }
-
-        start = getRandomBounded(string.length() - length);
-
-        return string.substring(start, start + length);
-    }
-
-    private int getRandomBounded(int maxLength){
-        return getRandomBounded(0, maxLength);
-    }
-
-    private int getRandomBounded(int minLength, int maxLength) {
-        int random = (int) Math.ceil(Math.random() * (maxLength - minLength)) + minLength;
-        if(random == 0){
-            random = minLength == 0 ? 1 : minLength;
-        }
-        return random;
     }
 
     @Test
@@ -141,7 +113,7 @@ public class TestContextMenuAliasDecorator {
                 decoratedString.indexOf(randomSingleCharString), 0);
 
         Assert.assertEquals("Bullet seperator and space were not found immediately after the bullet; ",
-                decoratedString.indexOf(Preferences.getPreference(Preferences.BULLET_SEPERATOR) + " "),
+                decoratedString.indexOf(bulletSeparator + " "),
                 randomSingleCharString.length());
     }
 
@@ -160,7 +132,7 @@ public class TestContextMenuAliasDecorator {
                 decoratedString.indexOf(randomMultiCharString), 0);
 
         Assert.assertEquals("Bullet seperator and space were not found immediately after the bullet; ",
-                decoratedString.indexOf(Preferences.getPreference(Preferences.BULLET_SEPERATOR) + " "),
+                decoratedString.indexOf(bulletSeparator + " "),
                 randomMultiCharString.length());
 
     }
@@ -189,7 +161,7 @@ public class TestContextMenuAliasDecorator {
                 decoratedString.indexOf(randomSingleCharString), 0);
 
         Assert.assertEquals("Bullet seperator and space were not found immediately after the bullet; ",
-                decoratedString.indexOf(Preferences.getPreference(Preferences.BULLET_SEPERATOR) + " "),
+                decoratedString.indexOf(bulletSeparator + " "),
                 randomSingleCharString.length());
     }
 
@@ -217,7 +189,7 @@ public class TestContextMenuAliasDecorator {
                 decoratedString.indexOf(randomMultiCharString), 0);
 
         Assert.assertEquals("Bullet seperator and space were not found immediately after the bullet; ",
-                decoratedString.indexOf(Preferences.getPreference(Preferences.BULLET_SEPERATOR) + " "),
+                decoratedString.indexOf(bulletSeparator + " "),
                 randomMultiCharString.length());
     }
 }
