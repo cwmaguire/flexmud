@@ -20,6 +20,9 @@ package flexmud.engine.cmd;
 import flexmud.db.HibernateUtil;
 import flexmud.engine.context.Message;
 import flexmud.engine.context.ContextCommand;
+import flexmud.menu.ContextCommandMenuItemRenderer;
+import flexmud.cfg.Preferences;
+import flexmud.cfg.Constants;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -37,11 +40,16 @@ public class MenuCommand extends Command{
 
     @Override
     public void run() {
-        if(menuContextCommands == null || menuContextCommands.isEmpty()){
-            return;
+        StringBuilder menu = new StringBuilder();
+
+        if(menuContextCommands != null){
+            for(ContextCommand ctxCommand : menuContextCommands){
+                menu.append(ContextCommandMenuItemRenderer.render(ctxCommand));
+                menu.append(Constants.CRLF);
+            }
         }
 
-        
+        getClient().sendText(menu.toString());
     }
 
 }
