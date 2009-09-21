@@ -109,11 +109,11 @@ public class ClientContextHandler {
 
     private Command createMenuCommand(){
         MenuCommand menuCommand;
-        List<ContextCommand> cntxtMenuCommands = context.getFlaggedContextCommands(ContextCommandFlag.MENU_ITEM);
+        List<ContextCommand> cntxtMenuItems = context.getFlaggedContextCommands(ContextCommandFlag.MENU_ITEM);
 
-        if ((cntxtMenuCommands != null && !cntxtMenuCommands.isEmpty())) {
+        if ((cntxtMenuItems != null && !cntxtMenuItems.isEmpty())) {
             menuCommand = new MenuCommand();
-            menuCommand.setMenuContextCommands(cntxtMenuCommands);
+            menuCommand.setMenuContextCommands(cntxtMenuItems);
             return menuCommand;
         }
         
