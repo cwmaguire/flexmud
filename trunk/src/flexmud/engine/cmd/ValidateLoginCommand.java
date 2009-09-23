@@ -57,10 +57,13 @@ public class ValidateLoginCommand extends Command {
     }
 
     private void handleNullLoginOrPassword(String login, String password) {
+        Context loginContext;
         if (login == null || password == null) {
             LOGGER.info("Login or Password is null for getClient() " + getClient().getConnectionID() + ", sending to login");
             getClient().sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
-            getClient().setContext(getLoginContext());
+            loginContext = getLoginContext();
+            loginContext.init();
+            getClient().setContext(loginContext);
         }
     }
 

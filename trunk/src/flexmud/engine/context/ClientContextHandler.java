@@ -73,12 +73,13 @@ public class ClientContextHandler {
         Command menuCommand;
 
         commands.addAll(getEntryCommands());
-        commands.add(getPromptCommand());
 
         menuCommand = createMenuCommand();
         if(menuCommand != null){
             commands.add(createMenuCommand());
         }
+
+        commands.add(getPromptCommand());
 
         return new CommandChainCommand(commands);
     }
@@ -263,7 +264,7 @@ public class ClientContextHandler {
         if(command == null){
             // Future CM: put something fun in here like random phrases "What?!" "Huh?" "Does not compute", etc.
             // "Hal reports that he's sorry, but he can't do that"
-            client.sendTextLn("An error occurred trying to run \'" + commandString + "\"");
+            client.sendTextLn("An error occurred trying to run \"" + commandString + "\"");
             initializeAndExecuteCommand(getPromptCommand());
             return;
         }

@@ -32,7 +32,6 @@ public class Context {
     public static final String PARENT_GROUP_PROPERTY = "parentGroup";
     public static final String COMMAND_CLASS_NAME_ALIASES_PROPERTY = "contextCommands";
     public static final String ENTRY_MESSAGE_PROPERTY = "entryMessage";
-    public static final String IS_LISTED_IN_PARENT_PROPERTY = "isListedInParent";
     public static final String DOES_USE_CHARACTER_PROMPT_PROPERTY = "isCharacterPromptable";
     public static final String MAX_ENTRIES_PROPERTY = "maxEntries";
     public static final String MAX_ENTRIES_EXCEEDED_MESSAGE_PROPERTY = "maxEntriesExceededMessage";
@@ -47,11 +46,9 @@ public class Context {
     private ContextGroup parentGroup;
     private Set<ContextCommand> contextCommands = new HashSet<ContextCommand>();
     private String entryMessage;
-    private boolean isListedInParent;
     private int maxEntries = -1;
     private String maxEntriesExceededMessage = "";
     private String prompt;
-    private boolean isTitlePrinted;
 
     private Map<String, Class> aliasCommandClasses = new HashMap<String, Class>();
     private Map<ContextCommandFlag, List<ContextCommand>> flaggedCntxtCmds = new HashMap<ContextCommandFlag, List<ContextCommand>>();
@@ -140,7 +137,6 @@ public class Context {
         }
     }
 
-
     @Id
     @GeneratedValue
     @Column(name = "context_id")
@@ -168,15 +164,6 @@ public class Context {
 
     public void setEntryMessage(String entryMessage) {
         this.entryMessage = entryMessage;
-    }
-
-    @Column(name = "is_listed_in_parent")
-    public boolean isListedInParent() {
-        return isListedInParent;
-    }
-
-    public void setListedInParent(boolean isListedInParent) {
-        this.isListedInParent = isListedInParent;
     }
 
     @Column(name = "max_entries")
@@ -239,15 +226,6 @@ public class Context {
 
     public void setContextCommands(Set<ContextCommand> contextCommands) {
         this.contextCommands = contextCommands;
-    }
-
-    @Column(name = "is_title_printed")
-    public boolean isTitlePrinted() {
-        return isTitlePrinted;
-    }
-
-    public void setTitlePrinted(boolean isTitlePrinted) {
-        this.isTitlePrinted = isTitlePrinted;
     }
 
     @Transient

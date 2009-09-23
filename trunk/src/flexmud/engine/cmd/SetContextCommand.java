@@ -27,6 +27,7 @@ import java.util.List;
 
 public class SetContextCommand extends Command{
     private static final Logger LOGGER = Logger.getLogger(SetContextCommand.class);
+    private Context context;
 
     @Override
     public void run() {
@@ -41,8 +42,10 @@ public class SetContextCommand extends Command{
         List<Context> contexts = HibernateUtil.fetch(criteria);
 
         if(contexts != null && !contexts.isEmpty()){
-            LOGGER.info("Setting context to " + contexts.get(0).getName() + " for client " + getClient().getConnectionID());
-            getClient().setContext(contexts.get(0));
+            context = contexts.get(0);
+            LOGGER.info("Setting context to " + context.getName() + " for client " + getClient().getConnectionID());
+            context.init();
+            getClient().setContext(context);
         }
     }
 }
