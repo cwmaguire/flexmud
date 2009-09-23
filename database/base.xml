@@ -58,12 +58,12 @@
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="3"  CONTEXT_ID="2"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.PasswordCommand"/>
 
     <!-- Main Menu -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidMainMenuChoiceCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidMenuItemCommand"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.CharacterMenuItemCommand"       DESCRIPTION="Character Management"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.GameMenuItemCommand"            DESCRIPTION="Enter World"/>
 
     <!-- Character create, edit and delete -->
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="4"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidCharacterMenuItemCommand"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="4"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidMenuItemCommand"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="8"  CONTEXT_ID="4"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.CreateCharacterMenuItemCommand" DESCRIPTION="Create Character"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="9"  CONTEXT_ID="4"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.EditCharacterMenuItemCommand"   DESCRIPTION="Edit Character"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="10" CONTEXT_ID="4"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.DeleteCharacterMenuItemCommand" DESCRIPTION="Delete Character"/>
