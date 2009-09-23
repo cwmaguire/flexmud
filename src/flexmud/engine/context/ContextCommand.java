@@ -115,6 +115,6 @@ public class ContextCommand implements Sequenceable{
     }
 
     public void setSequence(Integer sequence) {
-        this.sequence = sequence;
+        this.sequence = (sequence == null ? 0 : sequence);
     }
 }
