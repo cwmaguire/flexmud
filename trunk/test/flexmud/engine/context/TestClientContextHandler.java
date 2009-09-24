@@ -62,7 +62,7 @@ public class TestClientContextHandler {
     @Test
     public void testLoadFirstContextAndFirstChild(){
         FakeClient client = new FakeClient(fakeClientCommunicator, null);
-        ClientContextHandler clientContextHandler = client.getContextHandler();
+        ClientContextHandler clientContextHandler = client.getClientContextHandler();
         Context firstContext;
         Context firstChildContext;
 

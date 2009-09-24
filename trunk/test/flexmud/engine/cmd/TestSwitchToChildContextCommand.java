@@ -21,6 +21,6 @@ public class TestSwitchToChildContextCommand extends Command{
 
     @Override
     public void run() {
-        getClient().getContextHandler().loadAndSetFirstChildContext();
+        getClient().getClientContextHandler().loadAndSetFirstChildContext();
     }
 }

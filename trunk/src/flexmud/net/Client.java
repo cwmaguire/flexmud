@@ -41,12 +41,12 @@ public class Client {
     public Client(ClientCommunicator clientCommunicator, SocketChannel socketChannel) {
         this.clientCommunicator = clientCommunicator;
         this.socketChannel = socketChannel;
-        clientContextHandler = getClientContextHandler();
+        clientContextHandler = getNewClientContextHandler();
 
         init();
     }
 
-    public ClientContextHandler getClientContextHandler() {
+    public ClientContextHandler getNewClientContextHandler() {
         return new ClientContextHandler(this);
     }
 
@@ -118,7 +118,7 @@ public class Client {
         this.account = account;
     }
 
-    public ClientContextHandler getContextHandler() {
+    public ClientContextHandler getClientContextHandler() {
         return clientContextHandler;
     }
 

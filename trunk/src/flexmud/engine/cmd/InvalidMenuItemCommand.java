@@ -17,21 +17,37 @@
 
 package flexmud.engine.cmd;
 
-import flexmud.cfg.Preferences;
-import flexmud.db.HibernateUtil;
-import flexmud.engine.context.Context;
-import flexmud.security.Account;
+import flexmud.engine.exec.Executor;
+import flexmud.engine.context.ClientContextHandler;
+import flexmud.net.Client;
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class InvalidMenuItemCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(InvalidMenuItemCommand.class);
 
     @Override
     public void run() {
+        List<Command> commands = new ArrayList<Command>();
+        Command menuCommand;
+        CommandChainCommand commandChainCommand;
+        Client client = getClient();
+        ClientContextHandler clientContextHandler = client.getClientContextHandler();
+
+        client.sendTextLn("Invalid menu item");
+
+        menuCommand = clientContextHandler.createMenuCommand();
+        if (menuCommand != null) {
+            commands.add(menuCommand);
+        }
+
+        commands.add(clientContextHandler.getPromptCommand());
+
+        commandChainCommand = new CommandChainCommand(commands);
+        commandChainCommand.setClient(client);
         
+        Executor.exec(commandChainCommand);
     }
 }
