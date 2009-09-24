@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ContextCommandMenuItemRenderer {
+    // CHANGE (file is not committing properly)
+
     public static String render(ContextCommand contextCommand){
         String contextDescription = contextCommand.getDescription();
 
