@@ -88,7 +88,7 @@ public class ClientContextHandler {
         return getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY);
     }
 
-    protected Command getPromptCommand() {
+    public Command getPromptCommand() {
         List<Command> flaggedPromptCommands = getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.PROMPT);
 
         if ((flaggedPromptCommands != null && !flaggedPromptCommands.isEmpty()) ) {
@@ -108,7 +108,7 @@ public class ClientContextHandler {
         return null;
     }
 
-    private Command createMenuCommand(){
+    public Command createMenuCommand(){
         MenuCommand menuCommand;
         List<ContextCommand> cntxtMenuItems = context.getFlaggedContextCommands(ContextCommandFlag.MENU_ITEM);
 
@@ -117,7 +117,7 @@ public class ClientContextHandler {
             menuCommand.setMenuContextCommands(cntxtMenuItems);
             return menuCommand;
         }
-        
+
         return null;
     }
 

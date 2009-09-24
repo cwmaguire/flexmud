@@ -26,6 +26,6 @@ public class LoginCommand extends Command{
     public void run() {
         getClient().setLogin(getCommandArguments().get(0));
         LOGGER.info("Client " + getClient().getConnectionID() + " logging in with login \"" + getClient().getLogin() + "\"");
-        getClient().getContextHandler().loadAndSetFirstChildContext();
+        getClient().getClientContextHandler().loadAndSetFirstChildContext();
     }
 }

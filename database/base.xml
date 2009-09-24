@@ -59,8 +59,8 @@
 
     <!-- Main Menu -->
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidMenuItemCommand"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.CharacterMenuItemCommand"       DESCRIPTION="Character Management"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.GameMenuItemCommand"            DESCRIPTION="Enter World"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"       DESCRIPTION="Character Management"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"            DESCRIPTION="Enter World"/>
 
     <!-- Character create, edit and delete -->
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="4"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidMenuItemCommand"/>
@@ -95,6 +95,12 @@
     <!-- Welcome context, SetContext Command : login context -->
     <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="1" PARAM_VALUE="1" SEQUENCE="1"/>
 
+    <!-- Main menu context, SetContext Command : character menu context -->
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="5" PARAM_VALUE="4" SEQUENCE="1"/>
+
+    <!-- Main menu context, SetContext Command : game -->
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="9" PARAM_VALUE="9" SEQUENCE="1"/>
+
     <!--
     Context command aliases are the text that is matched up within a context to a command.
     An example would be a "north" command, available in the "game" context, with aliases "n", "no", "nor", etc.
@@ -120,7 +126,7 @@
     <!-- 1) [C]haracter Management -->
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="5" ALIAS="C" IS_ACCELERATOR="1" IS_BULLET="0"/>
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="5" ALIAS="1" IS_ACCELERATOR="0" IS_BULLET="1"/>
-    <!-- 2) [P]lay -->
+    <!-- 2) [E]nter World -->
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="6" ALIAS="E" IS_ACCELERATOR="1" IS_BULLET="0"/>
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="6" ALIAS="2" IS_ACCELERATOR="0" IS_BULLET="1"/>
 
@@ -135,7 +141,7 @@
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="10" ALIAS="D" IS_ACCELERATOR="1" IS_BULLET="0"/>
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="10" ALIAS="3" IS_ACCELERATOR="0" IS_BULLET="1"/>
 
-    <MESSAGE ID="0" NAME="WELCOME MESSAGE" MESSAGE="welcome to flexmud.\n.\n.\n\r."/>
+    <MESSAGE ID="0" NAME="WELCOME MESSAGE" MESSAGE="welcome to flexmud.\r\n\r\n\r\n."/>
 
 
 </dataset>

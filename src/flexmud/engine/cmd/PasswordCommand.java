@@ -26,6 +26,6 @@ public class PasswordCommand extends Command{
     public void run() {
         getClient().setPassword(getCommandArguments().get(0));
         LOGGER.info("Client " + getClient().getConnectionID() + " logging in with password \"" + getClient().getPassword() + "\"");
-        getClient().getContextHandler().loadAndSetFirstChildContext();
+        getClient().getClientContextHandler().loadAndSetFirstChildContext();
     }
 }

@@ -48,7 +48,7 @@ public class ValidateLoginCommand extends Command {
 
             LOGGER.info("getClient() " + getClient().getConnectionID() + " account set to " + account.getId() + "; sending to main menu");
 
-            getClient().getContextHandler().loadAndSetFirstChildContext();
+            getClient().getClientContextHandler().loadAndSetFirstChildContext();
         }else{
             LOGGER.info("No account matches login credentials provided for getClient() " + getClient().getConnectionID() + ", sending to login");
             getClient().sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));

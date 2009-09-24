@@ -29,7 +29,7 @@ public class FakeClient extends Client{
         super(clientCommunicator, socketChannel);
     }
 
-    public ClientContextHandler getClientContextHandler(){
+    public ClientContextHandler getNewClientContextHandler(){
         return new FakeClientContextHandler(this);
     }
 

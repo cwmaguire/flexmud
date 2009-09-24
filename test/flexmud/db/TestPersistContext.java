@@ -22,6 +22,7 @@ import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
 import flexmud.log.LoggingUtil;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.Criteria;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
