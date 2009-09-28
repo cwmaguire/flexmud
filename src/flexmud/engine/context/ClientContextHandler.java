@@ -253,13 +253,7 @@ public class ClientContextHandler {
             return;
         }
 
-        List<String> words = tokenize(commandString);
-
-        command = getSpecifiedCommand(words.get(0));
-
-        if(command == null){
-            command = getDefaultCommand();
-        }
+        command = loadMatchingCommandOrDefault(commandString);
 
         if(command == null){
             // Future CM: put something fun in here like random phrases "What?!" "Huh?" "Does not compute", etc.
@@ -269,21 +263,23 @@ public class ClientContextHandler {
             return;
         }
 
-        command.setCommandArguments(words);
-
         initializeAndExecuteCommand(command);
     }
 
-    private Command getSpecifiedCommand(String command) {
-        Class commandClass = context.getCommandClassForAlias(command);
-        if(commandClass != null){
-            try {
-                return (Command) commandClass.newInstance();
-            } catch (Exception e) {
-                LOGGER.error("Could not instantiate Command for input string [" + command + "] and class " + commandClass.getName(), e);
-            }
+    private Command loadMatchingCommandOrDefault(String commandString) {
+        ContextCommand contextCommand;
+        Command command;
+        List<String> commandTokens = tokenize(commandString);
+
+        contextCommand = context.getContextCommandForAlias(commandTokens.get(0));
+
+        if (contextCommand != null) {
+            command = contextCommand.createCommandInstance();
+            command.setCommandArguments(determineParameters(contextCommand.getParameters(), commandTokens));
+        } else {
+            command = getDefaultCommand();
         }
-        return null;
+        return command;
     }
 
     private List<String> tokenize(String commandString){
@@ -296,4 +292,23 @@ public class ClientContextHandler {
 
         return words;
     }
+
+    private List<String> determineParameters(Set<ContextCommandParameter> preconfiguredParams, List<String> commandLineParams){
+        if(preconfiguredParams != null && !preconfiguredParams.isEmpty()){
+            return getParameterValues(preconfiguredParams);
+        }else{
+            return commandLineParams;
+        }
+    }
+
+    private List<String> getParameterValues(Set<ContextCommandParameter> preconfiguredParams){
+        List<String> parameterValues = new ArrayList<String>();
+        if(preconfiguredParams != null){
+            for(ContextCommandParameter param : preconfiguredParams){
+                parameterValues.add(param.getValue());
+            }
+        }
+        return parameterValues;
+    }
+
 }

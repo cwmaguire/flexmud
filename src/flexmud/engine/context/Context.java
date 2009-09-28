@@ -50,7 +50,7 @@ public class Context {
     private String maxEntriesExceededMessage = "";
     private String prompt;
 
-    private Map<String, Class> aliasCommandClasses = new HashMap<String, Class>();
+    private Map<String, ContextCommand> aliasCommandClasses = new HashMap<String, ContextCommand>();
     private Map<ContextCommandFlag, List<ContextCommand>> flaggedCntxtCmds = new HashMap<ContextCommandFlag, List<ContextCommand>>();
 
     public Context() {
@@ -94,9 +94,8 @@ public class Context {
     }
 
     private void mapFlaggedContxtCommands(ContextCommand contextCommand) {
-        ContextCommandFlag flag;
         List<ContextCommand> flaggedCntxtCmdsList;
-        flag = contextCommand.getContextCommandFlag();
+        ContextCommandFlag flag = contextCommand.getContextCommandFlag();
 
         if(flag != null){
             flaggedCntxtCmdsList = this.flaggedCntxtCmds.get(flag);
@@ -108,31 +107,12 @@ public class Context {
         }
     }
 
-    private Class loadClass(String className) {
-        Class classFromName = null;
-        if (className != null) {
-            try {
-                classFromName = Class.forName(className);
-            } catch (Exception e) {
-                LOGGER.error("Could not load command " + className + " for context " + name, e);
-                return null;
-            }
-        }
-        return classFromName;
-    }
-
     private void mapAliasedCommandClasses() {
         if(contextCommands != null){
             for(ContextCommand contextCommand : contextCommands){
-                mapCommandAliases(loadClass(contextCommand.getCommandClassName()), contextCommand.getAliases());
-            }
-        }
-    }
-
-    private void mapCommandAliases(Class commandClass, Set<ContextCommandAlias> aliases) {
-        if(commandClass != null){
-            for(ContextCommandAlias alias : aliases){
-                aliasCommandClasses.put(alias.getAlias(), commandClass);
+                for (ContextCommandAlias alias : contextCommand.getAliases()) {
+                    aliasCommandClasses.put(alias.getAlias(), contextCommand);
+                }
             }
         }
     }
@@ -234,12 +214,12 @@ public class Context {
     }
 
     @Transient
-    public Map<String, Class> getAliasCommandClasses() {
+    public Map<String, ContextCommand> getAliasContextCommands() {
         return aliasCommandClasses;
     }
 
     @Transient
-    public Class getCommandClassForAlias(String alias){
+    public ContextCommand getContextCommandForAlias(String alias){
         return aliasCommandClasses.get(alias);
     }
 

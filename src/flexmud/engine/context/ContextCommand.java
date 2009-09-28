@@ -17,14 +17,19 @@
 package flexmud.engine.context;
 
 import org.hibernate.annotations.Cascade;
+import org.apache.log4j.Logger;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import flexmud.engine.cmd.Command;
+
 @Entity
 @Table(name = "context_command")
 public class ContextCommand implements Sequenceable{
+    private static final Logger LOGGER = Logger.getLogger(ContextCommand.class);
+
     public static final String ID_PROPERTY = "id";
     public static final String CONTEXT_PROPERTY = "context";
     public static final String ALIASES_PROPERTY = "aliases";
@@ -116,5 +121,31 @@ public class ContextCommand implements Sequenceable{
 
     public void setSequence(Integer sequence) {
         this.sequence = (sequence == null ? 0 : sequence);
+    }
+
+    public Command createCommandInstance() {
+        Class commandClass = getContextCommandClass();
+        if (commandClass != null) {
+            try {
+                return (Command) commandClass.newInstance();
+            } catch (Exception e) {
+                LOGGER.error("Could not instantiate Command of class " + commandClass.getName(), e);
+            }
+        }
+        return null;
+    }
+
+    @Transient
+    private Class getContextCommandClass() {
+        Class classFromName = null;
+        if (commandClassName != null) {
+            try {
+                classFromName = Class.forName(commandClassName);
+            } catch (Exception e) {
+                LOGGER.error("Could not load command " + commandClassName + " for context command " + id, e);
+                return null;
+            }
+        }
+        return classFromName;
     }
 }

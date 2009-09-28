@@ -95,11 +95,11 @@
     <!-- Welcome context, SetContext Command : login context -->
     <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="1" PARAM_VALUE="1" SEQUENCE="1"/>
 
-    <!-- Main menu context, SetContext Command : character menu context -->
+    <!--  -->
     <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="5" PARAM_VALUE="4" SEQUENCE="1"/>
 
-    <!-- Main menu context, SetContext Command : game -->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="9" PARAM_VALUE="9" SEQUENCE="1"/>
+    <!--  -->
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="6" PARAM_VALUE="9" SEQUENCE="1"/>
 
     <!--
     Context command aliases are the text that is matched up within a context to a command.
