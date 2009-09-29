@@ -52,7 +52,7 @@ public class ValidateLoginCommand extends Command {
         }else{
             LOGGER.info("No account matches login credentials provided for getClient() " + getClient().getConnectionID() + ", sending to login");
             getClient().sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
-            getClient().setContext(getLoginContext());
+            getClient().setContext(getInitializedLoginContext());
         }
     }
 
@@ -61,8 +61,7 @@ public class ValidateLoginCommand extends Command {
         if (login == null || password == null) {
             LOGGER.info("Login or Password is null for getClient() " + getClient().getConnectionID() + ", sending to login");
             getClient().sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
-            loginContext = getLoginContext();
-            loginContext.init();
+            loginContext = getInitializedLoginContext();
             getClient().setContext(loginContext);
         }
     }
@@ -81,14 +80,17 @@ public class ValidateLoginCommand extends Command {
         }
     }
 
-    private Context getLoginContext() {
+    private Context getInitializedLoginContext() {
+        Context loginContext;
         DetachedCriteria criteria = DetachedCriteria.forClass(Context.class);
         criteria.add(Restrictions.eq(Context.NAME_PROPERTY, "login"));
 
         List<Context> contexts = HibernateUtil.fetch(criteria);
 
         if (contexts != null && !contexts.isEmpty()) {
-            return contexts.get(0);
+            loginContext = contexts.get(0);
+            loginContext.init();
+            return loginContext;
         } else {
             return null;
         }
