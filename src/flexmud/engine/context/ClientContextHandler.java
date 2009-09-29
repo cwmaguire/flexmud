@@ -35,7 +35,7 @@ public class ClientContextHandler {
 
     private Context context;
     private Client client;
-    private Map<Context, Integer> contextEntryCounts = new HashMap<Context, Integer>();
+    private Map<Long, Integer> contextEntryCounts = new HashMap<Long, Integer>();
 
     public ClientContextHandler(Client client) {
         this.client = client;
@@ -206,15 +206,15 @@ public class ClientContextHandler {
 
     private boolean isMaxEntriesExceeded(Context newContext) {
         Integer contextCount;
-        contextCount = contextEntryCounts.get(newContext);
+        contextCount = contextEntryCounts.get(newContext.getId());
 
         return contextCount != null && context.getMaxEntries() > 0 && contextCount >= context.getMaxEntries();
 
     }
 
     private void incrementEntryCount(Context context) {
-        Integer entryCount = contextEntryCounts.get(context);
-        contextEntryCounts.put(context, entryCount == null ? 1 : entryCount + 1);
+        Integer entryCount = contextEntryCounts.get(context.getId());
+        contextEntryCounts.put(context.getId(), entryCount == null ? 1 : entryCount + 1);
     }
 
     public void loadAndSetFirstContext() {
