@@ -68,14 +68,14 @@ public class ClientContextHandler {
         initializeAndExecuteCommand(createFlaggedContextCommandChain());
     }
 
-    protected Command createFlaggedContextCommandChain(){
+    protected Command createFlaggedContextCommandChain() {
         List<Command> commands = new ArrayList<Command>();
         Command menuCommand;
 
         commands.addAll(getEntryCommands());
 
         menuCommand = createMenuCommand();
-        if(menuCommand != null){
+        if (menuCommand != null) {
             commands.add(createMenuCommand());
         }
 
@@ -91,7 +91,7 @@ public class ClientContextHandler {
     public Command getPromptCommand() {
         List<Command> flaggedPromptCommands = getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.PROMPT);
 
-        if ((flaggedPromptCommands != null && !flaggedPromptCommands.isEmpty()) ) {
+        if ((flaggedPromptCommands != null && !flaggedPromptCommands.isEmpty())) {
             return flaggedPromptCommands.get(0);
         }
 
@@ -108,7 +108,7 @@ public class ClientContextHandler {
         return null;
     }
 
-    public Command createMenuCommand(){
+    public Command createMenuCommand() {
         MenuCommand menuCommand;
         List<ContextCommand> cntxtMenuItems = context.getFlaggedContextCommands(ContextCommandFlag.MENU_ITEM);
 
@@ -134,12 +134,12 @@ public class ClientContextHandler {
 
     private boolean doesContextCheckFail(Context newContext) {
         if (newContext == null && context == null) {
-            LOGGER.info("Could not locate first context");
+            LOGGER.error("Could not locate first context");
             client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");
             client.disconnect();
             return true;
         } else if (newContext == null) {
-            LOGGER.info("Tried to send to null context, keeping client in old context.");
+            LOGGER.error("Tried to send to null context, keeping client in old context.");
             client.sendText("The area you are trying to get to doesn't seem to exist.");
             // ToDO CM: need to reprompt at this point.
             //          or, we could simply re-enter them in their current context
@@ -154,7 +154,7 @@ public class ClientContextHandler {
         List<ContextCommand> cntxtCmds = context.getFlaggedContextCommands(flag);
 
         if (cntxtCmds != null) {
-            for(ContextCommand cntxtCmd : cntxtCmds){
+            for (ContextCommand cntxtCmd : cntxtCmds) {
                 try {
                     command = (Command) Class.forName(cntxtCmd.getCommandClassName()).newInstance();
                 } catch (Exception e) {
@@ -173,13 +173,13 @@ public class ClientContextHandler {
         return commands;
     }
 
-    private void addParameters(Command cmd, ContextCommand cntxtCmd){
+    private void addParameters(Command cmd, ContextCommand cntxtCmd) {
         List<ContextCommandParameter> cntxtCmdParams = new ArrayList<ContextCommandParameter>(cntxtCmd.getParameters());
         List<String> parameters = new ArrayList<String>();
 
         Collections.sort(cntxtCmdParams, new SequenceComparator());
 
-        for(ContextCommandParameter cntxtCmdParam : cntxtCmdParams){
+        for (ContextCommandParameter cntxtCmdParam : cntxtCmdParams) {
             parameters.add(cntxtCmdParam.getValue());
         }
 
@@ -188,7 +188,7 @@ public class ClientContextHandler {
 
     protected void initializeAndExecuteCommands(List<Command> commands) {
         if (commands != null) {
-            for(Command command : commands){
+            for (Command command : commands) {
                 initializeAndExecuteCommand(command);
             }
         }
@@ -196,7 +196,7 @@ public class ClientContextHandler {
 
     protected Future initializeAndExecuteCommand(Command command) {
         if (command != null) {
-            LOGGER.info("Executing command " + command.getClass().getName());
+            LOGGER.debug("Executing command " + command.getClass().getName());
             command.setClient(client);
             return Executor.exec(command);
         }
@@ -255,7 +255,7 @@ public class ClientContextHandler {
 
         command = loadMatchingCommandOrDefault(commandString);
 
-        if(command == null){
+        if (command == null) {
             // Future CM: put something fun in here like random phrases "What?!" "Huh?" "Does not compute", etc.
             // "Hal reports that he's sorry, but he can't do that"
             client.sendTextLn("An error occurred trying to run \"" + commandString + "\"");
@@ -278,11 +278,13 @@ public class ClientContextHandler {
             command.setCommandArguments(determineParameters(contextCommand.getParameters(), commandTokens));
         } else {
             command = getDefaultCommand();
+            command.setCommandArguments(commandTokens);
         }
+
         return command;
     }
 
-    private List<String> tokenize(String commandString){
+    private List<String> tokenize(String commandString) {
         StringTokenizer stringTokenizer = new StringTokenizer(commandString);
         List<String> words = new ArrayList<String>();
 
@@ -293,18 +295,18 @@ public class ClientContextHandler {
         return words;
     }
 
-    private List<String> determineParameters(Set<ContextCommandParameter> preconfiguredParams, List<String> commandLineParams){
-        if(preconfiguredParams != null && !preconfiguredParams.isEmpty()){
+    private List<String> determineParameters(Set<ContextCommandParameter> preconfiguredParams, List<String> commandLineParams) {
+        if (preconfiguredParams != null && !preconfiguredParams.isEmpty()) {
             return getParameterValues(preconfiguredParams);
-        }else{
+        } else {
             return commandLineParams;
         }
     }
 
-    private List<String> getParameterValues(Set<ContextCommandParameter> preconfiguredParams){
+    private List<String> getParameterValues(Set<ContextCommandParameter> preconfiguredParams) {
         List<String> parameterValues = new ArrayList<String>();
-        if(preconfiguredParams != null){
-            for(ContextCommandParameter param : preconfiguredParams){
+        if (preconfiguredParams != null) {
+            for (ContextCommandParameter param : preconfiguredParams) {
                 parameterValues.add(param.getValue());
             }
         }

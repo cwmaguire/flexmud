@@ -94,10 +94,10 @@ public class Client {
         LOGGER.info("Command buffer: " + this.inputBuffer.toString());
 
         if (inputBuffer.hasCompleteCommand()) {
-            LOGGER.info("Running completed command");
+            LOGGER.debug("Running completed command");
             clientContextHandler.runCommand(inputBuffer.getNextCommand());
         }else{
-            LOGGER.info("No complete commands to run");
+            LOGGER.debug("No complete commands to run");
         }
 
     }
