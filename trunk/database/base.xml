@@ -61,7 +61,7 @@
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="4"  CONTEXT_ID="3"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidMenuItemCommand"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="5"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand" DESCRIPTION="Character Management"/>
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="6"  CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand" DESCRIPTION="Enter World"/>
-    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="26" CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand" DESCRIPTION="Quit"/>
+    <CONTEXT_COMMAND CONTEXT_COMMAND_ID="26" CONTEXT_ID="3"  FLAG="MENU_ITEM" COMMAND_CLASS="flexmud.engine.cmd.QuitCommand" DESCRIPTION="Quit"/>
 
     <!-- Character create, edit and delete -->
     <CONTEXT_COMMAND CONTEXT_COMMAND_ID="7"  CONTEXT_ID="4"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.InvalidMenuItemCommand"/>
