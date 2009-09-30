@@ -20,6 +20,7 @@ package flexmud.engine.cmd;
 import flexmud.db.HibernateUtil;
 import flexmud.engine.context.Message;
 import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.SequenceComparator;
 import flexmud.menu.ContextCommandMenuItemRenderer;
 import flexmud.cfg.Preferences;
 import flexmud.cfg.Constants;
@@ -28,6 +29,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
+import java.util.Collections;
 
 public class MenuCommand extends Command{
     private static final Logger LOGGER = Logger.getLogger(MenuCommand.class);
@@ -43,6 +45,7 @@ public class MenuCommand extends Command{
         StringBuilder menu = new StringBuilder();
 
         if(menuContextCommands != null){
+            Collections.sort(menuContextCommands, new SequenceComparator());
             for(ContextCommand ctxCommand : menuContextCommands){
                 menu.append(ContextCommandMenuItemRenderer.render(ctxCommand));
                 menu.append(Constants.CRLF);
