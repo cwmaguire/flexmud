@@ -85,10 +85,10 @@ public class Client {
     public void handleInputFromSocketChannel() {
 
         try {
-            this.inputBuffer.readFromSocketChannel(this.socketChannel);
-            this.inputBuffer.storeCompleteLines();
+            inputBuffer.readFromSocketChannel(this.socketChannel);
+            inputBuffer.storeCompleteLines();
         } catch (ClosedChannelException e) {
-            this.disconnect();
+            disconnect();
         }
 
         LOGGER.info("Command buffer: " + this.inputBuffer.toString());
