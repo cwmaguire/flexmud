@@ -17,7 +17,14 @@
 
 package flexmud.security;
 
+import flexmud.engine.character.AccountCharacter;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.Cascade;
+
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "account")
@@ -25,12 +32,12 @@ public class Account {
     public static final String ID_PROPERTY = "id";
     public static final String LOGIN_PROPERTY = "login";
     public static final String PASSWORD_PROPERTY = "password";
+    public static final String ACCOUNT_CHARACTERS_PROPERTY = "accountCharacters";
 
     private long id;
     private String login;
     private String password;
-
-    public Account(){}
+    private Set<AccountCharacter> accountCharacters = new HashSet<AccountCharacter>();
 
     @Id
     @GeneratedValue()
@@ -60,4 +67,16 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @OneToMany(mappedBy = AccountCharacter.ACCOUNT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    public Set<AccountCharacter> getAccountCharacters() {
+        return accountCharacters;
+    }
+
+    public void setAccountCharacters(Set<AccountCharacter> accountCharacters) {
+        this.accountCharacters = accountCharacters;
+    }
+
+
 }

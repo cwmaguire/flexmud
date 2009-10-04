@@ -195,7 +195,7 @@
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="15" ALIAS="h" IS_ACCELERATOR="0" IS_BULLET="0"/>
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="15" ALIAS="help" IS_ACCELERATOR="0" IS_BULLET="0"/>
 
-    <MESSAGE ID="0" NAME="WELCOME MESSAGE" MESSAGE="welcome to flexmud.\r\n\r\n\r\n."/>
+    <MESSAGE ID="0" NAME="WELCOME MESSAGE" MESSAGE="Welcome to Flexmud.\r\n\r\n\r\n."/>
     <MESSAGE ID="1" NAME="NO CHAR CREATION YET" MESSAGE="Character creation is not available yet"/>
     <MESSAGE ID="2" NAME="NO CHAR CREATION YET" MESSAGE="Character editing is not available yet"/>
     <MESSAGE ID="3" NAME="NO CHAR CREATION YET" MESSAGE="Character deletion is not available yet"/>

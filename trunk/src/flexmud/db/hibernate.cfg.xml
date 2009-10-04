@@ -30,6 +30,7 @@
         <mapping class="flexmud.engine.context.ContextCommand"/>
         <mapping class="flexmud.engine.context.ContextCommandAlias"/>
         <mapping class="flexmud.engine.context.ContextCommandParameter"/>
+        <mapping class="flexmud.engine.character.AccountCharacter"/>
         <mapping class="flexmud.engine.context.Message"/>
         <mapping class="flexmud.security.Account"/>
 

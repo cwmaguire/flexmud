@@ -17,5 +17,37 @@
 
 package flexmud.engine.character;
 
-public class Character {
+import flexmud.security.Account;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="account_character")
+public class AccountCharacter {
+    public static final String ACCOUNT_PROPERTY = "Account";
+
+    private long id;
+    private Account account;
+
+    @Id
+    @GeneratedValue()
+    @Column(name = "id")
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }
