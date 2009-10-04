@@ -15,48 +15,35 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.game;
 
-import flexmud.cfg.Preferences;
+import flexmud.db.HibernateUtil;
+import flexmud.engine.context.Message;
 import flexmud.engine.context.Context;
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.ContextCommandAlias;
+import flexmud.engine.cmd.Command;
+import flexmud.engine.cmd.MessageCommand;
+import flexmud.engine.cmd.ContextOrGenericPromptCommand;
 import flexmud.engine.exec.Executor;
-import flexmud.engine.cmd.login.LoginCommand;
-import flexmud.log.LoggingUtil;
-import flexmud.net.FakeClient;
-import flexmud.net.FakeClientCommunicator;
-import flexmud.util.ContextUtil;
-import flexmud.util.Util;
-import junit.framework.Assert;
-import org.junit.Test;
+import flexmud.net.Client;
+import flexmud.cfg.Constants;
+import org.apache.log4j.Logger;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
-public class TestLoginCommand {
+public class CharacterPromptCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(CharacterPromptCommand.class);
 
-    static {
-        LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
+    @Override
+    public void run() {
+        Client client = getClient();
+
+        LOGGER.info("Sending prompt to client " + client.getConnectionID());
+        client.sendText("character>");
     }
 
-    @Test
-    public void testLoginContextSwitchesToChildContext(){
-        FakeClientCommunicator clientCommunicator = new FakeClientCommunicator();
-        clientCommunicator.setShouldInterceptWrite(true);
-
-        FakeClient client = new FakeClient(clientCommunicator, null);
-
-        Context fakeContext = ContextUtil.createContextHierarchy();
-
-        client.setContext(fakeContext);
-
-        LoginCommand loginCmd = new LoginCommand();
-        loginCmd.setClient(client);
-        loginCmd.setCommandArguments(Arrays.asList(""));
-
-        Executor.exec(loginCmd);
-
-        Util.pause(Util.ENGINE_WAIT_TIME);
-
-        Assert.assertEquals("Login command did not switch to child context", fakeContext.getChildGroup().getChildContexts().iterator().next(), client.getContext());
-    }
 }

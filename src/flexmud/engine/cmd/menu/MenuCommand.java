@@ -15,48 +15,40 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.menu;
 
-import flexmud.cfg.Preferences;
-import flexmud.engine.context.Context;
-import flexmud.engine.exec.Executor;
-import flexmud.engine.cmd.login.LoginCommand;
-import flexmud.log.LoggingUtil;
-import flexmud.net.FakeClient;
-import flexmud.net.FakeClientCommunicator;
-import flexmud.util.ContextUtil;
-import flexmud.util.Util;
-import junit.framework.Assert;
-import org.junit.Test;
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.SequenceComparator;
+import flexmud.engine.cmd.Command;
+import flexmud.menu.ContextCommandMenuItemRenderer;
+import flexmud.cfg.Constants;
+import org.apache.log4j.Logger;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Collections;
 
-public class TestLoginCommand {
+public class MenuCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(MenuCommand.class);
 
-    static {
-        LoggingUtil.resetConfiguration();
-        LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
+    private List<ContextCommand> menuContextCommands;
+
+    public void setMenuContextCommands(List<ContextCommand> menuContextCommands) {
+        this.menuContextCommands = menuContextCommands;
     }
 
-    @Test
-    public void testLoginContextSwitchesToChildContext(){
-        FakeClientCommunicator clientCommunicator = new FakeClientCommunicator();
-        clientCommunicator.setShouldInterceptWrite(true);
+    @Override
+    public void run() {
+        StringBuilder menu = new StringBuilder();
 
-        FakeClient client = new FakeClient(clientCommunicator, null);
+        if(menuContextCommands != null){
+            Collections.sort(menuContextCommands, new SequenceComparator());
+            for(ContextCommand ctxCommand : menuContextCommands){
+                menu.append(ContextCommandMenuItemRenderer.render(ctxCommand));
+                menu.append(Constants.CRLF);
+            }
+        }
 
-        Context fakeContext = ContextUtil.createContextHierarchy();
-
-        client.setContext(fakeContext);
-
-        LoginCommand loginCmd = new LoginCommand();
-        loginCmd.setClient(client);
-        loginCmd.setCommandArguments(Arrays.asList(""));
-
-        Executor.exec(loginCmd);
-
-        Util.pause(Util.ENGINE_WAIT_TIME);
-
-        Assert.assertEquals("Login command did not switch to child context", fakeContext.getChildGroup().getChildContexts().iterator().next(), client.getContext());
+        getClient().sendText(menu.toString());
     }
+
 }

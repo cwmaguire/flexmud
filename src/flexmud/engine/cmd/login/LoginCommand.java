@@ -15,19 +15,18 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.login;
 
 import org.apache.log4j.Logger;
-import flexmud.net.Client;
+import flexmud.engine.cmd.Command;
 
-public class QuitCommand extends Command{
-    private static final Logger LOGGER = Logger.getLogger(QuitCommand.class);
+public class LoginCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(LoginCommand.class);
 
     @Override
     public void run() {
-        Client client = getClient();
-        client.sendTextLn("L8r!");
-        client.disconnect();
-        LOGGER.info("Client [" + client.getConnectionID() + "] disconnected.");
+        getClient().setLogin(getCommandArguments().get(0));
+        LOGGER.info("Client " + getClient().getConnectionID() + " logging in with login \"" + getClient().getLogin() + "\"");
+        getClient().getClientContextHandler().loadAndSetFirstChildContext();
     }
 }

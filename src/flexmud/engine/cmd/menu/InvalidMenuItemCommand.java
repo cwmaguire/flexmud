@@ -15,44 +15,41 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.menu;
 
-import flexmud.db.HibernateUtil;
-import flexmud.engine.context.Message;
-import flexmud.engine.context.ContextCommand;
-import flexmud.engine.context.SequenceComparator;
-import flexmud.menu.ContextCommandMenuItemRenderer;
-import flexmud.cfg.Preferences;
-import flexmud.cfg.Constants;
+import flexmud.engine.exec.Executor;
+import flexmud.engine.context.ClientContextHandler;
+import flexmud.engine.cmd.Command;
+import flexmud.engine.cmd.CommandChainCommand;
+import flexmud.net.Client;
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
-import java.util.Collections;
+import java.util.ArrayList;
 
-public class MenuCommand extends Command{
-    private static final Logger LOGGER = Logger.getLogger(MenuCommand.class);
-
-    private List<ContextCommand> menuContextCommands;
-
-    public void setMenuContextCommands(List<ContextCommand> menuContextCommands) {
-        this.menuContextCommands = menuContextCommands;
-    }
+public class InvalidMenuItemCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(InvalidMenuItemCommand.class);
 
     @Override
     public void run() {
-        StringBuilder menu = new StringBuilder();
+        List<Command> commands = new ArrayList<Command>();
+        Command menuCommand;
+        CommandChainCommand commandChainCommand;
+        Client client = getClient();
+        ClientContextHandler clientContextHandler = client.getClientContextHandler();
 
-        if(menuContextCommands != null){
-            Collections.sort(menuContextCommands, new SequenceComparator());
-            for(ContextCommand ctxCommand : menuContextCommands){
-                menu.append(ContextCommandMenuItemRenderer.render(ctxCommand));
-                menu.append(Constants.CRLF);
-            }
+        client.sendTextLn("Invalid menu item");
+
+        menuCommand = clientContextHandler.createMenuCommand();
+        if (menuCommand != null) {
+            commands.add(menuCommand);
         }
 
-        getClient().sendText(menu.toString());
-    }
+        commands.add(clientContextHandler.getPromptCommand());
 
+        commandChainCommand = new CommandChainCommand(commands);
+        commandChainCommand.setClient(client);
+
+        Executor.exec(commandChainCommand);
+    }
 }

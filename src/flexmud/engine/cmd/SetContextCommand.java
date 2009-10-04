@@ -19,11 +19,16 @@ package flexmud.engine.cmd;
 
 import flexmud.db.HibernateUtil;
 import flexmud.engine.context.Context;
+import flexmud.engine.context.SequenceComparator;
+import flexmud.engine.context.Sequenceable;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Order;
 
 import java.util.List;
+import java.util.Collections;
 
 public class SetContextCommand extends Command{
     private static final Logger LOGGER = Logger.getLogger(SetContextCommand.class);
@@ -32,6 +37,8 @@ public class SetContextCommand extends Command{
     @Override
     public void run() {
         List<String> cmdArguments = getCommandArguments();
+        boolean isPromptRequired = true;
+
         if(cmdArguments.isEmpty()){
            return;
         }
@@ -41,11 +48,15 @@ public class SetContextCommand extends Command{
 
         List<Context> contexts = HibernateUtil.fetch(criteria);
 
+        if(cmdArguments.size() > 1 && cmdArguments.get(1).equals("0")){
+            isPromptRequired = false;
+        }
+
         if(contexts != null && !contexts.isEmpty()){
             context = contexts.get(0);
             LOGGER.info("Setting context to " + context.getName() + " for client " + getClient().getConnectionID());
             context.init();
-            getClient().setContext(context);
+            getClient().setContext(context, isPromptRequired);
         }
     }
 }

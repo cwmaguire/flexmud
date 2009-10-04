@@ -58,7 +58,7 @@ public class FakeClientContextHandler extends ClientContextHandler {
     }
 
     @Override
-    protected Command createFlaggedContextCommandChain() {
+    protected Command createFlaggedContextCommandChain(boolean isPromptRequired) {
 
         List<Command> commands = new ArrayList<Command>();
         List<Command> sleepingCommands = new ArrayList<Command>();
@@ -70,8 +70,7 @@ public class FakeClientContextHandler extends ClientContextHandler {
             sleepingCommands.add(new SleepingCommand(command));
         }
 
-        CommandChainCommand cmdChainCmd = new CommandChainCommand(sleepingCommands);
-        return cmdChainCmd;
+        return new CommandChainCommand(sleepingCommands);
     }
 
     private class SleepingCommand extends Command {

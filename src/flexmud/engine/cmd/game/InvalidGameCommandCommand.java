@@ -15,17 +15,32 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.game;
 
+import flexmud.engine.exec.Executor;
+import flexmud.engine.context.ClientContextHandler;
+import flexmud.engine.cmd.Command;
+import flexmud.net.Client;
 import org.apache.log4j.Logger;
 
-public class PasswordCommand extends Command{
-    private static final Logger LOGGER = Logger.getLogger(PasswordCommand.class);
+import java.util.List;
+import java.util.ArrayList;
+
+public class InvalidGameCommandCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(InvalidGameCommandCommand.class);
 
     @Override
     public void run() {
-        getClient().setPassword(getCommandArguments().get(0));
-        LOGGER.info("Client " + getClient().getConnectionID() + " logging in with password \"" + getClient().getPassword() + "\"");
-        getClient().getClientContextHandler().loadAndSetFirstChildContext();
+        List<Command> commands = new ArrayList<Command>();
+        Client client = getClient();
+        ClientContextHandler clientContextHandler = client.getClientContextHandler();
+
+        client.sendTextLn("Huh?");
+
+        Command promptCommand = clientContextHandler.getPromptCommand();
+
+        promptCommand.setClient(client);
+
+        Executor.exec(promptCommand);
     }
 }

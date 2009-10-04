@@ -15,39 +15,20 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.game;
 
-import flexmud.engine.exec.Executor;
-import flexmud.engine.context.ClientContextHandler;
-import flexmud.net.Client;
 import org.apache.log4j.Logger;
+import flexmud.net.Client;
+import flexmud.engine.cmd.Command;
 
-import java.util.List;
-import java.util.ArrayList;
-
-public class InvalidMenuItemCommand extends Command {
-    private static final Logger LOGGER = Logger.getLogger(InvalidMenuItemCommand.class);
+public class QuitCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(QuitCommand.class);
 
     @Override
     public void run() {
-        List<Command> commands = new ArrayList<Command>();
-        Command menuCommand;
-        CommandChainCommand commandChainCommand;
         Client client = getClient();
-        ClientContextHandler clientContextHandler = client.getClientContextHandler();
-
-        client.sendTextLn("Invalid menu item");
-
-        menuCommand = clientContextHandler.createMenuCommand();
-        if (menuCommand != null) {
-            commands.add(menuCommand);
-        }
-
-        commands.add(clientContextHandler.getPromptCommand());
-
-        commandChainCommand = new CommandChainCommand(commands);
-        commandChainCommand.setClient(client);
-        
-        Executor.exec(commandChainCommand);
+        client.sendTextLn("L8r!");
+        client.disconnect();
+        LOGGER.info("Client [" + client.getConnectionID() + "] disconnected.");
     }
 }

@@ -107,7 +107,11 @@ public class Client {
     }
 
     public void setContext(Context context){
-        clientContextHandler.setContext(context);
+        setContext(context, true);
+    }
+
+    public void setContext(Context context, boolean isPromptRequired){
+        clientContextHandler.setContext(context, isPromptRequired);
     }
 
     public Account getAccount() {

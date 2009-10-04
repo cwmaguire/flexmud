@@ -15,11 +15,12 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.login;
 
 import flexmud.cfg.Preferences;
 import flexmud.db.HibernateUtil;
 import flexmud.engine.context.Context;
+import flexmud.engine.cmd.Command;
 import flexmud.security.Account;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
