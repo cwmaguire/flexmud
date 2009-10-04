@@ -54,6 +54,7 @@
         command_class varchar(255) not null,
         flag varchar(255),
         description varchar(255),
+        name varchar(255),
         sequence integer,
         context_id bigint not null,
         primary key (context_command_id)

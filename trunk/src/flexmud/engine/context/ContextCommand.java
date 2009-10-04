@@ -44,6 +44,7 @@ public class ContextCommand implements Sequenceable{
     private String description;
     private ContextCommandFlag contextCommandFlag;
     private Integer sequence = 0;
+    private String name;
 
     @Id
     @GeneratedValue
@@ -54,6 +55,15 @@ public class ContextCommand implements Sequenceable{
 
     private void setId(long id) {
         this.id = id;
+    }
+
+    @Column(name = "name", nullable = true)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @OneToMany(mappedBy = ContextCommandAlias.CONTEXT_COMMAND_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -15,17 +15,34 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.engine.cmd.game;
 
+import flexmud.db.HibernateUtil;
+import flexmud.engine.context.Message;
+import flexmud.engine.cmd.Command;
+import flexmud.engine.cmd.MessageCommand;
+import flexmud.engine.cmd.ContextOrGenericPromptCommand;
+import flexmud.engine.exec.Executor;
+import flexmud.net.Client;
 import org.apache.log4j.Logger;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
-public class LoginCommand extends Command{
-    private static final Logger LOGGER = Logger.getLogger(LoginCommand.class);
+import java.util.List;
+
+public class LookCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(LookCommand.class);
 
     @Override
     public void run() {
-        getClient().setLogin(getCommandArguments().get(0));
-        LOGGER.info("Client " + getClient().getConnectionID() + " logging in with login \"" + getClient().getLogin() + "\"");
-        getClient().getClientContextHandler().loadAndSetFirstChildContext();
+        Client client = getClient();
+
+        LOGGER.info("Client " + client.getConnectionID() + " ran \"Look\" command");
+        client.sendTextLn("You look. Very observant of you.");
+
+        Command promptCommand = client.getClientContextHandler().getPromptCommand();
+        promptCommand.setClient(client);
+        Executor.exec(promptCommand);
     }
+
 }

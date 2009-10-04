@@ -25,6 +25,7 @@ import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.ContextCommandFlag;
 import flexmud.engine.context.ContextGroup;
 import flexmud.engine.exec.Executor;
+import flexmud.engine.cmd.login.ValidateLoginCommand;
 import flexmud.log.LoggingUtil;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
@@ -185,7 +186,7 @@ public class TestLoginValidationCommand {
 
         contextCmd.setContext(context);
         contextCmd.setContextCommandFlag(ContextCommandFlag.ENTRY);
-        contextCmd.setCommandClassName("flexmud.engine.cmd.ValidateLoginCommand");
+        contextCmd.setCommandClassName("flexmud.engine.cmd.login.ValidateLoginCommand");
 
         context.setContextCommands(new HashSet<ContextCommand>(Arrays.asList(contextCmd)));
         context.init();

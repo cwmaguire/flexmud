@@ -20,7 +20,7 @@ import flexmud.db.HibernateUtil;
 import flexmud.engine.cmd.Command;
 import flexmud.engine.cmd.CommandChainCommand;
 import flexmud.engine.cmd.ContextOrGenericPromptCommand;
-import flexmud.engine.cmd.MenuCommand;
+import flexmud.engine.cmd.menu.MenuCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
 import org.apache.log4j.Logger;
@@ -49,7 +49,11 @@ public class ClientContextHandler {
         return context;
     }
 
-    public synchronized void setContext(Context newContext) {
+    public void setContext(Context newContext) {
+        setContext(newContext, true);
+    }
+
+    public synchronized void setContext(Context newContext, boolean isPromptRequired) {
 
         if (doesContextCheckFail(newContext)) return;
 
@@ -65,10 +69,10 @@ public class ClientContextHandler {
                 We could also put in some sort of dependency check where if a command
                 is processed out of order it gets put back in the queue
         */
-        initializeAndExecuteCommand(createFlaggedContextCommandChain());
+        initializeAndExecuteCommand(createFlaggedContextCommandChain(isPromptRequired));
     }
 
-    protected Command createFlaggedContextCommandChain() {
+    protected Command createFlaggedContextCommandChain(boolean isPromptRequired) {
         List<Command> commands = new ArrayList<Command>();
         Command menuCommand;
 
@@ -79,7 +83,9 @@ public class ClientContextHandler {
             commands.add(createMenuCommand());
         }
 
-        commands.add(getPromptCommand());
+        if (isPromptRequired) {
+            commands.add(getPromptCommand());
+        }
 
         return new CommandChainCommand(commands);
     }
@@ -296,14 +302,16 @@ public class ClientContextHandler {
     }
 
     private List<String> determineParameters(Set<ContextCommandParameter> preconfiguredParams, List<String> commandLineParams) {
+        List<ContextCommandParameter> parameters = new ArrayList<ContextCommandParameter>(preconfiguredParams);
         if (preconfiguredParams != null && !preconfiguredParams.isEmpty()) {
-            return getParameterValues(preconfiguredParams);
+            Collections.sort(parameters, new SequenceComparator());
+            return getParameterValues(parameters);
         } else {
             return commandLineParams;
         }
     }
 
-    private List<String> getParameterValues(Set<ContextCommandParameter> preconfiguredParams) {
+    private List<String> getParameterValues(List<ContextCommandParameter> preconfiguredParams) {
         List<String> parameterValues = new ArrayList<String>();
         if (preconfiguredParams != null) {
             for (ContextCommandParameter param : preconfiguredParams) {

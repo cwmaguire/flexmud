@@ -22,6 +22,7 @@ import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextGroup;
 import flexmud.engine.context.FakeClientContextHandler;
 import flexmud.engine.exec.Executor;
+import flexmud.engine.cmd.login.PasswordCommand;
 import flexmud.log.LoggingUtil;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
