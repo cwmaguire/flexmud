@@ -1,0 +1,14 @@
+#summary User Context
+
+A context is a set of available commands. Some examples are the main menu context and the game context. 
+
+Grouping commands by context allows commands to use identical input without overlapping. 
+
+For example, in the context of a conversation with an NPC the input "n" might be interpreted as "no", whereas in the general game context "n" might be interpreted as "go north".
+
+Contexts can have: 
+  * A menu
+  * A custom prompt
+  * Commands
+  * Automated "on entry" commands (e.g. print a message or menu)
+  * A custom default command (i.e. when input doesn't match any known command)
