@@ -11,7 +11,7 @@ I will create a playable mud server before I die.
   * Backed by a database using Hibernate for persistence
   * Multi threaded using the Executor framework in Java.
   * Utilizes Java NIO for non-blocking socket communication.
-  * Interprets input based on user context. 
+  * Interprets input based on user UserContext. 
   * Executes operations as self-contained commands
 
 = History = 
