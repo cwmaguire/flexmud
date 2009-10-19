@@ -35,7 +35,7 @@ public class ContextGroup {
     private Set<Context> childContexts = new HashSet<Context>();
 
     @Id @GeneratedValue
-    @Column(name = "context_group_id")
+    @Column(name = "id")
     public long getId() {
         return id;
     }

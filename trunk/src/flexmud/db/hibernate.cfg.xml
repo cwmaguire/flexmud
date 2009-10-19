@@ -24,7 +24,7 @@
 
         <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
 
-        <mapping class="flexmud.engine.obj.Object"/>
+        <mapping class="flexmud.engine.item.Item"/>
         <mapping class="flexmud.engine.context.Context"/>
         <mapping class="flexmud.engine.context.ContextGroup"/>
         <mapping class="flexmud.engine.context.ContextCommand"/>
@@ -33,6 +33,8 @@
         <mapping class="flexmud.engine.character.AccountCharacter"/>
         <mapping class="flexmud.engine.context.Message"/>
         <mapping class="flexmud.security.Account"/>
+        <mapping class="flexmud.security.AccountRole"/>
+        <mapping class="flexmud.security.CharacterRole"/>
 
     </session-factory>
 </hibernate-configuration>

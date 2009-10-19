@@ -48,7 +48,7 @@ public class ContextCommand implements Sequenceable{
 
     @Id
     @GeneratedValue
-    @Column(name = "context_command_id")
+    @Column(name = "id")
     public long getId() {
         return id;
     }

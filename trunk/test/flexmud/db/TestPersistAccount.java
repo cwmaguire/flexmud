@@ -20,11 +20,13 @@ package flexmud.db;
 import flexmud.cfg.Preferences;
 import flexmud.log.LoggingUtil;
 import flexmud.security.Account;
+import flexmud.security.AccountRole;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.Before;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,14 +36,23 @@ public class TestPersistAccount {
     private static final String password = UUID.randomUUID().toString();
 
     private Account account;
+    private AccountRole accountRole;
 
     static {
         LoggingUtil.resetConfiguration();
         LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
     }
 
+    @Before
+    public void setup(){
+        accountRole = new AccountRole();
+        accountRole.setName("TEST_ROLE");
+        HibernateUtil.save(accountRole);
+    }
+
     @After
     public void teardown(){
+        HibernateUtil.delete(accountRole);
     }
 
     @Test
@@ -55,6 +66,7 @@ public class TestPersistAccount {
         account = new Account();
         account.setLogin(username);
         account.setPassword(password);
+        account.setAccountRole(accountRole);
         HibernateUtil.save(account);
         Assert.assertFalse("Acount ID was not updated automatically after save", account.getId() == 0);
     }

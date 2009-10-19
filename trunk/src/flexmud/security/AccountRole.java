@@ -14,26 +14,31 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.obj;
+package flexmud.security;
+
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.Context;
 
 import javax.persistence.*;
+import java.util.Set;
+import java.util.HashSet;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
-@Table(name = "object")
-public class Object {
-    public static final String ID_PROPERTY = "id";
-    public static final String NAME_PROPERTY = "name";
+@Table(name="account_role")
+public class AccountRole {
 
     private long id;
     private String name;
+    private Set<Account> accounts = new HashSet<Account>();
 
-    public Object(){
-
-    }
-
+    private Set<ContextCommand> restrictedContextCommands = new HashSet<ContextCommand>();
+    private Set<Context> restrictedContexts = new HashSet<Context>();
+  
     @Id
-    @GeneratedValue
-    @Column(name = "object_id")
+    @GeneratedValue()
+    @Column(name = "id")
     public long getId() {
         return id;
     }
@@ -42,7 +47,7 @@ public class Object {
         this.id = id;
     }
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     public String getName() {
         return name;
     }
@@ -51,19 +56,40 @@ public class Object {
         this.name = name;
     }
 
-    /*
+    @OneToMany(mappedBy = Account.ACCOUNT_ROLE_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
 
-   Everything is an object
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 
-   Every single object can potentially move, attack, be attacked, fire events, etc.
+    @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    public Set<Context> getRestrictedContexts() {
+        return restrictedContexts;
+    }
 
-   So do we need to have separate classes for "Character" objects and "Mob" objects and "Item" objects?
+    public void setRestrictedContexts(Set<Context> restrictedContexts) {
+        this.restrictedContexts = restrictedContexts;
+    }
 
-   Maybe instead of inheritance, we can glob together each item's capabilities from components:
-       - Attack strategy
-       - Skills
-       - Stats
-       - etc.
+    @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    public Set<ContextCommand> getRestrictedContextCommands() {
+        return restrictedContextCommands;
+    }
 
-    */
+    public void setRestrictedContextCommands(Set<ContextCommand> restrictedContextCommands) {
+        this.restrictedContextCommands = restrictedContextCommands;
+    }
+
+    public boolean hasPermission(Context context){
+        return !restrictedContexts.contains(context);
+    }
+
+    public boolean hasPermission(ContextCommand contextCommand){
+        return !restrictedContextCommands.contains(contextCommand);
+    }
+
 }

@@ -119,7 +119,7 @@ public class Context {
 
     @Id
     @GeneratedValue
-    @Column(name = "context_id")
+    @Column(name = "id")
     public long getId() {
         return id;
     }

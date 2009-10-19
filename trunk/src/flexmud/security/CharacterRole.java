@@ -17,31 +17,26 @@
 
 package flexmud.security;
 
-import org.hibernate.annotations.Cascade;
-
-import javax.persistence.*;
-
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.Context;
 import flexmud.engine.character.AccountCharacter;
 
+import javax.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
-@Table(name = "account")
-public class Account {
-    public static final String ID_PROPERTY = "id";
-    public static final String LOGIN_PROPERTY = "login";
-    public static final String PASSWORD_PROPERTY = "password";
-    public static final String ACCOUNT_CHARACTERS_PROPERTY = "accountCharacters";
-    public static final String ACCOUNT_ROLE_PROPERTY = "accountRole";
+@Table(name="character_role")
+public class CharacterRole {
 
     private long id;
-    private String login;
-    private String password;
-    private AccountRole accountRole;
-    private Set<AccountCharacter> accountCharacters = new HashSet<AccountCharacter>();
+    private String name;
+    private Set<AccountCharacter> characters = new HashSet<AccountCharacter>();
 
-    public Account(){}
+    private Set<ContextCommand> restrictedContextCommands = new HashSet<ContextCommand>();
+    private Set<Context> restrictedContexts = new HashSet<Context>();
 
     @Id
     @GeneratedValue()
@@ -54,41 +49,49 @@ public class Account {
         this.id = id;
     }
 
-    @Column(name = "login")
-    public String getLogin() {
-        return login;
+    @Column(name = "name", nullable = false)
+    public String getName() {
+        return name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
+    @OneToMany(mappedBy = AccountCharacter.CHARACTER_ROLE_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    public Set<AccountCharacter> getCharacters() {
+        return characters;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCharacters(Set<AccountCharacter> characters) {
+        this.characters = characters;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "account_role_id", nullable = false)
-    public AccountRole getAccountRole() {
-        return accountRole;
+    @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    public Set<Context> getRestrictedContexts() {
+        return restrictedContexts;
     }
 
-    public void setAccountRole(AccountRole accountRole) {
-        this.accountRole = accountRole;
+    public void setRestrictedContexts(Set<Context> restrictedContexts) {
+        this.restrictedContexts = restrictedContexts;
     }
 
-    @OneToMany(mappedBy = AccountCharacter.ACCOUNT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-    public Set<AccountCharacter> getAccountCharacters() {
-        return accountCharacters;
+    @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    public Set<ContextCommand> getRestrictedContextCommands() {
+        return restrictedContextCommands;
     }
 
-    public void setAccountCharacters(Set<AccountCharacter> accountCharacters) {
-        this.accountCharacters = accountCharacters;
+    public void setRestrictedContextCommands(Set<ContextCommand> restrictedContextCommands) {
+        this.restrictedContextCommands = restrictedContextCommands;
     }
+
+    public boolean hasPermission(Context context){
+        return !restrictedContexts.contains(context);
+    }
+
+    public boolean hasPermission(ContextCommand contextCommand){
+        return !restrictedContextCommands.contains(contextCommand);
+    }
+
 }

@@ -14,28 +14,26 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-
-package flexmud.engine.character;
-
-import flexmud.security.Account;
-import flexmud.security.CharacterRole;
+package flexmud.engine.item;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="account_character")
-public class AccountCharacter {
-    public static final String ACCOUNT_PROPERTY = "account";
-    public static final String CHARACTER_ROLE_PROPERTY = "characterRole";
+@Table(name = "object")
+public class Item {
+    public static final String ID_PROPERTY = "id";
+    public static final String NAME_PROPERTY = "name";
 
     private long id;
-    private Account account;
     private String name;
-    private CharacterRole characterRole;
+
+    public Item(){
+
+    }
 
     @Id
-    @GeneratedValue()
-    @Column(name = "id")
+    @GeneratedValue
+    @Column(name = "object_id")
     public long getId() {
         return id;
     }
@@ -44,28 +42,7 @@ public class AccountCharacter {
         this.id = id;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "character_role_id", nullable = false)
-    public CharacterRole getCharacterRole() {
-        return characterRole;
-    }
-
-    public void setCharacterRole(CharacterRole characterRole) {
-        this.characterRole = characterRole;
-    }
-
-    @Column(name = "name", nullable = true)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -73,4 +50,20 @@ public class AccountCharacter {
     public void setName(String name) {
         this.name = name;
     }
+
+    /*
+
+   Everything is an object
+
+   Every single object can potentially move, attack, be attacked, fire events, etc.
+
+   So do we need to have separate classes for "Character" objects and "Mob" objects and "Item" objects?
+
+   Maybe instead of inheritance, we can glob together each item's capabilities from components:
+       - Attack strategy
+       - Skills
+       - Stats
+       - etc.
+
+    */
 }
