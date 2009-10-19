@@ -19,14 +19,15 @@ package flexmud.db;
 
 import flexmud.cfg.Preferences;
 import flexmud.log.LoggingUtil;
+import flexmud.engine.item.Item;
 import org.hibernate.criterion.DetachedCriteria;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
-public class TestPersistObject {
-    private static final String OBJECT_NAME = "Object 1";
+public class TestPersistItem {
+    private static final String ITEM_NAME = "Item 1";
 
     static {
         LoggingUtil.resetConfiguration();
@@ -35,34 +36,34 @@ public class TestPersistObject {
 
     @Test
     public void testSaveObject(){
-        flexmud.engine.obj.Object object = new flexmud.engine.obj.Object();
-        object.setName(OBJECT_NAME);
-        HibernateUtil.save(object);
-        Assert.assertFalse("Object ID was not updated automatically after save", object.getId() == 0);
+        Item item = new Item();
+        item.setName(ITEM_NAME);
+        HibernateUtil.save(item);
+        Assert.assertFalse("Object ID was not updated automatically after save", item.getId() == 0);
     }
 
     @Test
     public void testFetchObject(){
-        List<Object> objects;
-        DetachedCriteria criteria = DetachedCriteria.forClass(Object.class);
-        objects = (List<Object>) HibernateUtil.fetch(criteria);
-        Assert.assertNotNull("List of Objects should not be null", objects);
-        Assert.assertEquals("Database should only contain one object", 1, objects.size());
+        List<Item> items;
+        DetachedCriteria criteria = DetachedCriteria.forClass(Item.class);
+        items = (List<Item>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Items should not be null", items);
+        Assert.assertEquals("Database should only contain one item", 1, items.size());
     }
 
     @Test
     public void testDeleteObject(){
-        List<Object> objects;
+        List<Item> items;
 
-        DetachedCriteria criteria = DetachedCriteria.forClass(Object.class);
-        objects = (List<Object>) HibernateUtil.fetch(criteria);
-        Assert.assertNotNull("List of Objects should not be null", objects);
+        DetachedCriteria criteria = DetachedCriteria.forClass(Item.class);
+        items = (List<Item>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Items should not be null", items);
 
-        HibernateUtil.delete(objects.get(0));
+        HibernateUtil.delete(items.get(0));
 
-        objects = (List<Object>) HibernateUtil.fetch(criteria);
-        Assert.assertNotNull("List of Objects should not be null", objects);
-        Assert.assertEquals("Database should contain no contexts", 0, objects.size());
+        items = (List<Item>) HibernateUtil.fetch(criteria);
+        Assert.assertNotNull("List of Objects should not be null; ", items);
+        Assert.assertEquals("Database should contain no objects; ", 0, items.size());
     }
 }
 

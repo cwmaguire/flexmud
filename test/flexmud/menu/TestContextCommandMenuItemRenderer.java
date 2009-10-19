@@ -17,19 +17,19 @@
 
 package flexmud.menu;
 
-import org.junit.Test;
+import flexmud.cfg.Preferences;
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.ContextCommandAlias;
+import flexmud.log.LoggingUtil;
+import flexmud.util.Util;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
-import org.apache.log4j.Logger;
-import flexmud.engine.context.ContextCommandAlias;
-import flexmud.engine.context.ContextCommand;
-import flexmud.util.Util;
-import flexmud.log.LoggingUtil;
-import flexmud.cfg.Preferences;
+import org.junit.Test;
 
-import java.util.UUID;
-import java.util.HashSet;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.UUID;
 
 public class TestContextCommandMenuItemRenderer {
     private static Logger LOGGER = Logger.getLogger(TestContextMenuAliasDecorator.class);

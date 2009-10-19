@@ -30,6 +30,7 @@ import flexmud.log.LoggingUtil;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
 import flexmud.security.Account;
+import flexmud.security.AccountRole;
 import flexmud.util.Util;
 import junit.framework.Assert;
 import org.junit.After;
@@ -46,6 +47,7 @@ public class TestLoginValidationCommand {
 
     private Context loginCntxt;
     private Account account;
+    private AccountRole accountRole;
 
     static {
         LoggingUtil.resetConfiguration();
@@ -66,9 +68,14 @@ public class TestLoginValidationCommand {
         loginCntxt.setName("login");
         HibernateUtil.save(loginCntxt);
 
+        accountRole = new AccountRole();
+        accountRole.setName("TEST_ROLE");
+        HibernateUtil.save(accountRole);
+
         account = new Account();
         account.setLogin(LOGIN);
         account.setPassword(PASSWORD);
+        account.setAccountRole(accountRole);
         HibernateUtil.save(account);
 
     }

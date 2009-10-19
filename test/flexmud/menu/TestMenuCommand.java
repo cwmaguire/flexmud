@@ -16,23 +16,19 @@
  **************************************************************************************************/
 package flexmud.menu;
 
-import org.junit.Test;
-import org.junit.Before;
-import flexmud.engine.cmd.MenuCommand;
-import flexmud.engine.cmd.ContextOrGenericPromptCommand;
-import flexmud.engine.context.Context;
+import flexmud.cfg.Constants;
+import flexmud.engine.cmd.menu.MenuCommand;
 import flexmud.engine.context.ContextCommand;
 import flexmud.engine.exec.Executor;
-import flexmud.net.FakeClientCommunicator;
 import flexmud.net.FakeClient;
+import flexmud.net.FakeClientCommunicator;
 import flexmud.util.Util;
-import flexmud.cfg.Constants;
-
-import java.util.UUID;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import junit.framework.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.UUID;
 
 public class TestMenuCommand {
     //ToDo: get some context commands and print them out

@@ -17,15 +17,14 @@
 
 package flexmud.menu;
 
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.Assert;
-import org.apache.log4j.Logger;
-import flexmud.engine.context.ContextCommand;
-import flexmud.engine.context.ContextCommandAlias;
 import flexmud.cfg.Preferences;
+import flexmud.engine.context.ContextCommandAlias;
 import flexmud.log.LoggingUtil;
 import flexmud.util.Util;
+import org.apache.log4j.Logger;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.UUID;
 
