@@ -49,6 +49,7 @@ public class Context {
     private int maxEntries = -1;
     private String maxEntriesExceededMessage = "";
     private String prompt;
+    private boolean isSecure;
 
     private Map<String, ContextCommand> aliasCommandClasses = new HashMap<String, ContextCommand>();
     private Map<ContextCommandFlag, List<ContextCommand>> flaggedCntxtCmds = new HashMap<ContextCommandFlag, List<ContextCommand>>();
@@ -172,6 +173,15 @@ public class Context {
 
     public void setPrompt(String prompt) {
         this.prompt = prompt;
+    }
+
+    @Column(name = "is_secure")
+    public boolean isSecure(){
+        return isSecure;
+    }
+
+    public void setSecure(boolean isSecure){
+        this.isSecure = isSecure;
     }
 
     // maps to the context_group that holds this context's children

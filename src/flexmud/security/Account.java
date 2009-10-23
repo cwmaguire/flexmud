@@ -21,7 +21,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
-import flexmud.engine.character.AccountCharacter;
+import flexmud.engine.character.Character;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -39,7 +39,7 @@ public class Account {
     private String login;
     private String password;
     private AccountRole accountRole;
-    private Set<AccountCharacter> accountCharacters = new HashSet<AccountCharacter>();
+    private Set<Character> accountCharacters = new HashSet<Character>();
 
     public Account(){}
 
@@ -82,13 +82,13 @@ public class Account {
         this.accountRole = accountRole;
     }
 
-    @OneToMany(mappedBy = AccountCharacter.ACCOUNT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = Character.ACCOUNT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-    public Set<AccountCharacter> getAccountCharacters() {
+    public Set<Character> getAccountCharacters() {
         return accountCharacters;
     }
 
-    public void setAccountCharacters(Set<AccountCharacter> accountCharacters) {
+    public void setAccountCharacters(Set<Character> accountCharacters) {
         this.accountCharacters = accountCharacters;
     }
 }

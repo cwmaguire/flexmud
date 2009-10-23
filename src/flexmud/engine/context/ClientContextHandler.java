@@ -23,6 +23,8 @@ import flexmud.engine.cmd.ContextOrGenericPromptCommand;
 import flexmud.engine.cmd.menu.MenuCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
+import flexmud.security.Account;
+import flexmud.security.AccountRole;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -55,7 +57,9 @@ public class ClientContextHandler {
 
     public synchronized void setContext(Context newContext, boolean isPromptRequired) {
 
-        if (doesContextCheckFail(newContext)) return;
+        if (doesExistsCheckFail(newContext)) return;
+
+        if(newContext.isSecure() && doesSecurityCheckFail(newContext)) return;
 
         if (doesMaxEntriesCheckFail(newContext)) return;
 
@@ -116,7 +120,7 @@ public class ClientContextHandler {
 
     public Command createMenuCommand() {
         MenuCommand menuCommand;
-        List<ContextCommand> cntxtMenuItems = context.getFlaggedContextCommands(ContextCommandFlag.MENU_ITEM);
+        List<ContextCommand> cntxtMenuItems = getAccessibleContextCommands(context.getFlaggedContextCommands(ContextCommandFlag.MENU_ITEM));
 
         if ((cntxtMenuItems != null && !cntxtMenuItems.isEmpty())) {
             menuCommand = new MenuCommand();
@@ -125,6 +129,23 @@ public class ClientContextHandler {
         }
 
         return null;
+    }
+
+    public List<ContextCommand> getAccessibleContextCommands(List<ContextCommand> commands){
+        List<ContextCommand> accessibleCommands = null;
+        Account account = client.getAccount();
+        AccountRole role = account == null ? null : account.getAccountRole();
+
+        if(role != null){
+            accessibleCommands = new ArrayList<ContextCommand>();
+            for(ContextCommand command : commands){
+                if(role.hasPermission(command)){
+                    accessibleCommands.add(command);
+                }
+            }
+        }
+
+        return accessibleCommands;
     }
 
     private boolean doesMaxEntriesCheckFail(Context newContext) {
@@ -138,7 +159,21 @@ public class ClientContextHandler {
         return false;
     }
 
-    private boolean doesContextCheckFail(Context newContext) {
+    private boolean doesSecurityCheckFail(Context newContext) {
+        Account account = client.getAccount();
+        AccountRole role = account == null ? null : account.getAccountRole();
+
+        if (role == null || !role.hasPermission(newContext)) {
+            LOGGER.info("Client " + client.getConnectionID() + " does not have permissions on context " + newContext.getName());
+            client.sendTextLn("Access denied");
+            // ToDO CM: need to reprompt at this point.
+            //          or, we could simply re-enter them in their current context
+            return true;
+        }
+        return false;
+    }
+
+    private boolean doesExistsCheckFail(Context newContext) {
         if (newContext == null && context == null) {
             LOGGER.error("Could not locate first context");
             client.sendText("Houston, we have a problem: we don't know where to send you. Disconnecting, sorry.");

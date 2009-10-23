@@ -33,9 +33,9 @@ public class AccountRole {
     private String name;
     private Set<Account> accounts = new HashSet<Account>();
 
-    private Set<ContextCommand> restrictedContextCommands = new HashSet<ContextCommand>();
-    private Set<Context> restrictedContexts = new HashSet<Context>();
-  
+    private Set<ContextCommand> commands = new HashSet<ContextCommand>();
+    private Set<Context> contexts = new HashSet<Context>();
+
     @Id
     @GeneratedValue()
     @Column(name = "id")
@@ -67,29 +67,39 @@ public class AccountRole {
     }
 
     @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
-    public Set<Context> getRestrictedContexts() {
-        return restrictedContexts;
+    @JoinTable(
+        name="ACCOUNT_ROLE_CONTEXT",
+        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
+        inverseJoinColumns=@JoinColumn(name="CONTEXT_ID")
+    )
+    public Set<Context> getContexts() {
+        return contexts;
     }
 
-    public void setRestrictedContexts(Set<Context> restrictedContexts) {
-        this.restrictedContexts = restrictedContexts;
+    public void setContexts(Set<Context> contexts) {
+        this.contexts = contexts;
     }
 
     @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
-    public Set<ContextCommand> getRestrictedContextCommands() {
-        return restrictedContextCommands;
+    @JoinTable(
+        name="ACCOUNT_ROLE_COMMAND",
+        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
+        inverseJoinColumns=@JoinColumn(name="CONTEXT_COMMAND_ID")
+    )
+    public Set<ContextCommand> getCommands() {
+        return commands;
     }
 
-    public void setRestrictedContextCommands(Set<ContextCommand> restrictedContextCommands) {
-        this.restrictedContextCommands = restrictedContextCommands;
+    public void setCommands(Set<ContextCommand> commands) {
+        this.commands = commands;
     }
 
     public boolean hasPermission(Context context){
-        return !restrictedContexts.contains(context);
+        return contexts.contains(context);
     }
 
     public boolean hasPermission(ContextCommand contextCommand){
-        return !restrictedContextCommands.contains(contextCommand);
+        return commands.contains(contextCommand);
     }
 
 }

@@ -19,7 +19,7 @@ package flexmud.security;
 
 import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.Context;
-import flexmud.engine.character.AccountCharacter;
+import flexmud.engine.character.Character;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -33,10 +33,10 @@ public class CharacterRole {
 
     private long id;
     private String name;
-    private Set<AccountCharacter> characters = new HashSet<AccountCharacter>();
+    private Set<Character> characters = new HashSet<Character>();
 
-    private Set<ContextCommand> restrictedContextCommands = new HashSet<ContextCommand>();
-    private Set<Context> restrictedContexts = new HashSet<Context>();
+    private Set<ContextCommand> commands = new HashSet<ContextCommand>();
+    private Set<Context> contexts = new HashSet<Context>();
 
     @Id
     @GeneratedValue()
@@ -58,40 +58,50 @@ public class CharacterRole {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = AccountCharacter.CHARACTER_ROLE_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = Character.CHARACTER_ROLE_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-    public Set<AccountCharacter> getCharacters() {
+    public Set<flexmud.engine.character.Character> getCharacters() {
         return characters;
     }
 
-    public void setCharacters(Set<AccountCharacter> characters) {
+    public void setCharacters(Set<Character> characters) {
         this.characters = characters;
     }
 
     @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
-    public Set<Context> getRestrictedContexts() {
-        return restrictedContexts;
+    @JoinTable(
+        name="CHARACTER_ROLE_CONTEXT",
+        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
+        inverseJoinColumns=@JoinColumn(name="CONTEXT_ID")
+    )
+    public Set<Context> getContexts() {
+        return contexts;
     }
 
-    public void setRestrictedContexts(Set<Context> restrictedContexts) {
-        this.restrictedContexts = restrictedContexts;
+    public void setContexts(Set<Context> contexts) {
+        this.contexts = contexts;
     }
 
     @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
-    public Set<ContextCommand> getRestrictedContextCommands() {
-        return restrictedContextCommands;
+    @JoinTable(
+        name="CHARACTER_ROLE_COMMAND",
+        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
+        inverseJoinColumns=@JoinColumn(name="CONTEXT_COMMAND_ID")
+    )
+    public Set<ContextCommand> getCommands() {
+        return commands;
     }
 
-    public void setRestrictedContextCommands(Set<ContextCommand> restrictedContextCommands) {
-        this.restrictedContextCommands = restrictedContextCommands;
+    public void setCommands(Set<ContextCommand> commands) {
+        this.commands = commands;
     }
 
     public boolean hasPermission(Context context){
-        return !restrictedContexts.contains(context);
+        return !contexts.contains(context);
     }
 
     public boolean hasPermission(ContextCommand contextCommand){
-        return !restrictedContextCommands.contains(contextCommand);
+        return !commands.contains(contextCommand);
     }
 
 }
