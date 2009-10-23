@@ -118,6 +118,10 @@
                 dataTypeFactory="org.dbunit.ext.hsqldb.HsqldbDataTypeFactory">
             <classpath refid="project.classpath"/>
             <operation type="INSERT" src="database/base.xml" transaction="true"/>
+            <operation type="INSERT" src="database/security.xml" transaction="true"/>
+            <operation type="INSERT" src="database/admin_acc_permissions.xml" transaction="true"/>
+            <operation type="INSERT" src="database/player_acc_permissions.xml" transaction="true"/>
+            <operation type="INSERT" src="database/guest_acc_permissions.xml" transaction="true"/>
         </dbunit>
     </target>
 

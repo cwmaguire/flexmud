@@ -23,8 +23,8 @@ import flexmud.security.CharacterRole;
 import javax.persistence.*;
 
 @Entity
-@Table(name="account_character")
-public class AccountCharacter {
+@Table(name="character")
+public class Character {
     public static final String ACCOUNT_PROPERTY = "account";
     public static final String CHARACTER_ROLE_PROPERTY = "characterRole";
 
