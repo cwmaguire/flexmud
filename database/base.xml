@@ -72,6 +72,7 @@
     <!-- Choosing a character -->
     <CONTEXT_COMMAND ID="11" CONTEXT_ID="8"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.ChooseCharacterCommand"/>
 
+    <!-- ToDo CM: on entry either prompt the player to pick a character or simply set the character if there is only one --> 
     <!-- Entering the game -->
     <CONTEXT_COMMAND ID="12" CONTEXT_ID="9"  FLAG="ENTRY"     COMMAND_CLASS="flexmud.engine.cmd.game.LookCommand"/>
     <CONTEXT_COMMAND ID="13" CONTEXT_ID="9"  FLAG="PROMPT"    COMMAND_CLASS="flexmud.engine.cmd.game.CharacterPromptCommand"/>
