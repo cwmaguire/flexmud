@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 import java.util.concurrent.Future;
 
 public class FakeClientContextHandler extends ClientContextHandler {
@@ -55,49 +56,5 @@ public class FakeClientContextHandler extends ClientContextHandler {
 
         LOGGER.debug("Exec'd command " + command.getClass().getCanonicalName() + " at " + System.currentTimeMillis());
         return null;
-    }
-
-    @Override
-    protected Command createFlaggedContextCommandChain(boolean isPromptRequired) {
-
-        List<Command> commands = new ArrayList<Command>();
-        List<Command> sleepingCommands = new ArrayList<Command>();
-
-        commands.addAll(getFlaggedCommandsWithParamsOrNull(ContextCommandFlag.ENTRY));
-        commands.add(getPromptCommand());
-
-        for (Command command : commands) {
-            sleepingCommands.add(new SleepingCommand(command));
-        }
-
-        return new CommandChainCommand(sleepingCommands);
-    }
-
-    private class SleepingCommand extends Command {
-        private Command innerCommand;
-
-        public SleepingCommand(Command innerCommand) {
-            this.innerCommand = innerCommand;
-        }
-
-        @Override
-        public Client getClient() {
-            return innerCommand.getClient();
-        }
-
-        public void setClient(Client client) {
-            innerCommand.setClient(client);
-        }
-
-        @Override
-        public List<String> getCommandArguments() {
-            return innerCommand.getCommandArguments();
-        }
-
-        @Override
-        public void run() {
-            innerCommand.run();
-            Util.pause(25);
-        }
     }
 }

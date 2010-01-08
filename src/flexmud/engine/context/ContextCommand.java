@@ -37,7 +37,7 @@ public class ContextCommand extends PersistedComparable implements Sequenceable{
     public static final String PARAMETERS_PROPERTY = "parameters";
     public static final String COMMAND_CLASS_NAME_PROPERTY = "commandClassName";
 
-    private long id;
+    protected long id;
     private Set<ContextCommandAlias> aliases = new HashSet<ContextCommandAlias>();
     private Set<ContextCommandParameter> parameters = new HashSet<ContextCommandParameter>();
     private String commandClassName;

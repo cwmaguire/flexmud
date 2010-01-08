@@ -15,84 +15,49 @@
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
 
-package flexmud.engine.cmd;
+package flexmud.security;
 
 import flexmud.cfg.Preferences;
-import flexmud.db.HibernateUtil;
-import flexmud.engine.context.Context;
-import flexmud.engine.context.ContextGroup;
-import flexmud.engine.exec.Executor;
+import flexmud.engine.context.ContextCommand;
+import flexmud.engine.context.FakeContextCommand;
 import flexmud.log.LoggingUtil;
 import flexmud.net.FakeClient;
 import flexmud.net.FakeClientCommunicator;
-import flexmud.util.Util;
-import flexmud.security.Account;
-import flexmud.security.AccountRole;
 import junit.framework.Assert;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class TestSetContextCommand {
+public class AccessibleCommandsTest {
     private FakeClientCommunicator clientCommunicator = null;
-    private List<Object> objectsToDelete;
-    private Context context2;
-    private Context context1;
 
     static {
         LoggingUtil.resetConfiguration();
         LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_TEST_CONFIG_FILE));
     }
 
-    @Before
-    public void setup() {
-        objectsToDelete = new ArrayList<Object>();
-        clientCommunicator = new FakeClientCommunicator();
-        clientCommunicator.setShouldInterceptWrite(true);
-
-        context1 = new Context("ctxt1");
-        ContextGroup contextGroup = new ContextGroup();
-        context1.setChildGroup(contextGroup);
-        HibernateUtil.save(context1);
-        objectsToDelete.add(context1);
-
-        context2 = new Context("ctxt2");
-        context2.setParentGroup(contextGroup);
-        HibernateUtil.save(context2);
-        objectsToDelete.add(context2);
-    }
-
-    @After
-    public void tearDown() {
-        Collections.reverse(objectsToDelete);
-        for (Object obj : objectsToDelete) {
-            HibernateUtil.delete(obj);
-        }
-    }
-
     @Test
-    public void testSetContextCommand(){
+    public void testCommandAccessibility() {
 
         Account fakeAccount = new Account();
         fakeAccount.setAccountRole(new AccountRole());
 
         FakeClient fakeClient = new FakeClient(clientCommunicator, null);
         fakeClient.setAccount(fakeAccount);
-        fakeClient.setContext(context1);
 
-        SetContextCommand setCntxtCmd = new SetContextCommand();
-        setCntxtCmd.setClient(fakeClient);
-        setCntxtCmd.setCommandArguments(Arrays.asList(String.valueOf(context2.getId())));
+        FakeContextCommand accessibleCommand = new FakeContextCommand();
+        accessibleCommand.setIdForTesting(1);
 
-        Executor.exec(setCntxtCmd);
+        FakeContextCommand inaccessibleCommand = new FakeContextCommand();
+        inaccessibleCommand.setIdForTesting(2);
 
-        Util.pause(Util.ENGINE_WAIT_TIME);
+        fakeAccount.getAccountRole().getCommands().add(accessibleCommand);
 
-        Assert.assertEquals("Client did not get set to the target context", context2.getId(), fakeClient.getContext().getId());
+        List<ContextCommand> accessibleCommands = fakeClient.getClientContextHandler().getAccessibleContextCommands(Arrays.asList(accessibleCommand, inaccessibleCommand));
+
+        Assert.assertTrue(accessibleCommands.contains(accessibleCommand));
+        Assert.assertFalse(accessibleCommands.contains(inaccessibleCommand));
+
     }
 }
