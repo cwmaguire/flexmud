@@ -24,10 +24,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import flexmud.engine.cmd.Command;
+import flexmud.PersistedComparable;
 
 @Entity
 @Table(name = "context_command")
-public class ContextCommand implements Sequenceable{
+public class ContextCommand extends PersistedComparable implements Sequenceable{
     private static final Logger LOGGER = Logger.getLogger(ContextCommand.class);
 
     public static final String ID_PROPERTY = "id";

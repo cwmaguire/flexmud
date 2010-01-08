@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="FacetManager">
-    <facet type="hibernate" name="Hibernate">
-      <configuration>
-        <datasource-map>
-          <unit-entry name="src/flexmud/db/hibernate.cfg.xml" />
-        </datasource-map>
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/flexmud/db/hibernate.cfg.xml" optional="false" version="3.0" />
-      </configuration>
-    </facet>
-  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/flexmud/build/flexmud" />
     <output-test url="file://$MODULE_DIR$/flexmud/build/test" />

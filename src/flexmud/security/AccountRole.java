@@ -22,6 +22,7 @@ import flexmud.engine.context.Context;
 import javax.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 import org.hibernate.annotations.Cascade;
 
@@ -66,7 +67,7 @@ public class AccountRole {
         this.accounts = accounts;
     }
 
-    @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch=FetchType.EAGER)
     @JoinTable(
         name="ACCOUNT_ROLE_CONTEXT",
         joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
@@ -80,7 +81,7 @@ public class AccountRole {
         this.contexts = contexts;
     }
 
-    @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch=FetchType.EAGER)
     @JoinTable(
         name="ACCOUNT_ROLE_COMMAND",
         joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
@@ -95,11 +96,11 @@ public class AccountRole {
     }
 
     public boolean hasPermission(Context context){
-        return contexts.contains(context);
+        return new ArrayList<Context>(contexts).contains(context);
     }
 
     public boolean hasPermission(ContextCommand contextCommand){
-        return commands.contains(contextCommand);
+        return new ArrayList<ContextCommand>(commands).contains(contextCommand);
     }
 
 }

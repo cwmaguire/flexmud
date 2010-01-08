@@ -37,7 +37,7 @@ public class ClientCommunicator implements Runnable{
     private Selector selector;
     private final List<SocketChannel> socketChannelsReadyToWrite = new LinkedList<SocketChannel>();
     private final Map<SocketChannel, List<ByteBuffer>> socketChannelByteBuffers = new HashMap<SocketChannel, List<ByteBuffer>>();
-    protected final Map<SocketChannel, Client> socketChannelConnections = new HashMap<SocketChannel, Client>();
+    protected final Map<SocketChannel, Client> socketChannelClients = new HashMap<SocketChannel, Client>();
 
     public ClientCommunicator(){}
 
@@ -78,23 +78,23 @@ public class ClientCommunicator implements Runnable{
 
         SocketChannel socketChannel = serverSocketChannel.accept();
 
-        this.mapSocketChannelToNewClient(socketChannel);
+        this.createClientMappedToSocketChannel(socketChannel);
 
-        LOGGER.info("Total Connections now: " + this.socketChannelConnections.size());
+        LOGGER.info("Total Connections now: " + this.socketChannelClients.size());
     }
 
     private ServerSocketChannel getNewConnectionServerSocketChannel(SelectionKey key) {
         return (ServerSocketChannel) key.channel();
     }
 
-    protected Client mapSocketChannelToNewClient(SocketChannel socketChannel) throws IOException {
+    protected Client createClientMappedToSocketChannel(SocketChannel socketChannel) throws IOException {
         configureSocketChannelForNonBlockingRead(socketChannel);
 
         Client client = new Client(this, socketChannel);
 
         LOGGER.info("New Connection. ID: " + client.getConnectionID());
 
-        this.socketChannelConnections.put(socketChannel, client);
+        this.socketChannelClients.put(socketChannel, client);
 
         return client;
     }
@@ -113,12 +113,12 @@ public class ClientCommunicator implements Runnable{
 
     private void disconnect(final SocketChannel sockChan) {
         LOGGER.info("Client.disconnect(SocketChannel): sockChan=" + sockChan.toString());
-        disconnect(this.socketChannelConnections.get(sockChan));
+        disconnect(this.socketChannelClients.get(sockChan));
     }
 
     public void disconnect(final Client client) {
         LOGGER.info("Client.disconnect(Connection): connection=" + client.toString());
-        this.socketChannelConnections.remove(client.getSocketChannel());
+        this.socketChannelClients.remove(client.getSocketChannel());
 
         // TODO What to do with the orphaned Connection? Probably perform Player object look up and persist the data....
         // CM: I concur; we might put in some penalties too, so this should be
@@ -131,7 +131,7 @@ public class ClientCommunicator implements Runnable{
             LOGGER.error("Client.disconnect(Connection): Failed to close socket connection.", e);
         }
 
-        LOGGER.info("Client.disconnect(Connection): Total Clients: " + this.socketChannelConnections.size());
+        LOGGER.info("Client.disconnect(Connection): Total Clients: " + this.socketChannelClients.size());
     }
 
     public UUID getNewConnectionID() {
@@ -143,16 +143,16 @@ public class ClientCommunicator implements Runnable{
     }
 
     public boolean canAcceptConnection() {
-        return (this.socketChannelConnections.size() < this.maxAllowedConns);
+        return (this.socketChannelClients.size() < this.maxAllowedConns);
     }
 
     protected void read(final SelectionKey key) {
         SocketChannel socketChannel = (SocketChannel) key.channel();
-        Client client = this.socketChannelConnections.get(socketChannel);
+        Client client = this.socketChannelClients.get(socketChannel);
 
         if (client == null) {
             try {
-                client = this.mapSocketChannelToNewClient(socketChannel);
+                client = this.createClientMappedToSocketChannel(socketChannel);
                 if(client == null){
                     throw new IOException();
                 }
@@ -247,7 +247,7 @@ public class ClientCommunicator implements Runnable{
     private void shutdown() {
         this.isRunning = false;
         try {
-            for (SocketChannel socketChannel : this.socketChannelConnections.keySet()) {
+            for (SocketChannel socketChannel : this.socketChannelClients.keySet()) {
                 try {
                     socketChannel.close();
                 } catch (IOException e) {
@@ -255,7 +255,7 @@ public class ClientCommunicator implements Runnable{
                 }
             }
             this.selector.close();
-            this.socketChannelConnections.clear();
+            this.socketChannelClients.clear();
             this.socketChannelByteBuffers.clear();
         } catch (IOException e) {
             LOGGER.info("ClientCommunicator.shutdown() failed: ", e);
