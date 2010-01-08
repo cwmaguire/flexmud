@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 public class AccessibleCommandsTest {
     private FakeClientCommunicator clientCommunicator = null;
@@ -58,6 +59,57 @@ public class AccessibleCommandsTest {
 
         Assert.assertTrue(accessibleCommands.contains(accessibleCommand));
         Assert.assertFalse(accessibleCommands.contains(inaccessibleCommand));
+    }
 
+    @Test
+    public void testCommandAccessibiltyWithEmptyCommandList(){
+
+        Account fakeAccount = new Account();
+        fakeAccount.setAccountRole(new AccountRole());
+
+        FakeClient fakeClient = new FakeClient(clientCommunicator, null);
+        fakeClient.setAccount(fakeAccount);
+
+        FakeContextCommand accessibleCommand = new FakeContextCommand();
+        accessibleCommand.setIdForTesting(1);
+
+        FakeContextCommand inaccessibleCommand = new FakeContextCommand();
+        inaccessibleCommand.setIdForTesting(2);
+
+        fakeAccount.getAccountRole().getCommands().add(accessibleCommand);
+
+        List<ContextCommand> accessibleCommands = fakeClient.getClientContextHandler().getAccessibleContextCommands(new ArrayList<ContextCommand>());
+
+        Assert.assertNotNull(accessibleCommands);
+        Assert.assertTrue(accessibleCommands.isEmpty());
+    }
+
+    @Test
+    public void testCommandAccessibiltyWithNoCommands(){
+        Account fakeAccount = new Account();
+        fakeAccount.setAccountRole(new AccountRole());
+
+        FakeClient fakeClient = new FakeClient(clientCommunicator, null);
+        fakeClient.setAccount(fakeAccount);
+
+        List<ContextCommand> accessibleCommands = fakeClient.getClientContextHandler().getAccessibleContextCommands(null);
+
+        Assert.assertNull(accessibleCommands);
+    }
+
+    @Test
+    public void testCommandAccessibiltyWithNoAccountRole(){
+        FakeClient fakeClient = new FakeClient(clientCommunicator, null);
+        fakeClient.setAccount(new Account());
+
+        FakeContextCommand accessibleCommand = new FakeContextCommand();
+        accessibleCommand.setIdForTesting(1);
+
+        FakeContextCommand inaccessibleCommand = new FakeContextCommand();
+        inaccessibleCommand.setIdForTesting(2);
+
+        List<ContextCommand> accessibleCommands = fakeClient.getClientContextHandler().getAccessibleContextCommands(Arrays.asList(accessibleCommand, inaccessibleCommand));
+
+        Assert.assertNull(accessibleCommands);
     }
 }
