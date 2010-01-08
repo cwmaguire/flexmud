@@ -14,58 +14,11 @@
  * You should have received a copy of the GNU General Public License                              *
  * along with flexmud.  If not, see <http://www.gnu.org/licenses/>.                               *
  **************************************************************************************************/
-package flexmud.engine.cmd;
+package flexmud.engine.context;
 
-import flexmud.engine.context.Context;
-import flexmud.net.Client;
+public class FakeContextCommand extends ContextCommand implements Sequenceable {
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-public class CommandChainCommand extends Command {
-    List<? extends Command> commands;
-    Context startingContext;
-
-    public CommandChainCommand(List<? extends Command> commands) {
-        this.commands = commands;
-    }
-
-    @Override
-    public void setClient(Client client) {
-        super.setClient(client);
-        if (commands != null) {
-            for (Command command : commands) {
-                command.setClient(client);
-            }
-        }
-    }
-
-    @Override
-    public List<String> getCommandArguments() {
-        List<String> arguments = new ArrayList<String>();
-        if (commands != null) {
-            for (Command command : commands) {
-                arguments.addAll(command.getCommandArguments());
-            }
-        }
-        return arguments;
-    }
-
-    @Override
-    public void run() {
-        if (commands != null && !commands.isEmpty()) {
-            Client client = commands.get(0).getClient();
-            startingContext = client.getContext();
-
-            for (Iterator<? extends Command> it = commands.iterator(); it.hasNext() && startingContext.equals(client.getContext());) {
-                Command command = it.next();
-                command.run();
-            }
-        }
-    }
-
-    public List<? extends Command> getCommands() {
-        return commands;
+    public void setIdForTesting(long id) {
+        this.id = id;
     }
 }

@@ -131,7 +131,7 @@ public class ClientContextHandler {
         return null;
     }
 
-    public List<ContextCommand> getAccessibleContextCommands(List<ContextCommand> commands){
+    public List<ContextCommand> getAccessibleContextCommands(List<? extends ContextCommand> commands){
         List<ContextCommand> accessibleCommands = null;
         Account account = client.getAccount();
         AccountRole role = account == null ? null : account.getAccountRole();
