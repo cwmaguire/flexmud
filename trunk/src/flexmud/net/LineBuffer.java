@@ -33,9 +33,6 @@ public class LineBuffer {
     private ArrayList<Character> charBuffer;
     private ArrayList<String> completeLines;
 
-    /**
-     * Default constructor.
-     */
     public LineBuffer() {
         this.completeLines = new ArrayList<String>();
         this.charBuffer = new ArrayList<Character>();
@@ -70,19 +67,19 @@ public class LineBuffer {
         try {
             ByteBuffer eightBitCharBuffer = ByteBuffer.allocate(128);
 
-            int read = socketChannel.read(eightBitCharBuffer);
-            if (read == -1) {
+            int numBytesRead = socketChannel.read(eightBitCharBuffer);
+            if (numBytesRead == -1) {
                 throw new IOException();
             }
 
-            while (read > 0) {
+            while (numBytesRead > 0) {
                 eightBitCharBuffer.flip();
 
                 writeToCharBuffer(eightBitCharBuffer.array(), eightBitCharBuffer.limit());
                 eightBitCharBuffer.clear();
 
-                read = socketChannel.read(eightBitCharBuffer);
-                if (read == -1) {
+                numBytesRead = socketChannel.read(eightBitCharBuffer);
+                if (numBytesRead == -1) {
                     throw new IOException();
                 }
             }
@@ -117,7 +114,6 @@ public class LineBuffer {
     private String removeCompleteLine(int carriageReturnIndex) {
         String line;
 
-
         line = removeCompleteLineFromCharBuffer(carriageReturnIndex);
         line = trimCRLF(line);
 
@@ -127,7 +123,7 @@ public class LineBuffer {
     }
 
     private void deleteLeftoverLineFeed(int carriageReturnIndex) {
-        if (!isLastChar(carriageReturnIndex) && nextCharIsLineFeed(carriageReturnIndex)) {
+        if (!isLastChar(carriageReturnIndex) && isLineFeedNextChar(carriageReturnIndex)) {
             deleteNextChar(carriageReturnIndex);
         }
     }
@@ -157,7 +153,7 @@ public class LineBuffer {
         this.charBuffer.remove(crIndex + 1);
     }
 
-    private boolean nextCharIsLineFeed(int crIndex) {
+    private boolean isLineFeedNextChar(int crIndex) {
         return this.charBuffer.get(crIndex + 1) == Constants.LF;
     }
 

@@ -136,7 +136,7 @@ public class ClientContextHandler {
         Account account = client.getAccount();
         AccountRole role = account == null ? null : account.getAccountRole();
 
-        if(role != null){
+        if(role != null && commands != null){
             accessibleCommands = new ArrayList<ContextCommand>();
             for(ContextCommand command : commands){
                 if(role.hasPermission(command)){
