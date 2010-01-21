@@ -57,32 +57,32 @@ public class Context {
     public Context() {
     }
 
-    public Context(String name){
+    public Context(String name) {
         this();
         this.name = name;
     }
 
-    public void init(){
+    public void init() {
         mapFlaggedCommandClasses();
         mapAliasedCommandClasses();
     }
 
-    private void mapFlaggedCommandClasses(){
+    private void mapFlaggedCommandClasses() {
         List<ContextCommand> contextCommandsList = new ArrayList<ContextCommand>(contextCommands);
         if (contextCommands != null && !contextCommands.isEmpty()) {
 
-            Collections.sort(contextCommandsList, new Comparator<ContextCommand>(){
+            Collections.sort(contextCommandsList, new Comparator<ContextCommand>() {
                 @Override
                 public int compare(ContextCommand cntxtCmd1, ContextCommand cntxtCmd2) {
                     int sequence1 = cntxtCmd1.getSequence();
                     int sequence2 = cntxtCmd2.getSequence();
 
                     // sort in reverse order except zero is always last
-                    if(sequence1 == 0){
+                    if (sequence1 == 0) {
                         return sequence2;
-                    }else if(sequence2 == 0){
+                    } else if (sequence2 == 0) {
                         return 0;
-                    }else{
+                    } else {
                         return sequence1 - sequence2;
                     }
                 }
@@ -98,9 +98,9 @@ public class Context {
         List<ContextCommand> flaggedCntxtCmdsList;
         ContextCommandFlag flag = contextCommand.getContextCommandFlag();
 
-        if(flag != null){
+        if (flag != null) {
             flaggedCntxtCmdsList = this.flaggedCntxtCmds.get(flag);
-            if(flaggedCntxtCmdsList == null){
+            if (flaggedCntxtCmdsList == null) {
                 flaggedCntxtCmdsList = new ArrayList<ContextCommand>();
             }
             flaggedCntxtCmdsList.add(contextCommand);
@@ -109,8 +109,8 @@ public class Context {
     }
 
     private void mapAliasedCommandClasses() {
-        if(contextCommands != null){
-            for(ContextCommand contextCommand : contextCommands){
+        if (contextCommands != null) {
+            for (ContextCommand contextCommand : contextCommands) {
                 for (ContextCommandAlias alias : contextCommand.getAliases()) {
                     aliasCommandClasses.put(alias.getAlias(), contextCommand);
                 }
@@ -125,7 +125,7 @@ public class Context {
         return id;
     }
 
-    protected void setId(long id){
+    protected void setId(long id) {
         this.id = id;
     }
 
@@ -176,11 +176,11 @@ public class Context {
     }
 
     @Column(name = "is_secure")
-    public boolean isSecure(){
+    public boolean isSecure() {
         return isSecure;
     }
 
-    public void setSecure(boolean isSecure){
+    public void setSecure(boolean isSecure) {
         this.isSecure = isSecure;
     }
 
@@ -188,7 +188,7 @@ public class Context {
     @OneToOne(targetEntity = ContextGroup.class, cascade = CascadeType.ALL, optional = true)
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     @JoinColumn(name = "child_group_id")
-    public ContextGroup getChildGroup(){
+    public ContextGroup getChildGroup() {
         return childGroup;
     }
 
@@ -219,7 +219,7 @@ public class Context {
     }
 
     @Transient
-    public List<ContextCommand> getFlaggedContextCommands(ContextCommandFlag flag){
+    public List<ContextCommand> getFlaggedContextCommands(ContextCommandFlag flag) {
         return flaggedCntxtCmds.get(flag);
     }
 
@@ -229,7 +229,7 @@ public class Context {
     }
 
     @Transient
-    public ContextCommand getContextCommandForAlias(String alias){
+    public ContextCommand getContextCommandForAlias(String alias) {
         return aliasCommandClasses.get(alias);
     }
 

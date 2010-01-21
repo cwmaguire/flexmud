@@ -23,7 +23,7 @@ import flexmud.security.CharacterRole;
 import javax.persistence.*;
 
 @Entity
-@Table(name="character")
+@Table(name = "character")
 public class Character {
     public static final String ACCOUNT_PROPERTY = "account";
     public static final String CHARACTER_ROLE_PROPERTY = "characterRole";
@@ -32,6 +32,10 @@ public class Character {
     private Account account;
     private String name;
     private CharacterRole characterRole;
+    private Race race;
+    private CharacterClass characterClass;
+    private SkillSet skillSet;
+    private StatSet statSet;
 
     @Id
     @GeneratedValue()
@@ -73,4 +77,15 @@ public class Character {
     public void setName(String name) {
         this.name = name;
     }
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "race_id", nullable = false)
+//    public Race getRace() {
+//        return race;
+//    }
+//
+//    public void setRace(Race race) {
+//        this.race = race;
+//    }
 }

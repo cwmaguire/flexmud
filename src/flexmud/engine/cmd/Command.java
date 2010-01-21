@@ -21,11 +21,11 @@ import flexmud.net.Client;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Command implements Runnable{
-   private Client client;
-   protected List<String> commandArguments;
+public abstract class Command implements Runnable {
+    private Client client;
+    protected List<String> commandArguments;
 
-    public Command(){
+    public Command() {
         commandArguments = new ArrayList<String>();
     }
 

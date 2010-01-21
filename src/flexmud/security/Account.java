@@ -17,14 +17,12 @@
 
 package flexmud.security;
 
+import flexmud.engine.character.Character;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-
-import flexmud.engine.character.Character;
-
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "account")
@@ -41,7 +39,8 @@ public class Account {
     private AccountRole accountRole;
     private Set<Character> accountCharacters = new HashSet<Character>();
 
-    public Account(){}
+    public Account() {
+    }
 
     @Id
     @GeneratedValue()

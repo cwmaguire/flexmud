@@ -17,9 +17,9 @@
 
 package flexmud.engine.cmd.game;
 
-import org.apache.log4j.Logger;
-import flexmud.net.Client;
 import flexmud.engine.cmd.Command;
+import flexmud.net.Client;
+import org.apache.log4j.Logger;
 
 public class QuitCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(QuitCommand.class);

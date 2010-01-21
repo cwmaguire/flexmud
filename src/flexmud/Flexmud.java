@@ -32,11 +32,11 @@ public class Flexmud {
         LoggingUtil.configureLogging(Preferences.getPreference(Preferences.LOG4J_CONFIG_FILE));
     }
 
-    public static void main(String[] args){
-        try{
+    public static void main(String[] args) {
+        try {
             Executor.exec(new ClientCommunicator(PORT));
             //new ClientCommunicator(PORT).run();
-        }catch(Exception e){
+        } catch (Exception e) {
             LOGGER.error("Error launching client communicator", e);
         }
     }

@@ -18,6 +18,7 @@
 package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
+import flexmud.util.Util;
 
 public class TestCmd3 extends Command {
     private static Logger LOGGER = Logger.getLogger(TestCmd3.class);
@@ -28,6 +29,7 @@ public class TestCmd3 extends Command {
     public void run() {
         runCount++;
         lastRunMillis = System.currentTimeMillis();
+        Util.pause(100);
         LOGGER.info("TestCmd3 class ran");
     }
 

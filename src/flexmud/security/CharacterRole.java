@@ -17,18 +17,17 @@
 
 package flexmud.security;
 
-import flexmud.engine.context.ContextCommand;
-import flexmud.engine.context.Context;
 import flexmud.engine.character.Character;
-
-import javax.persistence.*;
-import java.util.Set;
-import java.util.HashSet;
-
+import flexmud.engine.context.Context;
+import flexmud.engine.context.ContextCommand;
 import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name="character_role")
+@Table(name = "character_role")
 public class CharacterRole {
 
     private long id;
@@ -68,11 +67,11 @@ public class CharacterRole {
         this.characters = characters;
     }
 
-    @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(targetEntity = Context.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-        name="CHARACTER_ROLE_CONTEXT",
-        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
-        inverseJoinColumns=@JoinColumn(name="CONTEXT_ID")
+            name = "CHARACTER_ROLE_CONTEXT",
+            joinColumns = @JoinColumn(name = "ACCOUNT_ROLE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CONTEXT_ID")
     )
     public Set<Context> getContexts() {
         return contexts;
@@ -82,11 +81,11 @@ public class CharacterRole {
         this.contexts = contexts;
     }
 
-    @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(targetEntity = ContextCommand.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-        name="CHARACTER_ROLE_COMMAND",
-        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
-        inverseJoinColumns=@JoinColumn(name="CONTEXT_COMMAND_ID")
+            name = "CHARACTER_ROLE_COMMAND",
+            joinColumns = @JoinColumn(name = "ACCOUNT_ROLE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CONTEXT_COMMAND_ID")
     )
     public Set<ContextCommand> getCommands() {
         return commands;
@@ -96,11 +95,11 @@ public class CharacterRole {
         this.commands = commands;
     }
 
-    public boolean hasPermission(Context context){
+    public boolean hasPermission(Context context) {
         return !contexts.contains(context);
     }
 
-    public boolean hasPermission(ContextCommand contextCommand){
+    public boolean hasPermission(ContextCommand contextCommand) {
         return !commands.contains(contextCommand);
     }
 

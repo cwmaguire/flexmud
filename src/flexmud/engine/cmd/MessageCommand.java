@@ -24,7 +24,7 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-public class MessageCommand extends Command{
+public class MessageCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(MessageCommand.class);
 
     @Override

@@ -96,21 +96,21 @@ public class Client {
         if (inputBuffer.hasCompleteCommand()) {
             LOGGER.debug("Running completed command");
             clientContextHandler.runCommand(inputBuffer.getNextCommand());
-        }else{
+        } else {
             LOGGER.debug("No complete commands to run");
         }
 
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return clientContextHandler.getContext();
     }
 
-    public void setContext(Context context){
+    public void setContext(Context context) {
         setContext(context, true);
     }
 
-    public void setContext(Context context, boolean isPromptRequired){
+    public void setContext(Context context, boolean isPromptRequired) {
         clientContextHandler.setContext(context, isPromptRequired);
     }
 

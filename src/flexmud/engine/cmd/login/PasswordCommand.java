@@ -17,8 +17,8 @@
 
 package flexmud.engine.cmd.login;
 
-import org.apache.log4j.Logger;
 import flexmud.engine.cmd.Command;
+import org.apache.log4j.Logger;
 
 public class PasswordCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(PasswordCommand.class);

@@ -27,7 +27,7 @@ public class Util {
     private static Logger LOGGER = Logger.getLogger(ClientCommunicator.class);
     public static int CURRENT_TEST_PORT = 54321;
     public static int CLIENT_SHUTDOWN_WAIT_TIME = 1000;
-    public static int ENGINE_WAIT_TIME = 1000;
+    public static int ENGINE_WAIT_TIME = 500;
 
     public static ClientCommunicator getNewClientCommunicator() throws IOException{
         return getNewClientCommunicator(getTestPort());

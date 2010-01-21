@@ -17,18 +17,10 @@
 
 package flexmud.engine.cmd.game;
 
-import flexmud.db.HibernateUtil;
-import flexmud.engine.context.Message;
 import flexmud.engine.cmd.Command;
-import flexmud.engine.cmd.MessageCommand;
-import flexmud.engine.cmd.ContextOrGenericPromptCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-
-import java.util.List;
 
 public class LookCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(LookCommand.class);

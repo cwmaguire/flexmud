@@ -18,6 +18,7 @@
 package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
+import flexmud.util.Util;
 
 /**
  * We can't attach command _objects_ to a context, only command classes; in order to test that
@@ -32,6 +33,7 @@ public class TestCmd2 extends Command {
     public void run() {
         runCount++;
         lastRunMillis = System.currentTimeMillis();
+        Util.pause(100);
         LOGGER.info("TestCmd2 class ran");
     }
 

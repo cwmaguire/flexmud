@@ -26,7 +26,7 @@ import java.nio.channels.*;
 import java.nio.channels.spi.SelectorProvider;
 import java.util.*;
 
-public class ClientCommunicator implements Runnable{
+public class ClientCommunicator implements Runnable {
     private static Logger LOGGER = Logger.getLogger(ClientCommunicator.class);
     private static final Object CLIENT_READ_LOCK = new Object();
 
@@ -39,7 +39,8 @@ public class ClientCommunicator implements Runnable{
     private final Map<SocketChannel, List<ByteBuffer>> socketChannelByteBuffers = new HashMap<SocketChannel, List<ByteBuffer>>();
     protected final Map<SocketChannel, Client> socketChannelClients = new HashMap<SocketChannel, Client>();
 
-    public ClientCommunicator(){}
+    public ClientCommunicator() {
+    }
 
     public ClientCommunicator(int port) throws IOException {
         this(InetAddress.getLocalHost(), port);
@@ -153,7 +154,7 @@ public class ClientCommunicator implements Runnable{
         if (client == null) {
             try {
                 client = this.createClientMappedToSocketChannel(socketChannel);
-                if(client == null){
+                if (client == null) {
                     throw new IOException();
                 }
             } catch (IOException e) {

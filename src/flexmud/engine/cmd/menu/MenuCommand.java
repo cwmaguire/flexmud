@@ -17,15 +17,15 @@
 
 package flexmud.engine.cmd.menu;
 
+import flexmud.cfg.Constants;
+import flexmud.engine.cmd.Command;
 import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.SequenceComparator;
-import flexmud.engine.cmd.Command;
 import flexmud.menu.ContextCommandMenuItemRenderer;
-import flexmud.cfg.Constants;
 import org.apache.log4j.Logger;
 
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 public class MenuCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(MenuCommand.class);
@@ -40,9 +40,9 @@ public class MenuCommand extends Command {
     public void run() {
         StringBuilder menu = new StringBuilder();
 
-        if(menuContextCommands != null){
+        if (menuContextCommands != null) {
             Collections.sort(menuContextCommands, new SequenceComparator());
-            for(ContextCommand ctxCommand : menuContextCommands){
+            for (ContextCommand ctxCommand : menuContextCommands) {
                 menu.append(ContextCommandMenuItemRenderer.render(ctxCommand));
                 menu.append(Constants.CRLF);
             }
