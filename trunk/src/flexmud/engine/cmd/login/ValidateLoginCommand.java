@@ -19,8 +19,8 @@ package flexmud.engine.cmd.login;
 
 import flexmud.cfg.Preferences;
 import flexmud.db.HibernateUtil;
-import flexmud.engine.context.Context;
 import flexmud.engine.cmd.Command;
+import flexmud.engine.context.Context;
 import flexmud.security.Account;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
@@ -50,7 +50,7 @@ public class ValidateLoginCommand extends Command {
             LOGGER.info("getClient() " + getClient().getConnectionID() + " account set to " + account.getId() + "; sending to main menu");
 
             getClient().getClientContextHandler().loadAndSetFirstChildContext();
-        }else{
+        } else {
             LOGGER.info("No account matches login credentials provided for getClient() " + getClient().getConnectionID() + ", sending to login");
             getClient().sendTextLn(Preferences.getPreference(Preferences.LOGIN_FAILED_MESSAGE));
             getClient().setContext(getInitializedLoginContext());

@@ -34,13 +34,14 @@ public class ContextGroup {
     private Context context;
     private Set<Context> childContexts = new HashSet<Context>();
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "id")
     public long getId() {
         return id;
     }
 
-    public void setId(long id){
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -55,7 +56,7 @@ public class ContextGroup {
     }
 
     // get any context that has a parent_group_id matching this group (i.e. the children)
-    @OneToMany(mappedBy = Context.PARENT_GROUP_PROPERTY, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = Context.PARENT_GROUP_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public Set<Context> getChildContexts() {
         return childContexts;

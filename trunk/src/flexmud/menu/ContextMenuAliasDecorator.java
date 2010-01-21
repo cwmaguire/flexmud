@@ -17,8 +17,8 @@
 
 package flexmud.menu;
 
-import flexmud.engine.context.ContextCommandAlias;
 import flexmud.cfg.Preferences;
+import flexmud.engine.context.ContextCommandAlias;
 
 public class ContextMenuAliasDecorator {
 
@@ -27,15 +27,15 @@ public class ContextMenuAliasDecorator {
     // Question: how would the accelerator trip over the bullet?
     // Multiple aliases that are accelerators and bullets will get ugly;
     // if you decide to clean this up please update the unit test.
-    public static String decorate(String string, ContextCommandAlias alias){
+    public static String decorate(String string, ContextCommandAlias alias) {
         String aliasString = alias.getAlias();
         String decoratedString = string;
-        if(aliasString != null && !aliasString.isEmpty()){
-            if(alias.isAccelerator()){
+        if (aliasString != null && !aliasString.isEmpty()) {
+            if (alias.isAccelerator()) {
                 decoratedString = getAcceleratedString(string, aliasString);
             }
 
-            if(alias.isBullet()){
+            if (alias.isBullet()) {
                 decoratedString = getBulletedString(decoratedString, aliasString);
             }
         }
@@ -47,13 +47,13 @@ public class ContextMenuAliasDecorator {
         return string.replaceFirst(aliasString, getAccelerator(aliasString));
     }
 
-    private static String getAccelerator(String string){
+    private static String getAccelerator(String string) {
         String leftAcceleratorBracket = Preferences.getPreference(Preferences.ACCELERATOR_LEFT_BRACKET);
         String rightAcceleratorBracket = Preferences.getPreference(Preferences.ACCELERATOR_RIGHT_BRACKET);
         return leftAcceleratorBracket + string + rightAcceleratorBracket;
     }
 
-    private static String getBulletedString(String string, String bullet){
+    private static String getBulletedString(String string, String bullet) {
         return bullet + Preferences.getPreference(Preferences.BULLET_SEPERATOR) + " " + string;
     }
 }

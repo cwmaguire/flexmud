@@ -17,23 +17,9 @@
 
 package flexmud.engine.cmd.game;
 
-import flexmud.db.HibernateUtil;
-import flexmud.engine.context.Message;
-import flexmud.engine.context.Context;
-import flexmud.engine.context.ContextCommand;
-import flexmud.engine.context.ContextCommandAlias;
 import flexmud.engine.cmd.Command;
-import flexmud.engine.cmd.MessageCommand;
-import flexmud.engine.cmd.ContextOrGenericPromptCommand;
-import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
-import flexmud.cfg.Constants;
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-
-import java.util.List;
-import java.util.Set;
 
 public class CharacterPromptCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(CharacterPromptCommand.class);

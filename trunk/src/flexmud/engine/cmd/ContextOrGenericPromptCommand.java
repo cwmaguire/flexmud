@@ -19,7 +19,7 @@ package flexmud.engine.cmd;
 import flexmud.cfg.Preferences;
 import flexmud.net.Client;
 
-public class ContextOrGenericPromptCommand extends Command{
+public class ContextOrGenericPromptCommand extends Command {
     @Override
     public void run() {
         String prompt;

@@ -5,12 +5,12 @@ public abstract class PersistedComparable {
     public abstract long getId();
 
     @Override
-    public boolean equals(Object o){
-        if(o == null){
+    public boolean equals(Object o) {
+        if (o == null) {
             return false;
         }
 
-        if(super.equals(o)){
+        if (super.equals(o)) {
             return true;
         }
 

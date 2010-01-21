@@ -20,23 +20,21 @@ package flexmud.menu;
 import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.ContextCommandAlias;
 
-import java.util.Set;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 public class ContextCommandMenuItemRenderer {
 
-    public static String render(ContextCommand contextCommand){
+    public static String render(ContextCommand contextCommand) {
         String contextDescription = contextCommand.getDescription();
 
-        List<ContextCommandAlias> aliases = new ArrayList <ContextCommandAlias>(contextCommand.getAliases());
+        List<ContextCommandAlias> aliases = new ArrayList<ContextCommandAlias>(contextCommand.getAliases());
         // this will ensure accelerators are taken care of before bullets, but
         // mix and match multiple bullets and accelerators at your own risk.
         //Collections.sort(aliases);
 
-        if(!aliases.isEmpty()){
-            for(ContextCommandAlias alias : aliases){
+        if (!aliases.isEmpty()) {
+            for (ContextCommandAlias alias : aliases) {
                 contextDescription = ContextMenuAliasDecorator.decorate(contextDescription, alias);
             }
         }

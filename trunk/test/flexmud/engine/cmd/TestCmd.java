@@ -17,6 +17,7 @@ along with flexmud.  If not, see <http://www.gnu.org/licenses/>.
 package flexmud.engine.cmd;
 
 import org.apache.log4j.Logger;
+import flexmud.util.Util;
 
 public class TestCmd extends Command {
     private static Logger LOGGER = Logger.getLogger(TestCmd.class);
@@ -27,6 +28,7 @@ public class TestCmd extends Command {
     public void run() {
         runCount++;
         lastRunMillis = System.currentTimeMillis();
+        Util.pause(100);
         LOGGER.info("TestCmd class ran");
     }
 

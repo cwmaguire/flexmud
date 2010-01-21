@@ -59,7 +59,7 @@ public class ClientContextHandler {
 
         if (doesExistsCheckFail(newContext)) return;
 
-        if(newContext.isSecure() && doesSecurityCheckFail(newContext)) return;
+        if (newContext.isSecure() && doesSecurityCheckFail(newContext)) return;
 
         if (doesMaxEntriesCheckFail(newContext)) return;
 
@@ -131,15 +131,15 @@ public class ClientContextHandler {
         return null;
     }
 
-    public List<ContextCommand> getAccessibleContextCommands(List<? extends ContextCommand> commands){
+    public List<ContextCommand> getAccessibleContextCommands(List<? extends ContextCommand> commands) {
         List<ContextCommand> accessibleCommands = null;
         Account account = client.getAccount();
         AccountRole role = account == null ? null : account.getAccountRole();
 
-        if(role != null && commands != null){
+        if (role != null && commands != null) {
             accessibleCommands = new ArrayList<ContextCommand>();
-            for(ContextCommand command : commands){
-                if(role.hasPermission(command)){
+            for (ContextCommand command : commands) {
+                if (role.hasPermission(command)) {
                     accessibleCommands.add(command);
                 }
             }

@@ -17,8 +17,8 @@
 
 package flexmud.prompt;
 
-public class PlayerPrompt extends Prompt{
-    public static String getPrompt(){
+public class PlayerPrompt extends Prompt {
+    public static String getPrompt() {
         return ">>";
     }
 }

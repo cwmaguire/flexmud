@@ -16,19 +16,18 @@
  **************************************************************************************************/
 package flexmud.engine.context;
 
-import org.hibernate.annotations.Cascade;
+import flexmud.PersistedComparable;
+import flexmud.engine.cmd.Command;
 import org.apache.log4j.Logger;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import flexmud.engine.cmd.Command;
-import flexmud.PersistedComparable;
-
 @Entity
 @Table(name = "context_command")
-public class ContextCommand extends PersistedComparable implements Sequenceable{
+public class ContextCommand extends PersistedComparable implements Sequenceable {
     private static final Logger LOGGER = Logger.getLogger(ContextCommand.class);
 
     public static final String ID_PROPERTY = "id";

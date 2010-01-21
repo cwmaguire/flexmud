@@ -16,18 +16,17 @@
  **************************************************************************************************/
 package flexmud.security;
 
-import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.Context;
-
-import javax.persistence.*;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.ArrayList;
-
+import flexmud.engine.context.ContextCommand;
 import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name="account_role")
+@Table(name = "account_role")
 public class AccountRole {
 
     private long id;
@@ -67,11 +66,11 @@ public class AccountRole {
         this.accounts = accounts;
     }
 
-    @ManyToMany( targetEntity=Context.class, cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch=FetchType.EAGER)
+    @ManyToMany(targetEntity = Context.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
-        name="ACCOUNT_ROLE_CONTEXT",
-        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
-        inverseJoinColumns=@JoinColumn(name="CONTEXT_ID")
+            name = "ACCOUNT_ROLE_CONTEXT",
+            joinColumns = @JoinColumn(name = "ACCOUNT_ROLE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CONTEXT_ID")
     )
     public Set<Context> getContexts() {
         return contexts;
@@ -81,11 +80,11 @@ public class AccountRole {
         this.contexts = contexts;
     }
 
-    @ManyToMany( targetEntity=ContextCommand.class, cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch=FetchType.EAGER)
+    @ManyToMany(targetEntity = ContextCommand.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
-        name="ACCOUNT_ROLE_COMMAND",
-        joinColumns=@JoinColumn(name="ACCOUNT_ROLE_ID"),
-        inverseJoinColumns=@JoinColumn(name="CONTEXT_COMMAND_ID")
+            name = "ACCOUNT_ROLE_COMMAND",
+            joinColumns = @JoinColumn(name = "ACCOUNT_ROLE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CONTEXT_COMMAND_ID")
     )
     public Set<ContextCommand> getCommands() {
         return commands;
@@ -95,11 +94,11 @@ public class AccountRole {
         this.commands = commands;
     }
 
-    public boolean hasPermission(Context context){
+    public boolean hasPermission(Context context) {
         return new ArrayList<Context>(contexts).contains(context);
     }
 
-    public boolean hasPermission(ContextCommand contextCommand){
+    public boolean hasPermission(ContextCommand contextCommand) {
         return new ArrayList<ContextCommand>(commands).contains(contextCommand);
     }
 

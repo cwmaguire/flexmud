@@ -54,7 +54,7 @@ public abstract class HibernateUtil {
         getSessionFactory().close();
     }
 
-    public static List fetch(DetachedCriteria detachedCriteria){
+    public static List fetch(DetachedCriteria detachedCriteria) {
         Session session;
         Transaction transaction;
 
@@ -63,49 +63,49 @@ public abstract class HibernateUtil {
 
         Criteria criteria = detachedCriteria.getExecutableCriteria(session);
 
-        try{
+        try {
             return criteria.list();
-        }catch(Exception e){
+        } catch (Exception e) {
             LOGGER.error("Error retrieving data for criteria", e);
             return null;
-        }finally{
+        } finally {
             transaction.commit();
             session.close();
         }
     }
 
-    public static void save(Object obj){
+    public static void save(Object obj) {
         Session session;
         Transaction transaction;
 
         session = HibernateUtil.getSessionFactory().openSession();
         transaction = session.beginTransaction();
 
-        try{
+        try {
             session.save(obj);
             transaction.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             LOGGER.error("Error saving object", e);
             transaction.rollback();
-        }finally{
+        } finally {
             session.close();
         }
     }
 
-    public static void delete(Object obj){
+    public static void delete(Object obj) {
         Session session;
         Transaction transaction;
 
         session = HibernateUtil.getSessionFactory().openSession();
         transaction = session.beginTransaction();
 
-        try{
+        try {
             session.delete(obj);
             transaction.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             LOGGER.error("Error deleting object", e);
             transaction.rollback();
-        }finally{
+        } finally {
             session.close();
         }
     }

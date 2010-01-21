@@ -17,24 +17,16 @@
 
 package flexmud.engine.cmd.game;
 
-import flexmud.db.HibernateUtil;
-import flexmud.engine.context.Message;
+import flexmud.cfg.Constants;
+import flexmud.engine.cmd.Command;
 import flexmud.engine.context.Context;
 import flexmud.engine.context.ContextCommand;
 import flexmud.engine.context.ContextCommandAlias;
-import flexmud.engine.cmd.Command;
-import flexmud.engine.cmd.MessageCommand;
-import flexmud.engine.cmd.ContextOrGenericPromptCommand;
 import flexmud.engine.exec.Executor;
 import flexmud.net.Client;
-import flexmud.cfg.Constants;
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 
-import java.util.List;
 import java.util.Set;
-import java.util.Collections;
 
 public class HelpCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(HelpCommand.class);
@@ -48,12 +40,12 @@ public class HelpCommand extends Command {
 
         commandsAndDescriptions.append(Constants.CRLF).append("Commands: ").append(Constants.CRLF);
 
-        for(ContextCommand cmd : contextCommands){
-            if(cmd.getName() != null){
+        for (ContextCommand cmd : contextCommands) {
+            if (cmd.getName() != null) {
                 commandsAndDescriptions.append(cmd.getName())
                         .append("\t")
                         .append(getAliases(cmd))
-                        .append("\t")
+                        .append("\t\t")
                         .append(cmd.getDescription())
                         .append(Constants.CRLF);
             }
@@ -70,8 +62,8 @@ public class HelpCommand extends Command {
     private String getAliases(ContextCommand cmd) {
         StringBuilder aliases = new StringBuilder();
 
-        for(ContextCommandAlias alias : cmd.getAliases()){
-            if(aliases.length() > 0){
+        for (ContextCommandAlias alias : cmd.getAliases()) {
+            if (aliases.length() > 0) {
                 aliases.append(", ");
             }
             aliases.append(alias.getAlias());

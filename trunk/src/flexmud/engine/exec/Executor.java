@@ -23,8 +23,8 @@ import java.util.concurrent.Future;
 public class Executor {
     public static ExecutorService executorService = Executors.newCachedThreadPool();
 
-    public static Future exec(Runnable command){
-        if(command != null){
+    public static Future exec(Runnable command) {
+        if (command != null) {
             return executorService.submit(command);
         }
 

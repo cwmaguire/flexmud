@@ -21,7 +21,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "context_command_parameter")
-public class ContextCommandParameter implements Sequenceable{
+public class ContextCommandParameter implements Sequenceable {
     public static final String ID_PROPERTY = "id";
     public static final String VALUE_PROPERTY = "value";
     public static final String SEQUENCE_PROPERTY = "sequence";
