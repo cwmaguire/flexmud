@@ -1,6 +1,6 @@
 #summary A unique set of commands mapped to user input
 
-A context is a set of available commands a user can run. Some examples are the main menu context and the game context. 
+A context is a set of available commands a user can run as well as child contexts. Some examples are the main menu context and the game context. 
 
 Grouping commands by context allows commands to use identical input without overlapping as well as to partition the complexity of the mud. 
 
