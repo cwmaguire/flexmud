@@ -1,6 +1,6 @@
 package flexmud.cfg.editor
 
-import flexmud.cfg.editor.gui.context.ContextCommandTreePanel
+import flexmud.cfg.editor.gui.context.ContextCommandTablePanel
 import flexmud.cfg.editor.gui.context.ContextEditPanel
 import flexmud.cfg.editor.gui.context.ContextTreePanel
 import flexmud.cfg.editor.gui.security.SecurityPanel
@@ -9,13 +9,11 @@ import flexmud.engine.context.Context
 import flexmud.engine.context.ContextCommand
 import org.hibernate.criterion.DetachedCriteria
 import org.hibernate.criterion.Restrictions
-import flexmud.cfg.editor.gui.context.ContextCommandTreePanel
-import flexmud.cfg.editor.gui.context.ContextEditPanel
 
 public class Controller {
   ContextEditPanel contextEditPanel
   ContextTreePanel contextTreePanel
-  ContextCommandTreePanel contextCommandTreePanel
+  ContextCommandTablePanel contextCommandTreePanel
 
   SecurityPanel securityPanel
 

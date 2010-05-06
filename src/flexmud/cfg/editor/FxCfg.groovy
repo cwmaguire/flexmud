@@ -1,6 +1,5 @@
 package flexmud.cfg.editor
 
-import flexmud.cfg.editor.Controller
 import flexmud.cfg.editor.gui.TabbedConfigFrame
 
 public class FxCfg {
