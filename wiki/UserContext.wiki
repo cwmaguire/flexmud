@@ -24,7 +24,7 @@ It should be quite simple to model any custom interaction within, not just a gam
   * Worlds/Dimensions/Zones
 
 Currently my "reference implementation" of flexmud has several contexts: 
-  * Welcome - prints welcome message, switches to login context
+  * Welcome - prints welcome message (on-entry), switches to login context (on-entry)
   * Login - prompts for login, switches to password context
   * Password - prompts for password, switches to login validation context
   * Login Validation - checks login and either disconnects, sends back to login or sends to the main menu context
