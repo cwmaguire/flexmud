@@ -8,6 +8,9 @@ public class SecurityPanel extends JPanel {
   Controller controller
   String title = "Security"
 
+  /**
+   * Creates a new security panel for managing user security (not just player security)
+   */
   public SecurityPanel() {
     add(new JLabel("Security Tab"))
   }

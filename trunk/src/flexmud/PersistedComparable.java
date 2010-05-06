@@ -6,15 +6,7 @@ public abstract class PersistedComparable {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        }
-
-        if (super.equals(o)) {
-            return true;
-        }
-
-        return isClassAndIdEqual(o);
+        return o != null && (super.equals(o) || isClassAndIdEqual(o));
     }
 
     private boolean isClassAndIdEqual(Object o) {

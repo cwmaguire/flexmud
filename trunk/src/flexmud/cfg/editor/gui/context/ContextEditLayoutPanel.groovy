@@ -1,8 +1,7 @@
 package flexmud.cfg.editor.gui.context
 
 import flexmud.cfg.editor.Controller
-import flexmud.cfg.editor.gui.context.ContextCommandTreePanel
-import flexmud.cfg.editor.gui.context.ContextEditPanel
+
 import java.awt.Dimension
 import java.awt.GridLayout
 import javax.swing.JPanel
@@ -13,7 +12,7 @@ import javax.swing.JTree
 public class ContextEditLayoutPanel extends JPanel {
   Controller controller
   ContextEditPanel contextEditPanel;
-  ContextCommandTreePanel contextCommandTreePanel
+  ContextCommandTablePanel contextCommandTreePanel
   String title = "Contexts"
   JTree tree
 
@@ -26,7 +25,7 @@ public class ContextEditLayoutPanel extends JPanel {
     contextEditPanel = new ContextEditPanel(controller);
     controller.contextEditPanel = contextEditPanel;
 
-    contextCommandTreePanel = new ContextCommandTreePanel(controller)
+    contextCommandTreePanel = new ContextCommandTablePanel(controller)
     controller.contextCommandTreePanel = contextCommandTreePanel
 
     JTabbedPane tabbedPane = new JTabbedPane()

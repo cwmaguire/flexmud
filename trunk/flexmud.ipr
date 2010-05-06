@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project relativePaths="true" version="4">
+<project version="4">
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
     <buildFile url="file://$PROJECT_DIR$/build.xml">
@@ -46,13 +46,8 @@
     <option name="PROJECT_PROFILE" />
     <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
   </component>
-  <component name="CodeStyleSettingsManager">
-    <option name="PER_PROJECT_SETTINGS" />
-    <option name="USE_PER_PROJECT_SETTINGS" value="false" />
-  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
-    <option name="DEPLOY_AFTER_MAKE" value="0" />
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
       <entry name=".+\.(gif|png|jpeg|jpg)" />
@@ -68,11 +63,13 @@
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
     </wildcardResourcePatterns>
+    <annotationProcessing enabled="false" useClasspath="true" />
   </component>
   <component name="CopyrightManager" default="">
     <copyright>
       <option name="notice" value="Copyright 2009 Chris Maguire (cwmaguire@gmail.com)&#10;&#10;Flexmud is free software: you can redistribute it and/or modify&#10;it under the terms of the GNU General Public License as published by&#10;the Free Software Foundation, either version 3 of the License, or&#10;(at your option) any later version.&#10;&#10;Flexmud is distributed in the hope that it will be useful,&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#10;GNU General Public License for more details.&#10;&#10;You should have received a copy of the GNU General Public License&#10;along with flexmud.  If not, see &lt;http://www.gnu.org/licenses/&gt;." />
       <option name="keyword" value="Copyright" />
+      <option name="allowReplaceKeyword" value="" />
       <option name="myName" value="flexmud" />
       <option name="myLocal" value="true" />
     </copyright>
@@ -101,11 +98,8 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EclipseCompilerSettings">
-    <option name="DEBUGGING_INFO" value="true" />
     <option name="GENERATE_NO_WARNINGS" value="true" />
     <option name="DEPRECATION" value="false" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="EclipseEmbeddedCompilerSettings">
     <option name="DEBUGGING_INFO" value="true" />
@@ -152,9 +146,6 @@
   </component>
   <component name="IdProvider" IDEtalkID="FC257E6D770F36D9676388AB099BC435" />
   <component name="InspectionProjectProfileManager">
-    <option name="PROJECT_PROFILE" value="Project Default" />
-    <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
-    <scopes />
     <profiles>
       <profile version="1.0" is_locked="false">
         <option name="myName" value="Enterovision Editor Highlighting" />
@@ -165,23 +156,20 @@
         <option name="myLocal" value="false" />
       </profile>
     </profiles>
-    <list size="4">
+    <option name="PROJECT_PROFILE" value="Project Default" />
+    <option name="USE_PROJECT_PROFILE" value="true" />
+    <version value="1.0" />
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="SERVER PROBLEM" />
       <item index="1" class="java.lang.String" itemvalue="INFO" />
-      <item index="2" class="java.lang.String" itemvalue="WARNING" />
-      <item index="3" class="java.lang.String" itemvalue="ERROR" />
+      <item index="2" class="java.lang.String" itemvalue="TYPO" />
+      <item index="3" class="java.lang.String" itemvalue="WARNING" />
+      <item index="4" class="java.lang.String" itemvalue="ERROR" />
     </list>
   </component>
-  <component name="JavacSettings">
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="DEPRECATION" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
-  </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" />
-    <option name="OPTION_SCOPE" value="protected" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="OPTION_SCOPE" value="private" />
     <option name="OPTION_HIERARCHY" value="true" />
     <option name="OPTION_NAVIGATOR" value="true" />
     <option name="OPTION_INDEX" value="true" />
@@ -191,31 +179,16 @@
     <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
     <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
     <option name="OPTION_DEPRECATED_LIST" value="true" />
-    <option name="OTHER_OPTIONS" value="" />
+    <option name="OTHER_OPTIONS" />
     <option name="HEAP_SIZE" />
     <option name="LOCALE" />
     <option name="OPEN_IN_BROWSER" value="true" />
-  </component>
-  <component name="JikesSettings">
-    <option name="JIKES_PATH" value="" />
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="DEPRECATION" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="IS_EMACS_ERRORS_MODE" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
   <component name="LogConsolePreferences">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
     <option name="FILTER_INFO" value="true" />
     <option name="CUSTOM_FILTER" />
-  </component>
-  <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
-    </option>
   </component>
   <component name="Palette2">
     <group name="Swing">
@@ -341,10 +314,6 @@
   <component name="ProjectDetails">
     <option name="projectName" value="flexmud" />
   </component>
-  <component name="ProjectFileVersion" converted="true">
-    <converter id="ror-modules" />
-    <converter id="SelenaRunConfToDiana" />
-  </component>
   <component name="ProjectKey">
     <option name="state" value="https://flexmud.googlecode.com/svn/trunk/flexmud.ipr" />
   </component>
@@ -353,19 +322,8 @@
       <module fileurl="file://$PROJECT_DIR$/flexmud.iml" filepath="$PROJECT_DIR$/flexmud.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6u20" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build" />
-  </component>
-  <component name="Regex">
-    <option name="pos1" value="218" />
-    <option name="pos2" value="218" />
-    <option name="pos3" value="162" />
-    <option name="pos4" value="444" />
-    <option name="pos5" value="162" />
-    <option name="autoUpdate" value="true" />
-    <option name="referenceOn" value="false" />
-    <option name="referencePos" value="0" />
-    <option name="showLabels" value="true" />
   </component>
   <component name="ResourceManagerContainer">
     <option name="myResourceBundles">
@@ -373,13 +331,6 @@
         <list size="0" />
       </value>
     </option>
-  </component>
-  <component name="RmicSettings">
-    <option name="IS_EANABLED" value="false" />
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="GENERATE_IIOP_STUBS" value="false" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
   <component name="SQLPlugin.ProjectConfiguration">
     <queries />
@@ -507,6 +458,14 @@
       <JAVADOC />
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib/hibernate" recursive="false" />
+    </library>
+    <library name="Groovy">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/lib/groovy" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/groovy" recursive="false" />
     </library>
   </component>
 </project>

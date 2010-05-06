@@ -84,7 +84,7 @@ public class ClientContextHandler {
 
         menuCommand = createMenuCommand();
         if (menuCommand != null) {
-            commands.add(createMenuCommand());
+            commands.add(menuCommand);
         }
 
         if (isPromptRequired) {
