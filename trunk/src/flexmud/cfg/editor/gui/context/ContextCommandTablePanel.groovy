@@ -37,6 +37,9 @@ public class ContextCommandTablePanel extends JPanel {
     table.setModel(new ContextCommandTableModel(context))
     table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(new JTextField()))
     table.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(new JComboBox(ContextCommandFlag.values())))
+    table.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new JTextField()))
+    table.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(new JTextField()))
+    table.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(new JTextField()))
     repaint()
   }
 
