@@ -53,7 +53,9 @@ class ContextCommandTableModel extends AbstractTableModel {
     return fields[column]
   }
 
-  
+  def boolean isCellEditable(int rowIndex, int columnIndex) {
+    return columnIndex != 0
+  }
 
 
 }
