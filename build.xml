@@ -117,11 +117,11 @@
                 password=""
                 dataTypeFactory="org.dbunit.ext.hsqldb.HsqldbDataTypeFactory">
             <classpath refid="project.classpath"/>
-            <operation type="INSERT" src="database/base.xml" transaction="true"/>
-            <operation type="INSERT" src="database/security.xml" transaction="true"/>
-            <operation type="INSERT" src="database/admin_acc_permissions.xml" transaction="true"/>
-            <operation type="INSERT" src="database/player_acc_permissions.xml" transaction="true"/>
-            <operation type="INSERT" src="database/guest_acc_permissions.xml" transaction="true"/>
+            <operation type="INSERT" src="data/base.xml" transaction="true"/>
+            <operation type="INSERT" src="data/security.xml" transaction="true"/>
+            <operation type="INSERT" src="data/admin_acc_permissions.xml" transaction="true"/>
+            <operation type="INSERT" src="data/player_acc_permissions.xml" transaction="true"/>
+            <operation type="INSERT" src="data/guest_acc_permissions.xml" transaction="true"/>
         </dbunit>
     </target>
 
@@ -134,7 +134,7 @@
             <dbconfig>
                 <property  name="escapePattern" value="\"/>
             </dbconfig>
-            <export dest="database/existing_db.xml" format="xml"/>
+            <export dest="data/existing_db.xml" format="xml"/>
             <classpath refid="project.classpath"/>
         </dbunit>
     </target>

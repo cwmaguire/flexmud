@@ -473,6 +473,14 @@
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib/Hibernate-3.5.1" recursive="false" />
     </library>
+    <library name="Commons Logging">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/lib/commons-logging-1.1.1" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/commons-logging-1.1.1" recursive="false" />
+    </library>
   </component>
 </project>
 
