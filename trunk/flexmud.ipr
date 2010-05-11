@@ -322,6 +322,10 @@
       <module fileurl="file://$PROJECT_DIR$/flexmud.iml" filepath="$PROJECT_DIR$/flexmud.iml" />
     </modules>
   </component>
+  <component name="ProjectResources">
+    <resource url="http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" location="$PROJECT_DIR$/lib/Hibernate-3.5.1/hibernate3.jar!/org/hibernate/hibernate-mapping-3.0.dtd" />
+    <resource url="http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" location="$PROJECT_DIR$/lib/Hibernate-3.5.1/hibernate3.jar!/org/hibernate/hibernate-configuration-3.0.dtd" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6u20" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build" />
   </component>
@@ -451,14 +455,6 @@
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib/log4j" recursive="false" />
     </library>
-    <library name="Hibernate">
-      <CLASSES>
-        <root url="file://$PROJECT_DIR$/lib/hibernate" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-      <jarDirectory url="file://$PROJECT_DIR$/lib/hibernate" recursive="false" />
-    </library>
     <library name="Groovy">
       <CLASSES>
         <root url="file://$PROJECT_DIR$/lib/groovy" />
@@ -466,6 +462,16 @@
       <JAVADOC />
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib/groovy" recursive="false" />
+    </library>
+    <library name="Hibernate-3.5.1">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/lib/Hibernate-3.5.1" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="file://$PROJECT_DIR$/../../download/hibernate-distribution-3.5.1-Final-dist/hibernate-distribution-3.5.1-Final/documentation/javadocs" />
+      </JAVADOC>
+      <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/Hibernate-3.5.1" recursive="false" />
     </library>
   </component>
 </project>

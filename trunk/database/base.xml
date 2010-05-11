@@ -5,7 +5,6 @@
     A context group is a Hibernate kludge to link a parent context with several child contexts.
     If you know of a better way to do this, email someone on the project!
     -->
-    <CONTEXT_GROUP ID="0"/>
     <CONTEXT_GROUP ID="1"/>
     <CONTEXT_GROUP ID="2"/>
     <CONTEXT_GROUP ID="3"/>
@@ -16,6 +15,7 @@
     <CONTEXT_GROUP ID="8"/>
     <CONTEXT_GROUP ID="9"/>
     <CONTEXT_GROUP ID="10"/>
+    <CONTEXT_GROUP ID="11"/>
 
     <!--
     Flexmud is a state machine and each state is called a "context". User input processing is dependent on the current user context.
@@ -26,18 +26,19 @@
     child contexts is by displaying the descriptions of all the "MENU_ITEM" commands with aliases that show how to run that command (i.e.
     sellect that context). So "Create Character" might show up as "1) [C]reate Character"; entering 1[enter] or c[enter] will run the command
     that plonks us into the "Create Character" context.
+   
     -->
-    <CONTEXT ID="0"  NAME="welcome"                                   CHILD_GROUP_ID="0"  MAX_ENTRIES="0" IS_SECURE="0"/>
-    <CONTEXT ID="1"  NAME="login"                PARENT_GROUP_ID="0"  CHILD_GROUP_ID="1"  MAX_ENTRIES="0" IS_SECURE="0" PROMPT="login:>"/>
-    <CONTEXT ID="2"  NAME="password"             PARENT_GROUP_ID="1"  CHILD_GROUP_ID="2"  MAX_ENTRIES="0" IS_SECURE="0" PROMPT="password:>"/>
-    <CONTEXT ID="10" NAME="validate login"       PARENT_GROUP_ID="2"  CHILD_GROUP_ID="10" MAX_ENTRIES="3" IS_SECURE="0"/>
-    <CONTEXT ID="3"  NAME="main menu"            PARENT_GROUP_ID="10" CHILD_GROUP_ID="3"  MAX_ENTRIES="0" IS_SECURE="1"/>
-    <CONTEXT ID="4"  NAME="character mgmt"       PARENT_GROUP_ID="3"  CHILD_GROUP_ID="4"  MAX_ENTRIES="0" IS_SECURE="1"/>
-    <CONTEXT ID="5"  NAME="create character"     PARENT_GROUP_ID="4"  CHILD_GROUP_ID="5"  MAX_ENTRIES="0" IS_SECURE="1"/>
-    <CONTEXT ID="6"  NAME="edit character"       PARENT_GROUP_ID="4"  CHILD_GROUP_ID="6"  MAX_ENTRIES="0" IS_SECURE="1"/>
-    <CONTEXT ID="7"  NAME="delete character"     PARENT_GROUP_ID="4"  CHILD_GROUP_ID="7"  MAX_ENTRIES="0" IS_SECURE="1"/>
-    <CONTEXT ID="8"  NAME="choose character"     PARENT_GROUP_ID="3"  CHILD_GROUP_ID="8"  MAX_ENTRIES="0" IS_SECURE="1" PROMPT="character:>"/>
-    <CONTEXT ID="9"  NAME="game"                 PARENT_GROUP_ID="3"  CHILD_GROUP_ID="9"  MAX_ENTRIES="0" IS_SECURE="1"/>
+    <CONTEXT ID="11"  NAME="welcome"                                  CHILD_GROUP_ID="1"  MAX_ENTRIES="0" IS_SECURE="0"/>
+    <CONTEXT ID="1"  NAME="login"                PARENT_GROUP_ID="1"  CHILD_GROUP_ID="2"  MAX_ENTRIES="0" IS_SECURE="0" PROMPT="login:>"/>
+    <CONTEXT ID="2"  NAME="password"             PARENT_GROUP_ID="2"  CHILD_GROUP_ID="3"  MAX_ENTRIES="0" IS_SECURE="0" PROMPT="password:>"/>
+    <CONTEXT ID="10" NAME="validate login"       PARENT_GROUP_ID="3"  CHILD_GROUP_ID="4"  MAX_ENTRIES="3" IS_SECURE="0"/>
+    <CONTEXT ID="3"  NAME="main menu"            PARENT_GROUP_ID="4"  CHILD_GROUP_ID="5"  MAX_ENTRIES="0" IS_SECURE="1"/>
+    <CONTEXT ID="4"  NAME="character mgmt"       PARENT_GROUP_ID="5"  CHILD_GROUP_ID="6"  MAX_ENTRIES="0" IS_SECURE="1"/>
+    <CONTEXT ID="5"  NAME="create character"     PARENT_GROUP_ID="6"  CHILD_GROUP_ID="7"  MAX_ENTRIES="0" IS_SECURE="1"/>
+    <CONTEXT ID="6"  NAME="edit character"       PARENT_GROUP_ID="6"  CHILD_GROUP_ID="8"  MAX_ENTRIES="0" IS_SECURE="1"/>
+    <CONTEXT ID="7"  NAME="delete character"     PARENT_GROUP_ID="6"  CHILD_GROUP_ID="9"  MAX_ENTRIES="0" IS_SECURE="1"/>
+    <CONTEXT ID="8"  NAME="choose character"     PARENT_GROUP_ID="5"  CHILD_GROUP_ID="10" MAX_ENTRIES="0" IS_SECURE="1" PROMPT="character:>"/>
+    <CONTEXT ID="9"  NAME="game"                 PARENT_GROUP_ID="5"  CHILD_GROUP_ID="11" MAX_ENTRIES="0" IS_SECURE="1"/>
 
     <!--
     Context commands are commands that are applicable to a particular context. The "login" context won't have many commands
@@ -49,8 +50,8 @@
     -->
 
     <!-- Welcome -->
-    <CONTEXT_COMMAND ID="0"  CONTEXT_ID="0"  FLAG="ENTRY"     SEQUENCE="1" COMMAND_CLASS="flexmud.engine.cmd.MessageCommand"/>
-    <CONTEXT_COMMAND ID="1"  CONTEXT_ID="0"  FLAG="ENTRY"     SEQUENCE="2" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"/>
+    <CONTEXT_COMMAND ID="27" CONTEXT_ID="11" FLAG="ENTRY"     SEQUENCE="1" COMMAND_CLASS="flexmud.engine.cmd.MessageCommand"/>
+    <CONTEXT_COMMAND ID="1"  CONTEXT_ID="11" FLAG="ENTRY"     SEQUENCE="2" COMMAND_CLASS="flexmud.engine.cmd.SetContextCommand"/>
 
     <!-- login, password -->
     <CONTEXT_COMMAND ID="2"  CONTEXT_ID="1"  FLAG="DEFAULT"   COMMAND_CLASS="flexmud.engine.cmd.login.LoginCommand"/>
@@ -107,20 +108,20 @@
     -->
 
     <!-- Welcome context, Message Command : Welcome message -->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="0" PARAM_VALUE="0" SEQUENCE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="27" PARAM_VALUE="4"  SEQUENCE="1"/>
     <!-- Welcome context SetContext entry command param -->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="1" PARAM_VALUE="1" SEQUENCE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="1"  PARAM_VALUE="1"  SEQUENCE="1"/>
     <!-- Character management menu item set context param -->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="5" PARAM_VALUE="4" SEQUENCE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="5"  PARAM_VALUE="4"  SEQUENCE="1"/>
     <!-- Game menu item set context param -->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="6" PARAM_VALUE="9" SEQUENCE="1"/>
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="6" PARAM_VALUE="0" SEQUENCE="2"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="6"  PARAM_VALUE="9"  SEQUENCE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="6"  PARAM_VALUE="0" SEQUENCE="2"/>
     <!-- Create character menu item set context param-->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="8" PARAM_VALUE="5" SEQUENCE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="8"  PARAM_VALUE="5"  SEQUENCE="1"/>
     <!-- Edit character menu item set context param -->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="9" PARAM_VALUE="6" SEQUENCE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="9"  PARAM_VALUE="6"  SEQUENCE="1"/>
     <!-- Delete character menu item set context param -->
-    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="10" PARAM_VALUE="7" SEQUENCE="1"/>
+    <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="10" PARAM_VALUE="7"  SEQUENCE="1"/>
 
     <!-- [Menu] not available yet message command params for Create/Edit/Delete character contexts -->
     <CONTEXT_COMMAND_PARAMETER CONTEXT_COMMAND_ID="19" PARAM_VALUE="1" SEQUENCE="1"/>
@@ -199,7 +200,7 @@
     <CONTEXT_COMMAND_ALIAS CONTEXT_COMMAND_ID="15" ALIAS="help" IS_ACCELERATOR="0" IS_BULLET="0"/>
 
     
-    <MESSAGE ID="0" NAME="WELCOME MESSAGE" MESSAGE="Welcome to flexmud. Guests may login with guest/guest"/>
+    <MESSAGE ID="4" NAME="WELCOME MESSAGE" MESSAGE="Welcome to flexmud. Guests may login with guest/guest"/>
     <MESSAGE ID="1" NAME="NO CHAR CREATION YET" MESSAGE="Character creation is not available yet"/>
     <MESSAGE ID="2" NAME="NO CHAR EDITING YET" MESSAGE="Character editing is not available yet"/>
     <MESSAGE ID="3" NAME="NO CHAR DELETION YET" MESSAGE="Character deletion is not available yet"/>

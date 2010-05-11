@@ -57,8 +57,7 @@ public class CharacterRole {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = Character.CHARACTER_ROLE_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @OneToMany(mappedBy = Character.CHARACTER_ROLE_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     public Set<flexmud.engine.character.Character> getCharacters() {
         return characters;
     }
