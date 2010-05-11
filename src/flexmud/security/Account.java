@@ -81,8 +81,7 @@ public class Account {
         this.accountRole = accountRole;
     }
 
-    @OneToMany(mappedBy = Character.ACCOUNT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    @OneToMany(mappedBy = Character.ACCOUNT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     public Set<Character> getAccountCharacters() {
         return accountCharacters;
     }

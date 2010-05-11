@@ -9,8 +9,11 @@ import flexmud.engine.context.Context
 import flexmud.engine.context.ContextCommand
 import org.hibernate.criterion.DetachedCriteria
 import org.hibernate.criterion.Restrictions
+import javax.swing.JFrame
+import javax.swing.JOptionPane
 
 public class Controller {
+  JFrame mainFrame
   ContextEditPanel contextEditPanel
   ContextTreePanel contextTreePanel
   ContextCommandTablePanel contextCommandTreePanel
@@ -35,5 +38,9 @@ public class Controller {
 
   def loadContextCommand(ContextCommand contextCommand) {
     //contextCommandTreePanel.load(contextCommand)
+  }
+
+  def showMessage(String message){
+    JOptionPane.showMessageDialog(mainFrame, message);
   }
 }

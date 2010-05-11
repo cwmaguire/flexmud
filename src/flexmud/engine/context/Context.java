@@ -186,7 +186,6 @@ public class Context {
 
     // maps to the context_group that holds this context's children
     @OneToOne(targetEntity = ContextGroup.class, cascade = CascadeType.ALL, optional = true)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     @JoinColumn(name = "child_group_id")
     public ContextGroup getChildGroup() {
         return childGroup;
@@ -209,7 +208,6 @@ public class Context {
 
 
     @OneToMany(mappedBy = ContextCommand.CONTEXT_PROPERTY, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public Set<ContextCommand> getContextCommands() {
         return contextCommands;
     }
